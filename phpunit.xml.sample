@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true"  bootstrap="./vendor/autoload.php">
+    <testsuites>
+        <testsuite name="HelloSign Test Suite">
+            <directory>./library/HelloSign/Test/</directory>
+        </testsuite>
+    </testsuites>
+<!--     <php>
+      <env name="HELLOSIGN_API_KEY" value=""/>
+      <env name="HELLOSIGN_CLIENT_ID" value=""/>
+      <env name="HELLOSIGN_CALLBACK_URL" value=""/>
+    </php> -->
+</phpunit>

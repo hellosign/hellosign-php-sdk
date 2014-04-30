@@ -1,0 +1,13 @@
+language: php
+php:
+- 5.3
+- 5.4
+env:
+  global:
+  - secure: mkq2HB7H4TMTtDMlt47pIENNjdxac6Sgpi96DCkJRfP0TmwBoIk8WuBLWNJCYQa30gVHhxwgPNQayiPQnSXpFWY57DMve06kH5wPtDmi9FZHrSepCf9kldBVgpNTxAQ3OP5UG6TqYy14bdSCHk6FeBIgoLGmi0tAUMwryV+GNSw=
+  - secure: jjpmX8+MME+uVLefD2Q5zFeNmqiPZZOp1plWNqdVyTrsQOORCl31RsgoXxlzEEjcwkqb6tRWnzKnz2HA/OAOhDlR7pfw2TlNMvBhXi1NxHJe9x3kMp3P1akE4U20I+asakaHZqLkAErr8KMInRoblNvwyrP+hw166HrEHCE/EiQ=
+before_install:
+- cp phpunit.xml.sample phpunit.xml
+- composer install
+script:
+- ./vendor/bin/phpunit
