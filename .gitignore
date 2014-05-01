@@ -5,3 +5,4 @@ composer.lock
 .buildpath
 .settings
 .project
+installed.json

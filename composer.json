@@ -1,5 +1,5 @@
 {
-    "name": "HelloFax/hellosign-php-sdk",
+    "name": "hellosign/hellosign-php-sdk",
     "description": "This is the official PHP wrapper for HelloSign's API",
     "authors": [
         {

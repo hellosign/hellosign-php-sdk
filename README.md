@@ -1,12 +1,6 @@
 HelloSign PHP SDK
 =================
-[![Build Status](https://travis-ci.org/HelloFax/hellosign-php-sdk.svg?branch=master)](https://travis-ci.org/HelloFax/hellosign-php-sdk)
-[![Total Downloads](https://poser.pugx.org/HelloFax/hellosign-php-sdk/downloads.png)](https://packagist.org/packages/HelloFax/hellosign-php-sdk)
-[![Latest Stable Version](https://poser.pugx.org/HelloFax/hellosign-php-sdk/v/stable.png)](https://packagist.org/packages/HelloFax/hellosign-php-sdk)
-[![Latest Unstable Version](https://poser.pugx.org/HelloFax/hellosign-php-sdk/v/unstable.png)](https://packagist.org/packages/HelloFax/hellosign-php-sdk)
-[![Dependency Status](https://www.versioneye.com/php/HelloFax:hellosign-php-sdk/dev-master/badge.png)](https://www.versioneye.com/php/HelloFax:hellosign-php-sdk/dev-master)
-
-Want to integrate your PHP application with HelloSign? HelloSign PHP is a PHP SDK you can use to get your application connected to HelloSign's services in minutes.
+Want to integrate your PHP application with HelloSign? Using this official PHP wrapper get your application connected to HelloSign's services in minutes.
 
 Installing
 ----------
