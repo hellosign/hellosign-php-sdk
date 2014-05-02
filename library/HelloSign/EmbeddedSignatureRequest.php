@@ -13,4 +13,25 @@ namespace HelloSign;
  */
 class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
 {
+	/**
+     * @return array
+     * @ignore
+     */
+	
+	public function toParams()
+    {
+        $except = array(
+            'request',
+        );
+
+        return $this->toArray(array(
+            'except' => $except
+        )) + $this->request->toParams(array(
+            'except' => array(
+                'title',
+        		'use_text_tags',
+        		'hide_text_tags'
+            )
+        ));
+    }
 }

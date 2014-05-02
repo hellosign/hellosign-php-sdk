@@ -54,6 +54,22 @@ abstract class AbstractSignatureRequest extends AbstractResource
      * @var SignerList
      */
     protected $signers = null;
+    
+    /**
+     * Whether this signature request uses text tags
+     *
+     * Text tags are macros in the document itself that signify form fields. Defaults to false.
+     *
+     * @var boolean
+     */
+    protected $use_text_tags = false;
+    
+    /**
+     * If using text tags, white them out
+     *
+     * @var boolean
+     */
+    protected $hide_text_tags = false;
 
     /**
      * Constructor
@@ -212,5 +228,27 @@ abstract class AbstractSignatureRequest extends AbstractResource
         $this->signers->setCollection($signers);
 
         return $this;
+    }
+    
+    /**
+     * 
+     * Enable or disable text tags
+     * @param boolean $use_text_tags
+     */
+    public function setUseTextTags($use_text_tags) 
+    {
+    	$this->use_text_tags = $use_text_tags;
+    	return $this;	
+    }
+    
+	/**
+     * 
+     * Enable or disable hiding text tags
+     * @param boolean $use_text_tags
+     */
+    public function setHideTextTags($hide_text_tags) 
+    {
+    	$this->hide_text_tags = $hide_text_tags;
+    	return $this;	
     }
 }

@@ -79,14 +79,14 @@ class TeamTest extends AbstractTest
      */
     public function testInviteTeamMember($team)
     {
-        $invited_accounts_count = count($team->getInvitedAccounts());
-        $response = $this->client->inviteTeamMember('abc@xyz.com');
+        $accounts_count = count($team->getAccounts());
+        $response = $this->client->inviteTeamMember($this->team_member_1);
 
         $this->assertInstanceOf('HelloSign\Team', $response);
         $this->assertNotNull($response->getName());
         $this->assertEquals(
-            count($response->getInvitedAccounts()),
-            $invited_accounts_count + 1
+            count($response->getAccounts()),
+            $accounts_count + 1
         );
     }
 }

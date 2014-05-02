@@ -13,15 +13,25 @@ class AccountTest extends AbstractTest
      */
     public function testCreateAccount()
     {
+    	$random_email = rand(1,10000000) . "@example.com";
         $response = $this->client->createAccount(
             new Account(
-                'abc@xyz.com',
+                $random_email,
                 '12345678'
             )
         );
 
         $this->assertInstanceOf('HelloSign\Account', $response);
-        $this->assertNotNull($account->getId());
+        $this->assertNotNull($response->account_id);
+        
+        //trying to create it again should fail
+        
+        $response = $this->client->createAccount(
+            new Account(
+                $random_email,
+                '12345678'
+            )
+        );
 
         return $response;
     }
@@ -52,7 +62,7 @@ class AccountTest extends AbstractTest
         $response = $this->client->getAccount();
 
         $this->assertInstanceOf('HelloSign\Account', $response);
-        $this->assertNotNull($response->getId());
+        $this->assertNotNull($response->account_id);
 
         return $response;
     }

@@ -42,29 +42,43 @@ class TemplateTest extends AbstractTest
 
     /**
      * @depends testGetTemplates
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Account does not belong to your team
      * @group update
      */
     public function testAddTemplateUser($template)
     {
-        $response = $this->client->addTemplateUser($template->getId(), $_ENV['TEAMMATE_ID_OR_EMAIL']);
+    	$response = $this->client->inviteTeamMember($this->team_member_2);
+        $response = $this->client->addTemplateUser($template->getId(), $this->team_member_2);
 
         $this->assertInstanceOf('HelloSign\Template', $response);
-        $this->assertEquals($response, $template);
+        $has_template = false;
+		foreach($response->getAccounts() as $account) {
+			if($account->email_address == $this->team_member_2 || $account->account_id == $this->team_member_2 ) {
+				$has_template = true;
+			}
+		}
+        
+        $this->isTrue($has_template);
+        return array($template, $this->team_member_2);
     }
 
     /**
-     * @depends testGetTemplates
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Account does not belong to your team
+     * @depends testAddTemplateUser
      * @group update
      */
-    public function testRemoveTemplateUser($template)
+    public function testRemoveTemplateUser($template_and_member)
     {
-        $response = $this->client->removeTemplateUser($template->getId(), $_ENV['TEAMMATE_ID_OR_EMAIL']);
+    	$template = $template_and_member[0];
+    	$member = $template_and_member[1];
+        $response = $this->client->removeTemplateUser($template->getId(), $member);
 
         $this->assertInstanceOf('HelloSign\Template', $response);
-        $this->assertEquals($response, $template);
+        
+    	$has_template = false;
+		foreach($response->getAccounts() as $account) {
+			if($account->email_address == $member || $account->account_id == $member ) {
+				$has_template = true;
+			}
+		}
+        $this->isFalse($has_template);
     }
 }

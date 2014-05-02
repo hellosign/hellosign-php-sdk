@@ -102,7 +102,13 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
      */
     public function toParams()
     {
-        return $this->toArray();
+    	$except = array(
+        	'use_text_tags',
+    		'hide_text_tags'
+        );
+        return $this->toArray(array(
+            'except' => $except
+        ));
     }
 
 }

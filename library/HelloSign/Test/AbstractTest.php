@@ -13,16 +13,16 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         $keys = array(
             'HELLOSIGN_API_KEY',
             'HELLOSIGN_CLIENT_ID',
-            'HELLOSIGN_CLIENT_SECRET'
-        );
+            'HELLOSIGN_CLIENT_SECRET');
 
         foreach ($keys as $key) {
             array_key_exists($key, $_SERVER) && $_ENV[$key] = $_SERVER[$key];
         }
 
-        $_ENV['TEAMMATE_ID_OR_EMAIL'] = 'email@example.com';
 
         $this->client = new Client($_ENV['HELLOSIGN_API_KEY']);
-        // $this->client->enableDebugMode();
+        $this->team_member_1 = rand(1,10000000) . "@example.com";
+        $this->team_member_2 = rand(1,10000000) . "@example.com";
+       // $this->client->enableDebugMode();
     }
 }

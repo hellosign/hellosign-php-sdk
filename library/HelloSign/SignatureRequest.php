@@ -111,6 +111,14 @@ class SignatureRequest extends AbstractSignatureRequest
      * @var array
      */
     protected $file = array();
+    
+    /**
+     * The document fields manually specified when signing from a file. Optional
+     * See: https://www.hellosign.com/api/signatureRequestWalkthrough#SignatureRequestScenarios/CreateFromFileAndComponents 
+     *
+     * @var array
+     */
+    protected $form_fields_per_document = array();
 
     /**
      * Constructor
@@ -145,6 +153,19 @@ class SignatureRequest extends AbstractSignatureRequest
         $this->requester_email_address = $email;
         return $this;
     }
+    
+    /**
+     * @param  array $form_fields
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function setFormFieldsPerDocument($form_fields)
+    {
+        $this->form_fields_per_document = json_encode($form_fields);
+        return $this;
+    }
+    
+    
 
     /**
      * @param  string $email

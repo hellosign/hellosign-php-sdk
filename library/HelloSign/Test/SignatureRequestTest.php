@@ -32,14 +32,109 @@ class SignatureRequestTest extends AbstractTest
         $request->setTitle("NDA with Acme Co.");
         $request->setSubject("The NDA we talked about");
         $request->setMessage("Please sign this NDA and then we can discuss more. Let me know if you have any questions.");
-        $request->addSigner("jill@example.com", "Jill");
+        $request->addSigner("jack@example.com", "Jack");
         $request->addSigner(new Signer(array(
-            'name'          => "Jack",
-            'email_address' => "jack@example.com"
+            'name'          => "Jill",
+            'email_address' => "jill@example.com"
         )));
         $request->addCC("lawyer@example.com");
+        $request->addFile(__DIR__ . '/nda.docx');
+
+        // Send Signature Request
+        $response = $this->client->sendSignatureRequest($request);
+
+
+        $this->assertInstanceOf('HelloSign\SignatureRequest', $response);
+        $this->assertNotNull($response->getId());
+        $this->assertEquals($request, $response);
+        $this->assertEquals($response->getTitle(), $response->title);
+
+        return $response->getId();
+    }
+    
+	/**
+     * @group create
+     */
+    public function testSendSignatureRequestWithFormFields()
+    {
+        // Enable Test Mode
+        $request = new SignatureRequest;
+        $request->enableTestMode();
+
+        // Set Request Param Signature Request
+        $request->setTitle("NDA with Acme Co.");
+        $request->setSubject("The NDA we talked about");
+        $request->setMessage("Please sign this NDA and then we can discuss more. Let me know if you have any questions.");
+        $request->addSigner("jack_form@example.com", "Jack Form");
+        $request->addSigner(new Signer(array(
+            'name'          => "Jill Form",
+            'email_address' => "jill_form@example.com"
+        )));
         $request->addCC("lawyer@example.com");
         $request->addFile(__DIR__ . '/nda.docx');
+        $random_prefix = 'tests' . rand(1,10000);
+        $request->setFormFieldsPerDocument( 
+	        array( //everything
+	        	array( //document 1
+	        		array( //component 1
+	        			"api_id"=> $random_prefix . "_1",
+						"name"=> "",
+						"type"=> "text",
+						"x"=> 112,
+						"y"=> 328,
+						"width"=> 100,
+						"height"=> 16,
+						"required"=> true,
+						"signer"=> 0
+	        		),
+	        		array( //component 2
+	        			"api_id"=> $random_prefix . "_2",
+						"name"=> "",
+						"type"=> "signature",
+						"x"=> 530,
+						"y"=> 415,
+						"width"=> 150,
+						"height"=> 30,
+						"required"=> true,
+						"signer"=> 1
+	        		),
+	        	),
+	        ));
+
+        // Send Signature Request
+        $response = $this->client->sendSignatureRequest($request);
+
+
+        $this->assertInstanceOf('HelloSign\SignatureRequest', $response);
+        $this->assertNotNull($response->getId());
+        $this->assertEquals($request, $response);
+        $this->assertEquals($response->getTitle(), $response->title);
+
+        return $response->getId();
+    }
+    
+    /**
+     * @group create
+     */
+	public function testSendSignatureRequestWithTextTags()
+    {
+        // Enable Test Mode
+        $request = new SignatureRequest;
+        $request->enableTestMode();
+
+        // Set Request Param Signature Request
+        $request->setTitle("NDA with Acme Co.");
+        $request->setSubject("The NDA we talked about");
+        $request->setMessage("Please sign this NDA and then we can discuss more. Let me know if you have any questions.");
+        $request->addSigner("jack@example.com", "Jack");
+        $request->addSigner(new Signer(array(
+            'name'          => "Jill",
+            'email_address' => "jill@example.com"
+        )));
+        $request->addCC("lawyer@example.com");
+        $request->addFile(__DIR__ . '/omega-multi.pdf');
+        $request->setUseTextTags(true);
+        $request->setHideTextTags(true);
 
         // Send Signature Request
         $response = $this->client->sendSignatureRequest($request);
@@ -122,4 +217,5 @@ class SignatureRequestTest extends AbstractTest
 
         $this->assertTrue($response);
     }
+
 }
