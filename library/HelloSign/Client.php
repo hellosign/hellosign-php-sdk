@@ -5,6 +5,9 @@
 
 namespace HelloSign;
 
+include_once __DIR__ . '/../lib/REST.php';
+include_once __DIR__ . '/../lib/CURL.php';
+
 use Comvi\REST;
 
 /**
