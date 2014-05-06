@@ -108,7 +108,6 @@ class REST
 
         // If authentication is enabled use it
         if ($this->auth != '' && $this->user != '') {
-        	echo "********Setting login " . $this->user . ' ' . $this->pass . ' ' . $this->auth. "\n\n";
             $this->curl->setLogin($this->user, $this->pass, $this->auth);
         }
 
@@ -120,13 +119,11 @@ class REST
         $this->curl->setOption('FailOnError', false);
 
         // Call the correct method with parameters
-        echo print_r($params,true) . "\n";
         $response = $this->curl->{$method}($params);
 
         // Execute and return the response from the REST server
         //die($this->curl->error_string);
         // Format and return
-        echo $response . "\n\n";
         return $this->formatResponse($response);
     }
 

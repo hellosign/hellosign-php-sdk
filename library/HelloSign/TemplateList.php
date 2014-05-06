@@ -14,7 +14,7 @@ class TemplateList extends AbstractResourceList
      * @var string
      * @ignore
      */
-    protected $list_type = 'reusable_forms';
+    protected $list_type = 'templates';
 
     /**
      * @var string

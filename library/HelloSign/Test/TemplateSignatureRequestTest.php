@@ -4,6 +4,12 @@ namespace HelloSign\Test;
 
 use HelloSign\TemplateSignatureRequest;
 
+/**
+ * 
+ * You must have created a template manually prior to running this test suite 
+ * @author Steve Gough
+ *
+ */
 class TemplateSignatureRequestTest extends AbstractTest
 {
     /**

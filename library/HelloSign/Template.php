@@ -14,14 +14,14 @@ class Template extends AbstractResource
      * @var string
      * @ignore
      */
-    protected $resource_type = 'reusable_form';
+    protected $resource_type = 'template';
 
     /**
      * The id of the ReusableForm
      *
      * @var string
      */
-    protected $reusable_form_id;
+    protected $template_id;
 
     /**
      * The title of the ReusableForm
@@ -102,7 +102,7 @@ class Template extends AbstractResource
      */
     public function getId()
     {
-        return $this->reusable_form_id;
+        return $this->template_id;
     }
 
     /**

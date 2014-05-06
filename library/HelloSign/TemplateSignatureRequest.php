@@ -21,7 +21,7 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
      *
      * @var string
      */
-    protected $reusable_form_id;
+    protected $template_id;
 
     /**
      * A list of email addresses that were CCed on the TemplateSignatureRequest
@@ -48,7 +48,7 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
      */
     public function setTemplateId($id)
     {
-        $this->reusable_form_id = $id;
+        $this->template_id = $id;
         return $this;
     }
 

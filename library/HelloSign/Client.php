@@ -31,13 +31,13 @@ class Client
     const SIGNATURE_REQUEST_REMIND_PATH            = "signature_request/remind";
     const SIGNATURE_REQUEST_FILES_PATH             = "signature_request/files";
     const SIGNATURE_REQUEST_EMBEDDED_PATH          = "signature_request/create_embedded";
-    const SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH = "signature_request/create_embedded_with_reusable_form";
+    const SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH = "signature_request/create_embedded_with_template";
 
-    const TEMPLATE_PATH                   = "reusable_form";
-    const TEMPLATE_LIST_PATH              = "reusable_form/list";
-    const TEMPLATE_ADD_USER_PATH          = "reusable_form/add_user";
-    const TEMPLATE_REMOVE_USER_PATH       = "reusable_form/remove_user";
-    const TEMPLATE_SIGNATURE_REQUEST_PATH = "signature_request/send_with_reusable_form";
+    const TEMPLATE_PATH                   = "template";
+    const TEMPLATE_LIST_PATH              = "template/list";
+    const TEMPLATE_ADD_USER_PATH          = "template/add_user";
+    const TEMPLATE_REMOVE_USER_PATH       = "template/remove_user";
+    const TEMPLATE_SIGNATURE_REQUEST_PATH = "signature_request/send_with_template";
 
     const TEAM_PATH               = "team";
     const TEAM_CREATE_PATH        = "team/create";

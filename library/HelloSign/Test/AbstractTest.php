@@ -23,6 +23,6 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         $this->client = new Client($_ENV['HELLOSIGN_API_KEY']);
         $this->team_member_1 = rand(1,10000000) . "@example.com";
         $this->team_member_2 = rand(1,10000000) . "@example.com";
-       // $this->client->enableDebugMode();
+        //$this->client->enableDebugMode();
     }
 }
