@@ -21,9 +21,8 @@ You don't need to clone the repo directly to use this SDK, the entire library an
 
     ```json
     {
-        "minimum-stability": "master",
         "require": {
-            "HelloFax/hellosign-php-sdk": "dev-master"
+            "hellosign/hellosign-php-sdk": "3.*@dev"
         }
     }
     ```
