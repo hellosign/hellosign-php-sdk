@@ -32,48 +32,48 @@ class CURL {
         }
     }
 
-    public function get($params = array())
+    public function get($params = array(), $single_use_options = array())
     {
-        $option = array();
+        $options = array() + $single_use_options;
 
         if (!empty($params)) {
             $option[CURLOPT_URL] = $this->url.'?'.http_build_query($params, NULL, '&');
         }
-
-        return $this->execute($option);
+        
+        return $this->execute($options);
     }
 
-    public function post($params = array())
+    public function post($params = array(), $single_use_options = array())
     {
-        $option = array(
+        $options = array(
             CURLOPT_POST            => true,
             CURLOPT_POSTFIELDS        => static::to_1_level_array($params)
-        );
+        ) + $single_use_options;
 
-        return $this->execute($option);
+        return $this->execute($options);
     }
 
-    public function put($params = array())
+    public function put($params = array(), $single_use_options = array())
     {
-        $option = array(
+        $options = array(
             CURLOPT_CUSTOMREQUEST    => 'PUT',
             // Override method, I think this overrides $_POST with PUT/DELETE data but... we'll see eh?
             CURLOPT_HTTPHEADER        => array('X-HTTP-Method-Override: PUT'),
             CURLOPT_POSTFIELDS        => static::to_1_level_array($params)
-        );
+        ) + $single_use_options;
 
-        return $this->execute($option);
+        return $this->execute($options);
     }
 
-    public function delete($params = array())
+    public function delete($params = array(), $single_use_options = array())
     {
-        $option = array(
+        $options = array(
             CURLOPT_CUSTOMREQUEST    => 'DELETE',
             CURLOPT_HTTPHEADER        => array('X-HTTP-Method-Override: DELETE'),
             CURLOPT_POSTFIELDS        => static::to_1_level_array($params)
-        );
+        ) + $single_use_options;
 
-        return $this->execute($option);
+        return $this->execute($options);
     }
 
     // End a session and return the results

@@ -65,27 +65,27 @@ class REST
         }
     }
 
-    public function get($uri, $params = array(), $format = null)
+    public function get($uri, $params = array(), $format = null, $one_time_options = array())
     {
-        return $this->call('get', $uri, $params, $format);
+        return $this->call('get', $uri, $params, $format, $one_time_options);
     }
 
-    public function post($uri, $params = array(), $format = null)
+    public function post($uri, $params = array(), $format = null, $one_time_options = array())
     {
-        return $this->call('post', $uri, $params, $format);
+        return $this->call('post', $uri, $params, $format, $one_time_options);
     }
 
-    public function put($uri, $params = array(), $format = null)
+    public function put($uri, $params = array(), $format = null, $one_time_options = array())
     {
-        return $this->call('put', $uri, $params, $format);
+        return $this->call('put', $uri, $params, $format, $one_time_options);
     }
 
-    public function delete($uri, $params = array(), $format = null)
+    public function delete($uri, $params = array(), $format = null, $one_time_options = array())
     {
-        return $this->call('delete', $uri, $params, $format);
+        return $this->call('delete', $uri, $params, $format, $one_time_options);
     }
 
-    protected function call($method, $uri, $params = array(), $format = null)
+    protected function call($method, $uri, $params = array(), $format = null, $one_time_options = array())
     {
         $this->curl->setUrl($this->server.$uri);
 
@@ -119,7 +119,7 @@ class REST
         $this->curl->setOption('FailOnError', false);
 
         // Call the correct method with parameters
-        $response = $this->curl->{$method}($params);
+        $response = $this->curl->{$method}($params, $one_time_options);
 
         // Execute and return the response from the REST server
         //die($this->curl->error_string);
@@ -154,6 +154,10 @@ class REST
     public function disableDebugMode()
     {
         $this->debug_mode = false;
+    }
+    
+    public function setCurlOption($name, $value) {
+    	$this->curl->setOption($name, $value);
     }
 
     // If a type is passed in that is not supported, use it as a mime type

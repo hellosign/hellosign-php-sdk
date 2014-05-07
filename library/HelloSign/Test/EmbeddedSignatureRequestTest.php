@@ -22,7 +22,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         $request->addFile(__DIR__ . '/nda.docx');
 
         // Turn it into an embedded request
-        $client_id = $_ENV['HELLOSIGN_CLIENT_ID'];
+        $client_id = $_ENV['CLIENT_ID'];
         $embedded_request = new EmbeddedSignatureRequest($request, $client_id);
 
         // Send it to HelloSign
@@ -66,7 +66,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         }
         
         // Turn it into an embedded request
-        $client_id = $_ENV['HELLOSIGN_CLIENT_ID'];
+        $client_id = $_ENV['CLIENT_ID'];
         $embedded_request = new EmbeddedSignatureRequest($request, $client_id);
         
         // Send it to HelloSign

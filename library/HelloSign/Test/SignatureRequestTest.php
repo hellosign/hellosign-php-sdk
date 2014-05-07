@@ -50,7 +50,7 @@ class SignatureRequestTest extends AbstractTest
         $this->assertEquals($response->getTitle(), $response->title);
 
         return $response->getId();
-    }
+    } 
     
 	/**
      * @group create
@@ -151,7 +151,7 @@ class SignatureRequestTest extends AbstractTest
     /**
      * @depends testSendSignatureRequest
      * @group read
-     */
+    */
     public function testGetSignatureRequests($id)
     {
         $signature_requests = $this->client->getSignatureRequests();
@@ -170,7 +170,7 @@ class SignatureRequestTest extends AbstractTest
         $this->assertNotNull($signature_request2->getId());
 
         $this->assertEquals($signature_request, $signature_request2);
-    }
+    } 
 
     /**
      * @depends testSendSignatureRequest
@@ -189,28 +189,39 @@ class SignatureRequestTest extends AbstractTest
     }
 
     /**
-     * @depends testSendSignatureRequest
      * @group read
+     * @depends testSendSignatureRequest
      * @group download
      */
     public function testGetFiles($id)
     {
-        try {
-            $response = $this->client->getFiles($id);
-            $this->assertNotNull($response);
+    	sleep(25); //need to give time for the files to be available
+        $file1 = 'phpunit_test_file1.pdf';
+        if(file_exists($file1)) {
+        	unlink($file1);
         }
-        catch (Error $e) {
-            $this->assertEquals(
-                $e->getMessage(),
-                'Unknown error. Please contact support@hellosign.com'
-            );
+        $response = $this->client->getFiles($id, $file1);
+        $this->assertGreaterThan(0,filesize($file1));
+        $file2 = 'phpunit_test_file2.pdf';
+        if(file_exists($file2)) { 
+        	unlink($file2);
         }
+        $response = $this->client->getFiles($id, $file2, SignatureRequest::FILE_TYPE_PDF);
+        $this->assertGreaterThan(0,filesize($file2));
+        $file3 = 'phpunit_test_file3.zip';
+        if(file_exists($file3)) {
+        	unlink($file3);	
+        }
+        $response = $this->client->getFiles($id, $file3, SignatureRequest::FILE_TYPE_ZIP);
+        $this->assertGreaterThan(0,filesize($file1));
+        return $id;
     }
 
     /**
-     * @depends testSendSignatureRequest
+     * @depends testGetFiles
      * @group destroy
-     */
+     *
+     **/
     public function testCancelSignatureRequest($id)
     {
         $response = $this->client->cancelSignatureRequest($id);

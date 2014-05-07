@@ -7,7 +7,7 @@ use HelloSign\Account;
 class AccountTest extends AbstractTest
 {
     /**
-     * @expectedException HelloSign\Error
+	 * @expectedException HelloSign\Error
      * @expectedExceptionMessage This account already exists, please log in
      * @group create
      */
@@ -41,7 +41,7 @@ class AccountTest extends AbstractTest
      */
     public function testUpdateAccount()
     {
-        $callback_url = $_ENV['HELLOSIGN_CALLBACK_URL'];
+        $callback_url = $_ENV['CALLBACK_URL'];
         $account = new Account;
         $account->setCallbackUrl($callback_url);
         $response = $this->client->updateAccount($account);

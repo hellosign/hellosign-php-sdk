@@ -14,6 +14,10 @@ use stdClass;
  */
 class SignatureRequest extends AbstractSignatureRequest
 {
+	
+	const FILE_TYPE_PDF = 'pdf';
+	const FILE_TYPE_ZIP = 'zip';
+	
     /**
      * @var string
      * @ignore

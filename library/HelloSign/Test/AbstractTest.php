@@ -11,18 +11,26 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $keys = array(
-            'HELLOSIGN_API_KEY',
-            'HELLOSIGN_CLIENT_ID',
-            'HELLOSIGN_CLIENT_SECRET');
+            'API_KEY',
+            'CLIENT_ID',
+            'CLIENT_SECRET',
+        	'API_URL'
+        );
 
         foreach ($keys as $key) {
             array_key_exists($key, $_SERVER) && $_ENV[$key] = $_SERVER[$key];
         }
 
 
-        $this->client = new Client($_ENV['HELLOSIGN_API_KEY']);
+        $api_url = $_ENV['API_URL'] == null ? Client::API_URL : $_ENV['API_URL'];
+        $this->client = new Client($_ENV['API_KEY'], null, $api_url);
         $this->team_member_1 = rand(1,10000000) . "@example.com";
         $this->team_member_2 = rand(1,10000000) . "@example.com";
-        //$this->client->enableDebugMode();
+     	//	$this->client->enableDebugMode();
+      
+        if($api_url != Client::API_URL) {
+        	$this->client->disableCertificateCheck();
+        }
+        
     }
 }

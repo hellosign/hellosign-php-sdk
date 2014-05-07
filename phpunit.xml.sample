@@ -6,8 +6,14 @@
         </testsuite>
     </testsuites>
 <!--     <php>
-      <env name="HELLOSIGN_API_KEY" value=""/>
-      <env name="HELLOSIGN_CLIENT_ID" value=""/>
-      <env name="HELLOSIGN_CALLBACK_URL" value=""/>
+      <env name="API_KEY" value=""/>
+      <env name="CLIENT_ID" value=""/>
+      <env name="CALLBACK_URL" value=""/>
     </php> -->
+    
+<!-- OPTIONAL     
+	<php>
+      <env name="API_URL" value=""/>
+    </php> -->    
+    
 </phpunit>

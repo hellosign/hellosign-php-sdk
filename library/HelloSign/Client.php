@@ -64,16 +64,17 @@ class Client
      * @var boolean
      */
     protected $debug_mode = false;
-
+    
     /**
      * Constructor
      *
      * @param  mixed $first email address or apikey or OAuthToken
      * @param  string $last Null if using apikey or OAuthToken
+     * @param  string $api_url (optional) alternative api base url
      */
-    public function __construct($first, $last = null)
+    public function __construct($first, $last = null, $api_url = self::API_URL)
     {
-        $this->rest = $this->createREST($first, $last);
+        $this->rest = $this->createREST($first, $last, $api_url);
     }
 
     /**
@@ -86,6 +87,15 @@ class Client
         $this->rest->enableDebugMode();
 
         return $this;
+    }
+    
+    /**
+     * 
+     * Should only be used for unit tests that may be hitting a local endpoint
+     */
+    public function disableCertificateCheck() {
+    	$this->rest->setCurlOption("SSL_VERIFYHOST", 0);
+    	$this->rest->setCurlOption("SSL_VERIFYPEER", 0);
     }
 
     /**
@@ -156,14 +166,28 @@ class Client
      * Retrieves a PDF copy of the files associated with a signature request
      *
      * @param  string $request_id
+     * @param  string $dest_path where should the file be saved
+     * @param  string $type (optional) get the files as a single pdf or a zip of many. See SignatureRequest.php
      * @return string
      * @throws BaseException
      */
-    public function getFiles($request_id)
+    public function getFiles($request_id, $dest_path, $type = null)
     {
+    	$params = array();
+    	if($type) {
+    		$params['file_type'] = $type;
+    	}
+    	    	
+    	$fp = fopen($dest_path, 'wb');
+    	
         $response = $this->rest->get(
-            static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id
+            static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
+            $params,
+            null,
+            array(CURLOPT_FILE => $fp)
         );
+        fwrite($fp, $response);
+        fclose($fp);
 
         $this->checkResponse($response, false);
 
@@ -691,7 +715,6 @@ class Client
     protected function checkResponse($response, $strict = true)
     {
         $status = $this->rest->getStatus();
-
         if ($response === false) {
             throw new Error('unknown', 'Unknown error', $status);
         }
@@ -734,11 +757,11 @@ class Client
      * @return REST
      * @ignore
      */
-    protected function createREST($first, $last = null)
+    protected function createREST($first, $last = null, $api_url = self::API_URL)
     {
         if ($first instanceof OAuthToken) {
             $rest = new REST(array(
-                'server' => static::API_URL,
+                'server' => $api_url,
                 'debug_mode' => $this->debug_mode
             ));
             $auth = $first->getTokenType() . ' ' . $first->getAccessToken();
@@ -748,7 +771,7 @@ class Client
         }
 
         return new REST(array(
-            'server' => static::API_URL,
+            'server' => $api_url,
             'user'   => $first,
             'pass'   => $last,
             'debug_mode' => $this->debug_mode

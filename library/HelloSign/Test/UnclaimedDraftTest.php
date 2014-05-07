@@ -22,7 +22,7 @@ class UnclaimedDraftTest extends AbstractTest
         $request->addCC('ancelotti@example.com');
         $request->addFile(__DIR__ . '/nda.docx');
 
-        $client_id = $_ENV['HELLOSIGN_CLIENT_ID'];
+        $client_id = $_ENV['CLIENT_ID'];
         $draft = new UnclaimedDraft($request, $client_id);
 
         $response = $this->client->createUnclaimedDraft($draft);

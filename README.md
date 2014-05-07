@@ -1,10 +1,9 @@
 HelloSign PHP SDK
-=================
-Want to integrate your PHP application with HelloSign? Using this official PHP wrapper get your application connected to HelloSign's services in minutes.
+This is the official PHP SDK for HelloSign's API.  [View api documentation and examples.](https://www.hellosign.com/api/gettingStarted)
 
 Installing
 ----------
-You don't need to clone the repo directly to use HelloSign PHP. The entire library and its dependencies can be installed through Composer ( [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md) ).
+You don't need to clone the repo directly to use HelloSign PHP. The entire library and its dependencies can be installed through Composer ( [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md) ). You'll also need PHP >= 5.3 with the curl extensions.
 
 - First, install Composer if you do not yet have it
 
@@ -210,13 +209,13 @@ $client = new HelloSign\Client($token);
 
 ### Testing
 
-This project contains PHPUnit tests that exercise the SDK code and provide examples of how to use library classes. Most are functional and integrated tests that walk through real user scenarios. In some cases, this means you must have an active network connection with access to HelloSign to execute all tests. You also need PHP 5.4 or later.
+This project contains PHPUnit tests that exercise the SDK code and provide examples of how to use library classes. Most are functional and integrated tests that walk through real user scenarios. In some cases, this means you must have an active network connection with access to HelloSign to execute all tests. Also, your testing account will need at least 1 template for the template tests to pass.
 
-*** WARNING: these tests will add and remove users from your team. Use with caution
+*** WARNING: these tests will add and remove users from your team. Use with caution.
 
 #### To run the tests
 
 - Copy file `phpunit.xml.sample` to `phpunit.xml`
-- Edit the new file, uncomment and enter your `HELLOSIGN_API_KEY`, `HELLOSIGN_CLIENT_ID`, and `HELLOSIGN_CALLBACK_URL`
+- Edit the new file, uncomment and enter your `API_KEY`, `CLIENT_ID`, and `CALLBACK_URL`
 - Make sure your account has at least 1 template
 - Run `./vendor/bin/phpunit`

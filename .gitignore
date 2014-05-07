@@ -6,3 +6,6 @@ composer.lock
 .settings
 .project
 installed.json
+phpunit_test_file1.pdf
+phpunit_test_file2.pdf
+phpunit_test_file3.zip
