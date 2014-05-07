@@ -1,18 +1,23 @@
-HelloSign PHP SDK
-----------
+##HelloSign PHP SDK
+
 This is the official PHP SDK for HelloSign's API.  [View api documentation and examples.](https://www.hellosign.com/api/gettingStarted)
 
-Installing
-----------
-You don't need to clone the repo directly to use HelloSign PHP. The entire library and its dependencies can be installed through Composer ( [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md) ). You'll also need PHP >= 5.3 with the curl extensions.
+##Installation
 
-- First, install Composer if you do not yet have it
+### Requirements
+
+1. PHP >= 5.3
+2. PHP curl extensions.
+
+You don't need to clone the repo directly to use this SDK, the entire library and its dependencies can be installed through Composer ( [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md) ).
+
+- First, install Composer if you don't have it already
 
     ```shell
     curl -sS https://getcomposer.org/installer | php
     ```
 
-- Create `composer.json` with content bellow
+- Create `composer.json` and add the following
 
     ```json
     {
@@ -29,32 +34,41 @@ You don't need to clone the repo directly to use HelloSign PHP. The entire libra
     php composer.phar install
     ```
 
-- Include the library
+- Include the library in your script
 
     ```php
     require_once 'vendor/autoload.php';
     ```
-- Your app users are almost ready to start signing! See below for the most common use cases for this wrapper.
+- See below for how to configure your Client class.
 
-Usage
------
-All HelloSign API requests can be made using `HelloSign\Client` class. This class must be initialized with your authentication details such as an API key (preferred), website email + password, or OAuth credentials.
+##Configuration
 
+All HelloSign API requests can be made using the `HelloSign\Client` class. This class must be initialized with your authentication details such as an API key (preferred), email/password combo, or OAuth credentials.
+
+### API key Config
 ```php
 $client = new HelloSign\Client($apikey);
 ```
 
-Or
+### Email/Password Config
+
 
 ```php
 $client = new HelloSign\Client($email_address, $password);
 ```
 
-Or
+### Oauth Config
+
 
 ```php
 $client = new HelloSign\Client($oauth_token); //instance of HelloSign\OAuthToken
 ```
+
+Your app users are almost ready to start signing! 
+See below for the most common use cases for this wrapper.
+
+
+##Usage
 
 You can test your authentication by calling
 
@@ -94,7 +108,7 @@ $response = $client->sendSignatureRequest($request);
 
 ### Retrieving a User's Templates
 
-The HelloSign API provides paged lists in response to requests for user templates and signature requests. These lists are represented as objects that can be iterated upon.
+The HelloSign API provides paged lists for user templates and signature requests. These lists are represented as objects that can be iterated upon.
 
 ```php
 $templates = $client->getTemplates($page_number);
@@ -158,8 +172,6 @@ $sign_url = $response->getSignUrl();
 ### Creating an Unclaimed Draft to use for Embedded Requesting
 
 ```php
-// Create the SignatureRequest object
-$request = ...
 
 $draft = new HelloSign\UnclaimedDraft($request, $client_id);
 $response = $client->createUnclaimedDraft($draft);
@@ -172,7 +184,7 @@ $sign_url = $response->getClaimUrl();
 
 ```php
 // If the account does not exist
-if ($client->isAccountValid($email)) {
+if !($client->isAccountValid($email)) {
     // Create new account
     $account = $client->createAccount(
         new HelloSign\Account($email, $password),
@@ -208,13 +220,13 @@ $client->refreshOAuthToken($token);
 $client = new HelloSign\Client($token);
 ```
 
-### Testing
+## Testing
 
-This project contains PHPUnit tests that exercise the SDK code and provide examples of how to use library classes. Most are functional and integrated tests that walk through real user scenarios. In some cases, this means you must have an active network connection with access to HelloSign to execute all tests. Also, your testing account will need at least 1 template for the template tests to pass.
+This project contains PHPUnit tests that check the SDK code and can also be referenced for examples. Most are functional and integrated tests that walk through real user scenarios. In some cases, this means you must have an active network connection with access to HelloSign to execute all tests. Also, your testing account will need at least 1 template for the template tests to pass.
 
 *** WARNING: these tests will add and remove users from your team. Use with caution.
 
-#### To run the tests
+### To run the tests
 
 - Copy file `phpunit.xml.sample` to `phpunit.xml`
 - Edit the new file, uncomment and enter your `API_KEY`, `CLIENT_ID`, and `CALLBACK_URL`
