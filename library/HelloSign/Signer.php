@@ -32,8 +32,8 @@ class Signer extends AbstractObject
     protected $order = null;
 
     /**
-     * The 4-digit code that will secure this signer's signature page. You must
-     * have a business plan to use this feature.
+     * The access code that will secure this signer's signature page. You must
+     * have a business plan to use this feature. Can be up to 12 alphanumeric characters
      *
      * @var string
      */
