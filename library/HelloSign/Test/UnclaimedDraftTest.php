@@ -7,7 +7,10 @@ use HelloSign\UnclaimedDraft;
 
 class UnclaimedDraftTest extends AbstractTest
 {
-    public function testCreateUnclaimedDraft()
+	/**
+     * @group create
+     */
+    public function testCreateEmbeddedUnclaimedDraft()
     {
         $account = $this->client->getAccount();
 
@@ -24,6 +27,31 @@ class UnclaimedDraftTest extends AbstractTest
 
         $client_id = $_ENV['CLIENT_ID'];
         $draft = new UnclaimedDraft($request, $client_id);
+
+        $response = $this->client->createUnclaimedDraft($draft);
+        $sign_url = $response->getClaimUrl();
+
+
+        $this->assertInstanceOf('HelloSign\UnclaimedDraft', $response);
+        $this->assertNotNull($response);
+        $this->assertEquals($draft, $response);
+
+        $this->assertNotEmpty($sign_url);
+    }
+    
+    /**
+     * The difference is that you don't set a client id here
+     * @group create
+     */
+	public function testCreateUnclaimedDraft()
+    {
+        $account = $this->client->getAccount();
+
+        $request = new SignatureRequest;
+        $request->enableTestMode();
+        $request->addFile(__DIR__ . '/nda.docx');
+        
+        $draft = new UnclaimedDraft($request);
 
         $response = $this->client->createUnclaimedDraft($draft);
         $sign_url = $response->getClaimUrl();
