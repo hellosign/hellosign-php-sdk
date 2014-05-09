@@ -45,8 +45,6 @@ class UnclaimedDraftTest extends AbstractTest
      */
 	public function testCreateUnclaimedDraft()
     {
-        $account = $this->client->getAccount();
-
         $request = new SignatureRequest;
         $request->enableTestMode();
         $request->addFile(__DIR__ . '/nda.docx');
