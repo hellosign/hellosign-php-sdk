@@ -32,10 +32,11 @@ class SignatureRequestTest extends AbstractTest
         $request->setTitle("NDA with Acme Co.");
         $request->setSubject("The NDA we talked about");
         $request->setMessage("Please sign this NDA and then we can discuss more. Let me know if you have any questions.");
-        $request->addSigner("jack@example.com", "Jack");
+        $request->addSigner("jack@example.com", "Jack", 0);
         $request->addSigner(new Signer(array(
             'name'          => "Jill",
-            'email_address' => "jill@example.com"
+            'email_address' => "jill@example.com",
+        	'order'			=> 1
         )));
         $request->addCC("lawyer@example.com");
         $request->addFile(__DIR__ . '/nda.docx');
