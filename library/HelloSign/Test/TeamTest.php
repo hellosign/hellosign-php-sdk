@@ -89,4 +89,16 @@ class TeamTest extends AbstractTest
             $accounts_count + 1
         );
     }
+
+
+    /**
+     * @depends testCreateTeam
+     * @group read 
+     */
+    public function testGetTeam()
+    {
+        $response = $this->client->getTeam();
+
+        $this->assertInstanceOf('HelloSign\Team', $response);
+    }
 }
