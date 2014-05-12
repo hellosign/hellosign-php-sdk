@@ -8,12 +8,14 @@
 <!--     <php>
       <env name="API_KEY" value=""/>
       <env name="CLIENT_ID" value=""/>
+      <env name="CLIENT_SECRET" value=""/>
       <env name="CALLBACK_URL" value=""/>
     </php> -->
     
 <!-- OPTIONAL     
 	<php>
       <env name="API_URL" value=""/>
+      <env name="API_TOKEN_URL" value=""/>
     </php> -->    
     
 </phpunit>

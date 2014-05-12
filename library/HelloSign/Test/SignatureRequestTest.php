@@ -196,7 +196,7 @@ class SignatureRequestTest extends AbstractTest
      */
     public function testGetFiles($id)
     {
-    	sleep(25); //need to give time for the files to be available
+    	sleep(60); //need to give time for the files to be available
         $file1 = 'phpunit_test_file1.pdf';
         if(file_exists($file1)) {
         	unlink($file1);
@@ -214,7 +214,7 @@ class SignatureRequestTest extends AbstractTest
         	unlink($file3);	
         }
         $response = $this->client->getFiles($id, $file3, SignatureRequest::FILE_TYPE_ZIP);
-        $this->assertGreaterThan(0,filesize($file1));
+        $this->assertGreaterThan(0,filesize($file3));
         return $id;
     }
 

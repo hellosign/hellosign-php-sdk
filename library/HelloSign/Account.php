@@ -268,7 +268,7 @@ class Account extends AbstractResource
      * @return OAuthToken
      * @ignore
      */
-    protected function getOAuthData()
+    public function getOAuthData()
     {
         return $this->oauth_data;
     }
@@ -277,7 +277,7 @@ class Account extends AbstractResource
      * @return boolean
      * @ignore
      */
-    protected function hasOAuthData()
+    public function hasOAuthData()
     {
         return isset($this->oauth_data);
     }

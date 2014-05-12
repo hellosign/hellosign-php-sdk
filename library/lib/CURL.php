@@ -108,6 +108,7 @@ class CURL {
         }
 
         $this->setOption(CURLOPT_URL, $this->url);
+        
 
         $ch = curl_init();
 

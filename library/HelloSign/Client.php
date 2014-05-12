@@ -50,6 +50,8 @@ class Client
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH = "unclaimed_draft/create_embedded";
 
     const OAUTH_TOKEN_URL = "https://www.hellosign.com/oauth/token";
+    
+    protected $oauth_token_url = self::OAUTH_TOKEN_URL;
 
     /**
      * Reference to the REST object
@@ -72,8 +74,9 @@ class Client
      * @param  string $last Null if using apikey or OAuthToken
      * @param  string $api_url (optional) alternative api base url
      */
-    public function __construct($first, $last = null, $api_url = self::API_URL)
+    public function __construct($first, $last = null, $api_url = self::API_URL, $oauth_token_url = self::OAUTH_TOKEN_URL)
     {
+    	$this->oauth_token_url = $oauth_token_url;
         $this->rest = $this->createREST($first, $last, $api_url);
     }
 
@@ -93,9 +96,12 @@ class Client
      * 
      * Should only be used for unit tests that may be hitting a local endpoint
      */
-    public function disableCertificateCheck() {
-    	$this->rest->setCurlOption("SSL_VERIFYHOST", 0);
-    	$this->rest->setCurlOption("SSL_VERIFYPEER", 0);
+    public function disableCertificateCheck($rest = null) {
+    	if(!$rest) {
+    		$rest = $this->rest;
+    	}
+    	$rest->setCurlOption("SSL_VERIFYHOST", 0);
+    	$rest->setCurlOption("SSL_VERIFYPEER", 0);
     }
 
     /**
@@ -423,9 +429,13 @@ class Client
     public function requestOAuthToken(OAuthTokenRequest $request, $auto_set_request_token = false)
     {
         $rest = new REST(array(
-            'server' => static::OAUTH_TOKEN_URL,
+            'server' => $this->oauth_token_url,
             'debug_mode' => $this->debug_mode
         ));
+        
+        if($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
+        	$this->disableCertificateCheck($rest);
+        }
 
         $response = $rest->post('', $request->toParams());
 
@@ -455,9 +465,13 @@ class Client
     public function refreshOAuthToken(OAuthToken $token, $auto_set_request_token = false)
     {
         $rest = new REST(array(
-            'server' => static::OAUTH_TOKEN_URL,
+            'server' => $this->oauth_token_url,
             'debug_mode' => $this->debug_mode
         ));
+        
+   		if($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
+        	$this->disableCertificateCheck($rest);
+        }
 
         $response = $rest->post('', $token->toParams());
 

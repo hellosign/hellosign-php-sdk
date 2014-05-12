@@ -228,6 +228,6 @@ This project contains PHPUnit tests that check the SDK code and can also be refe
 ### To run the tests
 
 - Copy file `phpunit.xml.sample` to `phpunit.xml`
-- Edit the new file, uncomment and enter your `API_KEY`, `CLIENT_ID`, and `CALLBACK_URL`
+- Edit the new file, uncomment and enter your `API_KEY`, `CLIENT_ID`, `CLIENT_SECRET` and `CALLBACK_URL`
 - Make sure your account has at least 1 template
 - Run `./vendor/bin/phpunit`

@@ -22,7 +22,7 @@ class OAuthToken extends AbstractObject
      *
      * @var string
      */
-    protected $token_type = null;
+    protected $token_type = 'Bearer';
 
     /**
      * Expire time in seconds
