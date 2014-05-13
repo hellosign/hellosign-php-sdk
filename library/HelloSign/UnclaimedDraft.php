@@ -48,6 +48,16 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
      */
     protected $claim_url = null;
 
+	/**
+     * @param  string $id
+     * @return UnclaimedDraft
+     * @ignore
+     */
+    public function setIsForEmbeddedSigning($is_for_embedded_signing)
+    {
+        $this->is_for_embedded_signing = $is_for_embedded_signing;
+    }
+    
     /**
      * @param  string $id
      * @return UnclaimedDraft
@@ -57,7 +67,6 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     {
         if ($id) {
             $this->type = 'request_signature';
-            $this->is_for_embedded_signing = true;
         }
 
         return parent::setClientId($id);
@@ -90,8 +99,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
      */
     public function isForEmbeddedSigning()
     {
-        // return $this->is_for_embedded_signing;
-        return isset($this->client_id);
+        return $this->is_for_embedded_signing;
     }
 
 
@@ -118,8 +126,11 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
         );
 
         if (!$this->isForEmbeddedSigning()) {
-            $except[] = 'client_id';
             $except[] = 'is_for_embedded_signing';
+        }
+        
+        if(!$this->getClientId()) {
+        	$except[] = 'client_id';
         }
 
         return $this->toArray(array(

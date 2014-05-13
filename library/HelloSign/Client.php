@@ -404,7 +404,7 @@ class Client
     public function createUnclaimedDraft(UnclaimedDraft $draft)
     {
         // choose url
-        $url = $draft->isForEmbeddedSigning()
+        $url = $draft->getClientId()
             ? static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH
             : static::UNCLAIMED_DRAFT_CREATE_PATH;
 
