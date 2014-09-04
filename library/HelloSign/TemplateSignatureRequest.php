@@ -17,11 +17,11 @@ use stdClass;
 class TemplateSignatureRequest extends AbstractSignatureRequest
 {
     /**
-     * The id of the ReusableForm to use when creating the SignatureRequest
-     *
-     * @var string
+     * The list of Templates used when creating the SignatureRequest
+     * 
+     * @var array
      */
-    protected $template_id;
+    protected $template_ids = array();
 
     /**
      * A list of email addresses that were CCed on the TemplateSignatureRequest
@@ -42,13 +42,18 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     protected $custom_fields = array();
 
     /**
+     * Set the template ID, along with an optional order
      * @param string $id
-     * @return TemplateSignatureRequest
-     * @ignore
+     * @param int null $index
+     * @return \HelloSign\TemplateSignatureRequest
      */
-    public function setTemplateId($id)
-    {
-        $this->template_id = $id;
+    public function setTemplateId(string $id, $order = null) {
+        if ($order === null) {
+            // If no order is provided, append the template ID to the end of the list
+            $this->template_ids[] = $id;
+        } else {
+            $this->template_ids[$index] = $id;
+        }
         return $this;
     }
 
