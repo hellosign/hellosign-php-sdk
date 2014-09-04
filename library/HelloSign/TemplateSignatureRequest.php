@@ -47,12 +47,12 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
      * @param int null $index
      * @return \HelloSign\TemplateSignatureRequest
      */
-    public function setTemplateId(string $id, $order = null) {
+    public function setTemplateId($id, $order = null) {
         if ($order === null) {
             // If no order is provided, append the template ID to the end of the list
             $this->template_ids[] = $id;
         } else {
-            $this->template_ids[$index] = $id;
+            $this->template_ids[$order] = $id;
         }
         return $this;
     }
