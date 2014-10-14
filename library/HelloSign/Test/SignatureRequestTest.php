@@ -150,6 +150,41 @@ class SignatureRequestTest extends AbstractTest
     }
 
     /**
+     * @group create
+     */
+	public function testSendSignatureRequestWithMetadata()
+    {
+        // Enable Test Mode
+        $request = new SignatureRequest;
+        $request->enableTestMode();
+
+        // Set Request Param Signature Request
+        $request->setTitle("Document with Metadata");
+        $request->setSubject("Metadata");
+        $request->setMessage("This signature request contains metadata.");
+        $request->addSigner("jack@example.com", "Jack");
+        $request->addSigner(new Signer(array(
+            'name'          => "Jill",
+            'email_address' => "jill@example.com"
+        )));
+        $request->addCC("lawyer@example.com");
+        $request->addFile(__DIR__ . '/omega-multi.pdf');
+        $request->addMetadata('custom_id', '1234');
+        $request->addMetadata('custom_text', 'oranges, apples, and bananas');
+
+        // Send Signature Request
+        $response = $this->client->sendSignatureRequest($request);
+
+        $this->assertObjectHasAttribute('metadata', $response);
+        $this->assertObjectHasAttribute('custom_id', $response->metadata);
+        $this->assertEquals($response->metadata->custom_id, '1234');
+        $this->assertObjectHasAttribute('custom_text', $response->metadata);
+        $this->assertEquals($response->metadata->custom_text, 'oranges, apples, and bananas');
+
+        return $response->getId();
+    }
+
+    /**
      * @depends testSendSignatureRequest
      * @group read
     */
