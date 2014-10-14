@@ -221,7 +221,15 @@ $client = new HelloSign\Client($token);
 
 ## Testing
 
-This project contains PHPUnit tests that check the SDK code and can also be referenced for examples. Most are functional and integrated tests that walk through real user scenarios. In some cases, this means you must have an active network connection with access to HelloSign to execute all tests. Also, your testing account will need at least 1 template for the template tests to pass.
+This project contains PHPUnit tests that check the SDK code and can also be referenced for examples. Most are functional and integrated tests that walk through real user scenarios.
+
+In order to pass the unit tests, you will need:
+
+1. The API Key for a confirmed HelloSign account
+2. The client ID and secret key from a HelloSign App
+3. A HelloSign subscription (to create a team)
+4. A HelloSign API subscription (to access paid API endpoints)
+5. At least 1 template
 
 *** WARNING: these tests will add and remove users from your team. Use with caution.
 
