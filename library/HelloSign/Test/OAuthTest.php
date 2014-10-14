@@ -65,6 +65,11 @@ class OAuthTest extends AbstractTest
      */
     public function testSendSignatureRequest($token)
     {
+
+        // Commenting out the next two tests because these
+        // will not work as long as we cannot confirm a user
+        // email address via the API.
+
 //         $oauth_client = $this->getOAuthClient($token);
 //         $request = new SignatureRequest;
 //         $request->enableTestMode();
