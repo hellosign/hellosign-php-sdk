@@ -524,7 +524,7 @@ class Client
 
         $this->checkResponse($response);
 
-        return isset($response->account);
+        return property_exists($response, 'account');
     }
 
     /**
@@ -736,10 +736,10 @@ class Client
             throw new Error('invalid_format', 'Response should be returned in JSON format', $status);
         }
         elseif ($status >= 400) {
-            if ($response->error) {
+            if (property_exists($response, 'error')) {
                 throw new Error($response->error->error_name, $response->error->error_msg, $status);
             }
-            elseif ($response->warnings) {
+            elseif (property_exists($response, 'warnings')) {
                 // Only throw first warning
                 throw new Warning($response->warnings[0]->warning_name, $response->warnings[0]->warning_msg, $status);
             }
@@ -758,7 +758,7 @@ class Client
      */
     protected function checkOAuthTokenResponse($response)
     {
-        if ($response->error) {
+        if (property_exists($response, 'error') && property_exists($response, 'error_description')) {
             throw new Error($response->error, $response->error_description);
         }
     }
