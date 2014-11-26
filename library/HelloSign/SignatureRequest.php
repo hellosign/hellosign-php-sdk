@@ -55,7 +55,7 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $has_error = false;
 
     /**
-     * The URL where a copy of the request's documents can be downloaded
+     * The URL at which this requests files can be retrieved.
      *
      * @var string
      */
@@ -115,6 +115,13 @@ class SignatureRequest extends AbstractSignatureRequest
      * @var array
      */
     protected $file = array();
+
+    /**
+     * The URLs at which this request's files can be retrieved.
+     *
+     * @var array
+     */
+    protected $file_urls = array();
     
     /**
      * The document fields manually specified when signing from a file. Optional
@@ -183,7 +190,7 @@ class SignatureRequest extends AbstractSignatureRequest
     }
 
     /**
-     * @param  string $email
+     * @param  string $file path for file
      * @return SignatureRequest
      * @ignore
      */
@@ -193,7 +200,30 @@ class SignatureRequest extends AbstractSignatureRequest
             throw new Error('unknown', 'File does not exist');
         }
 
-        $this->file[] = "@$file";
+        if (function_exists('curl_file_create')) {
+            // PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
+            // See: https://wiki.php.net/rfc/curl-file-upload
+            $f = curl_file_create($file);
+        } else {
+            $f = "@$file";
+        }
+
+        $this->file[] = $f;
+        return $this;
+    }
+
+    /**
+     * @param string $file_url
+     * @return SignatureRequest
+     */
+    public function addFileUrl($file_url) {
+        if (empty($file_url)) {
+            throw new Error('unknown', 'Empty file URL');
+        }
+        if (filter_var($file_url, FILTER_VALIDATE_URL) !== false) {
+            throw new Error('unknown', 'Invalid file URL');
+        }
+        $this->file_urls[] = $file_url;
         return $this;
     }
 
