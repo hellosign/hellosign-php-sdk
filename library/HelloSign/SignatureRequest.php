@@ -121,7 +121,7 @@ class SignatureRequest extends AbstractSignatureRequest
      *
      * @var array
      */
-    protected $file_urls = array();
+    protected $file_url = array();
     
     /**
      * The document fields manually specified when signing from a file. Optional
@@ -223,7 +223,7 @@ class SignatureRequest extends AbstractSignatureRequest
         if (filter_var($file_url, FILTER_VALIDATE_URL) !== false) {
             throw new Error('unknown', 'Invalid file URL');
         }
-        $this->file_urls[] = $file_url;
+        $this->file_url[] = $file_url;
         return $this;
     }
 
