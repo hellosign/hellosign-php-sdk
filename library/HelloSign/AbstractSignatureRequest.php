@@ -273,6 +273,9 @@ abstract class AbstractSignatureRequest extends AbstractResource
      * @return string|NULL
      */
     public function getMetadata($key) {
-        return (isset($this->metadata[$key])) ? $this->metadata[$key] : null;
+    	if (is_array($this->metadata)) {
+            return (isset($this->metadata[$key])) ? $this->metadata[$key] : null;
+    	}
+    	return null;
     }
 }
