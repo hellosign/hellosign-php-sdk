@@ -37,7 +37,7 @@ class CURL {
         $options = array() + $single_use_options;
 
         if (!empty($params)) {
-            $option[CURLOPT_URL] = $this->url.'?'.http_build_query($params, NULL, '&');
+            $options[CURLOPT_URL] = $this->url.'?'.http_build_query($params, NULL, '&');
         }
         
         return $this->execute($options);
