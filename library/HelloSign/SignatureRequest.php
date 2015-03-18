@@ -221,7 +221,7 @@ class SignatureRequest extends AbstractSignatureRequest
         if (empty($file_url)) {
             throw new Error('unknown', 'Empty file URL');
         }
-        if (filter_var($file_url, FILTER_VALIDATE_URL) !== false) {
+        if (filter_var($file_url, FILTER_VALIDATE_URL) === false) {
             throw new Error('unknown', 'Invalid file URL');
         }
         $this->file_url[] = $file_url;
