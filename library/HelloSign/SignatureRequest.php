@@ -200,14 +200,16 @@ class SignatureRequest extends AbstractSignatureRequest
             throw new Error('unknown', 'File does not exist');
         }
 
+        $php_version = defined('PHP_VERSION') ? explode('.', PHP_VERSION) : null;
+
         // Disabling this new syntax for now due to conflicts with the REST client
-        //if (function_exists('curl_file_create')) {
-            // PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
+        if ($php_version && $php_version[0] == 5 && $php_version[1] >= 5) {
+            // PHP 5.5 introduced a CURLfile object that deprecates the old @filename syntax
             // See: https://wiki.php.net/rfc/curl-file-upload
-        //    $f = curl_file_create($file);
-        //} else {
+            $f = new CURLfile($file);
+        } else {
             $f = "@$file";
-        //}
+        }
 
         $this->file[] = $f;
         return $this;
