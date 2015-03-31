@@ -154,6 +154,24 @@ abstract class AbstractResource extends AbstractObject
     }
 
     /**
+     * Utility function that checks to see if we should be using CURLFile instead
+     * of @ for file params.
+     * 
+     * @return boolean
+     * @ignore
+     */
+    public function shouldUseCURLFile() 
+    {
+        $php_version = defined('PHP_VERSION') ? explode('.', PHP_VERSION) : null;
+
+        if ($php_version && $php_version[0] == 5 && $php_version[1] >= 5) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @param  string $file path for file
      * @return AbstractResource
      * @ignore
@@ -164,13 +182,11 @@ abstract class AbstractResource extends AbstractObject
             throw new Error('unknown', 'File does not exist');
         }
 
-        $php_version = defined('PHP_VERSION') ? explode('.', PHP_VERSION) : null;
-
         // Disabling this new syntax for now due to conflicts with the REST client
-        if ($php_version && $php_version[0] == 5 && $php_version[1] >= 5) {
+        if (static::shouldUseCURLFile()) {
             // PHP 5.5 introduced a CURLfile object that deprecates the old @filename syntax
             // See: https://wiki.php.net/rfc/curl-file-upload
-            $f = new CURLfile($file);
+            $f = new \CURLfile($file);
         } else {
             $f = "@$file";
         }

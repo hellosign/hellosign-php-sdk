@@ -306,7 +306,7 @@ class CURL {
         foreach ($array as $key => $value) {
             $name = $prefix ? "{$prefix}[{$key}]" : $key;
 
-            if (is_array($value) || is_object($value)) {
+            if (is_array($value) || (is_object($value) && get_class($value) != 'CURLFile')) {
                 $return += static::to_1_level_array($value, $name);
             }
             else {

@@ -109,7 +109,6 @@ class TemplateTest extends AbstractTest
         $request->addMergeField('Test Merge', 'text');
         $request->addMergeField('Test Merge 2', 'checkbox');
 
-
         $return = $this->client->createEmbeddedDraft($request);
 
         $this->assertTrue(is_string($return->getId()));
