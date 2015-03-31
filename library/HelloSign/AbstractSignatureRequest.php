@@ -12,36 +12,6 @@ namespace HelloSign;
 abstract class AbstractSignatureRequest extends AbstractResource
 {
     /**
-     * Whether this is a test signature request
-     *
-     * Test requests have no legal value. Defaults to false.
-     *
-     * @var boolean
-     */
-    protected $test_mode = false;
-
-    /**
-     * The title the specified Account uses for the SignatureRequest
-     *
-     * @var string
-     */
-    protected $title = null;
-
-    /**
-     * The subject in the email that was initially sent to the signers
-     *
-     * @var string
-     */
-    protected $subject = null;
-
-    /**
-     * The custom message in the email that was initially sent to the signers
-     *
-     * @var string
-     */
-    protected $message = null;
-
-    /**
      * The URL you want the signer redirected to after they successfully sign
      *
      * @var string
@@ -89,86 +59,6 @@ abstract class AbstractSignatureRequest extends AbstractResource
         $this->signers = new SignerList;
 
         parent::__construct($response, $options);
-    }
-
-    /**
-     * @return SignatureRequest
-     * @ignore
-     */
-    public function enableTestMode()
-    {
-        $this->test_mode = true;
-        return $this;
-    }
-
-    /**
-     * @return SignatureRequest
-     * @ignore
-     */
-    public function disableTestMode()
-    {
-        $this->test_mode = false;
-        return $this;
-    }
-
-    /**
-     * @param  string $title
-     * @return SignatureRequest
-     * @ignore
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    /**
-     * @return string
-     * @ignore
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param  string $subject
-     * @return SignatureRequest
-     * @ignore
-     */
-    public function setSubject($subject)
-    {
-        $this->subject = $subject;
-        return $this;
-    }
-
-    /**
-     * @return string
-     * @ignore
-     */
-    public function getSubject()
-    {
-        return $this->subject;
-    }
-
-    /**
-     * @param  string $message
-     * @return SignatureRequest
-     * @ignore
-     */
-    public function setMessage($message)
-    {
-        $this->message = $message;
-        return $this;
-    }
-
-    /**
-     * @return string
-     * @ignore
-     */
-    public function getMessage()
-    {
-        return $this->message;
     }
 
     /**

@@ -87,4 +87,50 @@ class TemplateTest extends AbstractTest
 		}
         $this->isFalse($has_template);
     }
+
+    /**
+     * @group embedded
+     */
+    public function testCreateEmbeddedDraft() 
+    {
+        $client_id = $_ENV['CLIENT_ID'];
+
+
+        $request = new \HelloSign\Template();
+        $request->enableTestMode();
+        $request->setClientId($client_id);
+        $request->addFile(__DIR__ . '/nda.docx');
+        $request->setTitle('Test Title');
+        $request->setSubject('Test Subject');
+        $request->setMessage('Test Message');
+        $request->addSignerRole('Test Role', 1);
+        $request->addSignerRole('Test Role 2', 2);
+        $request->addCCRole('Test CC Role');
+        $request->addMergeField('Test Merge', 'text');
+        $request->addMergeField('Test Merge 2', 'checkbox');
+
+
+        $return = $this->client->createEmbeddedDraft($request);
+
+        $this->assertTrue(is_string($return->getId()));
+        $this->assertTrue(is_string($return->getEditUrl()));
+        $this->assertTrue($return->isEmbeddedDraft());
+
+        return $return->getId();
+    }
+
+    /**
+     * @depends testCreateEmbeddedDraft
+     * @group embedded
+     */
+    // public function testGetEmbeddedEditUrl($templateId) 
+    // {
+
+    //     $res = $this->client->getEmbeddedEditUrl($templateId);
+
+    //     print_r($res);
+
+    //     $this->assertTrue($res);
+    // }
+
 }

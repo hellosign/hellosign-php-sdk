@@ -38,6 +38,9 @@ class Client
     const TEMPLATE_ADD_USER_PATH          = "template/add_user";
     const TEMPLATE_REMOVE_USER_PATH       = "template/remove_user";
     const TEMPLATE_SIGNATURE_REQUEST_PATH = "signature_request/send_with_template";
+    #TODO - #DEBUG - #NEW
+    const TEMPLATE_CREATE_EMBEDDED_DRAFT  = "template/create_embedded_draft";
+    const TEMPLATE_DELETE_PATH            = "template/delete";
 
     const TEAM_PATH               = "team";
     const TEAM_CREATE_PATH        = "team/create";
@@ -46,8 +49,13 @@ class Client
     const TEAM_REMOVE_MEMBER_PATH = "team/remove_member";
 
     const EMBEDDED_SIGN_URL_PATH = "embedded/sign_url";
+    #TODO - #DEBUG - #NEW
+    const EMBEDDED_EDIT_URL_PATH = "/embedded/edit_url"; // requires [:template_id]
+
     const UNCLAIMED_DRAFT_CREATE_PATH = "unclaimed_draft/create";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH = "unclaimed_draft/create_embedded";
+    #TODO - #DEBUG - #NEW
+    const UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH = "unclaimed_draft/create_embedded_with_template";
 
     const OAUTH_TOKEN_URL = "https://www.hellosign.com/oauth/token";
     
@@ -291,6 +299,45 @@ class Client
     }
 
     /**
+     * The first step in an embedded template workflow. 
+     * Creates a draft template that can then be further set up in the template 'edit' stage.
+     *
+     * @param  Template $request
+     * @return Template
+     * @throws BaseException
+     */
+    public function createEmbeddedDraft(Template $request)
+    {
+
+        $response = $this->rest->post(
+            static::TEMPLATE_CREATE_EMBEDDED_DRAFT, 
+            $request->toEmbeddedDraftParams());
+
+        $this->checkResponse($response);
+
+        return new Template($response);
+    }
+
+    /**
+     * Completely deletes the template specified from the account.
+     *
+     * @param  string $template_id template ID
+     * @return boolean
+     * @throws BaseException
+     */
+    public function deleteTemplate($template_id)
+    {
+
+        $response = $this->rest->post(
+            static::TEMPLATE_DELETE_PATH . '/' . $template_id
+        );
+
+        $this->checkResponse($response, false);
+
+        return true;
+    }
+
+    /**
      * Creates a new Signature Request based on the template provided
      *
      * @param  TemplateSignatureRequest $request
@@ -395,6 +442,25 @@ class Client
     }
 
     /**
+     * Retrieves the necessary information to edit an embedded template
+     * 
+     *
+     * @param  string $id ID of the template to embed
+     * @return EmbeddedResponse
+     * @throws BaseException
+     */
+    public function getEmbeddedEditUrl($id)
+    {
+        $response = $this->rest->get(
+            static::EMBEDDED_EDIT_URL_PATH . '/' . $id
+        );
+
+        $this->checkResponse($response);
+
+        return new EmbeddedResponse($response);
+    }
+
+    /**
      * Creates an unclaimed draft using the provided request draft object
      *
      * @param  UnclaimedDraft $draft
@@ -407,6 +473,25 @@ class Client
         $url = $draft->getClientId()
             ? static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH
             : static::UNCLAIMED_DRAFT_CREATE_PATH;
+
+        $response = $this->rest->post($url, $draft->toParams());
+
+        $this->checkResponse($response);
+
+        return $draft->fromResponse($response);
+    }
+
+    /**
+     * Creates an unclaimed draft using the provided request draft object
+     *
+     * @param  UnclaimedDraft $draft
+     * @return UnclaimedDraft The created draft
+     * @throws BaseException
+     */
+    public function createUnclaimedDraftEmbeddedWithTemplate(UnclaimedDraft $draft)
+    {
+        // #TODO - Adjust parameters to match template reqs etc
+        $url = static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH;
 
         $response = $this->rest->post($url, $draft->toParams());
 
