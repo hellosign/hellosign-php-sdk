@@ -19,11 +19,25 @@ abstract class AbstractSignatureRequest extends AbstractResource
     protected $signing_redirect_url = null;
 
     /**
+     * The URL you want the requester redirected to after they successfully send their request
+     *
+     * @var string
+     */
+    protected $requesting_redirect_url = null;
+
+    /**
      * An array of signers
      *
      * @var SignerList
      */
     protected $signers = null;
+
+    /**
+     * The email address of the initiator of the SignatureRequest
+     *
+     * @var string
+     */
+    protected $requester_email_address = null;
 
     /**
      * Whether this signature request uses text tags
@@ -69,6 +83,17 @@ abstract class AbstractSignatureRequest extends AbstractResource
     public function setSigningRedirectUrl($url)
     {
         $this->signing_redirect_url = $url;
+        return $this;
+    }
+
+    /**
+     * @param  string $url
+     * @return static
+     * @ignore
+     */
+    public function setRequestingRedirectUrl($url)
+    {
+        $this->requesting_redirect_url = $url;
         return $this;
     }
 
@@ -123,6 +148,17 @@ abstract class AbstractSignatureRequest extends AbstractResource
     {
         $this->signers->setCollection($signers);
 
+        return $this;
+    }
+
+    /**
+     * @param  string $email
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function setRequesterEmailAddress($email)
+    {
+        $this->requester_email_address = $email;
         return $this;
     }
 

@@ -26,6 +26,13 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     protected $request = null;
 
     /**
+     * Flag that enables embedded signing for the request
+     *
+     * @var bool
+     */
+    protected $is_for_embedded_signing = false;
+
+    /**
      * Constructor
      *
      * @param AbstractSignatureRequest $request
@@ -55,6 +62,16 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     public function getClientId()
     {
         return $this->client_id;
+    }
+
+    /**
+     * @return static
+     * @ignore
+     */
+    public function setEmbeddedSigning()
+    {
+        $this->is_for_embedded_signing = true;
+        return $this;
     }
 
     /**

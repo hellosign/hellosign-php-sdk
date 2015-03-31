@@ -132,4 +132,34 @@ class TemplateTest extends AbstractTest
     //     $this->assertTrue($res);
     // }
 
+    /**
+     * @group embedded
+     */
+    public function testCreateUnclaimedDraftEmbeddedWithTemplate() 
+    {
+
+        $client_id = $_ENV['CLIENT_ID'];
+        // $template = $_ENV['TEMPLATE_ID'];
+        $templateId = 'e9bbed302ee26f34e2134d1a9f965f5bbc3dbfa3';
+
+        $baseReq = new \HelloSign\TemplateSignatureRequest();
+        $baseReq->setTemplateId($templateId);
+        $baseReq->setCC('Manager','dumbledore@hogwarts.edu');
+        $baseReq->setSigner('New Student', 'harry@potter.net', 'Harry Potter');
+        // $baseReq->setCustomFieldValue('Owl', 'Hedwig');
+        $baseReq->setSigningRedirectUrl('http://hogwarts.edu/success');
+        $baseReq->setRequestingRedirectUrl('http://hogwarts.edu');
+        $baseReq->setRequesterEmailAddress('herman@hogwarts.com');
+        $baseReq->addMetadata('House', 'Griffyndor');
+
+        $request = new \HelloSign\EmbeddedSignatureRequest($baseReq);
+        $request->setClientId($client_id);
+        $request->enableTestMode();
+        $request->setEmbeddedSigning();
+
+        print_r($request->toParams());
+
+        $response = $this->client->createUnclaimedDraftEmbeddedWithTemplate($request);
+    }
+
 }

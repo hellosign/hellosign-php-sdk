@@ -484,18 +484,19 @@ class Client
     /**
      * Creates an unclaimed draft using the provided request draft object
      *
-     * @param  UnclaimedDraft $draft
+     * @param  EmbeddedSignatureRequest $request
      * @return UnclaimedDraft The created draft
      * @throws BaseException
      */
-    public function createUnclaimedDraftEmbeddedWithTemplate(UnclaimedDraft $draft)
+    public function createUnclaimedDraftEmbeddedWithTemplate(EmbeddedSignatureRequest $request)
     {
-        // #TODO - Adjust parameters to match template reqs etc
         $url = static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH;
 
-        $response = $this->rest->post($url, $draft->toParams());
+        $response = $this->rest->post($url, $request->toParams());
 
         $this->checkResponse($response);
+
+        $draft = new UnclaimedDraft();
 
         return $draft->fromResponse($response);
     }

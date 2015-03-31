@@ -32,13 +32,6 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $signature_request_id = null;
 
     /**
-     * The email address of the initiator of the SignatureRequest
-     *
-     * @var string
-     */
-    protected $requester_email_address = null;
-
-    /**
      * Whether or not the SignatureRequest has been fully executed by all
      * signers
      *
@@ -138,17 +131,6 @@ class SignatureRequest extends AbstractSignatureRequest
     public function getId()
     {
         return $this->signature_request_id;
-    }
-
-    /**
-     * @param  string $email
-     * @return SignatureRequest
-     * @ignore
-     */
-    public function setRequesterEmail($email)
-    {
-        $this->requester_email_address = $email;
-        return $this;
     }
     
     /**
