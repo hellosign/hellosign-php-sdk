@@ -61,4 +61,34 @@ class UnclaimedDraftTest extends AbstractTest
 
         $this->assertNotEmpty($sign_url);
     }
+
+    /**
+     * @group embedded
+     */
+    public function testCreateUnclaimedDraftEmbeddedWithTemplate() 
+    {
+
+        $client_id = $_ENV['CLIENT_ID'];
+        
+        $templates = $this->client->getTemplates();
+        $template = $templates[0];
+        $templateId = $template->getId();
+
+        $baseReq = new \HelloSign\TemplateSignatureRequest();
+        $baseReq->setTemplateId($templateId);
+        $baseReq->setSigner('Signer', 'harry@potter.net', 'Harry Potter');
+        $baseReq->setSigningRedirectUrl('http://hogwarts.edu/success');
+        $baseReq->setRequestingRedirectUrl('http://hogwarts.edu');
+        $baseReq->setRequesterEmailAddress('herman@hogwarts.com');
+        $baseReq->addMetadata('House', 'Griffyndor');
+
+        $request = new \HelloSign\EmbeddedSignatureRequest($baseReq);
+        $request->setClientId($client_id);
+        $request->enableTestMode();
+        $request->setEmbeddedSigning();
+
+        $response = $this->client->createUnclaimedDraftEmbeddedWithTemplate($request);
+
+        $this->assertTrue($response instanceof \HelloSign\UnclaimedDraft);
+    }
 }

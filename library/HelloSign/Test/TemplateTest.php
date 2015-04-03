@@ -119,47 +119,32 @@ class TemplateTest extends AbstractTest
     }
 
     /**
-     * @depends testCreateEmbeddedDraft
      * @group embedded
+     * @expectedException HelloSign\Error
+     * @expectedExceptionMessage Template not found
      */
-    // public function testGetEmbeddedEditUrl($templateId) 
-    // {
+    public function testGetEmbeddedEditUrl() 
+    {
+        # Similar to the delete_template function, we can't actually test this for success without human interaction. 
+        # Instead, we'll be checking for a 404 - Template not found status code, which means our parameters are correct
 
-    //     $res = $this->client->getEmbeddedEditUrl($templateId);
+        $template_id = 'ax5d921d0d3ccfcd594d2b8c897ba774d89c9234'; #random
 
-    //     print_r($res);
-
-    //     $this->assertTrue($res);
-    // }
+        $res = $this->client->getEmbeddedEditUrl($template_id);
+    }
 
     /**
      * @group embedded
+     * @expectedException HelloSign\Error
+     * @expectedExceptionMessage Template not found
      */
-    public function testCreateUnclaimedDraftEmbeddedWithTemplate() 
+    public function testDeleteTemplate() 
     {
+        # Note that we won't be actually deleting a template, 
+        # but rather checking to make sure we get a 404 - Template not found error
 
-        $client_id = $_ENV['CLIENT_ID'];
-        // $template = $_ENV['TEMPLATE_ID'];
-        $templateId = 'e9bbed302ee26f34e2134d1a9f965f5bbc3dbfa3';
+        $template_id = 'ax5d921d0d3ccfcd594d2b8c897ba774d89c9234'; #random
 
-        $baseReq = new \HelloSign\TemplateSignatureRequest();
-        $baseReq->setTemplateId($templateId);
-        $baseReq->setCC('Manager','dumbledore@hogwarts.edu');
-        $baseReq->setSigner('New Student', 'harry@potter.net', 'Harry Potter');
-        // $baseReq->setCustomFieldValue('Owl', 'Hedwig');
-        $baseReq->setSigningRedirectUrl('http://hogwarts.edu/success');
-        $baseReq->setRequestingRedirectUrl('http://hogwarts.edu');
-        $baseReq->setRequesterEmailAddress('herman@hogwarts.com');
-        $baseReq->addMetadata('House', 'Griffyndor');
-
-        $request = new \HelloSign\EmbeddedSignatureRequest($baseReq);
-        $request->setClientId($client_id);
-        $request->enableTestMode();
-        $request->setEmbeddedSigning();
-
-        print_r($request->toParams());
-
-        $response = $this->client->createUnclaimedDraftEmbeddedWithTemplate($request);
+        $res = $this->client->deleteTemplate($template_id);
     }
-
 }

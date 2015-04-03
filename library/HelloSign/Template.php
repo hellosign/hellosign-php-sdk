@@ -333,13 +333,14 @@ class Template extends AbstractResource
         }
 
         $params = $this->toArray();
-        $params['merge_fields'] = $merge_fields;
 
         foreach ($params as $key => $value) {
             if(!in_array($key, $fields_to_include)){
                 unset($params[$key]);
             }
         }
+        
+        $params['merge_fields'] = $merge_fields;
 
         return $params;
     }

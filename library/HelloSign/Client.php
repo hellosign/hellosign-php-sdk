@@ -38,7 +38,6 @@ class Client
     const TEMPLATE_ADD_USER_PATH          = "template/add_user";
     const TEMPLATE_REMOVE_USER_PATH       = "template/remove_user";
     const TEMPLATE_SIGNATURE_REQUEST_PATH = "signature_request/send_with_template";
-    #TODO - #DEBUG - #NEW
     const TEMPLATE_CREATE_EMBEDDED_DRAFT  = "template/create_embedded_draft";
     const TEMPLATE_DELETE_PATH            = "template/delete";
 
@@ -49,12 +48,10 @@ class Client
     const TEAM_REMOVE_MEMBER_PATH = "team/remove_member";
 
     const EMBEDDED_SIGN_URL_PATH = "embedded/sign_url";
-    #TODO - #DEBUG - #NEW
-    const EMBEDDED_EDIT_URL_PATH = "/embedded/edit_url"; // requires [:template_id]
+    const EMBEDDED_EDIT_URL_PATH = "/embedded/edit_url";
 
     const UNCLAIMED_DRAFT_CREATE_PATH = "unclaimed_draft/create";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH = "unclaimed_draft/create_embedded";
-    #TODO - #DEBUG - #NEW
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH = "unclaimed_draft/create_embedded_with_template";
 
     const OAUTH_TOKEN_URL = "https://www.hellosign.com/oauth/token";
