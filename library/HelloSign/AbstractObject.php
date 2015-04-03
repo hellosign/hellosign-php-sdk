@@ -34,7 +34,7 @@ abstract class AbstractObject
         $array = get_object_vars($this);
 
         // default value
-        !isset($options['include_null']) && $options['include_null'] = true;
+        !isset($options['include_null']) && $options['include_null'] = false;
         !isset($options['except']) && $options['except'] = array();
         $options['except'][] = 'resource_type';
 

@@ -163,6 +163,16 @@ abstract class AbstractSignatureRequest extends AbstractResource
     }
 
     /**
+     * 
+     * Alias to setRequesterEmailAddress
+     * @ignore
+     */
+    public function setRequesterEmail($email)
+    {
+        return $this->setRequesterEmailAddress($email);
+    }
+
+    /**
      *
      * Enable or disable text tags
      * @param boolean $use_text_tags

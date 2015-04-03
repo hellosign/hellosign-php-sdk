@@ -48,7 +48,7 @@ class Client
     const TEAM_REMOVE_MEMBER_PATH = "team/remove_member";
 
     const EMBEDDED_SIGN_URL_PATH = "embedded/sign_url";
-    const EMBEDDED_EDIT_URL_PATH = "/embedded/edit_url";
+    const EMBEDDED_EDIT_URL_PATH = "embedded/edit_url";
 
     const UNCLAIMED_DRAFT_CREATE_PATH = "unclaimed_draft/create";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH = "unclaimed_draft/create_embedded";

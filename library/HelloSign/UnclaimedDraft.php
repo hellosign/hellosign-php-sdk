@@ -102,8 +102,6 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
         return $this->is_for_embedded_signing;
     }
 
-
-
     /**
      * @return string claim URL
      * @ignore
