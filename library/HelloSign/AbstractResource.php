@@ -179,7 +179,7 @@ abstract class AbstractResource extends AbstractObject
     public function addFile($file)
     {
         if (!file_exists($file)) {
-            throw new Error('unknown', 'File does not exist');
+            throw new Error('file not found', 'File does not exist. Please use an absolute file path.');
         }
 
         // Disabling this new syntax for now due to conflicts with the REST client
