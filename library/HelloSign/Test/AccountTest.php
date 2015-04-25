@@ -2,9 +2,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -39,22 +39,16 @@ class AccountTest extends AbstractTest
     {
     	$random_email = rand(1,10000000) . "@example.com";
         $response = $this->client->createAccount(
-            new Account(
-                $random_email,
-                '12345678'
-            )
+            new Account($random_email)
         );
 
         $this->assertInstanceOf('HelloSign\Account', $response);
         $this->assertNotNull($response->account_id);
-        
+
         //trying to create it again should fail
-        
+
         $response = $this->client->createAccount(
-            new Account(
-                $random_email,
-                '12345678'
-            )
+            new Account($random_email)
         );
 
         return $response;

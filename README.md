@@ -63,7 +63,7 @@ $client = new HelloSign\Client($email_address, $password);
 $client = new HelloSign\Client($oauth_token); //instance of HelloSign\OAuthToken
 ```
 
-Your app users are almost ready to start signing! 
+Your app users are almost ready to start signing!
 See below for the most common use cases for this wrapper.
 
 
@@ -186,7 +186,7 @@ $sign_url = $response->getClaimUrl();
 if !($client->isAccountValid($email)) {
     // Create new account
     $account = $client->createAccount(
-        new HelloSign\Account($email, $password),
+        new HelloSign\Account($email),
         $client_id,
         $client_secret
     );

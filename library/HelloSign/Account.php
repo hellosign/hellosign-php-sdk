@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -98,6 +98,7 @@ class Account extends AbstractResource
      * The password for the new Account
      *
      * @var string
+     * @deprecated This field will be ignored
      */
     protected $password = null;
 
@@ -112,13 +113,12 @@ class Account extends AbstractResource
      * Constructor
      *
      * @param mixed $email_or_obj
-     * @param string $password
+     * @param string $password DEPRECATED; This will be ignored if specified
      */
     public function __construct($email_or_obj = null, $password = null)
     {
         if (is_string($email_or_obj)) {
             $this->email_address = $email_or_obj;
-            $this->password = $password;
         } else {
             parent::__construct($email_or_obj);
         }
@@ -281,10 +281,10 @@ class Account extends AbstractResource
      * @param  string $password
      * @return Account
      * @ignore
+     * @deprecated This field will be ignored
      */
     public function setPassword($password)
     {
-        $this->password = $password;
         return $this;
     }
 
@@ -327,8 +327,7 @@ class Account extends AbstractResource
     {
         return $this->toArray(array(
             'only' => array(
-                'email_address',
-                'password'
+                'email_address'
             )
         ));
     }
