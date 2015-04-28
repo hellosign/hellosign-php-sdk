@@ -77,7 +77,7 @@ abstract class AbstractObject
 
         // nested call & remove null
         foreach ($array as $key => $value) {
-            if (!$options['include_null'] && $value == null) {
+            if (!$options['include_null'] && $value === null) {
                 unset($array[$key]);
             } elseif ($value instanceof AbstractObject
                 || $value instanceof AbstractList) {
