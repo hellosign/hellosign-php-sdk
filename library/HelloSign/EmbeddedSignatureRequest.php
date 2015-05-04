@@ -37,24 +37,30 @@ namespace HelloSign;
  */
 class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
 {
-	/**
+    /**
      * @return array
      * @ignore
      */
-	
-	public function toParams()
+    public function toParams()
     {
-        $except = array(
-            'request',
-        );
-
-        return $this->toArray(array(
-            'except' => $except
-        )) + $this->request->toParams(array(
+        /**
+         * Here we union (using the + operator) the param arrays for the
+         * SignatureRequest object with our self (the EmbeddedSignatureRequest
+         * object) to get the final params array. The order of this union is
+         * important! The params from $this->request must be left of the union
+         * operator so that its values (e.g. test_mode) take precedence over
+         * our defaults.
+         */
+        return $this->request->toParams(array(
             'except' => array(
                 'title',
-        		'use_text_tags',
-        		'hide_text_tags'
+                'use_text_tags',
+                'hide_text_tags'
+            )
+        )) + $this->toArray(array(
+            'except' => array(
+                'request',
+                'is_for_embedded_signing' // parent class gives us this, we don't want it
             )
         ));
     }
