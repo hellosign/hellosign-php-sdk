@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -40,6 +40,13 @@ abstract class AbstractResource extends AbstractObject
      * @var string
      */
     protected $resource_type = null;
+
+    /**
+     * Warnings received from API
+     *
+     * @var array
+     */
+    protected $warnings = array();
 
     /**
      * Whether this is a test signature request
@@ -94,7 +101,10 @@ abstract class AbstractResource extends AbstractObject
      */
     public function __construct($response = null, $options = array())
     {
-        isset($response) && $this->fromResponse($response, $options);
+        if(isset($response)) {
+          $this->fromResponse($response, $options);
+          $this->warningsFromResponse($response);
+        }
     }
 
     /**
@@ -180,11 +190,11 @@ abstract class AbstractResource extends AbstractObject
     /**
      * Utility function that checks to see if we should be using CURLFile instead
      * of @ for file params.
-     * 
+     *
      * @return boolean
      * @ignore
      */
-    public function shouldUseCURLFile() 
+    public function shouldUseCURLFile()
     {
         $php_version = defined('PHP_VERSION') ? explode('.', PHP_VERSION) : null;
 
@@ -235,6 +245,15 @@ abstract class AbstractResource extends AbstractObject
     }
 
     /**
+     * @return array
+     * @ignore
+     */
+    public function getWarnings()
+    {
+      return $this->warnings;
+    }
+
+    /**
      * Populate from response
      *
      * @param  stdClass $response
@@ -246,5 +265,16 @@ abstract class AbstractResource extends AbstractObject
     public function fromResponse($response, $options = array())
     {
         return $this->fromObject($response->{$this->resource_type}, $options);
+    }
+
+    public function warningsFromResponse($response)
+    {
+      // print_r(is_array($response->warnings));
+      if (property_exists($response, 'warnings') && is_array($response->warnings)) {
+        foreach($response->warnings as $warning) {
+          array_push($this->warnings, new Warning($warning));
+        }
+        $this->warnings = $response->warnings;
+      }
     }
 }

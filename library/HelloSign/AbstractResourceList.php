@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -40,6 +40,13 @@ abstract class AbstractResourceList extends AbstractList
      * @var string
      */
     protected $list_type = null;
+
+    /**
+     * Warnings received from API
+     *
+     * @var array
+     */
+    protected $warnings = array();
 
     /**
      * Number of the page being returned
@@ -77,7 +84,11 @@ abstract class AbstractResourceList extends AbstractList
      */
     public function __construct($response = null)
     {
-        isset($response) && $this->fromResponse($response);
+        if(isset($response))
+        {
+          $this->fromResponse($response);
+          $this->warningsFromResponse($response);
+        }
     }
 
     /**
@@ -117,6 +128,15 @@ abstract class AbstractResourceList extends AbstractList
     }
 
     /**
+     * @return array
+     * @ignore
+     */
+    public function getWarnings()
+    {
+      return $this->warnings;
+    }
+
+    /**
      * Populate from response
      *
      * @param  stdClass $response
@@ -133,5 +153,15 @@ abstract class AbstractResourceList extends AbstractList
         property_exists($response, $this->list_type) && $this->setCollection($response->{$this->list_type});
 
         return $this;
+    }
+
+    public function warningsFromResponse($response)
+    {
+      if (property_exists($response, 'warnings') && is_array($response->warnings)) {
+        foreach($response->warnings as $warning) {
+          array_push($this->warnings, new Warning($warning));
+        }
+        $this->warnings = $response->warnings;
+      }
     }
 }

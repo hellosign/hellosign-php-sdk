@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -32,6 +32,76 @@ namespace HelloSign;
 /**
  * Handle all warnings of HelloSign API
  */
-class Warning extends BaseException
+class Warning
 {
+
+  /**
+   * Warning message
+   *
+   * @var string
+   */
+  protected $message = null;
+
+  /**
+   * Warning name
+   *
+   * @var string
+   */
+  protected $name = null;
+
+  /**
+   * Constructor
+   *
+   * @param stdClass $warning_data
+   */
+  public function __construct($warning_data = null)
+  {
+    if (isset($warning_data)) {
+      $this->setMessage($warning_data->warning_msg);
+      $this->setName($warning_data->warning_name);
+    }
+  }
+
+  /**
+   * set warning message
+   *
+   * @param  String $message
+   * @return static
+   */
+  public function setMessage($message)
+  {
+    isset($message) && $this->message = $message;
+  }
+
+  /**
+   * set warning name
+   *
+   * @param  String $name
+   * @return static
+   */
+  public function setName($name)
+  {
+    isset($name) && $this->name = $name;
+  }
+
+  /**
+   * get warning message
+   *
+   * @return String
+   */
+  public function getMessage()
+  {
+    return $this->message;
+  }
+
+  /**
+   * get warning name
+   *
+   * @return String
+   */
+  public function getName()
+  {
+    return $this->name;
+  }
+
 }
