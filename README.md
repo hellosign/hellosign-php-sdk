@@ -219,6 +219,15 @@ $client->refreshOAuthToken($token);
 $client = new HelloSign\Client($token);
 ```
 
+## Displaying warnings
+
+Any warnings returned from the API can be accessed via the returned object / list via the getWarnings method:
+
+````php
+  $response = $this->client->getSignatureRequests();
+  print_r($response->getWarnings());
+````
+
 ## Testing
 
 This project contains PHPUnit tests that check the SDK code and can also be referenced for examples. Most are functional and integrated tests that walk through real user scenarios.

@@ -34,42 +34,12 @@ class WarningTest extends AbstractTest
   public function testWarnings()
   {
     $response = $this->client->getSignatureRequests();
-    // print_r($response->getWarnings());
     $this->assertTrue(is_array($response->getWarnings()));
   }
 
-  public function localWarningsTest()
+  public function testObjectWarnings()
   {
-    $fake_response = array(
-        "account" => array(
-            "account_id" => "5008b25c7f67153e57d5a357b1687968068fb465",
-            "email_address" => "me@hellosign.com",
-            "is_paid_hs" => true,
-            "is_paid_hf" => false,
-            "quotas" => array(
-                "api_signature_requests_left" => 1250,
-                "documents_left" => null,
-                "templates_left" => null
-            ),
-            "callback_url" => null,
-            "role_code" => null
-          ),
-        "warnings" => array(
-            array(
-              "message" => "derp derp",
-              "name" => "some_error"
-            ),
-            array(
-              "message" => "derp derp 2",
-              "name" => "some_other_error"
-            )
-          )
-        );
-
-    $account = new Account();
-    $account->fromResponse($fake_response);
-    $this->assertTrue($account->warnings[0]->getMessage(), "derp derp");
-    $this->assertTrue($account->warnings[0] instanceof Warning, true);
+    $response = $this->client->getAccount();
+    $this->assertTrue(is_array($response->getWarnings()));
   }
-
 }
