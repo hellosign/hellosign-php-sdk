@@ -269,7 +269,6 @@ abstract class AbstractResource extends AbstractObject
 
     public function warningsFromResponse($response)
     {
-      // print_r(is_array($response->warnings));
       if (property_exists($response, 'warnings') && is_array($response->warnings)) {
         foreach($response->warnings as $warning) {
           array_push($this->warnings, new Warning($warning));
