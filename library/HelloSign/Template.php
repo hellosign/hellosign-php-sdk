@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -148,6 +148,14 @@ class Template extends AbstractResource
      * @var array
      */
     protected $accounts = array();
+
+    /**
+     * Used when creating an embedded template draft
+     * Whether this template should use preexisting fields from the original document
+     *
+     * @var boolean
+     */
+    protected $use_preexisting_fields = false;
 
     /**
      * @return string
@@ -321,6 +329,15 @@ class Template extends AbstractResource
     }
 
     /**
+       * @param  boolean $use_preexisting_fields
+       * @ignore
+       */
+    public function setUsePreexistingFields($use_preexisting_fields)
+    {
+      $this->use_preexisting_fields = $use_preexisting_fields;
+    }
+
+    /**
      * @param  stdClass $array
      * @param  array $options
      * @return Template
@@ -350,6 +367,7 @@ class Template extends AbstractResource
             'cc_roles',
             'message',
             'signer_roles',
+            'use_preexisting_fields'
         );
 
         if(isset($this->merge_fields)){
@@ -363,7 +381,7 @@ class Template extends AbstractResource
                 unset($params[$key]);
             }
         }
-        
+
         $params['merge_fields'] = $merge_fields;
 
         return $params;

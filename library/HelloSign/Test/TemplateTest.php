@@ -2,9 +2,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -27,8 +27,8 @@
 namespace HelloSign\Test;
 
 /**
- * 
- * You must have created a template manually prior to running this test suite 
+ *
+ * You must have created a template manually prior to running this test suite
  * @author Steve Gough
  *
  */
@@ -86,7 +86,7 @@ class TemplateTest extends AbstractTest
 				$has_template = true;
 			}
 		}
-        
+
         $this->isTrue($has_template);
         return array($template, $this->team_member_2);
     }
@@ -102,7 +102,7 @@ class TemplateTest extends AbstractTest
         $response = $this->client->removeTemplateUser($template->getId(), $member);
 
         $this->assertInstanceOf('HelloSign\Template', $response);
-        
+
     	$has_template = false;
 		foreach($response->getAccounts() as $account) {
 			if($account->email_address == $member || $account->account_id == $member ) {
@@ -115,7 +115,7 @@ class TemplateTest extends AbstractTest
     /**
      * @group embedded
      */
-    public function testCreateEmbeddedDraft() 
+    public function testCreateEmbeddedDraft()
     {
         $client_id = $_ENV['CLIENT_ID'];
 
@@ -132,6 +132,7 @@ class TemplateTest extends AbstractTest
         $request->addCCRole('Test CC Role');
         $request->addMergeField('Test Merge', 'text');
         $request->addMergeField('Test Merge 2', 'checkbox');
+        $request->setUsePreexistingFields(true);
 
         $return = $this->client->createEmbeddedDraft($request);
 
@@ -147,9 +148,9 @@ class TemplateTest extends AbstractTest
      * @expectedException HelloSign\Error
      * @expectedExceptionMessage Template not found
      */
-    public function testGetEmbeddedEditUrl() 
+    public function testGetEmbeddedEditUrl()
     {
-        # Similar to the delete_template function, we can't actually test this for success without human interaction. 
+        # Similar to the delete_template function, we can't actually test this for success without human interaction.
         # Instead, we'll be checking for a 404 - Template not found status code, which means our parameters are correct
 
         $template_id = 'ax5d921d0d3ccfcd594d2b8c897ba774d89c9234'; #random
@@ -162,9 +163,9 @@ class TemplateTest extends AbstractTest
      * @expectedException HelloSign\Error
      * @expectedExceptionMessage Template not found
      */
-    public function testDeleteTemplate() 
+    public function testDeleteTemplate()
     {
-        # Note that we won't be actually deleting a template, 
+        # Note that we won't be actually deleting a template,
         # but rather checking to make sure we get a 404 - Template not found error
 
         $template_id = 'ax5d921d0d3ccfcd594d2b8c897ba774d89c9234'; #random

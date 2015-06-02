@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -72,8 +72,15 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
      */
     protected $claim_url = null;
 
+    /**
+     * Whether this unclaimed draft should use preexisting fields from the original document
+     *
+     * @var boolean
+     */
+    protected $use_preexisting_fields = false;
+
 	/**
-     * @param  string $id
+     * @param  boolean $is_for_embedded_signing
      * @return UnclaimedDraft
      * @ignore
      */
@@ -81,7 +88,16 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     {
         $this->is_for_embedded_signing = $is_for_embedded_signing;
     }
-    
+
+    /**
+       * @param  boolean $use_preexisting_fields
+       * @ignore
+       */
+    public function setUsePreexistingFields($use_preexisting_fields)
+    {
+      $this->use_preexisting_fields = $use_preexisting_fields;
+    }
+
     /**
      * @param  string $id
      * @return UnclaimedDraft
@@ -147,10 +163,15 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
             'claim_url'
         );
 
+        // Skip including files local to this object if specified on the request instead
+        if (isset($this->request) && !sizeof($this->file)) {
+          array_push($except, 'file');
+        }
+
         if (!$this->isForEmbeddedSigning()) {
             $except[] = 'is_for_embedded_signing';
         }
-        
+
         if(!$this->getClientId()) {
         	$except[] = 'client_id';
         }

@@ -2,9 +2,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -48,9 +48,9 @@ class UnclaimedDraftTest extends AbstractTest
         $request->addSigner('beck@example.com', 'Beck');
         $request->addCC('ancelotti@example.com');
         $request->addFile(__DIR__ . '/nda.docx');
-
         $client_id = $_ENV['CLIENT_ID'];
         $draft = new UnclaimedDraft($request, $client_id);
+        $draft->setUsePreexistingFields(true);
 
         $response = $this->client->createUnclaimedDraft($draft);
         $sign_url = $response->getClaimUrl();
@@ -62,7 +62,7 @@ class UnclaimedDraftTest extends AbstractTest
 
         $this->assertNotEmpty($sign_url);
     }
-    
+
     /**
      * The difference is that you don't set a client id here
      * @group create
@@ -72,7 +72,7 @@ class UnclaimedDraftTest extends AbstractTest
         $request = new SignatureRequest;
         $request->enableTestMode();
         $request->addFile(__DIR__ . '/nda.docx');
-        
+
         $draft = new UnclaimedDraft($request);
 
         $response = $this->client->createUnclaimedDraft($draft);
@@ -89,11 +89,11 @@ class UnclaimedDraftTest extends AbstractTest
     /**
      * @group embedded
      */
-    public function testCreateUnclaimedDraftEmbeddedWithTemplate() 
+    public function testCreateUnclaimedDraftEmbeddedWithTemplate()
     {
 
         $client_id = $_ENV['CLIENT_ID'];
-        
+
         $templates = $this->client->getTemplates();
         $template = $templates[0];
         $templateId = $template->getId();

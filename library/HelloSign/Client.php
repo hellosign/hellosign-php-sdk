@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -79,7 +79,7 @@ class Client
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH = "unclaimed_draft/create_embedded_with_template";
 
     const OAUTH_TOKEN_URL = "https://www.hellosign.com/oauth/token";
-    
+
     protected $oauth_token_url = self::OAUTH_TOKEN_URL;
 
     /**
@@ -95,7 +95,7 @@ class Client
      * @var boolean
      */
     protected $debug_mode = false;
-    
+
     /**
      * Constructor
      *
@@ -120,9 +120,9 @@ class Client
 
         return $this;
     }
-    
+
     /**
-     * 
+     *
      * Should only be used for unit tests that may be hitting a local endpoint
      */
     public function disableCertificateCheck($rest = null) {
@@ -212,9 +212,9 @@ class Client
     	if($type) {
     		$params['file_type'] = $type;
     	}
-    	    	
+
     	$fp = fopen($dest_path, 'wb');
-    	
+
         $response = $this->rest->get(
             static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
             $params,
@@ -320,7 +320,7 @@ class Client
     }
 
     /**
-     * The first step in an embedded template workflow. 
+     * The first step in an embedded template workflow.
      * Creates a draft template that can then be further set up in the template 'edit' stage.
      *
      * @param  Template $request
@@ -331,7 +331,7 @@ class Client
     {
 
         $response = $this->rest->post(
-            static::TEMPLATE_CREATE_EMBEDDED_DRAFT, 
+            static::TEMPLATE_CREATE_EMBEDDED_DRAFT,
             $request->toEmbeddedDraftParams());
 
         $this->checkResponse($response);
@@ -464,7 +464,7 @@ class Client
 
     /**
      * Retrieves the necessary information to edit an embedded template
-     * 
+     *
      *
      * @param  string $id ID of the template to embed
      * @return EmbeddedResponse
@@ -494,7 +494,8 @@ class Client
         $url = $draft->getClientId()
             ? static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH
             : static::UNCLAIMED_DRAFT_CREATE_PATH;
-
+        print_r('params:');
+        print_r($draft->toParams());
         $response = $this->rest->post($url, $draft->toParams());
 
         $this->checkResponse($response);
@@ -539,7 +540,7 @@ class Client
             'server' => $this->oauth_token_url,
             'debug_mode' => $this->debug_mode
         ));
-        
+
         if($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
         	$this->disableCertificateCheck($rest);
         }
@@ -575,7 +576,7 @@ class Client
             'server' => $this->oauth_token_url,
             'debug_mode' => $this->debug_mode
         ));
-        
+
    		if($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
         	$this->disableCertificateCheck($rest);
         }
