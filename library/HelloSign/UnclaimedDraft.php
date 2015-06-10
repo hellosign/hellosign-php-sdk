@@ -180,9 +180,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
             'except' => $except
         )) + $this->request->toParams(array(
             'except' => array(
-                'title',
-        		'use_text_tags',
-        		'hide_text_tags'
+                'title' // title not supported for unclaimed draft endpoints
             )
         ));
     }

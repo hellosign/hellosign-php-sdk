@@ -52,11 +52,7 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
          * our defaults.
          */
         return $this->request->toParams(array(
-            'except' => array(
-                'title',
-                'use_text_tags',
-                'hide_text_tags'
-            )
+            'except' => array()
         )) + $this->toArray(array(
             'except' => array(
                 'request',
