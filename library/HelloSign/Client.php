@@ -41,6 +41,8 @@ use Comvi\REST;
  */
 class Client
 {
+    const VERSION = '3.2.4';
+
     const API_URL = "https://api.hellosign.com/v3/";
 
     const ACCOUNT_PATH          = "account";
@@ -85,7 +87,7 @@ class Client
     /**
      * Reference to the REST object
      *
-     * @var REST
+     * @var REST $rest
      */
     protected $rest;
 
@@ -107,6 +109,7 @@ class Client
     {
     	$this->oauth_token_url = $oauth_token_url;
         $this->rest = $this->createREST($first, $last, $api_url);
+        $this->rest->setHeader('User-Agent', 'hellosign-php-sdk/' . self::VERSION);
     }
 
     /**
