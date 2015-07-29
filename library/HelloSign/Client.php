@@ -526,8 +526,7 @@ class Client
         $url = $draft->getClientId()
             ? static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH
             : static::UNCLAIMED_DRAFT_CREATE_PATH;
-        print_r('params:');
-        print_r($draft->toParams());
+
         $response = $this->rest->post($url, $draft->toParams());
 
         $this->checkResponse($response);

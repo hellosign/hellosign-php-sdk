@@ -178,7 +178,7 @@ class TemplateTest extends AbstractTest
      * @group download
      * @group newTemplate
      */
-    public function testGetTemplateFiles($id)
+    public function testGetTemplateFiles()
     {
 //        sleep(60);
 
@@ -189,7 +189,7 @@ class TemplateTest extends AbstractTest
         if(file_exists($file1)) {
             unlink($file1);
         }
-        
+
         $response = $this->client->getTemplateFiles($template_id, $file1);
         $this->assertGreaterThan(0,filesize($file1));
 
