@@ -66,6 +66,7 @@ class Client
     const TEMPLATE_SIGNATURE_REQUEST_PATH = "signature_request/send_with_template";
     const TEMPLATE_CREATE_EMBEDDED_DRAFT  = "template/create_embedded_draft";
     const TEMPLATE_DELETE_PATH            = "template/delete";
+    const TEMPLATE_FILES_PATH             = "template/files";
 
     const TEAM_PATH               = "team";
     const TEAM_CREATE_PATH        = "team/create";
@@ -359,6 +360,34 @@ class Client
         $this->checkResponse($response, false);
 
         return true;
+    }
+
+    /**
+     * Retrieves a PDF copy of the files associated with a template
+     *
+     * @param  string $template_id
+     * @param  string $dest_path where should the file be saved
+     * @return string
+     * @throws BaseException
+     */
+    public function getTemplateFiles($template_id, $dest_path)
+    {
+        $params = array();
+
+        $fp = fopen($dest_path, 'wb');
+
+        $response = $this->rest->get(
+            static::TEMPLATE_FILES_PATH . '/' . $template_id,
+            null,
+            null,
+            array(CURLOPT_FILE => $fp)
+        );
+        fwrite($fp, $response);
+        fclose($fp);
+
+        $this->checkResponse($response, false);
+
+        return $response;
     }
 
     /**

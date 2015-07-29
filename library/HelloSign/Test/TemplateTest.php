@@ -172,4 +172,27 @@ class TemplateTest extends AbstractTest
 
         $res = $this->client->deleteTemplate($template_id);
     }
+
+    /**
+     * @group read
+     * @group download
+     * @group newTemplate
+     */
+    public function testGetTemplateFiles($id)
+    {
+//        sleep(60);
+
+        $templates = $this->client->getTemplates();
+        $template_id = $templates[0]->getId();
+
+        $file1 = 'phpunit_test_template_file.pdf';
+        if(file_exists($file1)) {
+            unlink($file1);
+        }
+        
+        $response = $this->client->getTemplateFiles($template_id, $file1);
+        $this->assertGreaterThan(0,filesize($file1));
+
+        return $response;
+    }
 }
