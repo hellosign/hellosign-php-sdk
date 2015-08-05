@@ -381,8 +381,10 @@ class Template extends AbstractResource
                 unset($params[$key]);
             }
         }
-
-        $params['merge_fields'] = $merge_fields;
+        
+        if (isset($merge_fields)){
+          $params['merge_fields'] = $merge_fields;          
+        }
 
         return $params;
     }
