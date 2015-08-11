@@ -370,7 +370,7 @@ class Template extends AbstractResource
             'use_preexisting_fields'
         );
 
-        if(isset($this->merge_fields)){
+        if(isset($this->merge_fields) && count($this->merge_fields) > 0){
             $merge_fields = json_encode($this->merge_fields);
         }
 
