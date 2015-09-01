@@ -41,7 +41,7 @@ use Comvi\REST;
  */
 class Client
 {
-    const VERSION = '3.3.2';
+    const VERSION = '3.3.3';
 
     const API_URL = "https://api.hellosign.com/v3/";
 
@@ -225,10 +225,11 @@ class Client
             null,
             array(CURLOPT_FILE => $fp)
         );
-        fwrite($fp, $response);
-        fclose($fp);
 
         $this->checkResponse($response, false);
+
+        fwrite($fp, $response);
+        fclose($fp);
 
         return $response;
     }
