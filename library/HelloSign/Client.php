@@ -41,7 +41,7 @@ use Comvi\REST;
  */
 class Client
 {
-    const VERSION = '3.3.3';
+    const VERSION = '3.3.4';
 
     const API_URL = "https://api.hellosign.com/v3/";
 
@@ -141,14 +141,20 @@ class Client
      * Send a new SignatureRequest with the submitted documents
      *
      * @param  SignatureRequest $request
+     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function sendSignatureRequest(SignatureRequest $request)
+    public function sendSignatureRequest(SignatureRequest $request, $ux_version = null)
     {
+        $params = $request->toParams();
+        if ($ux_version !== null) {
+            $params['ux_version'] = $ux_version;
+        }
+
         $response = $this->rest->post(
             static::SIGNATURE_REQUEST_SEND_PATH,
-            $request->toParams()
+            $params
         );
 
         $this->checkResponse($response);
@@ -395,14 +401,20 @@ class Client
      * Creates a new Signature Request based on the template provided
      *
      * @param  TemplateSignatureRequest $request
+     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function sendTemplateSignatureRequest(TemplateSignatureRequest $request)
+    public function sendTemplateSignatureRequest(TemplateSignatureRequest $request, $ux_version = null)
     {
+        $params = $request->toParams();
+        if ($ux_version !== null) {
+            $params['ux_version'] = $ux_version;
+        }
+
         $response = $this->rest->post(
             static::TEMPLATE_SIGNATURE_REQUEST_PATH,
-            $request->toParams()
+            $params
         );
 
         $this->checkResponse($response);
@@ -413,14 +425,21 @@ class Client
     /**
      * Retrieves a Signature Request with the given ID
      *
-     * @param  string $id signature ID
+     * @param  String $id signature ID
+     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function getSignatureRequest($id)
+    public function getSignatureRequest($id, $ux_version = null)
     {
+        $params = array();
+        if ($ux_version !== null) {
+            $params['ux_version'] = $ux_version;
+        }
+
         $response = $this->rest->get(
-            static::SIGNATURE_REQUEST_PATH . '/' . $id
+            static::SIGNATURE_REQUEST_PATH . '/' . $id,
+            $params
         );
 
         $this->checkResponse($response);
@@ -432,16 +451,23 @@ class Client
      * Retrieves the current user's signature requests. The resulting object
      * represents a paged query result.
      *
-     * @param  integer $page
+     * @param  Integer $page
+     * @param  Integer $ux_version
      * @return SignatureRequestList
      * @throws BaseException
      */
-    public function getSignatureRequests($page = 1)
+    public function getSignatureRequests($page = 1, $ux_version = null)
     {
+        $params = array(
+            'page' => $page
+        );
+        if ($ux_version !== null) {
+            $params['ux_version'] = $ux_version;
+        }
+
         $response = $this->rest->get(
-            static::SIGNATURE_REQUEST_LIST_PATH, array(
-                'page' => $page
-            )
+            static::SIGNATURE_REQUEST_LIST_PATH,
+            $params
         );
 
         $this->checkResponse($response);
@@ -459,17 +485,23 @@ class Client
      * Creates a signature request that can be embedded within your website
      *
      * @param  EmbeddedSignatureRequest $request
+     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function createEmbeddedSignatureRequest(EmbeddedSignatureRequest $request)
+    public function createEmbeddedSignatureRequest(EmbeddedSignatureRequest $request, $ux_version = null)
     {
+        $params = $request->toParams();
+        if ($ux_version !== null) {
+            $params['ux_version'] = $ux_version;
+        }
+
         // choose url
         $url = $request->isUsingTemplate()
             ? static::SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH
             : static::SIGNATURE_REQUEST_EMBEDDED_PATH;
 
-        $response = $this->rest->post($url, $request->toParams());
+        $response = $this->rest->post($url, $params);
 
         $this->checkResponse($response);
 
