@@ -196,9 +196,7 @@ abstract class AbstractResource extends AbstractObject
      */
     public function shouldUseCURLFile()
     {
-        $php_version = defined('PHP_VERSION') ? explode('.', PHP_VERSION) : null;
-
-        if ($php_version && $php_version[0] == 5 && $php_version[1] >= 5) {
+        if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
             return true;
         }
 
