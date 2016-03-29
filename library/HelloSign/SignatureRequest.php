@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -38,10 +38,10 @@ use stdClass;
  */
 class SignatureRequest extends AbstractSignatureRequest
 {
-	
+
 	const FILE_TYPE_PDF = 'pdf';
 	const FILE_TYPE_ZIP = 'zip';
-	
+
     /**
      * @var string
      * @ignore
@@ -104,12 +104,11 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $cc_email_addresses = array();
 
     /**
-     * An array of Custom Field objects containing the name and type of each
-     * custom field
+     * A string containing the json with Custom Field objects 
      *
      * @var array
      */
-    protected $custom_fields = array();
+    protected $custom_fields = null;
 
     /**
      * An array of form field objects containing the name, value, and type of
@@ -125,10 +124,10 @@ class SignatureRequest extends AbstractSignatureRequest
      * @var SignatureList
      */
     protected $signatures = null;
-    
+
     /**
      * The document fields manually specified when signing from a file. Optional
-     * See: https://www.hellosign.com/api/signatureRequestWalkthrough#SignatureRequestScenarios/CreateFromFileAndComponents 
+     * See: https://www.hellosign.com/api/signatureRequestWalkthrough#SignatureRequestScenarios/CreateFromFileAndComponents
      *
      * @var array
      */
@@ -156,7 +155,7 @@ class SignatureRequest extends AbstractSignatureRequest
     {
         return $this->signature_request_id;
     }
-    
+
     /**
      * @param  array $form_fields
      * @return SignatureRequest
@@ -167,8 +166,8 @@ class SignatureRequest extends AbstractSignatureRequest
         $this->form_fields_per_document = json_encode($form_fields);
         return $this;
     }
-    
-    
+
+
 
     /**
      * @param  string $email
