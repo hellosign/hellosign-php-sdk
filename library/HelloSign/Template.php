@@ -127,12 +127,11 @@ class Template extends AbstractResource
     protected $documents = array();
 
     /**
-     * An array of Custom Field objects containing the name and type of each
-     * custom field
+     * A string containing the json with Custom Field objects
      *
      * @var array
      */
-    protected $custom_fields = array();
+    protected $custom_fields = null;
 
     /**
      * An array of Merge Field objects containing the name and type of each
@@ -381,9 +380,9 @@ class Template extends AbstractResource
                 unset($params[$key]);
             }
         }
-        
+
         if (isset($merge_fields)){
-          $params['merge_fields'] = $merge_fields;          
+          $params['merge_fields'] = $merge_fields;
         }
 
         return $params;

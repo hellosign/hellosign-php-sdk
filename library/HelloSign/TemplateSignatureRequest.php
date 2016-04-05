@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -42,7 +42,7 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
 {
     /**
      * The list of Templates used when creating the SignatureRequest
-     * 
+     *
      * @var array
      */
     protected $template_ids = array();
@@ -58,12 +58,11 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     protected $ccs = array();
 
     /**
-     * An array of Custom Field objects containing the name and type of each
-     * custom field
+     * An string containing the json with Custom Field objects
      *
      * @var array
      */
-    protected $custom_fields = array();
+    protected $custom_fields = null;
 
     /**
      * Set the template ID, along with an optional order
@@ -113,15 +112,32 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     }
 
     /**
-     * Set the value to fill in for a custom field with the given field name
+     * Add value in the custom fields
      *
      * @param  string $field_name field name to be filled in
      * @param  string $value
+     * @param  string $editor     Signer
+     * @param  string $required   (true to allow Editable Merge, only supported for single signer requests)
      * @return TemplateSignatureRequest
      */
-    public function setCustomFieldValue($field_name, $value)
+    public function setCustomFieldValue($field_name, $value, $editor = null, $required = false)
     {
-        $this->custom_fields[$field_name] = $value;
+        if(empty($this->custom_fields)) $this->custom_fields = json_encode(array());
+        $array = json_decode($this->custom_fields, true);
+        if(!empty($editor)) {
+            $array[] = array(
+                'name'     => $field_name,
+                'value'    => $value,
+                'editor'   => $editor,
+                'required' => $required
+            );
+        }else{
+            $array[] = array(
+                'name'     => $field_name,
+                'value'    => $value
+            );
+        }
+        $this->custom_fields = json_encode($array);
         return $this;
     }
 
