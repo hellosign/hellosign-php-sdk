@@ -124,7 +124,7 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     {
         if(empty($this->custom_fields)) $this->custom_fields = json_encode(array());
         $array = json_decode($this->custom_fields, true);
-        if(!empty($editor) && $required) {
+        if(!empty($editor)) {
             $array[] = array(
                 'name'     => $field_name,
                 'value'    => $value,
