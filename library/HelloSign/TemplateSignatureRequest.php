@@ -58,7 +58,7 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     protected $ccs = array();
 
     /**
-     * An string containing the json with Custom Field objects 
+     * An string containing the json with Custom Field objects
      *
      * @var array
      */
@@ -120,11 +120,11 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
      * @param  string $required   (true to allow Editable Merge, only supported for single signer requests)
      * @return TemplateSignatureRequest
      */
-    public function setCustomFieldValue($field_name, $value, $editor = "", $required = false)
+    public function setCustomFieldValue($field_name, $value, $editor = null, $required = false)
     {
         if(empty($this->custom_fields)) $this->custom_fields = json_encode(array());
         $array = json_decode($this->custom_fields, true);
-        if($required) {
+        if(!empty($editor) && $required) {
             $array[] = array(
                 'name'     => $field_name,
                 'value'    => $value,
