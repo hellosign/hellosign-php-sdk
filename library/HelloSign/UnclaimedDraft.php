@@ -176,12 +176,20 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
         	$except[] = 'client_id';
         }
 
-        return $this->toArray(array(
-            'except' => $except
-        )) + $this->request->toParams(array(
+        /**
+         * Here we union (using the + operator) the param arrays for the
+         * SignatureRequest object with our self (the UnclaimedDraft
+         * object) to get the final params array. The order of this union is
+         * important! The params from $this->request must be left of the union
+         * operator so that its values (e.g. test_mode) take precedence over
+         * our defaults.
+         */
+        return $this->request->toParams(array(
             'except' => array(
                 'title' // title not supported for unclaimed draft endpoints
             )
+        )) + $this->toArray(array(
+            'except' => $except
         ));
     }
 }
