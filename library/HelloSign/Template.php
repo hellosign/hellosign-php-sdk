@@ -266,14 +266,19 @@ class Template extends AbstractResource
      * @return boolean
      * @ignore
      */
-    public function addSignerRole($role, $order = null)
-    {
-        $this->signer_roles[] = array(
-            'name' => $role,
-            'order' => $order
-        );
-        return true;
-    }
+     public function addSignerRole($role, $order = null)
+     {
+         $signer_role = array(
+             'name' => $role
+         );
+
+         if ($order != null) {
+             $signer_role['order'] = $order;
+         }
+
+         $this->signer_roles[] = $signer_role;
+         return true;
+     }
 
     /**
      * @param string $role role name
@@ -381,9 +386,9 @@ class Template extends AbstractResource
                 unset($params[$key]);
             }
         }
-        
+
         if (isset($merge_fields)){
-          $params['merge_fields'] = $merge_fields;          
+          $params['merge_fields'] = $merge_fields;
         }
 
         return $params;
