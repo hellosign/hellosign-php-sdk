@@ -58,12 +58,11 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     protected $ccs = array();
 
     /**
-     * An array of Custom Field objects containing the name and type of each
-     * custom field
+     * A JSON array of Custom Field objects
      *
      * @var array
      */
-    protected $custom_fields = array();
+    protected $custom_fields = '[]';
 
     /**
      * Set the template ID, along with an optional order
@@ -113,15 +112,28 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     }
 
     /**
-     * Set the value to fill in for a custom field with the given field name
+     * Set the value for a custom field with the given field name
+     * and optionally define a Role allowed to edit it and if the field is required to be filled
      *
      * @param  string $field_name field name to be filled in
      * @param  string $value
+     * @param  string $editor
+     * @param  string $required
      * @return TemplateSignatureRequest
      */
-    public function setCustomFieldValue($field_name, $value)
+    public function setCustomFieldValue($field_name, $value, $editor = null, $required = null)
     {
-        $this->custom_fields[$field_name] = $value;
+        $custom_fields = json_decode($this->custom_fields);
+
+        $custom_fields[] = array(
+            'name'     => $field_name,
+            'value'    => $value,
+            'editor'   => $editor,
+            'required'   => $required
+        );
+
+        $this->custom_fields = json_encode($custom_fields);
+
         return $this;
     }
 

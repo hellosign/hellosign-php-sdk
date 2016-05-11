@@ -104,12 +104,11 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $cc_email_addresses = array();
 
     /**
-     * An array of Custom Field objects containing the name and type of each
-     * custom field
+     * A JSON array of Custom Field objects
      *
      * @var array
      */
-    protected $custom_fields = array();
+    protected $custom_fields = '[]';
 
     /**
      * An array of form field objects containing the name, value, and type of

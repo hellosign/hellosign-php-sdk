@@ -127,12 +127,11 @@ class Template extends AbstractResource
     protected $documents = array();
 
     /**
-     * An array of Custom Field objects containing the name and type of each
-     * custom field
+     * A JSON array of Custom Field objects
      *
      * @var array
      */
-    protected $custom_fields = array();
+    protected $custom_fields = '[]';
 
     /**
      * An array of Merge Field objects containing the name and type of each
