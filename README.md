@@ -9,7 +9,10 @@ This is the official PHP SDK for HelloSign's API.  [View api documentation and e
 1. PHP >= 5.3
 2. PHP curl extensions.
 
-You don't need to clone the repo directly to use this SDK, the entire library and its dependencies can be installed through Composer ( [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md) ).
+You can import this SDK into your library two ways, either through including the base HelloSign.php file into your
+project or using Composer ([https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md)).
+
+To use composer:
 
 - First, install Composer if you don't have it already
 
