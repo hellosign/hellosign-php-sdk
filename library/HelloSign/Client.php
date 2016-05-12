@@ -209,34 +209,33 @@ class Client
     }
 
     /**
-     * Retrieves a PDF copy of the files associated with a signature request
+     * Retrieves a link or copy of the files associated with a signature request
      *
      * @param  string $request_id
-     * @param  string $dest_path where should the file be saved
-     * @param  string $type (optional) get the files as a single pdf or a zip of many. See SignatureRequest.php
+     * @param  string $dest_path (optional) where should the file be saved. Will retrieve link if empty.
+     * @param  string $type (optional) get the files as a single pdf or a zip of many. Links will always be pdfs.
      * @return string
      * @throws BaseException
      */
-    public function getFiles($request_id, $dest_path, $type = null)
+    public function getFiles($request_id, $dest_path = null, $type = null)
     {
-    	$params = array();
-    	if($type) {
-    		$params['file_type'] = $type;
-    	}
-
-    	$fp = fopen($dest_path, 'wb');
-
-        $response = $this->rest->get(
-            static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
-            $params,
-            null,
-            array(CURLOPT_FILE => $fp)
-        );
-
-        $this->checkResponse($response, false);
-
-        fwrite($fp, $response);
-        fclose($fp);
+        if ($dest_path) { // file stream
+            $fp = fopen($dest_path, 'wb');
+            $response = $this->rest->get(
+                static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
+                $type ? array('file_type' => $type) : null,
+                null,
+                array(CURLOPT_FILE => $fp)
+            );
+            $this->checkResponse($response, false);
+            fwrite($fp, $response);
+            fclose($fp);
+        } else { // link
+            $response = $this->rest->get(
+                static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
+                array('get_url' => true)
+            );
+        }
 
         return $response;
     }
@@ -371,29 +370,33 @@ class Client
     }
 
     /**
-     * Retrieves a PDF copy of the files associated with a template
+     * Retrieves a link or copy of the files associated with a template
      *
      * @param  string $template_id
-     * @param  string $dest_path where should the file be saved
+     * @param  string $dest_path (optional) where should the file be saved. Will retrieve link if empty.
+     * @param  string $type (optional) get the files as a single pdf or a zip of many. Links will always be pdfs.
      * @return string
      * @throws BaseException
      */
-    public function getTemplateFiles($template_id, $dest_path)
+    public function getTemplateFiles($template_id, $dest_path = null, $type = 'pdf')
     {
-        $params = array();
-
-        $fp = fopen($dest_path, 'wb');
-
-        $response = $this->rest->get(
-            static::TEMPLATE_FILES_PATH . '/' . $template_id,
-            null,
-            null,
-            array(CURLOPT_FILE => $fp)
-        );
-        fwrite($fp, $response);
-        fclose($fp);
-
-        $this->checkResponse($response, false);
+        if ($dest_path) { // file stream
+            $fp = fopen($dest_path, 'wb');
+            $response = $this->rest->get(
+                static::TEMPLATE_FILES_PATH . '/' . $template_id,
+                $type ? array('file_type' => $type) : null,
+                null,
+                array(CURLOPT_FILE => $fp)
+            );
+            $this->checkResponse($response, false);
+            fwrite($fp, $response);
+            fclose($fp);
+        } else { // link
+            $response = $this->rest->get(
+                static::TEMPLATE_FILES_PATH . '/' . $template_id,
+                array('get_url' => true)
+            );
+        }
 
         return $response;
     }
