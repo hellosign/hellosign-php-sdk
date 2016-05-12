@@ -86,6 +86,12 @@ abstract class AbstractSignatureRequest extends AbstractResource
     protected $metadata = array();
 
     /**
+     * The client ID of the ApiApp you want to associate with this request.
+     * @var string
+     */
+    protected $client_id = null;
+
+    /**
      * Constructor
      *
      * @param  stdClass $response
@@ -216,6 +222,17 @@ abstract class AbstractSignatureRequest extends AbstractResource
     {
     	$this->hide_text_tags = $hide_text_tags;
     	return $this;
+    }
+
+    /**
+     * @param  string $id
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function setClientId($id)
+    {
+        $this->client_id = $id;
+        return $this;
     }
 
     /**
