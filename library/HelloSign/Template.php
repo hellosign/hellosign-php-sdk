@@ -265,19 +265,19 @@ class Template extends AbstractResource
      * @return boolean
      * @ignore
      */
-     public function addSignerRole($role, $order = null)
-     {
-         $signer_role = array(
-             'name' => $role
-         );
+    public function addSignerRole($role, $order = null)
+    {
+        $signer_role = array(
+            'name' => $role
+        );
 
-         if ($order != null) {
-             $signer_role['order'] = $order;
-         }
+        if ($order != null) {
+            $signer_role['order'] = $order;
+        }
 
-         $this->signer_roles[] = $signer_role;
-         return true;
-     }
+        $this->signer_roles[] = $signer_role;
+        return true;
+    }
 
     /**
      * @param string $role role name
@@ -338,7 +338,7 @@ class Template extends AbstractResource
        */
     public function setUsePreexistingFields($use_preexisting_fields)
     {
-      $this->use_preexisting_fields = $use_preexisting_fields;
+        $this->use_preexisting_fields = $use_preexisting_fields;
     }
 
     /**
@@ -374,20 +374,20 @@ class Template extends AbstractResource
             'use_preexisting_fields'
         );
 
-        if(isset($this->merge_fields) && count($this->merge_fields) > 0){
+        if (isset($this->merge_fields) && count($this->merge_fields) > 0) {
             $merge_fields = json_encode($this->merge_fields);
         }
 
         $params = $this->toArray();
 
         foreach ($params as $key => $value) {
-            if(!in_array($key, $fields_to_include)){
+            if (!in_array($key, $fields_to_include)) {
                 unset($params[$key]);
             }
         }
 
-        if (isset($merge_fields)){
-          $params['merge_fields'] = $merge_fields;
+        if (isset($merge_fields)) {
+            $params['merge_fields'] = $merge_fields;
         }
 
         return $params;

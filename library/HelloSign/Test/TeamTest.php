@@ -2,9 +2,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -44,8 +44,7 @@ class TeamTest extends AbstractTest
             $this->assertNotNull($response->getName());
             // A team can have more than 1 admin
             $this->assertGreaterThan(0, count($accounts));
-        }
-        catch (Error $e) {
+        } catch (Error $e) {
             if ($e->getMessage() != 'Team does not exist') {
                 throw $e;
             }
@@ -61,8 +60,7 @@ class TeamTest extends AbstractTest
         try {
             $response = $this->client->destroyTeam();
             $this->assertTrue($response);
-        }
-        catch (Error $e) {
+        } catch (Error $e) {
             if ($e->getMessage() != 'No team to delete') {
                 throw $e;
             }
@@ -114,10 +112,9 @@ class TeamTest extends AbstractTest
         );
     }
 
-
     /**
      * @depends testCreateTeam
-     * @group read 
+     * @group read
      */
     public function testGetTeam()
     {

@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -193,7 +193,6 @@ abstract class AbstractSignatureRequest extends AbstractResource
     }
 
     /**
-     * 
      * Alias to setRequesterEmailAddress
      * @ignore
      */
@@ -203,25 +202,23 @@ abstract class AbstractSignatureRequest extends AbstractResource
     }
 
     /**
-     *
      * Enable or disable text tags
      * @param boolean $use_text_tags
      */
     public function setUseTextTags($use_text_tags)
     {
-    	$this->use_text_tags = $use_text_tags;
-    	return $this;
+        $this->use_text_tags = $use_text_tags;
+        return $this;
     }
 
-	/**
-     *
+    /**
      * Enable or disable hiding text tags
      * @param boolean $use_text_tags
      */
     public function setHideTextTags($hide_text_tags)
     {
-    	$this->hide_text_tags = $hide_text_tags;
-    	return $this;
+        $this->hide_text_tags = $hide_text_tags;
+        return $this;
     }
 
     /**
@@ -250,9 +247,9 @@ abstract class AbstractSignatureRequest extends AbstractResource
      * @return string|NULL
      */
     public function getMetadata($key) {
-    	if (!is_array($this->metadata)) {
+        if (!is_array($this->metadata)) {
             $this->metadata = json_decode(json_encode($this->metadata), true);
-    	}
-    	return (isset($this->metadata[$key])) ? $this->metadata[$key] : null;
+        }
+        return (isset($this->metadata[$key])) ? $this->metadata[$key] : null;
     }
 }

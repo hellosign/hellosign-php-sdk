@@ -31,13 +31,13 @@ use HelloSign\Account;
 class AccountTest extends AbstractTest
 {
     /**
-	 * @expectedException HelloSign\Error
+     * @expectedException HelloSign\Error
      * @expectedExceptionMessage This account already exists, please log in
      * @group create
      */
     public function testCreateAccount()
     {
-    	$random_email = rand(1,10000000) . "@example.com";
+        $random_email = rand(1, 10000000) . "@example.com";
         $response = $this->client->createAccount(
             new Account($random_email)
         );

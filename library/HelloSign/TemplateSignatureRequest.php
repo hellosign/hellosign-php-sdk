@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -42,7 +42,6 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
 {
     /**
      * The list of Templates used when creating the SignatureRequest
-     * 
      * @var array
      */
     protected $template_ids = array();
@@ -143,13 +142,12 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
      */
     public function toParams()
     {
-    	$except = array(
-        	'use_text_tags',
-    		'hide_text_tags'
+        $except = array(
+            'use_text_tags',
+            'hide_text_tags'
         );
         return $this->toArray(array(
             'except' => $except
         ));
     }
-
 }

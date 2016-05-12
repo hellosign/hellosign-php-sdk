@@ -5,9 +5,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -38,10 +38,9 @@ use stdClass;
  */
 class SignatureRequest extends AbstractSignatureRequest
 {
-	
-	const FILE_TYPE_PDF = 'pdf';
-	const FILE_TYPE_ZIP = 'zip';
-	
+    const FILE_TYPE_PDF = 'pdf';
+    const FILE_TYPE_ZIP = 'zip';
+
     /**
      * @var string
      * @ignore
@@ -127,7 +126,7 @@ class SignatureRequest extends AbstractSignatureRequest
     
     /**
      * The document fields manually specified when signing from a file. Optional
-     * See: https://www.hellosign.com/api/signatureRequestWalkthrough#SignatureRequestScenarios/CreateFromFileAndComponents 
+     * See: https://www.hellosign.com/api/signatureRequestWalkthrough#SignatureRequestScenarios/CreateFromFileAndComponents
      *
      * @var array
      */

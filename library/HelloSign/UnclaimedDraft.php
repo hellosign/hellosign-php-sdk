@@ -79,7 +79,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
      */
     protected $use_preexisting_fields = false;
 
-	/**
+    /**
      * @param  boolean $is_for_embedded_signing
      * @return UnclaimedDraft
      * @ignore
@@ -95,7 +95,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
        */
     public function setUsePreexistingFields($use_preexisting_fields)
     {
-      $this->use_preexisting_fields = $use_preexisting_fields;
+        $this->use_preexisting_fields = $use_preexisting_fields;
     }
 
     /**
@@ -165,15 +165,15 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
 
         // Skip including files local to this object if specified on the request instead
         if (isset($this->request) && !sizeof($this->file)) {
-          array_push($except, 'file');
+            array_push($except, 'file');
         }
 
         if (!$this->isForEmbeddedSigning()) {
             $except[] = 'is_for_embedded_signing';
         }
 
-        if(!$this->getClientId()) {
-        	$except[] = 'client_id';
+        if (!$this->getClientId()) {
+            $except[] = 'client_id';
         }
 
         /**

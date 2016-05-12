@@ -68,8 +68,7 @@ abstract class AbstractObject
                     unset($array[$key]);
                 }
             }
-        }
-        else {
+        } else {
             foreach ($options['except'] as $value) {
                 unset($array[$value]);
             }

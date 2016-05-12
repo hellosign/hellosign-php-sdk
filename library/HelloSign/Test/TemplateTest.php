@@ -76,16 +76,16 @@ class TemplateTest extends AbstractTest
      */
     public function testAddTemplateUser($template)
     {
-    	$response = $this->client->inviteTeamMember($this->team_member_2);
+        $response = $this->client->inviteTeamMember($this->team_member_2);
         $response = $this->client->addTemplateUser($template->getId(), $this->team_member_2);
 
         $this->assertInstanceOf('HelloSign\Template', $response);
         $has_template = false;
-		foreach($response->getAccounts() as $account) {
-			if($account->email_address == $this->team_member_2 || $account->account_id == $this->team_member_2 ) {
-				$has_template = true;
-			}
-		}
+        foreach ($response->getAccounts() as $account) {
+            if ($account->email_address == $this->team_member_2 || $account->account_id == $this->team_member_2) {
+                $has_template = true;
+            }
+        }
 
         $this->isTrue($has_template);
         return array($template, $this->team_member_2);
@@ -97,18 +97,18 @@ class TemplateTest extends AbstractTest
      */
     public function testRemoveTemplateUser($template_and_member)
     {
-    	$template = $template_and_member[0];
-    	$member = $template_and_member[1];
+        $template = $template_and_member[0];
+        $member = $template_and_member[1];
         $response = $this->client->removeTemplateUser($template->getId(), $member);
 
         $this->assertInstanceOf('HelloSign\Template', $response);
 
-    	$has_template = false;
-		foreach($response->getAccounts() as $account) {
-			if($account->email_address == $member || $account->account_id == $member ) {
-				$has_template = true;
-			}
-		}
+        $has_template = false;
+        foreach ($response->getAccounts() as $account) {
+            if ($account->email_address == $member || $account->account_id == $member) {
+                $has_template = true;
+            }
+        }
         $this->isFalse($has_template);
     }
 
@@ -186,12 +186,12 @@ class TemplateTest extends AbstractTest
         $template_id = $templates[0]->getId();
 
         $file1 = 'phpunit_test_template_file.pdf';
-        if(file_exists($file1)) {
+        if (file_exists($file1)) {
             unlink($file1);
         }
 
         $response = $this->client->getTemplateFiles($template_id, $file1);
-        $this->assertGreaterThan(0,filesize($file1));
+        $this->assertGreaterThan(0, filesize($file1));
 
         return $response;
     }

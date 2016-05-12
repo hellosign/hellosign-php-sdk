@@ -42,7 +42,7 @@ use Comvi\REST;
 class Client
 {
 
-    const VERSION = '3.4.1';
+    const VERSION = '3.4.2';
 
     const API_URL = "https://api.hellosign.com/v3/";
 
@@ -109,7 +109,7 @@ class Client
      */
     public function __construct($first, $last = null, $api_url = self::API_URL, $oauth_token_url = self::OAUTH_TOKEN_URL)
     {
-    	$this->oauth_token_url = $oauth_token_url;
+        $this->oauth_token_url = $oauth_token_url;
         $this->rest = $this->createREST($first, $last, $api_url);
         $this->rest->setHeader('User-Agent', 'hellosign-php-sdk/' . self::VERSION);
     }
@@ -131,11 +131,11 @@ class Client
      * Should only be used for unit tests that may be hitting a local endpoint
      */
     public function disableCertificateCheck($rest = null) {
-    	if(!$rest) {
-    		$rest = $this->rest;
-    	}
-    	$rest->setCurlOption("SSL_VERIFYHOST", 0);
-    	$rest->setCurlOption("SSL_VERIFYPEER", 0);
+        if (!$rest) {
+            $rest = $this->rest;
+        }
+        $rest->setCurlOption("SSL_VERIFYHOST", 0);
+        $rest->setCurlOption("SSL_VERIFYPEER", 0);
     }
 
     /**
@@ -267,11 +267,7 @@ class Client
      */
     public function getTemplates($page = 1)
     {
-        $response = $this->rest->get(
-            static::TEMPLATE_LIST_PATH, array(
-                'page' => $page
-            )
-        );
+        $response = $this->rest->get(static::TEMPLATE_LIST_PATH, array('page' => $page));
 
         $this->checkResponse($response);
 
@@ -343,7 +339,8 @@ class Client
 
         $response = $this->rest->post(
             static::TEMPLATE_CREATE_EMBEDDED_DRAFT,
-            $request->toEmbeddedDraftParams());
+            $request->toEmbeddedDraftParams()
+        );
 
         $this->checkResponse($response);
 
@@ -609,8 +606,8 @@ class Client
             'debug_mode' => $this->debug_mode
         ));
 
-        if($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
-        	$this->disableCertificateCheck($rest);
+        if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
+            $this->disableCertificateCheck($rest);
         }
 
         $response = $rest->post('', $request->toParams());
@@ -645,8 +642,8 @@ class Client
             'debug_mode' => $this->debug_mode
         ));
 
-   		if($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
-        	$this->disableCertificateCheck($rest);
+        if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
+            $this->disableCertificateCheck($rest);
         }
 
         $response = $rest->post('', $token->toParams());
@@ -907,19 +904,15 @@ class Client
         $status = $this->rest->getStatus();
         if ($response === false) {
             throw new Error('unknown', 'Unknown error', $status);
-        }
-        elseif ($strict && is_string($response)) {
+        } elseif ($strict && is_string($response)) {
             throw new Error('invalid_format', 'Response should be returned in JSON format', $status);
-        }
-        elseif ($status >= 400) {
+        } elseif ($status >= 400) {
             if (property_exists($response, 'error')) {
                 throw new Error($response->error->error_name, $response->error->error_msg, $status);
-            }
-            elseif (property_exists($response, 'warnings')) {
+            } elseif (property_exists($response, 'warnings')) {
                 // Only throw first warning
                 throw new Warning($response->warnings[0]->warning_name, $response->warnings[0]->warning_msg, $status);
-            }
-            else {
+            } else {
                 throw new Error(null, null, $status);
             }
         }

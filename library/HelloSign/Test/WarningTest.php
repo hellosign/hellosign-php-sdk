@@ -30,16 +30,15 @@ use HelloSign\Account;
 
 class WarningTest extends AbstractTest
 {
+    public function testWarnings()
+    {
+        $response = $this->client->getSignatureRequests();
+        $this->assertTrue(is_array($response->getWarnings()));
+    }
 
-  public function testWarnings()
-  {
-    $response = $this->client->getSignatureRequests();
-    $this->assertTrue(is_array($response->getWarnings()));
-  }
-
-  public function testObjectWarnings()
-  {
-    $response = $this->client->getAccount();
-    $this->assertTrue(is_array($response->getWarnings()));
-  }
+    public function testObjectWarnings()
+    {
+        $response = $this->client->getAccount();
+        $this->assertTrue(is_array($response->getWarnings()));
+    }
 }

@@ -101,9 +101,9 @@ abstract class AbstractResource extends AbstractObject
      */
     public function __construct($response = null, $options = array())
     {
-        if(isset($response)) {
-          $this->fromResponse($response, $options);
-          $this->warningsFromResponse($response);
+        if (isset($response)) {
+            $this->fromResponse($response, $options);
+            $this->warningsFromResponse($response);
         }
     }
 
@@ -248,7 +248,7 @@ abstract class AbstractResource extends AbstractObject
      */
     public function getWarnings()
     {
-      return $this->warnings;
+        return $this->warnings;
     }
 
     /**
@@ -267,11 +267,11 @@ abstract class AbstractResource extends AbstractObject
 
     public function warningsFromResponse($response)
     {
-      if (property_exists($response, 'warnings') && is_array($response->warnings)) {
-        foreach($response->warnings as $warning) {
-          array_push($this->warnings, new Warning($warning));
+        if (property_exists($response, 'warnings') && is_array($response->warnings)) {
+            foreach ($response->warnings as $warning) {
+                array_push($this->warnings, new Warning($warning));
+            }
+            $this->warnings = $response->warnings;
         }
-        $this->warnings = $response->warnings;
-      }
     }
 }

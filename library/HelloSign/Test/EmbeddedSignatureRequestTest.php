@@ -2,9 +2,9 @@
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -63,7 +63,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         return $signatures[0]->getId();
     }
     
-	/**
+    /**
      * @group create
      */
     public function testCreateEmbeddedRequesting()
@@ -100,7 +100,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         // Turn it into an embedded request
         $client_id = $_ENV['CLIENT_ID'];
         $draft_request = new UnclaimedDraft($request, $client_id);
-		$draft_request->setIsForEmbeddedSigning(true);
+        $draft_request->setIsForEmbeddedSigning(true);
         // Send it to HelloSign
         $response = $this->client->createUnclaimedDraft($draft_request);
 
@@ -109,14 +109,14 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         $this->assertNotNull($response->getClaimUrl());
     }
     
-	/**
+    /**
      * @group create
      */
     public function testCreateEmbeddedSignatureRequestWithTemplate()
     {
         // Get a template
         
-    	$templates = $this->client->getTemplates();
+        $templates = $this->client->getTemplates();
         $template = $templates[0];
         
         // Create the signature request

@@ -31,7 +31,7 @@ use HelloSign\UnclaimedDraft;
 
 class UnclaimedDraftTest extends AbstractTest
 {
-	/**
+    /**
      * @group create
      */
     public function testCreateEmbeddedUnclaimedDraft()
@@ -67,7 +67,7 @@ class UnclaimedDraftTest extends AbstractTest
      * The difference is that you don't set a client id here
      * @group create
      */
-	public function testCreateUnclaimedDraft()
+    public function testCreateUnclaimedDraft()
     {
         $request = new SignatureRequest;
         $request->enableTestMode();
