@@ -235,6 +235,8 @@ class Client
                 static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
                 array('get_url' => true)
             );
+
+            return new FileResponse($response);
         }
 
         return $response;

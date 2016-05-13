@@ -78,8 +78,7 @@ abstract class AbstractObject
         foreach ($array as $key => $value) {
             if (!$options['include_null'] && $value === null) {
                 unset($array[$key]);
-            } elseif ($value instanceof AbstractObject
-                || $value instanceof AbstractList) {
+            } elseif ($value instanceof AbstractObject || $value instanceof AbstractList) {
                 $array[$key] = $value->toArray();
             }
         }

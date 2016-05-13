@@ -30,22 +30,22 @@
 namespace HelloSign;
 
 /**
- * Class to hold an embedded signature request response
+ * Class to hold a file url response
  */
-class EmbeddedResponse extends AbstractResource
+class FileResponse extends AbstractObject
 {
     /**
      * @var string
      * @ignore
      */
-    protected $resource_type = 'embedded';
+    protected $resource_type = 'file_url';
     
     /**
-     * URL of the signature page to display in the embedded iFrame
+     * URL where the file can be downloaded from
      *
      * @var string
      */
-    protected $sign_url = null;
+    protected $file_url = null;
     
     /**
      * When the link expires
@@ -58,9 +58,9 @@ class EmbeddedResponse extends AbstractResource
      * @return string
      * @ignore
      */
-    public function getSignUrl()
+    public function getFileUrl()
     {
-        return $this->sign_url;
+        return $this->file_url;
     }
 
     /**

@@ -59,9 +59,9 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     /**
      * A JSON array of Custom Field objects
      *
-     * @var array
+     * @var string
      */
-    protected $custom_fields = '[]';
+    protected $custom_fields = null;
 
     /**
      * Set the template ID, along with an optional order
@@ -122,7 +122,7 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
      */
     public function setCustomFieldValue($field_name, $value, $editor = null, $required = null)
     {
-        $custom_fields = json_decode($this->custom_fields);
+        $custom_fields = isset($this->custom_fields) ? json_decode($this->custom_fields) : array();
 
         $custom_fields[] = array(
             'name'     => $field_name,

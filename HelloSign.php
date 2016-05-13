@@ -12,6 +12,7 @@ require_once 'library/HelloSign/EmbeddedResponse.php';
 require_once 'library/HelloSign/EmbeddedSignatureRequest.php';
 require_once 'library/HelloSign/Error.php';
 require_once 'library/HelloSign/Event.php';
+require_once 'library/HelloSign/FileResponse.php';
 require_once 'library/HelloSign/OAuthToken.php';
 require_once 'library/HelloSign/OAuthTokenRequest.php';
 require_once 'library/HelloSign/Signature.php';

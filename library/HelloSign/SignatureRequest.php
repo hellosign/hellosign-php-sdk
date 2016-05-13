@@ -105,9 +105,9 @@ class SignatureRequest extends AbstractSignatureRequest
     /**
      * A JSON array of Custom Field objects
      *
-     * @var array
+     * @var string
      */
-    protected $custom_fields = '[]';
+    protected $custom_fields = null;
 
     /**
      * An array of form field objects containing the name, value, and type of
