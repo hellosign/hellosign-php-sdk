@@ -73,7 +73,6 @@ class OAuthTest extends AbstractTest
     {
         $oauth_client = $this->getOAuthClient($token);
         $response = $oauth_client->refreshOAuthToken($token);
-
         $this->assertInstanceOf('HelloSign\OAuthToken', $response);
 
         return $response;

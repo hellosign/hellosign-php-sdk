@@ -5,17 +5,14 @@
             <directory>./library/HelloSign/Test/</directory>
         </testsuite>
     </testsuites>
-<!--     <php>
-      <env name="API_KEY" value=""/>
-      <env name="CLIENT_ID" value=""/>
-      <env name="CLIENT_SECRET" value=""/>
-      <env name="CALLBACK_URL" value=""/>
-    </php> -->
-    
-<!-- OPTIONAL     
-	<php>
-      <env name="API_URL" value=""/>
-      <env name="API_TOKEN_URL" value=""/>
-    </php> -->    
-    
+    <php>
+      <env name="API_KEY" value="9dc85fe9ef819a2dc5aac48fd5b951ee2f5b6528c26dd398438fce6b355cb075"/>
+      <env name="CLIENT_ID" value="457519f7a1be8feca9f3533c00b98596"/>
+      <env name="CLIENT_SECRET" value="4798f37830ace2866b2ca5d19dd3ede5"/>
+      <env name="CALLBACK_URL" value="http://example.com/callback"/>
+    </php>
+    <php>
+      <env name="API_URL" value="https://api.hellosign.com/v3/"/>
+      <env name="OAUTH_TOKEN_URL" value="https://www.hellosign.com/oauth/token"/>
+    </php>
 </phpunit>

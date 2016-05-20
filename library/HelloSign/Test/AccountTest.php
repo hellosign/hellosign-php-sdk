@@ -32,7 +32,7 @@ class AccountTest extends AbstractTest
 {
     /**
      * @expectedException HelloSign\Error
-     * @expectedExceptionMessage This account already exists, please log in
+     * @expectedExceptionMessage Account already exists
      * @group create
      */
     public function testCreateAccount()

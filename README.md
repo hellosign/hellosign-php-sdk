@@ -238,18 +238,17 @@ This project contains PHPUnit tests that check the SDK code and can also be refe
 In order to pass the unit tests, you will need:
 
 1. The API Key for a confirmed HelloSign account
-2. The client ID and secret key from a HelloSign App
+2. The client ID and secret key from a confirmed HelloSign API App
 3. A HelloSign subscription (to create a team)
 4. A HelloSign API subscription (to access paid API endpoints)
-5. At least 1 template
+5. A template with 1 signer role named 'Signer'
 
 *** WARNING: these tests will add and remove users from your team. Use with caution.
 
 ### To run the tests
 
 - Copy file `phpunit.xml.sample` to `phpunit.xml`
-- Edit the new file, uncomment and enter your `API_KEY`, `CLIENT_ID`, `CLIENT_SECRET` and `CALLBACK_URL`
-- Make sure your account has at least 1 template
+- Edit the new file and enter your values for `API_KEY`, `CLIENT_ID`, `CLIENT_SECRET`, `CALLBACK_URL`, `API_URL`, AND `OAUTH_TOKEN_URL`
 - Run `./vendor/bin/phpunit`
 
 ## License
