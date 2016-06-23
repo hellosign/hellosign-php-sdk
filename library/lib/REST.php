@@ -3,9 +3,9 @@ namespace Comvi;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2014 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -52,7 +52,9 @@ class REST
         'application/vnd.php.serialized' => 'serialize'
     );
 
-    protected $curl;
+    protected $guzzleClient;
+    protected $headers = [];
+    protected $statusCode;
 
     protected $server;
     protected $ca_info;
@@ -69,10 +71,10 @@ class REST
 
     function __construct($config = array())
     {
-        $this->curl = new CURL;
-
         // If a URL was passed to the library
         empty($config) OR $this->initialize($config);
+
+        $this->guzzleClient = new \GuzzleHttp\Client(['base_uri' => $this->server]);
     }
 
     public function initialize($config)
@@ -89,71 +91,73 @@ class REST
         }
     }
 
-    public function get($uri, $params = array(), $format = null, $one_time_options = array())
+    public function get($uri, $params = array(), $format = null)
     {
-        return $this->call('get', $uri, $params, $format, $one_time_options);
+        return $this->call('get', $uri, $params, $format);
     }
 
-    public function post($uri, $params = array(), $format = null, $one_time_options = array())
+    public function post($uri, $params = array(), $format = null)
     {
-        return $this->call('post', $uri, $params, $format, $one_time_options);
+        return $this->call('post', $uri, $params, $format);
     }
 
-    public function put($uri, $params = array(), $format = null, $one_time_options = array())
+    protected function call($method, $uri, $params = array(), $format = null)
     {
-        return $this->call('put', $uri, $params, $format, $one_time_options);
-    }
-
-    public function delete($uri, $params = array(), $format = null, $one_time_options = array())
-    {
-        return $this->call('delete', $uri, $params, $format, $one_time_options);
-    }
-
-    protected function call($method, $uri, $params = array(), $format = null, $one_time_options = array())
-    {
-        $this->curl->setUrl($this->server.$uri);
-
         if ($format !== null) {
             $this->format($format);
         }
 
+        $options = [];
+
         if ($this->mime_type !== null) {
-            $this->curl->setHeader('Accept', $this->mime_type);
+            $options['headers'] = array_merge($this->headers, ['Accept' => $this->mime_type]);
         }
 
         if ($this->is_https === true) {
             if (empty($this->ca_info)) {
-                $this->curl->setSSL(false);
+                $options['verify'] = false;
             }
             else {
-                $this->curl->setSSL(true, 2, $this->ca_info);
+                $options['verify'] = $this->ca_info;
             }
         }
 
         // If authentication is enabled use it
         if ($this->auth != '' && $this->user != '') {
-            $this->curl->setLogin($this->user, $this->pass, $this->auth);
+            $options['auth'] = [$this->user, $this->pass];
         }
 
         if ($this->debug_mode === true) {
-            $this->curl->enableDebug();
+            $options['debug'] = true;
         }
 
         // We still want the response even if there is an error code over 400
-        $this->curl->setOption('FailOnError', false);
+        $options['http_errors'] = false;
 
         // Call the correct method with parameters
-        $response = $this->curl->{$method}($params, $one_time_options);
+        if (!empty($params)) {
+            if (strtoupper($method) == 'POST') {
+                $options['multipart'] = [];
+                foreach (self::to_1_level_array($params) as $name => $value) {
+                    $options['multipart'][] = ['name' => $name, 'contents' => $value];
+                }
+            } else {
+                $options['query'] = $params;
+            }
+        }
 
         // Execute and return the response from the REST server
-        //die($this->curl->error_string);
+        $response = $this->guzzleClient->{$method}($uri, $options);
+        $this->statusCode = $response->getStatusCode();
+
         // Format and return
-        return $this->formatResponse($response);
+        $contentType = $response->hasHeader('Content-Type') ? current($response->getHeader('Content-Type')) : '';
+        return $this->formatResponse((string)$response->getBody(), $contentType);
     }
 
     public function setApiKey($key, $name = 'X-API-KEY')
     {
-        $this->curl->setHeader($name, $key);
+        $this->setHeader($name, $key);
     }
 
     public function acceptLanguage($lang)
@@ -162,12 +166,12 @@ class REST
             $lang = implode(', ', $lang);
         }
 
-        $this->curl->setHeader('Accept-Language', $lang);
+        $this->setHeader('Accept-Language', $lang);
     }
 
     public function setHeader($name, $content = null)
     {
-        $this->curl->setHeader($name, $content);
+        $this->headers[$name] = $content;
     }
 
     public function enableDebugMode()
@@ -179,9 +183,9 @@ class REST
     {
         $this->debug_mode = false;
     }
-    
-    public function setCurlOption($name, $value) {
-    	$this->curl->setOption($name, $value);
+
+    public function disableCertificateCheck() {
+        $this->ca_info = null;
     }
 
     // If a type is passed in that is not supported, use it as a mime type
@@ -199,34 +203,18 @@ class REST
     // Return HTTP status code
     public function getStatus()
     {
-        return $this->curl->getStatus();
+        return $this->statusCode;
     }
 
-    // Return curl info by specified key, or whole array
-    public function getInfo($key = null)
-    {
-        return $this->curl->getInfo($key);
-    }
-
-    protected function formatResponse($response)
+    protected function formatResponse($response, $contentType)
     {
         // It is a supported format, so just run its formatting method
         if (array_key_exists($this->format, $this->supported_formats)) {
             return $this->{'_'.$this->format}($response);
         }
 
-        // Find out what format the data was returned in
-        $returned_mime = $this->curl->getInfo('content_type');
-
-        // If they sent through more than just mime, strip it off
-        if (strpos($returned_mime, ';')) {
-            list($returned_mime) = explode(';', $returned_mime);
-        }
-
-        $returned_mime = trim($returned_mime);
-
-        if (array_key_exists($returned_mime, $this->auto_detect_formats)) {
-            return $this->{'_'.$this->auto_detect_formats[$returned_mime]}($response);
+        if (array_key_exists($contentType, $this->auto_detect_formats)) {
+            return $this->{'_'.$this->auto_detect_formats[$contentType]}($response);
         }
 
         return $response;
@@ -280,5 +268,30 @@ class REST
         $populated = array();
         eval("\$populated = \"$string\";");
         return $populated;
+    }
+
+    /**
+     * Convert nested array to 1 level array
+     *
+     * @param  array $array
+     * @param  string $prefix
+     * @return array
+     */
+    public static function to_1_level_array($array, $prefix = null)
+    {
+        $return = array();
+
+        foreach ($array as $key => $value) {
+            $name = $prefix ? "{$prefix}[{$key}]" : $key;
+
+            if (is_array($value) || is_object($value)) {
+                $return += self::to_1_level_array($value, $name);
+            }
+            else {
+                $return[$name] = $value;
+            }
+        }
+
+        return $return;
     }
 }

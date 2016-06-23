@@ -188,22 +188,6 @@ abstract class AbstractResource extends AbstractObject
     }
 
     /**
-     * Utility function that checks to see if we should be using CURLFile instead
-     * of @ for file params.
-     *
-     * @return boolean
-     * @ignore
-     */
-    public function shouldUseCURLFile()
-    {
-        if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * @param  string $file path for file
      * @return AbstractResource
      * @ignore
@@ -214,16 +198,7 @@ abstract class AbstractResource extends AbstractObject
             throw new Error('file not found', 'File does not exist. Please use an absolute file path.');
         }
 
-        // Disabling this new syntax for now due to conflicts with the REST client
-        if (static::shouldUseCURLFile()) {
-            // PHP 5.5 introduced a CURLfile object that deprecates the old @filename syntax
-            // See: https://wiki.php.net/rfc/curl-file-upload
-            $f = new \CURLfile($file);
-        } else {
-            $f = "@$file";
-        }
-
-        $this->file[] = $f;
+        $this->file[] = fopen($file, 'rb');
         return $this;
     }
 

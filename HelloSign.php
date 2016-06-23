@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
+
 require_once 'library/HelloSign/AbstractList.php';
 require_once 'library/HelloSign/AbstractObject.php';
 require_once 'library/HelloSign/AbstractResource.php';
