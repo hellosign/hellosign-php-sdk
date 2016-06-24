@@ -74,7 +74,12 @@ class REST
         // If a URL was passed to the library
         empty($config) OR $this->initialize($config);
 
-        $this->guzzleClient = new \GuzzleHttp\Client(['base_uri' => $this->server]);
+        $options = ['connect_timeout' => 300.0, 'timeout' => 30.0, 'allow_redirects' => true];
+        if (!empty($this->server)) {
+            $options['base_uri'] = $this->server;
+        }
+
+        $this->guzzleClient = new \GuzzleHttp\Client($options);
     }
 
     public function initialize($config)
