@@ -30,7 +30,6 @@
 namespace HelloSign;
 
 include_once __DIR__ . '/../lib/REST.php';
-include_once __DIR__ . '/../lib/CURL.php';
 
 use Comvi\REST;
 
@@ -42,7 +41,7 @@ use Comvi\REST;
 class Client
 {
 
-    const VERSION = '3.4.3';
+    const VERSION = '3.4.4';
 
     const API_URL = "https://api.hellosign.com/v3/";
 
@@ -134,8 +133,7 @@ class Client
         if (!$rest) {
             $rest = $this->rest;
         }
-        $rest->setCurlOption("SSL_VERIFYHOST", 0);
-        $rest->setCurlOption("SSL_VERIFYPEER", 0);
+        $rest->disableCertificateCheck();
     }
 
     /**
@@ -220,16 +218,12 @@ class Client
     public function getFiles($request_id, $dest_path = null, $type = null)
     {
         if ($dest_path) { // file stream
-            $fp = fopen($dest_path, 'wb');
             $response = $this->rest->get(
                 static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
-                $type ? array('file_type' => $type) : null,
-                null,
-                array(CURLOPT_FILE => $fp)
+                $type ? array('file_type' => $type) : null
             );
             $this->checkResponse($response, false);
-            fwrite($fp, $response);
-            fclose($fp);
+            file_put_contents($dest_path, $response);
         } else { // link
             $response = $this->rest->get(
                 static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
@@ -380,16 +374,12 @@ class Client
     public function getTemplateFiles($template_id, $dest_path = null, $type = 'pdf')
     {
         if ($dest_path) { // file stream
-            $fp = fopen($dest_path, 'wb');
             $response = $this->rest->get(
                 static::TEMPLATE_FILES_PATH . '/' . $template_id,
-                $type ? array('file_type' => $type) : null,
-                null,
-                array(CURLOPT_FILE => $fp)
+                $type ? array('file_type' => $type) : null
             );
             $this->checkResponse($response, false);
-            fwrite($fp, $response);
-            fclose($fp);
+            file_put_contents($dest_path, $response);
         } else { // link
             $response = $this->rest->get(
                 static::TEMPLATE_FILES_PATH . '/' . $template_id,

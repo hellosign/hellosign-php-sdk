@@ -100,7 +100,7 @@ class UnclaimedDraftTest extends AbstractTest
 
         $baseReq = new \HelloSign\TemplateSignatureRequest();
         $baseReq->setTemplateId($templateId);
-        $baseReq->setSigner('Signer', 'harry@potter.net', 'Harry Potter');
+        $baseReq->setSigner('Client', 'harry@potter.net', 'Harry Potter');
         $baseReq->setSigningRedirectUrl('http://hogwarts.edu/success');
         $baseReq->setRequestingRedirectUrl('http://hogwarts.edu');
         $baseReq->setRequesterEmailAddress('herman@hogwarts.com');
