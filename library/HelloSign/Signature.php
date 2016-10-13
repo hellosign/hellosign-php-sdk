@@ -101,6 +101,20 @@ class Signature extends AbstractObject
     protected $has_pin = null;
 
     /**
+     * Text indicating what type of error has occured, if any
+     *
+     * @var string
+     */
+    protected $error = null;
+
+    /**
+     * The signer's reason for declining to sign the document
+     *
+     * @var string
+     */
+    protected $decline_reason = null;
+
+    /**
      * @return string
      * @ignore
      */
@@ -179,5 +193,23 @@ class Signature extends AbstractObject
     public function hasPin()
     {
         return $this->has_pin;
+    }
+
+    /**
+     * @return string
+     * @ignore
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * @return string
+     * @ignore
+     */
+    public function getDeclineReason()
+    {
+        return $this->decline_reason;
     }
 }

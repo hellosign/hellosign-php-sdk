@@ -92,6 +92,13 @@ abstract class AbstractSignatureRequest extends AbstractResource
     protected $client_id = null;
 
     /**
+     * Denotes if signers are allowed to decline to sign (defaults to false)
+     *
+     * @var boolean
+     */
+    protected $allow_decline = false;
+
+    /**
      * Constructor
      *
      * @param  stdClass $response
@@ -251,5 +258,23 @@ abstract class AbstractSignatureRequest extends AbstractResource
             $this->metadata = json_decode(json_encode($this->metadata), true);
         }
         return (isset($this->metadata[$key])) ? $this->metadata[$key] : null;
+    }
+
+    /**
+     * @return AbstractSignatureRequest
+     */
+    public function enableAllowDecline()
+    {
+        $this->allow_decline = true;
+        return $this;
+    }
+
+    /**
+     * @return AbstractSignatureRequest
+     */
+    public function disableAllowDecline()
+    {
+        $this->allow_decline = false;
+        return $this;
     }
 }
