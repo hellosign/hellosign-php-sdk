@@ -63,14 +63,6 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $is_complete = false;
 
     /**
-     * Whether or not the SignatureRequest has been declined by a signer
-     * signers
-     *
-     * @var boolean
-     */
-    protected $is_declined = false;
-
-    /**
      * Whether or not an error occurred (either during the creation of the
      * SignatureRequest or during one of the signings)
      *
@@ -131,7 +123,7 @@ class SignatureRequest extends AbstractSignatureRequest
      * @var SignatureList
      */
     protected $signatures = null;
-
+    
     /**
      * The document fields manually specified when signing from a file. Optional
      * See: https://www.hellosign.com/api/signatureRequestWalkthrough#SignatureRequestScenarios/CreateFromFileAndComponents
@@ -162,7 +154,7 @@ class SignatureRequest extends AbstractSignatureRequest
     {
         return $this->signature_request_id;
     }
-
+    
     /**
      * @param  array $form_fields
      * @return SignatureRequest
@@ -173,8 +165,8 @@ class SignatureRequest extends AbstractSignatureRequest
         $this->form_fields_per_document = json_encode($form_fields);
         return $this;
     }
-
-
+    
+    
 
     /**
      * @param  string $email
@@ -199,7 +191,6 @@ class SignatureRequest extends AbstractSignatureRequest
         $options['except'] = array_merge($options['except'], array(
             'signature_request_id',
             'is_complete',
-            'is_declined',
             'has_error',
             'files_url',
             'signing_url',
@@ -238,21 +229,13 @@ class SignatureRequest extends AbstractSignatureRequest
     }
 
     /**
-     * @return boolean true, if all signers have signed the document, false otherwise
+     * @return boolean true, if all signers have signed the document, false
+     * otherwise
      * @ignore
      */
     public function isComplete()
     {
         return $this->is_complete;
-    }
-
-    /**
-     * @return boolean true, if a signer has declined the document, false otherwise
-     * @ignore
-     */
-    public function isDeclined()
-    {
-        return $this->is_declined;
     }
 
     /**
