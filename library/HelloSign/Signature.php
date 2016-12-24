@@ -73,6 +73,13 @@ class Signature extends AbstractObject
     protected $status_code = null;
 
     /**
+     * The reason provided by the signer for declining the request
+     *
+     * @var string
+     */
+    protected $decline_reason = null;
+
+    /**
      * Time that the document was signed or null
      *
      * @var integer
@@ -143,6 +150,15 @@ class Signature extends AbstractObject
     public function getStatusCode()
     {
         return $this->status_code;
+    }
+
+    /**
+     * @return string
+     * @ignore
+     */
+    public function getDeclineReason()
+    {
+        return $this->decline_reason;
     }
 
     /**

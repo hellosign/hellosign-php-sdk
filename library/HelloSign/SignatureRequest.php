@@ -63,6 +63,13 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $is_complete = false;
 
     /**
+     * Whether or not the SignatureRequest has been declined by a signer
+     *
+     * @var boolean
+     */
+    protected $is_declined = false;
+
+    /**
      * Whether or not an error occurred (either during the creation of the
      * SignatureRequest or during one of the signings)
      *
@@ -191,6 +198,7 @@ class SignatureRequest extends AbstractSignatureRequest
         $options['except'] = array_merge($options['except'], array(
             'signature_request_id',
             'is_complete',
+            'is_declined',
             'has_error',
             'files_url',
             'signing_url',
@@ -236,6 +244,16 @@ class SignatureRequest extends AbstractSignatureRequest
     public function isComplete()
     {
         return $this->is_complete;
+    }
+
+    /**
+     * @return boolean true, if a signer has declined to sign the
+     * document, false otherwise
+     * @ignore
+     */
+    public function isDeclined()
+    {
+        return $this->is_declined;
     }
 
     /**

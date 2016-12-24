@@ -92,6 +92,15 @@ abstract class AbstractSignatureRequest extends AbstractResource
     protected $client_id = null;
 
     /**
+     * Whether this signature request allows signers to decline to sign
+     *
+     * Signers can now decline to sign signature requests. Defaults to false.
+     *
+     * @var boolean
+     */
+    protected $allow_decline = false;
+
+    /**
      * Constructor
      *
      * @param  stdClass $response
@@ -218,6 +227,16 @@ abstract class AbstractSignatureRequest extends AbstractResource
     public function setHideTextTags($hide_text_tags)
     {
         $this->hide_text_tags = $hide_text_tags;
+        return $this;
+    }
+
+    /**
+     * Enable or disable decline to sign
+     * @param boolean $allow_decline
+     */
+    public function setAllowDecline($allow_decline)
+    {
+        $this->allow_decline = $allow_decline;
         return $this;
     }
 
