@@ -81,7 +81,7 @@ class Client
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH = "unclaimed_draft/create_embedded";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH = "unclaimed_draft/create_embedded_with_template";
 
-    const OAUTH_TOKEN_URL = "https://www.hellosign.com/oauth/token";
+    const OAUTH_TOKEN_URL = "https://app.hellosign.com/oauth/token";
 
     protected $oauth_token_url = self::OAUTH_TOKEN_URL;
 
