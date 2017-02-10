@@ -159,7 +159,6 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     {
         $except = array(
             'request',
-            // 'is_for_embedded_signing',
             'claim_url'
         );
 
@@ -186,7 +185,8 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
          */
         return $this->request->toParams(array(
             'except' => array(
-                'title' // title not supported for unclaimed draft endpoints
+                'title', // title not supported for unclaimed draft endpoints
+                'allow_decline'
             )
         )) + $this->toArray(array(
             'except' => $except

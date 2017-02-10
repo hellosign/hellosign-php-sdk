@@ -52,11 +52,12 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
          * our defaults.
          */
         return $this->request->toParams(array(
-            'except' => array()
+            'except' => array('allow_decline')
         )) + $this->toArray(array(
             'except' => array(
                 'request',
-                'is_for_embedded_signing' // parent class gives us this, we don't want it
+                'is_for_embedded_signing',
+                'allow_decline' // parent class gives us this, we don't want it
             )
         ));
     }

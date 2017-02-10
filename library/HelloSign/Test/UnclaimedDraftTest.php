@@ -91,7 +91,6 @@ class UnclaimedDraftTest extends AbstractTest
      */
     public function testCreateUnclaimedDraftEmbeddedWithTemplate()
     {
-
         $client_id = $_ENV['CLIENT_ID'];
 
         $templates = $this->client->getTemplates();
@@ -100,7 +99,9 @@ class UnclaimedDraftTest extends AbstractTest
 
         $baseReq = new \HelloSign\TemplateSignatureRequest();
         $baseReq->setTemplateId($templateId);
-        $baseReq->setSigner('Client', 'harry@potter.net', 'Harry Potter');
+        foreach ($template->getSignerRoles() as $i => $role) {
+            $baseReq->setSigner($role->name, "signer".$i."@example.com", "signer $i");
+        }
         $baseReq->setSigningRedirectUrl('http://hogwarts.edu/success');
         $baseReq->setRequestingRedirectUrl('http://hogwarts.edu');
         $baseReq->setRequesterEmailAddress('herman@hogwarts.com');
