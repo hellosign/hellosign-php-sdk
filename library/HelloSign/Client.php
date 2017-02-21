@@ -901,9 +901,6 @@ class Client
         } elseif ($status >= 400) {
             if (property_exists($response, 'error')) {
                 throw new Error($response->error->error_name, $response->error->error_msg, $status);
-            } elseif (property_exists($response, 'warnings')) {
-                // Only throw first warning
-                throw new Warning($response->warnings[0]->warning_name, $response->warnings[0]->warning_msg, $status);
             } else {
                 throw new Error(null, null, $status);
             }
