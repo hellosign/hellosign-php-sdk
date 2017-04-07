@@ -50,13 +50,6 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     protected $request = null;
 
     /**
-     * Flag that enables embedded signing for the request
-     *
-     * @var bool
-     */
-    protected $is_for_embedded_signing = false;
-
-    /**
      * Constructor
      *
      * @param AbstractSignatureRequest $request
@@ -89,6 +82,9 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     }
 
     /**
+     * include only if enabling embedded signing
+     * when using EmbeddedSignatureRequest
+     * with createUnclaimedDraftEmbeddedWithTemplate
      * @return static
      * @ignore
      */

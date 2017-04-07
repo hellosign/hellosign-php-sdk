@@ -1,6 +1,6 @@
 ##HelloSign PHP SDK
 
-This is the official PHP SDK for HelloSign's API.  [View api documentation and examples.](https://www.hellosign.com/api/gettingStarted)
+This is the official PHP SDK for HelloSign's API.  [View api documentation and examples.](https://app.hellosign.com/api/documentation)
 
 ##Installation
 
