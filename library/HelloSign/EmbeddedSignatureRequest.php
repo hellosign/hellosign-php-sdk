@@ -45,7 +45,7 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
     {
         /**
          * Here we union (using the + operator) the param arrays for the
-         * SignatureRequest object with our self (the EmbeddedSignatureRequest
+         * SignatureRequest object with ourself (the EmbeddedSignatureRequest
          * object) to get the final params array. The order of this union is
          * important! The params from $this->request must be left of the union
          * operator so that its values (e.g. test_mode) take precedence over
@@ -56,8 +56,7 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
         )) + $this->toArray(array(
             'except' => array(
                 'request',
-                'is_for_embedded_signing',
-                'allow_decline' // parent class gives us this, we don't want it
+                'allow_decline'
             )
         ));
     }
