@@ -48,6 +48,13 @@ class EmbeddedResponse extends AbstractResource
     protected $sign_url = null;
     
     /**
+     * Edit URL of the template to display in the embedded iFrame
+     *
+     * @var string
+     */
+    protected $edit_url = null;
+
+    /**
      * When the link expires
      *
      * @var integer
@@ -61,6 +68,15 @@ class EmbeddedResponse extends AbstractResource
     public function getSignUrl()
     {
         return $this->sign_url;
+    }
+
+    /**
+     * @return string
+     * @ignore
+     */
+    public function getEditUrl()
+    {
+        return $this->edit_url;
     }
 
     /**
