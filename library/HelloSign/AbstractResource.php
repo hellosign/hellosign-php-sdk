@@ -244,9 +244,8 @@ abstract class AbstractResource extends AbstractObject
     {
         if (property_exists($response, 'warnings') && is_array($response->warnings)) {
             foreach ($response->warnings as $warning) {
-                array_push($this->warnings, new Warning($warning));
+                array_push($this->warnings, new Warning($warning->warning_name, $warning->warning_msg));
             }
-            $this->warnings = $response->warnings;
         }
     }
 }
