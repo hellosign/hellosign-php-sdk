@@ -1,8 +1,8 @@
-##HelloSign PHP SDK
+## HelloSign PHP SDK
 
 This is the official PHP SDK for HelloSign's API.  [View api documentation and examples.](https://app.hellosign.com/api/documentation)
 
-##Installation
+## Installation
 
 ### Requirements
 
@@ -42,7 +42,7 @@ To use composer:
     ```
 - See below for how to configure your Client class.
 
-##Configuration
+## Configuration
 
 All HelloSign API requests can be made using the `HelloSign\Client` class. This class must be initialized with your authentication details such as an API key (preferred), email/password combo, or OAuth credentials.
 
@@ -69,7 +69,7 @@ Your app users are almost ready to start signing!
 See below for the most common use cases for this wrapper.
 
 
-##Usage
+## Usage
 
 You can test your authentication by calling
 
