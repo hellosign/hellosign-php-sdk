@@ -29,8 +29,10 @@
 
 namespace HelloSign;
 
+include_once __DIR__ . '/../lib/CURL.php';
 include_once __DIR__ . '/../lib/REST.php';
 
+use Comvi\CURL;
 use Comvi\REST;
 
 /**
