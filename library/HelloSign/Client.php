@@ -29,12 +29,6 @@
 
 namespace HelloSign;
 
-include_once __DIR__ . '/../lib/CURL.php';
-include_once __DIR__ . '/../lib/REST.php';
-
-use Comvi\CURL;
-use Comvi\REST;
-
 /**
  * All HelloSign API requests can be made using HelloSign\Client class. This
  * class must be initialized with your authentication details, such as an API
@@ -88,11 +82,11 @@ class Client
     protected $oauth_token_url = self::OAUTH_TOKEN_URL;
 
     /**
-     * Reference to the REST object
+     * Reference to the CURL object
      *
-     * @var REST $rest
+     * @var CURL $curl
      */
-    protected $rest;
+    protected $curl;
 
     /**
      * Enable debug mode or not
@@ -111,8 +105,11 @@ class Client
     public function __construct($first, $last = null, $api_url = self::API_URL, $oauth_token_url = self::OAUTH_TOKEN_URL)
     {
         $this->oauth_token_url = $oauth_token_url;
-        $this->rest = $this->createREST($first, $last, $api_url);
-        $this->rest->setHeader('User-Agent', 'hellosign-php-sdk/' . self::VERSION);
+
+        $this->curl = new \CurlWrapper();
+        $this->curl->setUserAgent('User-Agent', 'hellosign-php-sdk/' . self::VERSION);
+        $this->curl->setAuthType();
+        $this->curl->setAuthCredentials($first, $last);        
     }
 
     /**
@@ -122,20 +119,8 @@ class Client
     public function enableDebugMode()
     {
         $this->debug_mode = true;
-        $this->rest->enableDebugMode();
 
         return $this;
-    }
-
-    /**
-     *
-     * Should only be used for unit tests that may be hitting a local endpoint
-     */
-    public function disableCertificateCheck($rest = null) {
-        if (!$rest) {
-            $rest = $this->rest;
-        }
-        $rest->disableCertificateCheck();
     }
 
     /**
@@ -153,12 +138,12 @@ class Client
             $params['ux_version'] = $ux_version;
         }
 
-        $response = $this->rest->post(
-            static::SIGNATURE_REQUEST_SEND_PATH,
+        $response = $this->curl->post(
+            static::API_URL . static::SIGNATURE_REQUEST_SEND_PATH,
             $params
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return $request->fromResponse($response);
     }
@@ -175,11 +160,11 @@ class Client
      */
     public function cancelSignatureRequest($id)
     {
-        $response = $this->rest->post(
-            static::SIGNATURE_REQUEST_CANCEL_PATH . '/' . $id
+        $response = $this->curl->post(
+            static::API_URL . static::SIGNATURE_REQUEST_CANCEL_PATH . '/' . $id
         );
 
-        $this->checkResponse($response, false);
+        $response = $this->parseResponse($response, false);
 
         return true;
     }
@@ -198,12 +183,12 @@ class Client
      */
     public function requestEmailReminder($request_id, $email)
     {
-        $response = $this->rest->post(
-            static::SIGNATURE_REQUEST_REMIND_PATH . '/' . $request_id,
+        $response = $this->curl->post(
+            static::API_URL . static::SIGNATURE_REQUEST_REMIND_PATH . '/' . $request_id,
             array('email_address' => $email)
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new SignatureRequest($response);
     }
@@ -220,15 +205,15 @@ class Client
     public function getFiles($request_id, $dest_path = null, $type = null)
     {
         if ($dest_path) { // file stream
-            $response = $this->rest->get(
-                static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
+            $response = $this->curl->get(
+                static::API_URL . static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
                 $type ? array('file_type' => $type) : null
             );
-            $this->checkResponse($response, false);
+            $response = $this->parseResponse($response, false);
             file_put_contents($dest_path, $response);
         } else { // link
-            $response = $this->rest->get(
-                static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
+            $response = $this->curl->get(
+                static::API_URL . static::SIGNATURE_REQUEST_FILES_PATH . '/' . $request_id,
                 array('get_url' => true)
             );
 
@@ -247,11 +232,11 @@ class Client
      */
     public function getTemplate($id)
     {
-        $response = $this->rest->get(
-            static::TEMPLATE_PATH . '/' . $id
+        $response = $this->curl->get(
+            static::API_URL . static::TEMPLATE_PATH . '/' . $id
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new Template($response);
     }
@@ -265,10 +250,12 @@ class Client
      */
     public function getTemplates($page = 1)
     {
-        $response = $this->rest->get(static::TEMPLATE_LIST_PATH, array('page' => $page));
+        $response = $this->curl->get(
+            static::API_URL . static::TEMPLATE_LIST_PATH, 
+            array('page' => $page)
+        );
 
-        $this->checkResponse($response);
-
+        $response = $this->parseResponse($response);
         $list = new TemplateList($response);
 
         if ($page > $list->getNumPages()) {
@@ -291,12 +278,12 @@ class Client
     {
         $key = strpos($id_or_email, '@') ? 'email_address' : 'account_id';
 
-        $response = $this->rest->post(
-            static::TEMPLATE_ADD_USER_PATH . '/' . $template_id,
+        $response = $this->curl->post(
+            static::API_URL . static::TEMPLATE_ADD_USER_PATH . '/' . $template_id,
             array($key => $id_or_email)
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new Template($response);
     }
@@ -314,12 +301,12 @@ class Client
     {
         $key = strpos($id_or_email, '@') ? 'email_address' : 'account_id';
 
-        $response = $this->rest->post(
-            static::TEMPLATE_REMOVE_USER_PATH . '/' . $template_id,
+        $response = $this->curl->post(
+            static::API_URL . static::TEMPLATE_REMOVE_USER_PATH . '/' . $template_id,
             array($key => $id_or_email)
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new Template($response);
     }
@@ -335,12 +322,12 @@ class Client
     public function createEmbeddedDraft(Template $request)
     {
 
-        $response = $this->rest->post(
-            static::TEMPLATE_CREATE_EMBEDDED_DRAFT,
+        $response = $this->curl->post(
+            static::API_URL . static::TEMPLATE_CREATE_EMBEDDED_DRAFT,
             $request->toEmbeddedDraftParams()
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new Template($response);
     }
@@ -355,11 +342,11 @@ class Client
     public function deleteTemplate($template_id)
     {
 
-        $response = $this->rest->post(
-            static::TEMPLATE_DELETE_PATH . '/' . $template_id
+        $response = $this->curl->post(
+            static::API_URL . static::TEMPLATE_DELETE_PATH . '/' . $template_id
         );
 
-        $this->checkResponse($response, false);
+        $response = $this->parseResponse($response, false);
 
         return true;
     }
@@ -376,15 +363,15 @@ class Client
     public function getTemplateFiles($template_id, $dest_path = null, $type = 'pdf')
     {
         if ($dest_path) { // file stream
-            $response = $this->rest->get(
-                static::TEMPLATE_FILES_PATH . '/' . $template_id,
+            $response = $this->curl->get(
+                static::API_URL . static::TEMPLATE_FILES_PATH . '/' . $template_id,
                 $type ? array('file_type' => $type) : null
             );
-            $this->checkResponse($response, false);
+            $response = $this->parseResponse($response, false);
             file_put_contents($dest_path, $response);
         } else { // link
-            $response = $this->rest->get(
-                static::TEMPLATE_FILES_PATH . '/' . $template_id,
+            $response = $this->curl->get(
+                static::API_URL . static::TEMPLATE_FILES_PATH . '/' . $template_id,
                 array('get_url' => true)
             );
         }
@@ -407,12 +394,12 @@ class Client
             $params['ux_version'] = $ux_version;
         }
 
-        $response = $this->rest->post(
-            static::TEMPLATE_SIGNATURE_REQUEST_PATH,
+        $response = $this->curl->post(
+            static::API_URL . static::TEMPLATE_SIGNATURE_REQUEST_PATH,
             $params
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new SignatureRequest($response);
     }
@@ -432,12 +419,12 @@ class Client
             $params['ux_version'] = $ux_version;
         }
 
-        $response = $this->rest->get(
-            static::SIGNATURE_REQUEST_PATH . '/' . $id,
+        $response = $this->curl->get(
+            static::API_URL . static::SIGNATURE_REQUEST_PATH . '/' . $id,
             $params
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new SignatureRequest($response);
     }
@@ -460,12 +447,12 @@ class Client
             $params['ux_version'] = $ux_version;
         }
 
-        $response = $this->rest->get(
-            static::SIGNATURE_REQUEST_LIST_PATH,
+        $response = $this->curl->get(
+            static::API_URL . static::SIGNATURE_REQUEST_LIST_PATH,
             $params
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         $list = new SignatureRequestList($response);
 
@@ -493,12 +480,12 @@ class Client
 
         // choose url
         $url = $request->isUsingTemplate()
-            ? static::SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH
-            : static::SIGNATURE_REQUEST_EMBEDDED_PATH;
+            ? static::API_URL . static::SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH
+            : static::API_URL . static::SIGNATURE_REQUEST_EMBEDDED_PATH;
 
-        $response = $this->rest->post($url, $params);
+        $response = $this->curl->post($url, $params);
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new SignatureRequest($response);
     }
@@ -513,11 +500,11 @@ class Client
      */
     public function getEmbeddedSignUrl($id)
     {
-        $response = $this->rest->get(
-            static::EMBEDDED_SIGN_URL_PATH . '/' . $id
+        $response = $this->curl->get(
+            static::API_URL . static::EMBEDDED_SIGN_URL_PATH . '/' . $id
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new EmbeddedResponse($response);
     }
@@ -532,11 +519,11 @@ class Client
      */
     public function getEmbeddedEditUrl($id)
     {
-        $response = $this->rest->get(
-            static::EMBEDDED_EDIT_URL_PATH . '/' . $id
+        $response = $this->curl->get(
+            static::API_URL . static::EMBEDDED_EDIT_URL_PATH . '/' . $id
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new EmbeddedResponse($response);
     }
@@ -552,12 +539,12 @@ class Client
     {
         // choose url
         $url = $draft->getClientId()
-            ? static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH
-            : static::UNCLAIMED_DRAFT_CREATE_PATH;
+            ? static::API_URL . static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH
+            : static::API_URL . static::UNCLAIMED_DRAFT_CREATE_PATH;
 
-        $response = $this->rest->post($url, $draft->toParams());
+        $response = $this->curl->post($url, $draft->toParams());
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return $draft->fromResponse($response);
     }
@@ -571,11 +558,11 @@ class Client
      */
     public function createUnclaimedDraftEmbeddedWithTemplate(EmbeddedSignatureRequest $request)
     {
-        $url = static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH;
+        $url = static::API_URL . static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH;
 
-        $response = $this->rest->post($url, $request->toParams());
+        $response = $this->curl->post($url, $request->toParams());
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         $draft = new UnclaimedDraft();
 
@@ -595,25 +582,21 @@ class Client
      */
     public function requestOAuthToken(OAuthTokenRequest $request, $auto_set_request_token = false)
     {
-        $rest = new REST(array(
-            'server' => $this->oauth_token_url,
-            'debug_mode' => $this->debug_mode
-        ));
-
         if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
             $this->disableCertificateCheck($rest);
         }
 
-        $response = $rest->post('', $request->toParams());
+        $response = $this->curl->post($this->oauth_token_url, $request->toParams());
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
         $this->checkOAuthTokenResponse($response);
 
         // populate object from response
         $token = new OAuthToken($response);
 
         if ($auto_set_request_token) {
-            $this->rest = $this->createREST($token);
+            $this->curl->setAuthType('Bearer');
+            $this->curl->setAuthCredentials($token);
         }
 
         return $token;
@@ -631,25 +614,21 @@ class Client
      */
     public function refreshOAuthToken(OAuthToken $token, $auto_set_request_token = false)
     {
-        $rest = new REST(array(
-            'server' => $this->oauth_token_url,
-            'debug_mode' => $this->debug_mode
-        ));
-
         if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
             $this->disableCertificateCheck($rest);
         }
 
-        $response = $rest->post('', $token->toParams());
+        $response = $rest->post($this->oauth_token_url, $token->toParams());
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
         $this->checkOAuthTokenResponse($response);
 
         // populate object from response
         $token->fromObject($response);
 
         if ($auto_set_request_token) {
-            $this->rest = $this->createREST($token);
+            $this->curl->setAuthType('Bearer');
+            $this->curl->setAuthCredentials($token);
         }
 
         return $token;
@@ -663,11 +642,11 @@ class Client
      */
     public function getAccount()
     {
-        $response = $this->rest->get(
-            static::ACCOUNT_PATH
+        $response = $this->curl->get(
+            static::API_URL . static::ACCOUNT_PATH
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new Account($response);
     }
@@ -682,14 +661,14 @@ class Client
      */
     public function isAccountValid($email)
     {
-        $response = $this->rest->post(
-            static::ACCOUNT_VALIDATE_PATH,
+        $response = $this->curl->post(
+            static::API_URL . static::ACCOUNT_VALIDATE_PATH,
             array(
                 'email_address' => $email
             )
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return property_exists($response, 'account');
     }
@@ -720,12 +699,12 @@ class Client
             );
         }
 
-        $response = $this->rest->post(
-            static::ACCOUNT_CREATE_PATH,
+        $response = $this->curl->post(
+            static::API_URL . static::ACCOUNT_CREATE_PATH,
             $post
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return $account->fromResponse($response);
     }
@@ -739,12 +718,12 @@ class Client
      */
     public function updateAccount(Account $account)
     {
-        $response = $this->rest->post(
-            static::ACCOUNT_PATH,
+        $response = $this->curl->post(
+            static::API_URL . static::ACCOUNT_PATH,
             $account->toUpdateParams()
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return $account->fromResponse($response);
     }
@@ -757,11 +736,11 @@ class Client
      */
     public function getTeam()
     {
-        $response = $this->rest->get(
-            static::TEAM_PATH
+        $response = $this->curl->get(
+            static::API_URL . static::TEAM_PATH
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new Team($response);
     }
@@ -775,12 +754,12 @@ class Client
      */
     public function createTeam(Team $team)
     {
-        $response = $this->rest->post(
-            static::TEAM_CREATE_PATH,
+        $response = $this->curl->post(
+            static::API_URL . static::TEAM_CREATE_PATH,
             $team->toCreateParams()
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return $team->fromResponse($response);
     }
@@ -794,14 +773,14 @@ class Client
      */
     public function updateTeamName($name)
     {
-        $response = $this->rest->post(
-            static::TEAM_PATH,
+        $response = $this->curl->post(
+            static::API_URL . static::TEAM_PATH,
             array(
                 'name' => $name
             )
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new Team($response);
     }
@@ -814,11 +793,11 @@ class Client
      */
     public function destroyTeam()
     {
-        $response = $this->rest->post(
-            static::TEAM_DESTROY_PATH
+        $response = $this->curl->post(
+            static::API_URL . static::TEAM_DESTROY_PATH
         );
 
-        $this->checkResponse($response, false);
+        $response = $this->parseResponse($response, false);
 
         return true;
     }
@@ -834,12 +813,12 @@ class Client
     {
         $key = strpos($id_or_email, '@') ? 'email_address' : 'account_id';
 
-        $response = $this->rest->post(
-            static::TEAM_ADD_MEMBER_PATH,
+        $response = $this->curl->post(
+            static::API_URL . static::TEAM_ADD_MEMBER_PATH,
             array($key => $id_or_email)
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new Team($response);
     }
@@ -855,12 +834,12 @@ class Client
     {
         $key = strpos($id_or_email, '@') ? 'email_address' : 'account_id';
 
-        $response = $this->rest->post(
-            static::TEAM_REMOVE_MEMBER_PATH,
+        $response = $this->curl->post(
+            static::API_URL . static::TEAM_REMOVE_MEMBER_PATH,
             array($key => $id_or_email)
         );
 
-        $this->checkResponse($response);
+        $response = $this->parseResponse($response);
 
         return new Team($response);
     }
@@ -886,27 +865,33 @@ class Client
     }
 
     /**
-     * check response and throw Exception if response is not proper
+     * parse JSON response to object, and throw Exception if response is not valid
      *
      * @param  mixed $response
      * @param  boolean $strict
+     * @return object $output
      * @throws BaseException
      * @ignore
      */
-    protected function checkResponse($response, $strict = true)
+    protected function parseResponse($response, $strict = true)
     {
-        $status = $this->rest->getStatus();
+        $status = $this->curl->getTransferInfo('http_code');
         if ($response === false) {
             throw new Error('unknown', 'Unknown error', $status);
-        } elseif ($strict && is_string($response)) {
-            throw new Error('invalid_format', 'Response should be returned in JSON format', $status);
+        }
+
+        $output = json_decode($response);
+        if ($strict && json_last_error() !== 0) {
+            throw new Error('invalid_format', 'Response is not valid JSON', $status);
         } elseif ($status >= 400) {
-            if (property_exists($response, 'error')) {
-                throw new Error($response->error->error_name, $response->error->error_msg, $status);
+            if (property_exists($output, 'error')) {
+                throw new Error($output->error->error_name, $output->error->error_msg, $status);
             } else {
                 throw new Error(null, null, $status);
             }
         }
+
+        return $output;
     }
 
     /**
@@ -923,32 +908,4 @@ class Client
         }
     }
 
-    /**
-     * Create REST object
-     *
-     * @param  mixed $first email address or apikey or OAuthToken
-     * @param  string $last Null if using apikey or OAuthToken
-     * @return REST
-     * @ignore
-     */
-    protected function createREST($first, $last = null, $api_url = self::API_URL)
-    {
-        if ($first instanceof OAuthToken) {
-            $rest = new REST(array(
-                'server' => $api_url,
-                'debug_mode' => $this->debug_mode
-            ));
-            $auth = $first->getTokenType() . ' ' . $first->getAccessToken();
-            $rest->setHeader('Authorization', $auth);
-
-            return $rest;
-        }
-
-        return new REST(array(
-            'server' => $api_url,
-            'user'   => $first,
-            'pass'   => $last,
-            'debug_mode' => $this->debug_mode
-        ));
-    }
 }

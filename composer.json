@@ -17,6 +17,6 @@
         "phpunit/phpunit": "4.0.*"
     },
     "require": {
-        "guzzlehttp/guzzle": "^6.2"
+        "svyatov/curlwrapper": "~1.3"
     }
 }
