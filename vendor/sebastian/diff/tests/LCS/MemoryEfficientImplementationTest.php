@@ -11,12 +11,12 @@
 namespace SebastianBergmann\Diff\LCS;
 
 /**
- * @covers SebastianBergmann\Diff\LCS\TimeEfficientImplementation
+ * @covers SebastianBergmann\Diff\LCS\MemoryEfficientImplementation
  */
-class TimeEfficientImplementationTest extends LongestCommonSubsequenceTest
+class MemoryEfficientImplementationTest extends LongestCommonSubsequenceTest
 {
     protected function createImplementation()
     {
-        return new TimeEfficientImplementation;
+        return new MemoryEfficientImplementation;
     }
 }

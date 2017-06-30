@@ -1,0 +1,27 @@
+{
+    "name": "svyatov/curlwrapper",
+    "type": "library",
+    "description": "Flexible wrapper class for PHP cURL extension",
+    "keywords": ["curl","http","util","helper"],
+    "homepage": "https://github.com/svyatov/CurlWrapper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leonid Svyatov",
+            "email": "leonid@svyatov.ru",
+            "homepage": "http://svyatov.ru",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "leonid@svyatov.ru",
+        "issues": "https://github.com/svyatov/CurlWrapper/issues",
+        "source": "https://github.com/svyatov/CurlWrapper"
+    },
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "classmap": ["CurlWrapper.php"]
+    }
+}
