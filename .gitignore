@@ -12,3 +12,4 @@ phpunit_test_template_file.pdf
 test.php
 .idea
 *.swp
+vendor
