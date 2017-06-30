@@ -582,10 +582,6 @@ class Client
      */
     public function requestOAuthToken(OAuthTokenRequest $request, $auto_set_request_token = false)
     {
-        if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
-            $this->disableCertificateCheck($rest);
-        }
-
         $response = $this->curl->post($this->oauth_token_url, $request->toParams());
 
         $response = $this->parseResponse($response);
@@ -614,10 +610,6 @@ class Client
      */
     public function refreshOAuthToken(OAuthToken $token, $auto_set_request_token = false)
     {
-        if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
-            $this->disableCertificateCheck($rest);
-        }
-
         $response = $rest->post($this->oauth_token_url, $token->toParams());
 
         $response = $this->parseResponse($response);
