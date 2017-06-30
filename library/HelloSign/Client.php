@@ -126,14 +126,11 @@ class Client
     }
 
     /**
-     *
      * Should only be used for unit tests that may be hitting a local endpoint
+     * @deprecated This is no longer necessary, as all environments should have valid SSL enabled.
      */
     public function disableCertificateCheck($rest = null) {
-        if (!$rest) {
-            $rest = $this->rest;
-        }
-        $rest->disableCertificateCheck();
+        // TODO: Remove me
     }
 
     /**
