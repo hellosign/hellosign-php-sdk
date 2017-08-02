@@ -2,6 +2,8 @@
 
 This is the official PHP SDK for HelloSign's API.  [View api documentation and examples.](https://app.hellosign.com/api/documentation)
 
+[![Latest Stable Version](https://poser.pugx.org/hellosign/hellosign-php-sdk/v/stable)](https://packagist.org/packages/hellosign/hellosign-php-sdk)
+
 ## Installation
 
 ### Requirements
@@ -24,7 +26,7 @@ To use composer:
     ```json
     {
         "require": {
-            "hellosign/hellosign-php-sdk": "3.*@dev"
+            "hellosign/hellosign-php-sdk": "3.4.6"
         }
     }
     ```
