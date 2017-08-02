@@ -26,7 +26,7 @@ To use composer:
     ```json
     {
         "require": {
-            "hellosign/hellosign-php-sdk": "3.4.6"
+            "hellosign/hellosign-php-sdk": "^3.0"
         }
     }
     ```
