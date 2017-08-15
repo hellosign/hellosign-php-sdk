@@ -132,6 +132,12 @@ class REST
             $options['auth'] = [$this->user, $this->pass];
         }
 
+        // If we have an oauth token, push to guzzle client
+        # https://stackoverflow.com/questions/38029422/php-guzzle-with-basic-auth-and-bearer-token
+        if (!empty($this->headers['Authorization'])) {
+            $options['headers']['Authorization'] = $this->headers['Authorization'];
+        }
+
         if ($this->debug_mode === true) {
             $options['debug'] = true;
         }
