@@ -93,6 +93,12 @@ abstract class AbstractResource extends AbstractObject
     protected $file_url = array();
 
     /**
+     * Custom key-value pairs that will be attached to the request.
+     * @var array
+     */
+    protected $metadata = array();
+
+    /**
      * Constructor
      *
      * @param  stdClass $response
@@ -215,6 +221,29 @@ abstract class AbstractResource extends AbstractObject
         }
         $this->file_url[] = $file_url;
         return $this;
+    }
+
+    /**
+     * Set the metadata key to the provided value.
+     * @param string $key
+     * @param string $value
+     */
+    public function addMetadata($key, $value)
+    {
+        $this->metadata[$key] = $value;
+    }
+
+    /**
+     * Get the current metadata value for the provided key.
+     * @param string $key
+     * @return string|NULL
+     */
+    public function getMetadata($key)
+    {
+        if (!is_array($this->metadata)) {
+            $this->metadata = json_decode(json_encode($this->metadata), true);
+        }
+        return (isset($this->metadata[$key])) ? $this->metadata[$key] : null;
     }
 
     /**
