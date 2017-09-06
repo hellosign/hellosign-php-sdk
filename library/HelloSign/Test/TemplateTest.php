@@ -132,6 +132,8 @@ class TemplateTest extends AbstractTest
         $request->addCCRole('Test CC Role');
         $request->addMergeField('Test Merge', 'text');
         $request->addMergeField('Test Merge 2', 'checkbox');
+        $request->addMetadata('custom_id', '1234');
+        $request->addMetadata('favorite_movie', 'Big Fish');
         $request->setUsePreexistingFields(true);
 
         $return = $this->client->createEmbeddedDraft($request);
