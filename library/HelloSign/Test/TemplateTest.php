@@ -141,7 +141,6 @@ class TemplateTest extends AbstractTest
         $this->assertTrue(is_string($return->getId()));
         $this->assertTrue(is_string($return->getEditUrl()));
         $this->assertTrue($return->isEmbeddedDraft());
-
         return $return->getId();
     }
 
