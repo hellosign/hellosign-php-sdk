@@ -43,7 +43,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         );
 
         foreach ($keys as $key) {
-            array_key_exists($key, $_SERVER) && $_ENV[$key] = $_SERVER[$key];
+            getenv($key) && $_ENV[$key] = getenv($key);
         }
 
 
