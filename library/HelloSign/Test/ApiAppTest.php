@@ -37,11 +37,14 @@ class ApiAppTest extends AbstractTest
      */
     public function testCreateApiApp()
     {
-        $app_name = "Test" . rand(1, 2000);
-        $domain = "www.testdomain.com";
-        $response = $this->client->createApiApp(
-            new ApiApp($app_name, $domain)
-        );
+        $app = new ApiApp;
+        $app->setName("Test" . rand(1, 2000));
+        $app->setDomain("www.testdomain.com");
+        $app->setCallbackUrl("http://www.testcallback.com");
+        $app->setLogo(__DIR__ . '/logo.jpg');
+        $app->setWhiteLabeling();
+
+        $response = $this->client->createApiApp($app);
 
         $this->assertInstanceOf('HelloSign\ApiApp', $response);
         $this->assertNotNull($response->client_id);
@@ -100,7 +103,6 @@ class ApiAppTest extends AbstractTest
         $this->assertNotNull($response->callback_url);
         $this->assertNotNull($response->white_labeling_options);
 
-        print_r();
     }
 
     /**
