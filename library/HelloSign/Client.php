@@ -956,10 +956,11 @@ class Client
      * @param  ApiApp $apiApp
      * @param  string $name
      * @param  string $domain
+     * @param  string $callback_url
      * @return ApiApp
      * @throws BaseException
      */
-    public function createApiApp(ApiApp $apiApp, $name = null, $domain = null)
+    public function createApiApp(ApiApp $apiApp, $name = null, $domain = null, $callback_url = null)
     {
         $post = $apiApp->toCreateParams();
 
@@ -968,6 +969,7 @@ class Client
                 'client_id' => $client_id,
                 'name' => $name,
                 'domain' => $domain,
+                'callback_url' => $callback_url,
                 'client_secret' => $client_secret
             );
         }
@@ -980,6 +982,27 @@ class Client
         $this->checkResponse($response);
 
         return $apiApp->fromResponse($response);
+    }
+
+    /**
+     * Retrieves an API App with the given Client ID
+     *
+     * @param  String $id Client ID
+     * @return ApiApp
+     * @throws BaseException
+     */
+    public function getApiApp($id)
+    {
+        $params = array();
+
+        $response = $this->rest->get(
+            static::APIAPP_PATH . '/' . $id,
+            $params
+        );
+
+        $this->checkResponse($response);
+
+        return new ApiApp($response);
     }
 
 }

@@ -78,12 +78,28 @@ class ApiAppTest extends AbstractTest
      */
     public function testGetApiApp()
     {
-        $response = $this->client->getApiApp();
+        // $wl->primary_button_color = "#00b3e6";
+        // $wl->primary_button_text_color = "#ffffff";
+        // $white_labeling_options = json_encode($wl);
+
+        $app_name = "Test" . rand(1, 2000);
+        $domain = "www.testdomain.com";
+        $callback_url = "http://www.testcallback.com";
+        $custom_logo_file = (__DIR__ . '/logo.jpg');
+
+        $response = $this->client->createApiApp(
+            new ApiApp($app_name, $domain, $callback_url, $custom_logo_file)
+        );
+
+        $client_id = $response->getClientId();
+
+        $app = $this->client->getApiApp($client_id);
 
         $this->assertInstanceOf('HelloSign\ApiApp', $response);
-        $this->assertNotNull($response->client_id);
+        $this->assertNotNull($response->name);
+        $this->assertNotNull($response->callback_url);
 
-        return $response;
+        print_r();
     }
 
     /**

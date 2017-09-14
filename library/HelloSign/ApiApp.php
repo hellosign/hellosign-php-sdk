@@ -64,6 +64,13 @@ class ApiApp extends AbstractResource
     protected $callback_url = null;
 
     /**
+     * The custom branding logo for the API App
+     *
+     * @var string
+     */
+    protected $custom_logo_file = null;
+
+    /**
      * The name of the API App
      *
      * @var string
@@ -113,17 +120,22 @@ class ApiApp extends AbstractResource
      *
      * @param string $name
      * @param string $domain
+     * @param string $callback_url
+     * @param string $custom_logo_file
      */
-    public function __construct($name = null, $domain = null, $callback_url = null, $white_labeling_options = null)
+    public function __construct($name = null, $domain = null, $callback_url = null, $custom_logo_file = null, $white_labeling_options = null)
     {
         if (is_string($name)) {
             $this->name = $name;
             $this->domain = $domain;
             $this->callback_url = $callback_url;
+            $this->custom_logo_file = fopen($custom_logo_file, 'rb');
             $this->white_labeling_options = $white_labeling_options;
         } else {
             parent::__construct($name);
         };
+
+        return $this;
     }
 
     /**
@@ -222,7 +234,9 @@ class ApiApp extends AbstractResource
       return $this->toArray(array(
           'only' => array(
               'name',
-              'domain'
+              'domain',
+              'callback_url',
+              'custom_logo_file'
           )
       ));
     }
