@@ -31,13 +31,13 @@ use HelloSign\ApiApp;
 class ApiAppTest extends AbstractTest
 {
     /**
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Api App already exists
+    * @expectedException HelloSign\Error
+    * @expectedExceptionMessage An app with the same name already exists
      * @group create
      */
     public function testCreateApiApp()
     {
-        $app_name = "Test API App";
+        $app_name = "Test" . rand(1, 2000);
         $domain = "www.testdomain.com";
         $response = $this->client->createApiApp(
             new ApiApp($app_name, $domain)

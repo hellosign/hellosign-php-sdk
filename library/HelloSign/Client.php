@@ -81,6 +81,9 @@ class Client
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH = "unclaimed_draft/create_embedded";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH = "unclaimed_draft/create_embedded_with_template";
 
+    const APIAPP_PATH = "api_app";
+    const APIAPP_LIST_PATH = "api_app/list";
+
     const OAUTH_TOKEN_URL = "https://app.hellosign.com/oauth/token";
 
     protected $oauth_token_url = self::OAUTH_TOKEN_URL;
@@ -946,4 +949,37 @@ class Client
             'debug_mode' => $this->debug_mode
         ));
     }
+
+    /**
+     * Creates a new API App
+     *
+     * @param  ApiApp $apiApp
+     * @param  string $name
+     * @param  string $domain
+     * @return ApiApp
+     * @throws BaseException
+     */
+    public function createApiApp(ApiApp $apiApp, $name = null, $domain = null)
+    {
+        $post = $apiApp->toCreateParams();
+
+        if ($apiApp->client_id) {
+            $post += array(
+                'client_id' => $client_id,
+                'name' => $name,
+                'domain' => $domain,
+                'client_secret' => $client_secret
+            );
+        }
+
+        $response = $this->rest->post(
+            static::APIAPP_PATH,
+            $post
+        );
+
+        $this->checkResponse($response);
+
+        return $apiApp->fromResponse($response);
+    }
+
 }
