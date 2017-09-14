@@ -109,9 +109,9 @@ class ApiApp extends AbstractResource
     protected $oauth = null;
 
     /**
-     * An object with white labeling options
+     * A JSON array of Custom Field objects
      *
-     * @var stdClass
+     * @var string
      */
     protected $white_labeling_options = null;
 
@@ -122,6 +122,7 @@ class ApiApp extends AbstractResource
      * @param string $domain
      * @param string $callback_url
      * @param string $custom_logo_file
+     * @param string $white_labeling_options
      */
     public function __construct($name = null, $domain = null, $callback_url = null, $custom_logo_file = null, $white_labeling_options = null)
     {
@@ -236,7 +237,8 @@ class ApiApp extends AbstractResource
               'name',
               'domain',
               'callback_url',
-              'custom_logo_file'
+              'custom_logo_file',
+              'white_labeling_options'
           )
       ));
     }

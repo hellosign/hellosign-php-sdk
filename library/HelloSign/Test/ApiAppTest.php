@@ -78,9 +78,9 @@ class ApiAppTest extends AbstractTest
      */
     public function testGetApiApp()
     {
-        // $wl->primary_button_color = "#00b3e6";
-        // $wl->primary_button_text_color = "#ffffff";
-        // $white_labeling_options = json_encode($wl);
+        $wl->primary_button_color = "#00b3e6";
+        $wl->primary_button_text_color = "#ffffff";
+        $white_labeling_options = json_encode($wl);
 
         $app_name = "Test" . rand(1, 2000);
         $domain = "www.testdomain.com";
@@ -88,7 +88,7 @@ class ApiAppTest extends AbstractTest
         $custom_logo_file = (__DIR__ . '/logo.jpg');
 
         $response = $this->client->createApiApp(
-            new ApiApp($app_name, $domain, $callback_url, $custom_logo_file)
+            new ApiApp($app_name, $domain, $callback_url, $custom_logo_file, $white_labeling_options)
         );
 
         $client_id = $response->getClientId();
@@ -98,6 +98,7 @@ class ApiAppTest extends AbstractTest
         $this->assertInstanceOf('HelloSign\ApiApp', $response);
         $this->assertNotNull($response->name);
         $this->assertNotNull($response->callback_url);
+        $this->assertNotNull($response->white_labeling_options);
 
         print_r();
     }
