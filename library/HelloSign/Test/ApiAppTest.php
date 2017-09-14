@@ -76,15 +76,15 @@ class ApiAppTest extends AbstractTest
     /**
      * @group read
      */
-    // public function testGetAcount()
-    // {
-    //     $response = $this->client->getAccount();
-    //
-    //     $this->assertInstanceOf('HelloSign\Account', $response);
-    //     $this->assertNotNull($response->account_id);
-    //
-    //     return $response;
-    // }
+    public function testGetApiApp()
+    {
+        $response = $this->client->getApiApp();
+
+        $this->assertInstanceOf('HelloSign\ApiApp', $response);
+        $this->assertNotNull($response->client_id);
+
+        return $response;
+    }
 
     /**
      * @depends testGetAcount
