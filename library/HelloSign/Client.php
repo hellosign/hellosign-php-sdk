@@ -954,25 +954,12 @@ class Client
      * Creates a new API App
      *
      * @param  ApiApp $apiApp
-     * @param  string $name
-     * @param  string $domain
-     * @param  string $callback_url
      * @return ApiApp
      * @throws BaseException
      */
-    public function createApiApp(ApiApp $apiApp, $name = null, $domain = null, $callback_url = null)
+    public function createApiApp(ApiApp $apiApp)
     {
         $post = $apiApp->toCreateParams();
-
-        if ($apiApp->client_id) {
-            $post += array(
-                'client_id' => $client_id,
-                'name' => $name,
-                'domain' => $domain,
-                'callback_url' => $callback_url,
-                'client_secret' => $client_secret
-            );
-        }
 
         $response = $this->rest->post(
             static::APIAPP_PATH,

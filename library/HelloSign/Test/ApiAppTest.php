@@ -33,29 +33,41 @@ class ApiAppTest extends AbstractTest
     /**
     * @expectedException HelloSign\Error
     * @expectedExceptionMessage An app with the same name already exists
-     * @group create
-     */
+    * @group create
+    */
     public function testCreateApiApp()
     {
+        $wl = array('primary_button_color' => '#626567', 'primary_button_text_color' => '#ffffff');
+        $wl = json_encode($wl);
+
+        $name = "Test" . rand(1, 2000);
+        $domain = "www.testdomain.com";
+        $callback = "http://www.testcallback.com";
+        $logo = __DIR__ . "/logo.jpg";
+
         $app = new ApiApp;
-        $app->setName("Test" . rand(1, 2000));
-        $app->setDomain("www.testdomain.com");
-        $app->setCallbackUrl("http://www.testcallback.com");
-        $app->setLogo(__DIR__ . '/logo.jpg');
-        $app->setWhiteLabeling();
+        $app->setName($name);
+        $app->setDomain($domain);
+        $app->setCallbackUrl($callback);
+        $app->setLogo($logo);
+        $app->setWhiteLabeling($wl);
 
         $response = $this->client->createApiApp($app);
 
-        $this->assertInstanceOf('HelloSign\ApiApp', $response);
-        $this->assertNotNull($response->client_id);
+        $this->assertNotNull($response->getClientId());
 
         //trying to create it again should fail
 
-        $response = $this->client->createApiApp(
-          new ApiApp($app_name, $domain)
-        );
+        $duplicate_app = new ApiApp;
+        $duplicate_app->setName($name);
+        $duplicate_app->setDomain($domain);
+        $duplicate_app->setCallbackUrl($callback);
+        $duplicate_app->setLogo($logo);
+        $duplicate_app->setWhiteLabeling($wl);
 
-        return $response;
+        $second_response = $this->client->createApiApp($duplicate_app);
+        //
+        return $second_response;
     }
     //
     // /**
@@ -81,10 +93,6 @@ class ApiAppTest extends AbstractTest
      */
     public function testGetApiApp()
     {
-        $wl->primary_button_color = "#00b3e6";
-        $wl->primary_button_text_color = "#ffffff";
-        $white_labeling_options = json_encode($wl);
-
         $app_name = "Test" . rand(1, 2000);
         $domain = "www.testdomain.com";
         $callback_url = "http://www.testcallback.com";
@@ -98,7 +106,6 @@ class ApiAppTest extends AbstractTest
 
         $app = $this->client->getApiApp($client_id);
 
-        $this->assertInstanceOf('HelloSign\ApiApp', $response);
         $this->assertNotNull($response->name);
         $this->assertNotNull($response->callback_url);
         $this->assertNotNull($response->white_labeling_options);

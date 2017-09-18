@@ -78,7 +78,7 @@ class ApiApp extends AbstractResource
     protected $name = null;
 
     /**
-     * If the API App is approved will return true
+     * If the API App is approved will return true. Defaults to false.
      *
      * @var boolean
      */
@@ -115,27 +115,55 @@ class ApiApp extends AbstractResource
      */
     protected $white_labeling_options = null;
 
-    /**
-     * Constructor
-     *
-     * @param string $name
-     * @param string $domain
-     * @param string $callback_url
-     * @param string $custom_logo_file
-     * @param string $white_labeling_options
-     */
-    public function __construct($name = null, $domain = null, $callback_url = null, $custom_logo_file = null, $white_labeling_options = null)
-    {
-        if (is_string($name)) {
-            $this->name = $name;
-            $this->domain = $domain;
-            $this->callback_url = $callback_url;
-            $this->custom_logo_file = fopen($custom_logo_file, 'rb');
-            $this->white_labeling_options = $white_labeling_options;
-        } else {
-            parent::__construct($name);
-        };
+     /**
+      * Constructor
+      *
+      * @param  stdClass $response
+      * @param  array $options
+      * @see    static::fromResponse()
+      */
+     public function __construct($response = null, $options = array())
+     {
+         parent::__construct($response, $options);
+     }
 
+    /**
+     * @return ApiApp
+     * @ignore
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return ApiApp
+     * @ignore
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+        return $this;
+    }
+
+    /**
+     * @return ApiApp
+     * @ignore
+     */
+    public function setLogo($file)
+    {
+        $this->custom_logo_file = fopen($file, 'rb');
+        return $this;
+    }
+
+    /**
+     * @return ApiApp
+     * @ignore
+     */
+    public function setWhiteLabeling($wl)
+    {
+        $this->white_labeling_options = $wl;
         return $this;
     }
 
@@ -230,17 +258,17 @@ class ApiApp extends AbstractResource
      * @return array
      * @ignore
      */
-    public function toCreateParams()
+    public function toCreateParams($options = array())
     {
-      return $this->toArray(array(
-          'only' => array(
-              'name',
-              'domain',
-              'callback_url',
-              'custom_logo_file',
-              'white_labeling_options'
-          )
-      ));
+      return $this->toArray(array('only' => array(
+        'name',
+        'domain',
+        'callback_url',
+        'custom_logo_file',
+        'options',
+        'oauth',
+        'white_labeling_options'
+      )));
     }
 
     /**
