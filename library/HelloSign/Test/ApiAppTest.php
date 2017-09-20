@@ -51,6 +51,7 @@ class ApiAppTest extends AbstractTest
         $app->setCallbackUrl($callback);
         $app->setLogo($logo);
         $app->setWhiteLabeling($wl);
+        $app->setInsertEverywhere(false);
 
         $response = $this->client->createApiApp($app);
 

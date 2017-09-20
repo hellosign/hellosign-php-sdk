@@ -95,13 +95,6 @@ class ApiApp extends AbstractResource
     protected $owner_account = null;
 
     /**
-     * An object with API App options
-     *
-     * @var stdClass
-     */
-    protected $options = null;
-
-    /**
      * Oauth details
      *
      * @var string
@@ -114,6 +107,15 @@ class ApiApp extends AbstractResource
      * @var string
      */
     protected $white_labeling_options = null;
+
+    /**
+     * Key-value pair to set option to allow signer to insert everywhere
+     * Defaults to true
+     *
+     * @var array
+     */
+    protected $options = ["can_insert_everywhere" => true];
+
 
      /**
       * Constructor
@@ -222,6 +224,18 @@ class ApiApp extends AbstractResource
         $this->callback_url = $url;
         return $this;
     }
+
+    /**
+     * @param  boolean
+     * @return Account
+     * @ignore
+     */
+    public function setInsertEverywhere($insert)
+    {
+        $this->options = ["can_insert_everywhere" => $insert];
+        return $this;
+    }
+
 
     /**
      * @return OAuthToken
