@@ -32,7 +32,7 @@ namespace HelloSign;
 use stdClass;
 
 /**
- * Stores HelloSign Account information
+ * Stores HelloSign ApiApp information
  */
 class ApiApp extends AbstractResource
 {
@@ -216,7 +216,7 @@ class ApiApp extends AbstractResource
 
     /**
      * @param  string $url
-     * @return Account
+     * @return ApiApp
      * @ignore
      */
     public function setCallbackUrl($url)
@@ -227,7 +227,7 @@ class ApiApp extends AbstractResource
 
     /**
      * @param  boolean
-     * @return Account
+     * @return ApiApp
      * @ignore
      */
     public function setInsertEverywhere($insert)
@@ -239,44 +239,13 @@ class ApiApp extends AbstractResource
     /**
      * @param string $url
      * @param string $scopes
-     * @return Account
+     * @return ApiApp
      * @ignore
      */
     public function setOauthOptions($url, $scopes)
     {
         $this->oauth = ["callback_url" => $url, "scopes" => $scopes];
         return $this;
-    }
-
-    /**
-     * @return OAuthToken
-     * @ignore
-     */
-    public function getOAuthData()
-    {
-        return $this->oauth;
-    }
-
-    /**
-     * @return boolean
-     * @ignore
-     */
-    public function hasOAuthData()
-    {
-        return isset($this->oauth);
-    }
-
-    /**
-     * @param  stdClass $response
-     * @param  array $options
-     * @return Account
-     * @ignore
-     */
-    public function fromResponse($response, $options = array())
-    {
-        isset($response->oauth_data) && $this->setOAuthData($response->oauth_data);
-
-        return parent::fromResponse($response, $options);
     }
 
     /**
@@ -307,17 +276,5 @@ class ApiApp extends AbstractResource
                 'callback_url'
             )
         ));
-    }
-
-    /**
-     * @param  stdClass $oauth_data
-     * @return Account
-     * @ignore
-     */
-    protected function setOAuthData($oauth_data)
-    {
-        $this->oauth_data = new OAuthToken($oauth_data);
-
-        return $this;
     }
 }
