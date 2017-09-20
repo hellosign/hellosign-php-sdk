@@ -70,6 +70,35 @@ class ApiAppTest extends AbstractTest
         //
         return $second_response;
     }
+
+    /**
+    * @group oauth
+    */
+    public function testCreateOauthApiApp()
+    {
+        $name = "Test Oauth" . rand(1, 2000);
+        $domain = "www.testdomain.com";
+        $callback = "http://www.testcallback.com";
+        $logo = __DIR__ . "/logo.jpg";
+        $oauth_callback = "http://www.OAuthCallbackTest.com";
+        $oauth_scope = "basic_account_info, request_signature";
+
+        $app = new ApiApp;
+        $app->setName($name);
+        $app->setDomain($domain);
+        $app->setCallbackUrl($callback);
+        $app->setLogo($logo);
+        $app->setOauthCallback($oauth_callback);
+        $app->setOauthScope($oauth_scope);
+
+        $response = $this->client->createApiApp($app);
+
+        $this->assertNotNull($response->getClientId);
+        $this->assertEquals($response->name, $name);
+        $this->assertNotNull($response->getOauthData);
+
+        return $response;
+    }
     //
     // /**
     //  * @group update
