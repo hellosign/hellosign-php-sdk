@@ -136,6 +136,11 @@ class ApiAppTest extends AbstractTest
         $domain = "www.testdomain.com";
         $callback_url = "http://www.testcallback.com";
 
+        $app = new ApiApp;
+        $app->setName($name);
+        $app->setDomain($domain);
+        $app->setCallbackUrl($callback_url);
+
         $response = $this->client->createApiApp($app);
         $client_id = $response->getClientId();
 
