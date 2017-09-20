@@ -90,13 +90,11 @@ class ApiAppTest extends AbstractTest
         $app->setLogo($logo);
         $app->setOauthOptions($oauth_callback, $oauth_scope);
 
-        print_r($app);
-
         $response = $this->client->createApiApp($app);
 
-        $this->assertNotNull($response->getClientId);
+        $this->assertNotNull($response->getClientId());
         $this->assertEquals($response->name, $name);
-        $this->assertNotNull($response->getOauthData);
+        $this->assertNotNull($response->oauth);
 
         return $response;
     }
