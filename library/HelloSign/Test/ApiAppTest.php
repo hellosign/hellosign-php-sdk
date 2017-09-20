@@ -98,24 +98,33 @@ class ApiAppTest extends AbstractTest
 
         return $response;
     }
-    //
-    // /**
-    //  * @group update
-    //  */
-    // public function testUpdateAccount()
-    // {
-    //     $callback_url = $_ENV['CALLBACK_URL'];
-    //     $account = new Account;
-    //     $account->setCallbackUrl($callback_url);
-    //     $response = $this->client->updateAccount($account);
-    //
-    //     $this->assertInstanceOf('HelloSign\Account', $response);
-    //     $this->assertNotNull($response->getId());
-    //     $this->assertEquals($response->getCallbackUrl(), $callback_url);
-    //     $this->assertEquals($response, $account);
-    //
-    //     return $response;
-    // }
+
+    /**
+     * @group update
+     */
+    public function testUpdateApiApp()
+    {
+
+        $name = "Test" . rand(1, 2000);
+        $domain = "www.testdomain.com";
+
+        $app = new ApiApp;
+        $app->setName($name);
+        $app->setDomain($domain);
+
+        $response = $this->client->createApiApp($app);
+
+        $callback = "http://www.testcallback.com";
+
+        $update = new ApiApp;
+        $update->setCallbackUrl($callback);
+        $updated_response = $this->client->updateApiApp($update);
+
+        $this->assertInstanceOf('HelloSign\ApiApp', $response);
+        $this->assertEquals($updated_response->getCallbackUrl(), $callback);
+
+        return $response;
+    }
 
     /**
      * @group read

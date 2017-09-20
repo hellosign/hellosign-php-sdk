@@ -273,7 +273,13 @@ class ApiApp extends AbstractResource
     {
         return $this->toArray(array(
             'only' => array(
-                'callback_url'
+              'name',
+              'domain',
+              'callback_url',
+              'custom_logo_file',
+              'options',
+              'oauth',
+              'white_labeling_options'
             )
         ));
     }
