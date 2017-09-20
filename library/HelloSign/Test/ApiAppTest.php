@@ -42,7 +42,7 @@ class ApiAppTest extends AbstractTest
 
         $name = "Test" . rand(1, 2000);
         $domain = "www.testdomain.com";
-        $callback = "http://www.testcallback.com";
+        $callback = $_ENV['CALLBACK_URL'];
         $logo = __DIR__ . "/logo.jpg";
 
         $app = new ApiApp;
@@ -78,9 +78,9 @@ class ApiAppTest extends AbstractTest
     {
         $name = "Test Oauth" . rand(1, 2000);
         $domain = "www.testdomain.com";
-        $callback = "http://www.testcallback.com";
+        $callback = $_ENV['CALLBACK_URL'];
         $logo = __DIR__ . "/logo.jpg";
-        $oauth_callback = "http://www.OAuthCallbackTest.com";
+        $oauth_callback = $_ENV['CALLBACK_URL'];
         $oauth_scope = "basic_account_info,request_signature";
 
         $app = new ApiApp;
@@ -134,7 +134,7 @@ class ApiAppTest extends AbstractTest
     {
         $name = "Test" . rand(1, 2000);
         $domain = "www.testdomain.com";
-        $callback_url = "http://www.testcallback.com";
+        $callback_url = $_ENV['CALLBACK_URL'];
 
         $app = new ApiApp;
         $app->setName($name);
@@ -153,13 +153,17 @@ class ApiAppTest extends AbstractTest
     }
 
     /**
-     * @depends testGetAcount
-     * @group read
+     * @group delete
+     * @expectedException HelloSign\Error
+     * @expectedExceptionMessage Api App not found
      */
-    // public function testIsAccountValid($account)
-    // {
-    //     $this->assertTrue($this->client->isAccountValid($account->getEmail()));
-    //
-    //     $this->assertFalse($this->client->isAccountValid('abc123@xyz456.com'));
-    // }
+    public function testDeleteApiApp()
+    {
+        # Note that we won't be actually deleting an API app,
+        # but rather checking to make sure we get a 404 - Api app not found error
+
+        $client_id = 'c7e5031edf091e76796088e4e06443e9'; #random
+
+        $response = $this->client->deleteApiApp($client_id);
+    }
 }
