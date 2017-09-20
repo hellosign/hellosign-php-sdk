@@ -1011,4 +1011,24 @@ class Client
         return new ApiApp($response);
     }
 
+    /**
+     * Completely deletes the API app specified from the account.
+     *
+     * @param  string $client_id client ID
+     * @return boolean
+     * @throws BaseException
+     */
+    public function deleteApiApp($client_id)
+    {
+
+        $response = $this->rest->delete(
+            static::APIAPP_PATH . '/' . $client_id
+        );
+
+        $this->checkResponse($response, false);
+
+        return true;
+    }
+
+
 }

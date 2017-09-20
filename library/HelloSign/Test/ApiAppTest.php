@@ -155,7 +155,7 @@ class ApiAppTest extends AbstractTest
     /**
      * @group delete
      * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Api App not found
+     * @expectedExceptionMessage Not found
      */
     public function testDeleteApiApp()
     {

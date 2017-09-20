@@ -106,6 +106,11 @@ class REST
         return $this->call('post', $uri, $params, $format);
     }
 
+    public function delete($uri, $params = array(), $format = null)
+    {
+        return $this->call('delete', $uri, $params, $format);
+    }
+
     protected function call($method, $uri, $params = array(), $format = null)
     {
         if ($format !== null) {
