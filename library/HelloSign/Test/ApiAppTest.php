@@ -160,7 +160,7 @@ class ApiAppTest extends AbstractTest
     public function testDeleteApiApp()
     {
         # Note that we won't be actually deleting an API app,
-        # but rather checking to make sure we get a 404 - Api app not found error
+        # but rather checking to make sure we get a Not found error
 
         $client_id = 'c7e5031edf091e76796088e4e06443e9'; #random
 
