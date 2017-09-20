@@ -132,7 +132,7 @@ class ApiAppTest extends AbstractTest
      */
     public function testGetApiApp()
     {
-        $app_name = "Test" . rand(1, 2000);
+        $name = "Test" . rand(1, 2000);
         $domain = "www.testdomain.com";
         $callback_url = "http://www.testcallback.com";
 
@@ -146,9 +146,9 @@ class ApiAppTest extends AbstractTest
 
         $app = $this->client->getApiApp($client_id);
 
-        $this->assertNotNull($response->name);
-        $this->assertNotNull($response->callback_url);
-        $this->assertNotNull($response->domain);
+        $this->assertNotNull($app->name);
+        $this->assertNotNull($app->callback_url);
+        $this->assertNotNull($app->domain);
 
     }
 

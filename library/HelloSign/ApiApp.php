@@ -140,6 +140,15 @@ class ApiApp extends AbstractResource
     }
 
     /**
+     * @return string
+     * @ignore
+     */
+    public function getCallbackUrl()
+    {
+        return $this->callback_url;
+    }
+
+    /**
      * @return ApiApp
      * @ignore
      */
@@ -194,15 +203,6 @@ class ApiApp extends AbstractResource
     public function isApproved()
     {
         return $this->is_approved;
-    }
-
-    /**
-     * @return string
-     * @ignore
-     */
-    public function getCallbackUrl()
-    {
-        return $this->callback_url;
     }
 
     /**
