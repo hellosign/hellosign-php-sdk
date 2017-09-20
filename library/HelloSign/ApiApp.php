@@ -99,7 +99,7 @@ class ApiApp extends AbstractResource
      *
      * @var string
      */
-    protected $oauth = null;
+    protected $oauth = ["callback_url" => null, "scopes" => null];
 
     /**
      * A JSON array of Custom Field objects
@@ -236,6 +236,17 @@ class ApiApp extends AbstractResource
         return $this;
     }
 
+    /**
+     * @param string $url
+     * @param string $scopes
+     * @return Account
+     * @ignore
+     */
+    public function setOauthOptions($url, $scopes)
+    {
+        $this->oauth = ["callback_url" => $url, "scopes" => $scopes];
+        return $this;
+    }
 
     /**
      * @return OAuthToken

@@ -81,15 +81,16 @@ class ApiAppTest extends AbstractTest
         $callback = "http://www.testcallback.com";
         $logo = __DIR__ . "/logo.jpg";
         $oauth_callback = "http://www.OAuthCallbackTest.com";
-        $oauth_scope = "basic_account_info, request_signature";
+        $oauth_scope = "basic_account_info,request_signature";
 
         $app = new ApiApp;
         $app->setName($name);
         $app->setDomain($domain);
         $app->setCallbackUrl($callback);
         $app->setLogo($logo);
-        $app->setOauthCallback($oauth_callback);
-        $app->setOauthScope($oauth_scope);
+        $app->setOauthOptions($oauth_callback, $oauth_scope);
+
+        print_r($app);
 
         $response = $this->client->createApiApp($app);
 
