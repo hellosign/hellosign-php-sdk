@@ -972,6 +972,25 @@ class Client
     }
 
     /**
+     * Updates your API App's settings
+     *
+     * @param  ApiApp $apiApp
+     * @return ApiApp
+     * @throws BaseException
+     */
+    public function updateApiApp($client_id, ApiApp $app)
+    {
+        $response = $this->rest->post(
+            static::APIAPP_PATH . '/' . $client_id,
+            $app->toUpdateParams()
+        );
+
+        $this->checkResponse($response);
+
+        return $app->fromResponse($response);
+    }
+
+    /**
      * Retrieves an API App with the given Client ID
      *
      * @param  String $id Client ID

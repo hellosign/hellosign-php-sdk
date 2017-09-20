@@ -113,12 +113,13 @@ class ApiAppTest extends AbstractTest
         $app->setDomain($domain);
 
         $response = $this->client->createApiApp($app);
+        $client_id = $response->getClientId();
 
         $callback = "http://www.testcallback.com";
 
         $update = new ApiApp;
         $update->setCallbackUrl($callback);
-        $updated_response = $this->client->updateApiApp($update);
+        $updated_response = $this->client->updateApiApp($client_id, $update);
 
         $this->assertInstanceOf('HelloSign\ApiApp', $response);
         $this->assertEquals($updated_response->getCallbackUrl(), $callback);
@@ -134,19 +135,15 @@ class ApiAppTest extends AbstractTest
         $app_name = "Test" . rand(1, 2000);
         $domain = "www.testdomain.com";
         $callback_url = "http://www.testcallback.com";
-        $custom_logo_file = (__DIR__ . '/logo.jpg');
 
-        $response = $this->client->createApiApp(
-            new ApiApp($app_name, $domain, $callback_url, $custom_logo_file, $white_labeling_options)
-        );
-
+        $response = $this->client->createApiApp($app);
         $client_id = $response->getClientId();
 
         $app = $this->client->getApiApp($client_id);
 
         $this->assertNotNull($response->name);
         $this->assertNotNull($response->callback_url);
-        $this->assertNotNull($response->white_labeling_options);
+        $this->assertNotNull($response->domain);
 
     }
 
