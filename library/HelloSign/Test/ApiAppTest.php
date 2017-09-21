@@ -172,8 +172,10 @@ class ApiAppTest extends AbstractTest
      */
     public function testGetApiApps()
     {
-        $list = $this->client->getApiApps(1);
+        $list = $this->client->getApiApps(1, 1);
+        print_r($list);
 
         $this->assertNotNull($list);
+        $this->assertCount(1, $list);
     }
 }

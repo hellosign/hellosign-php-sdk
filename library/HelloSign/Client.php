@@ -1037,9 +1037,9 @@ class Client
      * @return ApiAppList
      * @throws BaseException
      */
-    public function getApiApps($page = 1)
+    public function getApiApps($page = 1, $page_size = 20)
     {
-        $response = $this->rest->get(static::APIAPP_LIST_PATH, array('page' => $page));
+        $response = $this->rest->get(static::APIAPP_LIST_PATH, array('page' => $page, 'page_size' => $page_size));
 
         $this->checkResponse($response);
 
