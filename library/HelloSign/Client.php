@@ -1030,5 +1030,26 @@ class Client
         return true;
     }
 
+    /**
+     * Retrieves a list of API Apps for account
+     *
+     * @param  integer $page
+     * @return ApiAppList
+     * @throws BaseException
+     */
+    public function getApiApps($page = 1)
+    {
+        $response = $this->rest->get(static::APIAPP_LIST_PATH, array('page' => $page));
+
+        $this->checkResponse($response);
+
+        $list = new ApiAppList($response);
+
+        if ($page > $list->getNumPages()) {
+            throw new Error('page_not_found', 'Page not found');
+        }
+
+        return $list;
+    }
 
 }
