@@ -166,4 +166,14 @@ class ApiAppTest extends AbstractTest
 
         $response = $this->client->deleteApiApp($client_id);
     }
+
+    /**
+     * @group list
+     */
+    public function testGetApiApps()
+    {
+        $list = $this->client->getApiApps(1);
+
+        $this->assertNotNull($list);
+    }
 }
