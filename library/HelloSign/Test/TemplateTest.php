@@ -196,4 +196,20 @@ class TemplateTest extends AbstractTest
 
         return $response;
     }
+
+
+    /**
+      * @group updateFile
+      * @group newTemplate
+    */
+    public function testUpdateTemplateFiles()
+    {
+      $templates = $this->client->getTemplates();
+      $template_id = $templates[0]->getId();
+
+      $file = (__DIR__ . '/nda.docx');
+
+      $updated_template = $this->client->updateTemplateFiles($template_id, $file);
+      echo $updated_template;
+    }
 }
