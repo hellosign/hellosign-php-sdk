@@ -38,15 +38,13 @@ class UpdatedTemplateResponse extends AbstractObject
      * @var string
      * @ignore
      */
-    protected $template_id = 'template_id';
+    protected $resource_type = 'template';
 
     /**
-     * @return string
-     * @ignore
+     * The id of the Template
+     *
+     * @var string
      */
-    public function getId()
-    {
-        return $this->template_id;
-    }
+    protected $template_id;
 
 }
