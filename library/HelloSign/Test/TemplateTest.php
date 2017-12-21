@@ -200,16 +200,17 @@ class TemplateTest extends AbstractTest
 
     /**
       * @group updateFile
-      * @group newTemplate
     */
     public function testUpdateTemplateFiles()
     {
       $templates = $this->client->getTemplates();
       $template_id = $templates[0]->getId();
 
-      $file = (__DIR__ . '/nda.docx');
+      $request = new \HelloSign\UpdatedTemplate();
+      $request->addFile(__DIR__ . '/nda.docx');
+      $request->setMessage('PHP SDK Test Update File');
 
-      $updated_template = $this->client->updateTemplateFiles($template_id, $file);
-      echo $updated_template;
+      $response = $this->client->updateTemplateFiles($template_id, $request);
+      return $response;
     }
 }

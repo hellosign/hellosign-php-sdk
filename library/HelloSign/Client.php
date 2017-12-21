@@ -399,9 +399,17 @@ class Client
     * @return string
     */
 
-    public function updateTemplateFiles($template_id, $file)
+    public function updateTemplateFiles($template_id, $request)
     {
-      echo "this is the right test";
+      $params = $request->toUpdateTemplateParams();
+      $response = $this->rest->post(
+        static::TEMPLATE_UPDATE_FILES_PATH . '/' . $template_id,
+        $params
+      );
+
+      $template = new UpdatedTemplateResponse($response);
+
+      return $template;
     }
 
     /**
