@@ -206,11 +206,15 @@ class TemplateTest extends AbstractTest
       $templates = $this->client->getTemplates();
       $template_id = $templates[0]->getId();
 
-      $request = new \HelloSign\UpdatedTemplate();
+      $request = new \HelloSign\Template();
+      $request->enableTestMode();
+      $request->setClientId($client_id);
       $request->addFile(__DIR__ . '/nda.docx');
-      $request->setMessage('PHP SDK Test Update File');
+      $request->setMessage('PHP SDK Test Update File Message');
+      $request->setSubject('PHP SDK Test Update File Subject');
 
       $response = $this->client->updateTemplateFiles($template_id, $request);
+      $this->assertTrue(is_string($return->getId()));
       return $response;
     }
 }

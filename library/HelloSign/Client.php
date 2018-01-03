@@ -407,9 +407,7 @@ class Client
         $params
       );
 
-      $updated_response = new UpdatedTemplateResponse($response);
-
-      return $template;
+      return new Template($response);
     }
 
     /**
