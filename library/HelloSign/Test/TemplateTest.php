@@ -204,7 +204,7 @@ class TemplateTest extends AbstractTest
     public function testUpdateTemplateFiles()
     {
       $templates = $this->client->getTemplates();
-      $template_id = $templates[0]->getId();
+      $template_id = '01e0af3105fc7d880280ceb446bbc386b71a6981';
 
       $request = new \HelloSign\Template();
       $request->enableTestMode();
@@ -214,7 +214,7 @@ class TemplateTest extends AbstractTest
       $request->setSubject('PHP SDK Test Update File Subject');
 
       $response = $this->client->updateTemplateFiles($template_id, $request);
-      $this->assertTrue(is_string($return->getId()));
+      $this->assertTrue(is_string($response->getId()));
       return $response;
     }
 }

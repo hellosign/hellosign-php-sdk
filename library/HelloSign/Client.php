@@ -401,12 +401,11 @@ class Client
 
     public function updateTemplateFiles($template_id, $request)
     {
-      $params = $request->toUpdateTemplateParams();
+      $params = $request->toParams();
       $response = $this->rest->post(
         static::TEMPLATE_UPDATE_FILES_PATH . '/' . $template_id,
         $params
       );
-
       return new Template($response);
     }
 
