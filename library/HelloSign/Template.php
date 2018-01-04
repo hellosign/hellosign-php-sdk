@@ -371,7 +371,8 @@ class Template extends AbstractResource
             'cc_roles',
             'message',
             'signer_roles',
-            'use_preexisting_fields'
+            'use_preexisting_fields',
+            'metadata'
         );
 
         if (isset($this->merge_fields) && count($this->merge_fields) > 0) {

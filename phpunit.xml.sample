@@ -13,6 +13,6 @@
     </php>
     <php>
       <env name="API_URL" value="https://api.hellosign.com/v3/"/>
-      <env name="OAUTH_TOKEN_URL" value="https://www.hellosign.com/oauth/token"/>
+      <env name="OAUTH_TOKEN_URL" value="https://app.hellosign.com/oauth/token"/>
     </php>
 </phpunit>

@@ -81,6 +81,9 @@ class Client
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH = "unclaimed_draft/create_embedded";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH = "unclaimed_draft/create_embedded_with_template";
 
+    const APIAPP_PATH = "api_app";
+    const APIAPP_LIST_PATH = "api_app/list";
+
     const OAUTH_TOKEN_URL = "https://app.hellosign.com/oauth/token";
 
     protected $oauth_token_url = self::OAUTH_TOKEN_URL;
@@ -126,14 +129,11 @@ class Client
     }
 
     /**
-     *
      * Should only be used for unit tests that may be hitting a local endpoint
+     * @deprecated This is no longer necessary, as all environments should have valid SSL enabled.
      */
     public function disableCertificateCheck($rest = null) {
-        if (!$rest) {
-            $rest = $this->rest;
-        }
-        $rest->disableCertificateCheck();
+        // TODO: Remove me
     }
 
     /**
@@ -949,4 +949,107 @@ class Client
             'debug_mode' => $this->debug_mode
         ));
     }
+
+    /**
+     * Creates a new API App
+     *
+     * @param  ApiApp $apiApp
+     * @return ApiApp
+     * @throws BaseException
+     */
+    public function createApiApp(ApiApp $apiApp)
+    {
+        $post = $apiApp->toCreateParams();
+
+        $response = $this->rest->post(
+            static::APIAPP_PATH,
+            $post
+        );
+
+        $this->checkResponse($response);
+
+        return $apiApp->fromResponse($response);
+    }
+
+    /**
+     * Updates your API App's settings
+     *
+     * @param  ApiApp $apiApp
+     * @return ApiApp
+     * @throws BaseException
+     */
+    public function updateApiApp($client_id, ApiApp $app)
+    {
+        $response = $this->rest->post(
+            static::APIAPP_PATH . '/' . $client_id,
+            $app->toUpdateParams()
+        );
+
+        $this->checkResponse($response);
+
+        return $app->fromResponse($response);
+    }
+
+    /**
+     * Retrieves an API App with the given Client ID
+     *
+     * @param  String $id Client ID
+     * @return ApiApp
+     * @throws BaseException
+     */
+    public function getApiApp($id)
+    {
+        $params = array();
+
+        $response = $this->rest->get(
+            static::APIAPP_PATH . '/' . $id,
+            $params
+        );
+
+        $this->checkResponse($response);
+
+        return new ApiApp($response);
+    }
+
+    /**
+     * Completely deletes the API app specified from the account.
+     *
+     * @param  string $client_id client ID
+     * @return boolean
+     * @throws BaseException
+     */
+    public function deleteApiApp($client_id)
+    {
+
+        $response = $this->rest->delete(
+            static::APIAPP_PATH . '/' . $client_id
+        );
+
+        $this->checkResponse($response, false);
+
+        return true;
+    }
+
+    /**
+     * Retrieves a list of API Apps for account
+     *
+     * @param  integer $page
+     * @return ApiAppList
+     * @throws BaseException
+     */
+    public function getApiApps($page = 1, $page_size = 20)
+    {
+        $response = $this->rest->get(static::APIAPP_LIST_PATH, array('page' => $page, 'page_size' => $page_size));
+
+        $this->checkResponse($response);
+
+        $list = new ApiAppList($response);
+
+        if ($page > $list->getNumPages()) {
+            throw new Error('page_not_found', 'Page not found');
+        }
+
+        return $list;
+    }
+
 }

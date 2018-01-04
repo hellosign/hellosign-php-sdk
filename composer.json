@@ -3,7 +3,7 @@
     "description": "This is the official PHP wrapper for HelloSign's API",
     "authors": [
         {
-          "name": "Neal O'Mara",
+          "name": "HelloSign",
           "email": "apisupport@hellosign.com"
         }
     ],

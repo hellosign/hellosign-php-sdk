@@ -106,6 +106,11 @@ class REST
         return $this->call('post', $uri, $params, $format);
     }
 
+    public function delete($uri, $params = array(), $format = null)
+    {
+        return $this->call('delete', $uri, $params, $format);
+    }
+
     protected function call($method, $uri, $params = array(), $format = null)
     {
         if ($format !== null) {
@@ -130,6 +135,12 @@ class REST
         // If authentication is enabled use it
         if ($this->auth != '' && $this->user != '') {
             $options['auth'] = [$this->user, $this->pass];
+        }
+
+        // If we have an oauth token, push to guzzle client
+        # https://stackoverflow.com/questions/38029422/php-guzzle-with-basic-auth-and-bearer-token
+        if (!empty($this->headers['Authorization'])) {
+            $options['headers']['Authorization'] = $this->headers['Authorization'];
         }
 
         if ($this->debug_mode === true) {
