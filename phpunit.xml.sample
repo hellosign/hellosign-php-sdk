@@ -6,9 +6,12 @@
         </testsuite>
     </testsuites>
     <php>
-      <env name="API_KEY" value="dfc614a275bface76c3a5a5187e31605391137fa255db92be4ca4aa8a5791cb2"/>
-      <env name="CLIENT_ID" value="653543f86ec9cb775eefa51bb19bcc40"/>
-      <env name="CLIENT_SECRET" value="f379c55e6a85f61f2288f20d8c0f3859"/>
+      // remmeber that these tests are destructive and require some paid subscriptions
+      // See details in https://github.com/HelloFax/hellosign-php-sdk/blob/v3/README.md#testing
+      // enter your API Key and Client Id with caution!
+      <env name="API_KEY" value=""/>
+      <env name="CLIENT_ID" value=""/>
+      <env name="CLIENT_SECRET" value=""/>
       <env name="CALLBACK_URL" value="http://example.com/callback"/>
     </php>
     <php>
