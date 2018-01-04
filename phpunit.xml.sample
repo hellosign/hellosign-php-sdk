@@ -6,9 +6,9 @@
         </testsuite>
     </testsuites>
     <php>
-      <env name="API_KEY" value="9dc85fe9ef819a2dc5aac48fd5b951ee2f5b6528c26dd398438fce6b355cb075"/>
-      <env name="CLIENT_ID" value="457519f7a1be8feca9f3533c00b98596"/>
-      <env name="CLIENT_SECRET" value="4798f37830ace2866b2ca5d19dd3ede5"/>
+      <env name="API_KEY" value="dfc614a275bface76c3a5a5187e31605391137fa255db92be4ca4aa8a5791cb2"/>
+      <env name="CLIENT_ID" value="653543f86ec9cb775eefa51bb19bcc40"/>
+      <env name="CLIENT_SECRET" value="f379c55e6a85f61f2288f20d8c0f3859"/>
       <env name="CALLBACK_URL" value="http://example.com/callback"/>
     </php>
     <php>
