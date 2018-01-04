@@ -67,6 +67,7 @@ class Client
     const TEMPLATE_CREATE_EMBEDDED_DRAFT  = "template/create_embedded_draft";
     const TEMPLATE_DELETE_PATH            = "template/delete";
     const TEMPLATE_FILES_PATH             = "template/files";
+    const TEMPLATE_UPDATE_FILES_PATH      = "template/update_files";
 
     const TEAM_PATH               = "team";
     const TEAM_CREATE_PATH        = "team/create";
@@ -388,6 +389,24 @@ class Client
         }
 
         return $response;
+    }
+
+    /**
+    * Creates a new template using the overlay of current template_id
+    *
+    * @param string $template_id
+    * @param string $file
+    * @return string
+    */
+
+    public function updateTemplateFiles($template_id, $request)
+    {
+      $params = $request->toParams();
+      $response = $this->rest->post(
+        static::TEMPLATE_UPDATE_FILES_PATH . '/' . $template_id,
+        $params
+      );
+      return new Template($response);
     }
 
     /**
