@@ -73,23 +73,27 @@ class TemplateTest extends AbstractTest
     /**
      * @depends testGetTemplates
      * @group update
+     *
+     * removing this for now because an invited team member cannot
+     * be assigned a template until they've accepted the team invite
+     *
      */
-    public function testAddTemplateUser($template)
-    {
-        $response = $this->client->inviteTeamMember($this->team_member_2);
-        $response = $this->client->addTemplateUser($template->getId(), $this->team_member_2);
-
-        $this->assertInstanceOf('HelloSign\Template', $response);
-        $has_template = false;
-        foreach ($response->getAccounts() as $account) {
-            if ($account->email_address == $this->team_member_2 || $account->account_id == $this->team_member_2) {
-                $has_template = true;
-            }
-        }
-
-        $this->isTrue($has_template);
-        return array($template, $this->team_member_2);
-    }
+    // public function testAddTemplateUser($template)
+    // {
+    //     $response = $this->client->inviteTeamMember($this->team_member_2);
+    //     $response = $this->client->addTemplateUser($template->getId(), $this->team_member_2);
+    //
+    //     $this->assertInstanceOf('HelloSign\Template', $response);
+    //     $has_template = false;
+    //     foreach ($response->getAccounts() as $account) {
+    //         if ($account->email_address == $this->team_member_2 || $account->account_id == $this->team_member_2) {
+    //             $has_template = true;
+    //         }
+    //     }
+    //
+    //     $this->isTrue($has_template);
+    //     return array($template, $this->team_member_2);
+    // }
 
     /**
      * @depends testAddTemplateUser
