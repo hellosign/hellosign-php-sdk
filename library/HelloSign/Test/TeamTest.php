@@ -107,7 +107,7 @@ class TeamTest extends AbstractTest
         $this->assertInstanceOf('HelloSign\Team', $response);
         $this->assertNotNull($response->getName());
         $this->assertEquals(
-            count($response->getAccounts()),
+            count($response->getAccounts()) + count($response->getInvitedAccounts()),
             $accounts_count + 1
         );
     }
