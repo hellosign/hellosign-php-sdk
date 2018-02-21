@@ -132,6 +132,27 @@ abstract class AbstractResource extends AbstractObject
         $this->test_mode = false;
         return $this;
     }
+    
+    /**
+     * @return SignatureRequest
+     * @ignore
+     * this is the default
+     */
+    public function enableAllowDecline()
+    {
+        $this->allow_decline = true;
+        return $this;
+    }
+
+    /**
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function disableAllowDecline()
+    {
+        $this->allow_decline = false;
+        return $this;
+    }
 
     /**
      * @param  string $title
