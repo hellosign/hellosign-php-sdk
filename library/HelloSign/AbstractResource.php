@@ -56,6 +56,15 @@ abstract class AbstractResource extends AbstractObject
      * @var boolean
      */
     protected $test_mode = false;
+    
+     /**
+     * Whether the sender will allow the signer to decline to sign
+     *
+     * Defaults to false.
+     *
+     * @var boolean
+     */
+    protected $allow_decline = false;
 
     /**
      * The title the specified Account uses for the SignatureRequest
@@ -136,7 +145,6 @@ abstract class AbstractResource extends AbstractObject
     /**
      * @return SignatureRequest
      * @ignore
-     * this is the default
      */
     public function enableAllowDecline()
     {
