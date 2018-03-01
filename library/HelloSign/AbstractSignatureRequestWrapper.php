@@ -131,13 +131,11 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     {
         return $this->toArray(array(
             'except' => array(
-                'request',
-                'allow_decline'
+                'request'
             )
         )) + $this->request->toParams(array(
             'except' => array(
-                'title',
-                'allow_decline'
+                'title'
             )
         ));
     }
