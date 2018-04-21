@@ -138,6 +138,16 @@ class Client
     }
 
     /**
+     * Set the timeout for HTTP requests.
+     *
+     * @param float $timeout The timeout in seconds. Use 0 to wait indefinitely.
+     */
+    public function setTimeout($timeout)
+    {
+        $this->rest->setTimeout($timeout);
+    }
+
+    /**
      * Send a new SignatureRequest with the submitted documents
      *
      * @param  SignatureRequest $request

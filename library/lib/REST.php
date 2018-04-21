@@ -68,6 +68,7 @@ class REST
     protected $format;
     protected $mime_type;
 
+    protected $timeout = null;
 
     function __construct($config = array())
     {
@@ -162,6 +163,11 @@ class REST
             }
         }
 
+        // If a custom timeout is set, use it
+        if ($this->timeout !== null) {
+            $options['timeout'] = $this->timeout;
+        }
+
         // Execute and return the response from the REST server
         $response = $this->guzzleClient->{$method}($uri, $options);
         $this->statusCode = $response->getStatusCode();
@@ -220,6 +226,11 @@ class REST
     public function getStatus()
     {
         return $this->statusCode;
+    }
+
+    public function setTimeout($timeout)
+    {
+        $this->timeout = $timeout;
     }
 
     protected function formatResponse($response, $contentType)
