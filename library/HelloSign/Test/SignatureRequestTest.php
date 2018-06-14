@@ -161,6 +161,7 @@ class SignatureRequestTest extends AbstractTest
         $request->addFile(__DIR__ . '/omega-multi.pdf');
         $request->setUseTextTags(true);
         $request->setHideTextTags(true);
+        $request->setCustomFieldValue("organization_name", "CirqlHR");
 
         // Send Signature Request
         $response = $this->client->sendSignatureRequest($request);
