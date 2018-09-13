@@ -437,21 +437,14 @@ class Client
     /**
      * Retrieves a Signature Request with the given ID
      *
-     * @param  String $id signature ID
-     * @param  Integer $ux_version
+     * @param  String $id Signature Request ID
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function getSignatureRequest($id, $ux_version = null)
+    public function getSignatureRequest($id)
     {
-        $params = array();
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
-
         $response = $this->rest->get(
-            static::SIGNATURE_REQUEST_PATH . '/' . $id,
-            $params
+            static::SIGNATURE_REQUEST_PATH . '/' . $id
         );
 
         $this->checkResponse($response);
@@ -669,7 +662,7 @@ class Client
     }
 
     /**
-     * Returns the current user's account information
+     * Returns the current user's HelloSign account information
      *
      * @return Account
      * @throws BaseException
@@ -714,11 +707,11 @@ class Client
      * their email address to complete the creation process.
      *
      * Else: Creates a new HelloSign account and provides OAuth app credentials
-     * to automatically generate an OAuth token with the user Account response.
+     * to generate an OAuth token automatically with the user Account response.
      *
      * @param  Account $account
-     * @param  string $client_id
-     * @param  string $client_secret
+     * @param  string $client_id (optional)
+     * @param  string $client_secret (optional)
      * @return Account
      * @throws BaseException
      */
