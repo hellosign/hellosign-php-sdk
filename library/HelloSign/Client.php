@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -464,18 +464,14 @@ class Client
      * represents a paged query result.
      *
      * @param  Integer $page
-     * @param  Integer $ux_version
      * @return SignatureRequestList
      * @throws BaseException
      */
-    public function getSignatureRequests($page = 1, $ux_version = null)
+    public function getSignatureRequests($page = 1)
     {
         $params = array(
             'page' => $page
         );
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
 
         $response = $this->rest->get(
             static::SIGNATURE_REQUEST_LIST_PATH,

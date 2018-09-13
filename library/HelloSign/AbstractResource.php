@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -56,7 +56,7 @@ abstract class AbstractResource extends AbstractObject
      * @var boolean
      */
     protected $test_mode = false;
-    
+
      /**
      * Whether the sender will allow the signer to decline to sign
      *
@@ -141,7 +141,7 @@ abstract class AbstractResource extends AbstractObject
         $this->test_mode = false;
         return $this;
     }
-    
+
     /**
      * @return SignatureRequest
      * @ignore
