@@ -141,16 +141,12 @@ class Client
      * Send a new SignatureRequest with the submitted documents
      *
      * @param  SignatureRequest $request
-     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function sendSignatureRequest(SignatureRequest $request, $ux_version = null)
+    public function sendSignatureRequest(SignatureRequest $request)
     {
         $params = $request->toParams();
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
 
         $response = $this->rest->post(
             static::SIGNATURE_REQUEST_SEND_PATH,
