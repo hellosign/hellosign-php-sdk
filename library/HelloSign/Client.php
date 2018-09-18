@@ -522,19 +522,15 @@ class Client
     }
 
     /**
-     * Creates a signature request that can be embedded within your website
+     * Creates a SignatureRequest that can be embedded within your website
      *
      * @param  EmbeddedSignatureRequest $request
-     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function createEmbeddedSignatureRequest(EmbeddedSignatureRequest $request, $ux_version = null)
+    public function createEmbeddedSignatureRequest(EmbeddedSignatureRequest $request)
     {
         $params = $request->toParams();
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
 
         // choose url
         $url = $request->isUsingTemplate()
