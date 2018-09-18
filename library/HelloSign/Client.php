@@ -346,11 +346,11 @@ class Client
     }
 
     /**
-     * Removes the specified User's access to the specified Template. The user
+     * Removes the specified Account access to the specified Template. The user
      * can be designated using their account ID or email.
      *
-     * @param  string $template_id template ID
-     * @param  string $id_or_email account ID or email address
+     * @param  string $template_id Template ID to remove the Account access to.
+     * @param  string $id_or_email Account ID or email address to remove access to the Template.
      * @return Template
      * @throws BaseException
      */
