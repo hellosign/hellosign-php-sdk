@@ -55,6 +55,7 @@ class Client
 
     const SIGNATURE_REQUEST_CANCEL_PATH            = "signature_request/cancel";
     const SIGNATURE_REQUEST_REMIND_PATH            = "signature_request/remind";
+    const SIGNATURE_REQUEST_UPDATE_PATH            = "signature_request/update";
     const SIGNATURE_REQUEST_FILES_PATH             = "signature_request/files";
     const SIGNATURE_REQUEST_EMBEDDED_PATH          = "signature_request/create_embedded";
     const SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH = "signature_request/create_embedded_with_template";
@@ -197,6 +198,27 @@ class Client
         $response = $this->rest->post(
             static::SIGNATURE_REQUEST_REMIND_PATH . '/' . $request_id,
             array('email_address' => $email, 'name' => $name)
+        );
+
+        $this->checkResponse($response);
+
+        return new SignatureRequest($response);
+    }
+
+    /**
+     * Updates the email address for a given signer on a SignatureRequest
+     *
+     * @param  string $request_id Signature Request ID to update
+     * @param  string $signature_id The Signature ID for the recipient
+     * @param  string $email The new email address for the recipient
+     * @return SignatureRequest
+     * @throws BaseException
+     */
+    public function updateSignatureRequest($request_id, $signature_id, $email)
+    {
+        $response = $this->rest->post(
+            static::SIGNATURE_REQUEST_UPDATE_PATH . '/' . $request_id,
+            array('signature_id' => $signature_id, 'email_address' => $email)
         );
 
         $this->checkResponse($response);
