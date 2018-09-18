@@ -32,7 +32,7 @@ namespace HelloSign;
 use stdClass;
 
 /**
- * Represents a HelloSign signature request based on a Template
+ * Represents a HelloSign SignatureRequest based on a Template
  *
  * Unlike the SignatureRequest, this object is only used to submit
  * the request. A successfully submitted TemplateSignatureRequest will

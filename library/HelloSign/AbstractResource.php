@@ -67,15 +67,6 @@ abstract class AbstractResource extends AbstractObject
     protected $allow_decline = false;
 
     /**
-    * Whether the sender will allow the signer to reassign the SignatureRequest
-    *
-    * Defaults to false.
-    *
-    * @var boolean
-    */
-   protected $allow_reassign = false;
-
-    /**
      * The title the specified Account uses for the SignatureRequest
      *
      * @var string
@@ -168,26 +159,6 @@ abstract class AbstractResource extends AbstractObject
     public function disableAllowDecline()
     {
         $this->allow_decline = false;
-        return $this;
-    }
-
-    /**
-     * @return SignatureRequest
-     * @ignore
-     */
-    public function enableAllowReassign()
-    {
-        $this->allow_reassign = true;
-        return $this;
-    }
-
-    /**
-     * @return SignatureRequest
-     * @ignore
-     */
-    public function disableAllowReassign()
-    {
-        $this->allow_reassign = false;
         return $this;
     }
 

@@ -93,6 +93,15 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $details_url = null;
 
     /**
+    * Whether the sender will allow the signer to reassign the SignatureRequest
+    *
+    * Defaults to false.
+    *
+    * @var boolean
+    */
+   protected $allow_reassign = false;
+
+    /**
      * A list of email addresses that were CCed on the SignatureRequest
      *
      * They will receive a copy of the final PDF once all the signers have
@@ -123,7 +132,7 @@ class SignatureRequest extends AbstractSignatureRequest
      * @var SignatureList
      */
     protected $signatures = null;
-    
+
     /**
      * The document fields manually specified when signing from a file. Optional
      * See: https://www.hellosign.com/api/signatureRequestWalkthrough#SignatureRequestScenarios/CreateFromFileAndComponents
@@ -154,7 +163,27 @@ class SignatureRequest extends AbstractSignatureRequest
     {
         return $this->signature_request_id;
     }
-    
+
+    /**
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function enableAllowReassign()
+    {
+        $this->allow_reassign = true;
+        return $this;
+    }
+
+    /**
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function disableAllowReassign()
+    {
+        $this->allow_reassign = false;
+        return $this;
+    }
+
     /**
      * @param  array $form_fields
      * @return SignatureRequest
@@ -165,7 +194,7 @@ class SignatureRequest extends AbstractSignatureRequest
         $this->form_fields_per_document = json_encode($form_fields);
         return $this;
     }
-    
+
     /**
      * Set the value for a custom field with the given field name
      * and optionally define a Role allowed to edit it and if the field is required to be filled
