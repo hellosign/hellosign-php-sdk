@@ -277,9 +277,9 @@ class Client
     }
 
     /**
-     * Retrieves the template by template id
+     * Retrieves the specified Template
      *
-     * @param  string $id
+     * @param  string $id Template ID to retrieve
      * @return stdClass
      * @throws BaseException
      */
@@ -295,15 +295,21 @@ class Client
     }
 
     /**
-     * Retrieves the templates for the current user account
+     * Retrieves a list of Templates that are accessible by this account
      *
-     * @param  integer $page
+     * @param  integer $page Specified page number to return. Defaults to 1. (optional)
+     * @param  integer $page_size Number of objects to return per page between 1 and 100. Defaults to 20. (optional)
+     * @param  string $account_id Account ID to return Templates for. Defaults to your account. (optional)
      * @return TemplateList
      * @throws BaseException
      */
-    public function getTemplates($page = 1)
+    public function getTemplates($page = 1, $page_size = null, $account_id = null)
     {
-        $response = $this->rest->get(static::TEMPLATE_LIST_PATH, array('page' => $page));
+        $response = $this->rest->get(static::TEMPLATE_LIST_PATH,
+          array('account_id' => $account_id,
+            'page' => $page,
+            'page_size' => $page_size)
+        );
 
         $this->checkResponse($response);
 

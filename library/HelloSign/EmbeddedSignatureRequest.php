@@ -45,7 +45,7 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
     {
         /**
          * Here we combine (using the + operator) the param arrays for the
-         * SignatureRequest object with itself (the EmbeddedSignatureRequest
+         * SignatureRequest object with itself (the Embedded SignatureRequest
          * object) to get the final params array. The order of this union is
          * important! The params from $this->request must be left of the union
          * operator so that its values (e.g. test_mode) take precedence over
