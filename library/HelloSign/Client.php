@@ -545,10 +545,9 @@ class Client
     }
 
     /**
-     * Retrieves the necessary information to build an embedded signature
-     * request
+     * Retrieves the necessary information to build an embedded SignatureRequest
      *
-     * @param  string $id ID of the signature request to embed
+     * @param  string $id The signature_id of the SignatureRequest to embed
      * @return EmbeddedResponse
      * @throws BaseException
      */

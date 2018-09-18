@@ -30,10 +30,10 @@
 namespace HelloSign;
 
 /**
- * Represents an Embedded signature request (either standard or templated)
+ * Represents an Embedded SignatureRequest (either standard or templated)
  *
- * An embedded request is one that can be signed from either within HelloSign or
- * from within an iFrame on your website.
+ * An embedded SignatureRequest is one that can be signed from within an
+ * iFrame on your website.
  */
 class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
 {
@@ -44,8 +44,8 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
     public function toParams()
     {
         /**
-         * Here we union (using the + operator) the param arrays for the
-         * SignatureRequest object with ourself (the EmbeddedSignatureRequest
+         * Here we combine (using the + operator) the param arrays for the
+         * SignatureRequest object with itself (the EmbeddedSignatureRequest
          * object) to get the final params array. The order of this union is
          * important! The params from $this->request must be left of the union
          * operator so that its values (e.g. test_mode) take precedence over

@@ -36,14 +36,14 @@ namespace HelloSign;
 abstract class AbstractSignatureRequestWrapper extends AbstractResource
 {
     /**
-     * Client id of the app
+     * Client ID of the app
      *
      * @var string
      */
     protected $client_id = null;
 
     /**
-     * Related signature request
+     * Related SignatureRequest
      *
      * @var AbstractSignatureRequest
      */
