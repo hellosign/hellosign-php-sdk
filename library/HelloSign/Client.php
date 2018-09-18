@@ -183,19 +183,20 @@ class Client
      * Instructs HelloSign to email the given address with a reminder to sign
      * the SignatureRequest referenced by the given request ID.
      *
-     * Note: You cannot send a reminder within 1 hours of the last reminder that
+     * Note: You cannot send a reminder within 1 hour of the last reminder that
      * was sent, manually or automatically.
      *
      * @param  string $request_id Signature Request ID
-     * @param  string $email
+     * @param  string $email Email address of the signer
+     * @param  string $name Name of signer to send reminder to (optional)
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function requestEmailReminder($request_id, $email)
+    public function requestEmailReminder($request_id, $email, $name = null)
     {
         $response = $this->rest->post(
             static::SIGNATURE_REQUEST_REMIND_PATH . '/' . $request_id,
-            array('email_address' => $email)
+            array('email_address' => $email, 'name' => $name)
         );
 
         $this->checkResponse($response);
