@@ -56,6 +56,7 @@ class Client
     const SIGNATURE_REQUEST_CANCEL_PATH            = "signature_request/cancel";
     const SIGNATURE_REQUEST_REMIND_PATH            = "signature_request/remind";
     const SIGNATURE_REQUEST_UPDATE_PATH            = "signature_request/update";
+    const SIGNATURE_REQUEST_REMOVE_PATH            = "signature_request/remove";
     const SIGNATURE_REQUEST_FILES_PATH             = "signature_request/files";
     const SIGNATURE_REQUEST_EMBEDDED_PATH          = "signature_request/create_embedded";
     const SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH = "signature_request/create_embedded_with_template";
@@ -224,6 +225,25 @@ class Client
         $this->checkResponse($response);
 
         return new SignatureRequest($response);
+    }
+
+    /**
+     * Removes your access to a completed SignatureRequest.
+     * Note that this action is NOT reversible.
+     *
+     * @param  string $request_id Signature Request ID to remove access
+     * @return boolean
+     * @throws BaseException
+     */
+    public function removeSignatureRequestAccess($request_id)
+    {
+        $response = $this->rest->post(
+            static::SIGNATURE_REQUEST_REMOVE_PATH . '/' . $request_id
+        );
+
+        $this->checkResponse($response, false);
+
+        return true;
     }
 
     /**
