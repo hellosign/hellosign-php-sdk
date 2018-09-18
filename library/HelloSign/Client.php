@@ -323,11 +323,11 @@ class Client
     }
 
     /**
-     * Gives the specified User access to the specified Template. The user can
+     * Gives the specified Account access to the specified Template. The user can
      * be designated using their account ID or email address.
      *
-     * @param  string $template_id template ID
-     * @param  string $id_or_email account ID or email address
+     * @param  string $template_id Template ID to give the Account access to.
+     * @param  string $id_or_email Account ID or email address to give access to the Template.
      * @return Template
      * @throws BaseException
      */
