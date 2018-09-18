@@ -369,7 +369,7 @@ class Client
     }
 
     /**
-     * The first step in an embedded template workflow.
+     * The first step in an EmbeddedTemplate workflow.
      * Creates a draft template that can then be further set up in the template 'edit' stage.
      *
      * @param  Template $request
