@@ -444,14 +444,14 @@ class Client
     * @return string
     */
 
-    public function updateTemplateFiles($template_id, $request)
+    public function updateTemplateFiles($template_id, Template $request)
     {
       $params = $request->toParams();
       $response = $this->rest->post(
         static::TEMPLATE_UPDATE_FILES_PATH . '/' . $template_id,
         $params
       );
-      return new Template($response);
+      return $response;
     }
 
     /**
@@ -574,7 +574,7 @@ class Client
      */
     public function getEmbeddedEditUrl($id)
     {
-        $response = $this->rest->get(
+        $response = $this->rest->post(
             static::EMBEDDED_EDIT_URL_PATH . '/' . $id
         );
 
