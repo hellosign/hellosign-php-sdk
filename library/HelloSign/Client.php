@@ -390,9 +390,9 @@ class Client
     }
 
     /**
-     * Completely deletes the template specified from the account.
+     * Deletes the specified Template from the Account.
      *
-     * @param  string $template_id template ID
+     * @param  string $template_id Template ID to delete
      * @return boolean
      * @throws BaseException
      */
@@ -411,9 +411,9 @@ class Client
     /**
      * Retrieves a link or copy of the files associated with a template
      *
-     * @param  string $template_id
-     * @param  string $dest_path (optional) where should the file be saved. Will retrieve link if empty.
-     * @param  string $type (optional) get the files as a single pdf or a zip of many. Links will always be pdfs.
+     * @param  string $template_id Template ID to retrieve files
+     * @param  string $dest_path Where should the file be saved. Will retrieve link if empty. (optional)
+     * @param  string $type Return the files as a single PDF or a zip of each document. Links will always be PDFs. (optional)
      * @return string
      * @throws BaseException
      */
@@ -437,10 +437,10 @@ class Client
     }
 
     /**
-    * Creates a new template using the overlay of current template_id
+    * Creates a new Template using the overlay of specified Template
     *
-    * @param string $template_id
-    * @param string $file
+    * @param string $template_id Template ID to update
+    * @param string $file The new file(s) to overlay. Must have the same page count and orientation of original Template.
     * @return string
     */
 
@@ -462,12 +462,9 @@ class Client
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function sendTemplateSignatureRequest(TemplateSignatureRequest $request, $ux_version = null)
+    public function sendTemplateSignatureRequest(TemplateSignatureRequest $request)
     {
         $params = $request->toParams();
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
 
         $response = $this->rest->post(
             static::TEMPLATE_SIGNATURE_REQUEST_PATH,
