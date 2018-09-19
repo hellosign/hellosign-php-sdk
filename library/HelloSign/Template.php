@@ -164,6 +164,15 @@ class Template extends AbstractResource
     protected $skip_me_now = false;
 
     /**
+    * Whether the signers can reassign the SignatureRequest created using this Template
+    *
+    * Defaults to false.
+    *
+    * @var boolean
+    */
+   protected $allow_reassign = false;
+
+    /**
      * @return string
      * @ignore
      */
@@ -360,6 +369,26 @@ class Template extends AbstractResource
     }
 
     /**
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function enableAllowReassign()
+    {
+        $this->allow_reassign = true;
+        return $this;
+    }
+
+    /**
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function disableAllowReassign()
+    {
+        $this->allow_reassign = false;
+        return $this;
+    }
+
+    /**
      * @param  stdClass $array
      * @param  array $options
      * @return Template
@@ -391,7 +420,8 @@ class Template extends AbstractResource
             'signer_roles',
             'use_preexisting_fields',
             'metadata',
-            'skip_me_now'
+            'skip_me_now',
+            'allow_reassign'
         );
 
         if (isset($this->merge_fields) && count($this->merge_fields) > 0) {
