@@ -185,8 +185,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
          */
         return $this->request->toParams(array(
             'except' => array(
-                'title', // title not supported for unclaimed draft endpoints
-                'allow_decline'
+                'title' // title not supported for unclaimed draft endpoints
             )
         )) + $this->toArray(array(
             'except' => $except

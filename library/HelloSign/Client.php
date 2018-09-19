@@ -605,7 +605,7 @@ class Client
     }
 
     /**
-     * Creates an unclaimed draft using the provided request draft object
+     * Creates an UnclaimedDraft using the provided request draft object
      *
      * @param  EmbeddedSignatureRequest $request
      * @return UnclaimedDraft The created draft
