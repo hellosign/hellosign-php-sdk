@@ -111,6 +111,13 @@ class Template extends AbstractResource
     protected $signer_roles = array();
 
     /**
+     * Specifies whether or not to prompt the user to edit signer roles.
+     *
+     * @var boolean
+     */
+    protected $skip_signer_roles = false;
+
+    /**
      * An array of the designated CC roles that must be specified when sending
      * a SignatureRequest using this Template.
      *
@@ -162,6 +169,14 @@ class Template extends AbstractResource
      * @var boolean
      */
     protected $skip_me_now = false;
+
+    /**
+     * Specifies whether or not the user is prompted to edit the subject and
+     * message, if they have already been provided.
+     *
+     * @var boolean
+     */
+    protected $skip_subject_message = false;
 
     /**
     * Whether the signers can reassign the SignatureRequest created using this Template
@@ -369,7 +384,7 @@ class Template extends AbstractResource
     }
 
     /**
-     * @return SignatureRequest
+     * @return Template
      * @ignore
      */
     public function enableAllowReassign()
@@ -379,12 +394,32 @@ class Template extends AbstractResource
     }
 
     /**
-     * @return SignatureRequest
+     * @return Template
      * @ignore
      */
     public function disableAllowReassign()
     {
         $this->allow_reassign = false;
+        return $this;
+    }
+
+    /**
+     * @return Template
+     * @ignore
+     */
+    public function enableSkipSignerRoles()
+    {
+        $this->skip_signer_roles = true;
+        return $this;
+    }
+
+    /**
+     * @return Template
+     * @ignore
+     */
+    public function enableSkipSubjectMessage()
+    {
+        $this->skip_subject_message = true;
         return $this;
     }
 
@@ -452,7 +487,9 @@ class Template extends AbstractResource
             'file',
             'file_url',
             'subject',
-            'message'
+            'message',
+            'skip_signer_roles',
+            'skip_subject_message'
         );
 
         $params = $this->toArray();

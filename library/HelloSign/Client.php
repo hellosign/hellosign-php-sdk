@@ -440,7 +440,7 @@ class Client
     * Creates a new Template using the overlay of specified Template
     *
     * @param string $template_id Template ID to update
-    * @param string $file The new file(s) to overlay. Must have the same page count and orientation of original Template.
+    * @param Template $request Template Object settings to apply to the new Template
     * @return string
     */
 
@@ -569,14 +569,24 @@ class Client
      * to edit an EmbeddedTemplate.
      *
      * @param  string $id The ID of the EmbeddedTemplate to edit or create.
+     * @param  Template $request Template object with settings for the Embedded Template
      * @return EmbeddedResponse
      * @throws BaseException
      */
-    public function getEmbeddedEditUrl($id)
+    public function getEmbeddedEditUrl($id, Template $request = null)
     {
-        $response = $this->rest->post(
+        if ($request !== null) {
+          $params = $request->toParams();
+          $response = $this->rest->post(
+            static::EMBEDDED_EDIT_URL_PATH . '/' . $id,
+            $params
+          );
+        } else {
+          $response = $this->rest->get(
             static::EMBEDDED_EDIT_URL_PATH . '/' . $id
-        );
+          );
+        };
+
 
         $this->checkResponse($response);
 
