@@ -35,14 +35,14 @@ namespace HelloSign;
 class OAuthTokenRequest extends AbstractObject
 {
     /**
-     * The client id of your app
+     * The Client ID of your API App
      *
      * @var string
      */
     protected $client_id = null;
 
     /**
-     * The secret token of your app
+     * The secret token of your API App
      *
      * @var string
      */

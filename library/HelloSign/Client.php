@@ -547,7 +547,7 @@ class Client
     }
 
     /**
-     * Retrieves the necessary information to build an embedded SignatureRequest
+     * Retrieves an embedded object containing a signature URL that can be opened in an iFrame.
      *
      * @param  string $id The signature_id of the SignatureRequest to embed
      * @return EmbeddedResponse
@@ -565,10 +565,10 @@ class Client
     }
 
     /**
-     * Retrieves the necessary information to edit an embedded template
+     * Retrieves an embedded object containing an edit URL that can be opened in an iFrame
+     * to edit an EmbeddedTemplate.
      *
-     *
-     * @param  string $id ID of the template to embed
+     * @param  string $id The ID of the EmbeddedTemplate to edit or create.
      * @return EmbeddedResponse
      * @throws BaseException
      */
@@ -626,7 +626,7 @@ class Client
 
     /**
      * Performs an OAuth request and returns the OAuthToken object for authorizing
-     * an API application, and will automatically set the access token for
+     * an API App, and will automatically set the access token for
      * making authenticated requests with this client.
      *
      * @param OAuthTokenRequest $request
@@ -715,10 +715,10 @@ class Client
     }
 
     /**
-     * Returns true if an account exists with the provided email address. Note
+     * Returns true if an Account exists with the provided email address. Note
      * this is limited to the visibility of the currently authenticated user.
      *
-     * @param  string $email
+     * @param  string $email Email address to validate.
      * @return boolean
      * @throws BaseException
      */
