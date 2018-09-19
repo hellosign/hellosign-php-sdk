@@ -36,7 +36,7 @@ namespace HelloSign;
 abstract class AbstractSignatureRequestWrapper extends AbstractResource
 {
     /**
-     * Client ID of the app
+     * Client ID of the API App
      *
      * @var string
      */
@@ -82,7 +82,7 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     }
 
     /**
-     * include only if enabling embedded signing
+     * Include only if enabling embedded signing
      * when using EmbeddedSignatureRequest
      * with createUnclaimedDraftEmbeddedWithTemplate
      * @return static

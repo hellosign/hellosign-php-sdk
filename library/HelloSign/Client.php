@@ -584,7 +584,7 @@ class Client
     }
 
     /**
-     * Creates an unclaimed draft using the provided request draft object
+     * Creates an UnclaimedDraft using the provided request draft object
      *
      * @param  UnclaimedDraft $draft
      * @return UnclaimedDraft The created draft

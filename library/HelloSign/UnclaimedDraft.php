@@ -30,7 +30,7 @@
 namespace HelloSign;
 
 /**
- * Represents an unclaimed draft response and request
+ * Represents an UnclaimedDraft response and request
  *
  * The UnclaimedDraft object essentially "wraps" a SignatureRequest. There are
  * two types of unclaimed drafts that can be created:
@@ -48,7 +48,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     protected $resource_type = 'unclaimed_draft';
 
     /**
-     * The type of unclaimed draft to create
+     * The type of UnclaimedDraft to create
      *
      * Use "send_document" to create a claimable file, and "request_signature"
      * for a claimable signature request. If the type is "request_signature"
