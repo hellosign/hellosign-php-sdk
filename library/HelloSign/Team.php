@@ -85,7 +85,7 @@ class Team extends AbstractResource
     }
 
     /**
-     * @param  string $name
+     * @param  string $name Name of the new Team
      * @return Team
      * @ignore
      */

@@ -455,10 +455,9 @@ class Client
     }
 
     /**
-     * Creates a new Signature Request based on the template provided
+     * Creates a new Signature Request based on the Template provided
      *
      * @param  TemplateSignatureRequest $request
-     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
@@ -477,7 +476,7 @@ class Client
     }
 
     /**
-     * Retrieves a Signature Request with the given ID
+     * Retrieves a SignatureRequest with the given ID
      *
      * @param  String $id Signature Request ID
      * @return SignatureRequest
@@ -793,7 +792,7 @@ class Client
     }
 
     /**
-     * Retrieves the Team for the current user account
+     * Retrieves the Team for the current Account
      *
      * @return Team
      * @throws BaseException
@@ -810,7 +809,7 @@ class Client
     }
 
     /**
-     * Creates a new team for the current user
+     * Creates a new Team for the current Account
      *
      * @param  Team $team
      * @return Team
@@ -829,9 +828,9 @@ class Client
     }
 
     /**
-     * Updates the current user's team name
+     * Updates the current Account's Team name
      *
-     * @param  string $name Team name
+     * @param  string $name New Team name
      * @return Team
      * @throws BaseException
      */
@@ -850,7 +849,7 @@ class Client
     }
 
     /**
-     * Destroys the current user's team
+     * Deletes the current Account's Team
      *
      * @return boolean
      * @throws BaseException
@@ -867,9 +866,9 @@ class Client
     }
 
     /**
-     * Adds the user to the current user's team
+     * Adds the specified Account to the current Team
      *
-     * @param  string $id_or_email account ID or email address
+     * @param  string $id_or_email Account ID or email address of the Account to invite
      * @return Team
      * @throws BaseException
      */
@@ -888,9 +887,9 @@ class Client
     }
 
     /**
-     * Removes the team member indicated by the user account ID or email address
+     * Removes the specified Account from the current Team
      *
-     * @param  string $id_or_email account ID or email address
+     * @param  string $id_or_email Account ID or email address of the Account to remove
      * @return Team
      * @throws BaseException
      */
@@ -909,7 +908,7 @@ class Client
     }
 
     /**
-     * Removes all current user's team members
+     * Removes all team members from current Team
      *
      * @return Team
      * @throws BaseException
@@ -929,7 +928,7 @@ class Client
     }
 
     /**
-     * check response and throw Exception if response is not proper
+     * Checks response and throws Exception if response is not proper
      *
      * @param  mixed $response
      * @param  boolean $strict
@@ -953,7 +952,7 @@ class Client
     }
 
     /**
-     * check response and throw Exception if response is not proper
+     * Checks response and throws Exception if response is not proper
      *
      * @param  stdClass $response
      * @throws Error
@@ -967,7 +966,7 @@ class Client
     }
 
     /**
-     * Create REST object
+     * Creates REST object
      *
      * @param  mixed $first email address or apikey or OAuthToken
      * @param  string $last Null if using apikey or OAuthToken
