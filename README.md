@@ -1,6 +1,6 @@
 ## HelloSign PHP SDK
 
-This is the official PHP SDK for HelloSign's API.  [View api documentation and examples.](https://app.hellosign.com/api/documentation)
+This is the official PHP SDK for HelloSign's API.  [View API Documentation and Examples.](https://app.hellosign.com/api/documentation)
 
 ## Installation
 
@@ -9,9 +9,9 @@ This is the official PHP SDK for HelloSign's API.  [View api documentation and e
 The latest version of the SDK requires PHP version 5.5 or higher.
 
 You can import this SDK into your library two ways, either through including the base HelloSign.php file into your
-project or using Composer ([https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md)).
+project or using [Composer](https://getcomposer.org/doc/00-intro.md).
 
-To use composer:
+To use Composer:
 
 - First, install Composer if you don't have it already
 
@@ -19,7 +19,7 @@ To use composer:
     curl -sS https://getcomposer.org/installer | php
     ```
 
-- Create `composer.json` and add the following
+- Create a `composer.json` file and add the following:
 
     ```json
     {
@@ -53,13 +53,11 @@ $client = new HelloSign\Client($apikey);
 
 ### Email/Password Config
 
-
 ```php
 $client = new HelloSign\Client($email_address, $password);
 ```
 
 ### Oauth Config
-
 
 ```php
 $client = new HelloSign\Client($oauth_token); //instance of HelloSign\OAuthToken
@@ -67,7 +65,6 @@ $client = new HelloSign\Client($oauth_token); //instance of HelloSign\OAuthToken
 
 Your app users are almost ready to start signing!
 See below for the most common use cases for this wrapper.
-
 
 ## Usage
 
@@ -147,6 +144,7 @@ if ($response->isComplete()) {
 ```
 
 ### Creating an Embedded Signature Request to use for Embedded Signing
+Refer to the (Embedded Signing Walkthrough)[https://app.hellosign.com/api/embeddedSigningWalkthrough] for more details.
 
 ```php
 // Create the SignatureRequest or TemplateSignatureRequest object
