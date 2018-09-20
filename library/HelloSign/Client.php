@@ -132,14 +132,6 @@ class Client
     }
 
     /**
-     * Should only be used for unit tests that may be hitting a local endpoint
-     * @deprecated This is no longer necessary, as all environments should have valid SSL enabled.
-     */
-    public function disableCertificateCheck($rest = null) {
-        // TODO: Remove me
-    }
-
-    /**
      * Send a new SignatureRequest with the submitted documents
      *
      * @param  SignatureRequest $request
