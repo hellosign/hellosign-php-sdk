@@ -156,21 +156,6 @@ class Template extends AbstractResource
     protected $accounts = array();
 
     /**
-     * Used when creating an embedded template draft.
-     * Specifies if this Template should use preexisting fields from the original document.
-     *
-     * @var boolean
-     */
-    protected $use_preexisting_fields = false;
-
-    /**
-     * Disables the "Me (Now)" option for the person preparing the Template.
-     *
-     * @var boolean
-     */
-    protected $skip_me_now = false;
-
-    /**
      * Specifies whether or not the user is prompted to edit the subject and
      * message, if they have already been provided.
      *
@@ -361,26 +346,6 @@ class Template extends AbstractResource
     public function isEmbeddedDraft()
     {
         return isset($this->edit_url);
-    }
-
-    /**
-       * @param  boolean $use_preexisting_fields Set to true to use preexisting fields.
-       * @ignore
-       */
-    public function setUsePreexistingFields($use_preexisting_fields)
-    {
-        $this->use_preexisting_fields = $use_preexisting_fields;
-    }
-
-    /**
-       * @param  boolean $skip_me_now Set to true to disable the "Me (Now)" option
-       * for the preparer.
-       * @ignore
-       */
-    public function enableSkipMeNow()
-    {
-        $this->skip_me_now = true;
-        return $this;
     }
 
     /**
