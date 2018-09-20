@@ -446,12 +446,13 @@ class Client
 
     public function updateTemplateFiles($template_id, Template $request)
     {
-      $params = $request->toParams();
+      $params = $request->toUpdateParams();
       $response = $this->rest->post(
         static::TEMPLATE_UPDATE_FILES_PATH . '/' . $template_id,
         $params
       );
-      return $response;
+
+      return new Template($response);
     }
 
     /**

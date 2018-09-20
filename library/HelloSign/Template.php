@@ -502,4 +502,27 @@ class Template extends AbstractResource
 
         return $params;
     }
+
+    public function toUpdateParams()
+    {
+        $fields_to_include = array(
+            'template_id',
+            'file',
+            'file_url',
+            'subject',
+            'message',
+            'client_id',
+            'test_mode'
+        );
+
+        $params = $this->toArray();
+
+        foreach ($params as $key => $value) {
+            if (!in_array($key, $fields_to_include)) {
+                unset($params[$key]);
+            }
+        }
+
+        return $params;
+    }
 }
