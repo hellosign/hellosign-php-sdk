@@ -191,4 +191,26 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
             'except' => $except
         ));
     }
+
+    public function toEditParams()
+    {
+        $fields_to_include = array(
+            'client_id',
+            'test_mode',
+            'requesting_redirect_url',
+            'signing_redirect_url',
+            'is_for_embedded_signing',
+            'requester_email_address'
+        );
+
+        $params = $this->toArray();
+
+        foreach ($params as $key => $value) {
+            if (!in_array($key, $fields_to_include)) {
+                unset($params[$key]);
+            }
+        }
+
+        return $params;
+    }
 }

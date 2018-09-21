@@ -52,10 +52,15 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
          * our defaults.
          */
         return $this->request->toParams(array(
-            'except' => array('')
+            'except' => array(
+              'use_preexisting_fields',
+              'skip_me_now'
+            )
         )) + $this->toArray(array(
             'except' => array(
-                'request'
+                'request',
+                'use_preexisting_fields',
+                'skip_me_now'
             )
         ));
     }

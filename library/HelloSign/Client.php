@@ -83,6 +83,7 @@ class Client
     const UNCLAIMED_DRAFT_CREATE_PATH = "unclaimed_draft/create";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH = "unclaimed_draft/create_embedded";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH = "unclaimed_draft/create_embedded_with_template";
+    const UNCLAIMED_DRAFT_EDIT_AND_RESEND_PATH = "unclaimed_draft/edit_and_resend";
 
     const APIAPP_PATH = "api_app";
     const APIAPP_LIST_PATH = "api_app/list";
@@ -623,6 +624,27 @@ class Client
         $this->checkResponse($response);
 
         $draft = new UnclaimedDraft();
+
+        return $draft->fromResponse($response);
+    }
+
+    /**
+     * Creates a new SignatureRequest from another request that can be edited
+     * prior to being sent to the recipients.
+     *
+     * @param  string $id The Signature Request ID to copy
+     * @param  UnclaimedDraft $draft
+     * @return UnclaimedDraft The newly created draft
+     * @throws BaseException
+     */
+    public function unclaimedDraftEditAndResend($id, UnclaimedDraft $draft)
+    {
+        $response = $this->rest->post(
+          static::UNCLAIMED_DRAFT_EDIT_AND_RESEND_PATH . '/' . $id,
+          $draft->toEditParams()
+        );
+
+        $this->checkResponse($response);
 
         return $draft->fromResponse($response);
     }
