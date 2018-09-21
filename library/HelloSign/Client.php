@@ -595,7 +595,6 @@ class Client
      */
     public function createUnclaimedDraft(UnclaimedDraft $draft)
     {
-        echo "hi"
         // choose url
         $url = $draft->getClientId()
             ? static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH
