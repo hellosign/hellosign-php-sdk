@@ -111,7 +111,9 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     {
         $except = array(
             'use_text_tags',
-            'hide_text_tags'
+            'hide_text_tags',
+            'skip_me_now',
+            'use_preexisting_fields'
         );
         return $this->toArray(array(
             'except' => $except
