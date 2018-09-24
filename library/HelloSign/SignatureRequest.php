@@ -119,6 +119,13 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $custom_fields = null;
 
     /**
+     * An array of signer attachements
+     *
+     * @var AttachmentList
+     */
+    protected $attachments = null;
+
+    /**
      * An array of form field objects containing the name, value, and type of
      * each textbox or checkmark field filled in by the signers
      *
