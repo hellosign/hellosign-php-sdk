@@ -247,7 +247,7 @@ class SignatureRequest extends AbstractSignatureRequest
      * @param  boolean $required Whether or not the signer is required to upload this Attachment. (optional)
      * @return SignatureRequest
      */
-    public function addAttachment($name, $index, $signer_index, $instructions = null, $required = null)
+    public function addAttachment($name, $signer_index, $instructions = null, $required = null)
     {
         $attachment = new Attachment(array(
                 'name' => $name,
@@ -256,11 +256,11 @@ class SignatureRequest extends AbstractSignatureRequest
                 'required' => $required
             ));
 
-        if (isset($index)) {
-            $this->attachments[$index] = $attachment;
-        } else {
+        // if (isset($index)) {
+        //     $this->attachments[$index] = $attachment;
+        // } else {
             $this->attachments[] = $attachment;
-        }
+        // }
 
         return $this;
     }
