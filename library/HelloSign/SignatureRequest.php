@@ -158,6 +158,7 @@ class SignatureRequest extends AbstractSignatureRequest
     public function __construct($response = null, $options = array())
     {
         $this->signatures = new SignatureList;
+        $this->attachments = new AttachmentList;
 
         parent::__construct($response, $options);
     }
@@ -233,6 +234,34 @@ class SignatureRequest extends AbstractSignatureRequest
     public function addCC($email)
     {
         $this->cc_email_addresses[] = $email;
+        return $this;
+    }
+
+    /**
+     * Adds an Attachment to the SignatureRequest
+     *
+     * @param  string $name Name of the Attachment.
+     * @param  integer $index Index of the Attachment.
+     * @param  integer $signer_index Index of the signer to upload this Attachment.
+     * @param  string $instructions Instructions for uploading the Attachment. (Optional)
+     * @param  boolean $required Whether or not the signer is required to upload this Attachment. (optional)
+     * @return SignatureRequest
+     */
+    public function addAttachment($name, $index, $signer_index, $instructions = null, $required = null)
+    {
+        $attachment = new Attachment(array(
+                'name' => $name,
+                'instructions' => $instructions,
+                'signer_index' => $signer_index,
+                'required' => $required
+            ));
+
+        if (isset($index)) {
+            $this->attachments[$index] = $attachment;
+        } else {
+            $this->attachments[] = $attachment;
+        }
+
         return $this;
     }
 

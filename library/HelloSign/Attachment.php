@@ -42,7 +42,7 @@ class Attachment extends AbstractObject
     protected $name = null;
 
     /**
-     * The instructions for uploading the attachment.
+     * The instructions for uploading the attachment. (Optional)
      *
      * @var string
      */
