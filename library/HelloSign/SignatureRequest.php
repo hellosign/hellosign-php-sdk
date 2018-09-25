@@ -256,11 +256,7 @@ class SignatureRequest extends AbstractSignatureRequest
                 'required' => $required
             ));
 
-        // if (isset($index)) {
-        //     $this->attachments[$index] = $attachment;
-        // } else {
-            $this->attachments[] = $attachment;
-        // }
+        $this->attachments[] = $attachment;
 
         return $this;
     }
