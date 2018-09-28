@@ -164,6 +164,14 @@ class Template extends AbstractResource
     protected $skip_subject_message = false;
 
     /**
+     * Used when creating an embedded template draft.
+     * Specifies if this Template should use preexisting fields from the original document.
+     *
+     * @var boolean
+     */
+    protected $use_preexisting_fields = false;
+
+    /**
     * Whether the signers can reassign the SignatureRequest created using this Template
     *
     * Defaults to false.
@@ -385,6 +393,16 @@ class Template extends AbstractResource
     public function enableSkipSubjectMessage()
     {
         $this->skip_subject_message = true;
+        return $this;
+    }
+
+    /**
+       * @param  boolean $use_preexisting_fields Set to true to use preexisting fields.
+       * @ignore
+       */
+    public function setUsePreexistingFields($use_preexisting_fields)
+    {
+        $this->use_preexisting_fields = $use_preexisting_fields;
         return $this;
     }
 

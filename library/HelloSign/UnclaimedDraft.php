@@ -80,6 +80,13 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     protected $use_preexisting_fields = false;
 
     /**
+     * Disables the "Me (Now)" option for the person preparing the Template.
+     *
+     * @var boolean
+     */
+    protected $skip_me_now = false;
+
+    /**
      * @param  boolean $is_for_embedded_signing
      * @return UnclaimedDraft
      * @ignore
@@ -91,11 +98,24 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
 
     /**
        * @param  boolean $use_preexisting_fields
+       * @return UnclaimedDraft
        * @ignore
        */
     public function setUsePreexistingFields($use_preexisting_fields)
     {
         $this->use_preexisting_fields = $use_preexisting_fields;
+    }
+
+    /**
+       * @param  boolean $skip_me_now Set to true to disable the "Me (Now)" option
+       * for the preparer.
+       * @return UnclaimedDraft
+       * @ignore
+       */
+    public function enableSkipMeNow()
+    {
+        $this->skip_me_now = true;
+        return $this;
     }
 
     /**
