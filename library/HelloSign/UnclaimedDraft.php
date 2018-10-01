@@ -80,7 +80,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     protected $use_preexisting_fields = false;
 
     /**
-     * Disables the "Me (Now)" option for the person preparing the Template.
+     * Disables the "Me (Now)" option for the person preparing the SignatureRequest.
      *
      * @var boolean
      */
