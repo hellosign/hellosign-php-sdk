@@ -405,6 +405,7 @@ class Template extends AbstractResource
 
     /**
        * @param  boolean $use_preexisting_fields Set to true to use preexisting fields.
+       * @return Template
        * @ignore
        */
     public function setUsePreexistingFields($use_preexisting_fields)
@@ -412,6 +413,19 @@ class Template extends AbstractResource
         $this->use_preexisting_fields = $use_preexisting_fields;
         return $this;
     }
+
+    /**
+       * @param  boolean $skip_me_now Set to true to disable the "Me (Now)" option
+       * for the preparer.
+       * @return Template
+       * @ignore
+       */
+    public function enableSkipMeNow()
+    {
+        $this->skip_me_now = true;
+        return $this;
+    }
+
 
     /**
      * @param  stdClass $array
