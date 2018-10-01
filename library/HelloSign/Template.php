@@ -164,6 +164,13 @@ class Template extends AbstractResource
     protected $skip_subject_message = false;
 
     /**
+     * Disables the "Me (Now)" option for the person preparing the Template.
+     *
+     * @var boolean
+     */
+    protected $skip_me_now = false;
+
+    /**
      * Used when creating an embedded template draft.
      * Specifies if this Template should use preexisting fields from the original document.
      *
