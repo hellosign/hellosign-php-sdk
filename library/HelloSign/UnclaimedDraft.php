@@ -103,8 +103,8 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
        */
     public function setUsePreexistingFields($use_preexisting_fields)
     {
-        $this->use_preexisting_fields = $use_preexisting_fields
-        return $this
+        $this->use_preexisting_fields = $use_preexisting_fields;
+        return $this;
     }
 
     /**
