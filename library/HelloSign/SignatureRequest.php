@@ -276,9 +276,7 @@ class SignatureRequest extends AbstractSignatureRequest
             'signing_url',
             'details_url',
             'response_data',
-            'signatures',
-            'use_preexisting_fields',
-            'skip_me_now'
+            'signatures'
         ));
 
         // requester_email_address param only accepted in unclaimed_draft/create_embedded

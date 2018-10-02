@@ -50,6 +50,13 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     protected $request = null;
 
     /**
+     * Disables the "Me (Now)" option for the person preparing the SignatureRequest.
+     *
+     * @var boolean
+     */
+    protected $skip_me_now = false;
+
+    /**
      * Constructor
      *
      * @param AbstractSignatureRequest $request
@@ -121,6 +128,18 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     public function isUsingTemplate()
     {
         return $this->request instanceof TemplateSignatureRequest;
+    }
+
+    /**
+       * @param  boolean $skip_me_now Set to true to disable the "Me (Now)" option
+       * for the preparer.
+       * @return static
+       * @ignore
+       */
+    public function enableSkipMeNow()
+    {
+        $this->skip_me_now = true;
+        return $this;
     }
 
     /**
