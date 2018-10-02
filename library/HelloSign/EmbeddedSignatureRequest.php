@@ -56,7 +56,8 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
             )
         )) + $this->toArray(array(
             'except' => array(
-                'request'
+                'request',
+                'skip_me_now'
             )
         ));
     }
