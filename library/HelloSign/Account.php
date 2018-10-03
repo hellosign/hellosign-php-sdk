@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -57,31 +57,31 @@ class Account extends AbstractResource
     protected $email_address = null;
 
     /**
-     * The URL that HelloSign events will be POSTed to
+     * The URL that HelloSign Account events will be POSTed to
      *
      * @var string
      */
     protected $callback_url = null;
 
     /**
-     * If the user has a paid HelloSign license will return true
+     * If the user has a paid HelloSign subscription, will return true
      *
      * @var boolean
      */
     protected $is_paid_hs = false;
 
     /**
-     * If the user has a paid HelloFax license will return true
+     * If the user has a paid HelloFax subscription, will return true
      *
      * @var boolean
      */
     protected $is_paid_hf = false;
 
     /**
-     * An object detailing remaining monthly quotas
+     * An object detailing remaining quotas
      *
      * templates_left: API templates remaining
-     * api_signature_requests_left: API signature requests remaining
+     * api_signature_requests_left: API signature requests remaining for the month
      *
      * @var stdClass
      */

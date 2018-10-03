@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -35,14 +35,14 @@ namespace HelloSign;
 class OAuthTokenRequest extends AbstractObject
 {
     /**
-     * The client id of your app
+     * The Client ID of your API App
      *
      * @var string
      */
     protected $client_id = null;
 
     /**
-     * The secret token of your app
+     * The secret token of your API App
      *
      * @var string
      */

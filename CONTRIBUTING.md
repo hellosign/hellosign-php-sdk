@@ -6,7 +6,7 @@ We're excited you're considering contributing to our project! Your patches are e
 
 * Make sure you have a [GitHub account](https://github.com/signup/free)
 * Make sure you have a [HelloSign account](http://www.hellosign.com)
-* Submit a new [issue ticket](https://github.com/HelloFax/hellosign-php-sdk/issues), assuming one does not already exist.
+* Submit a new [issue ticket](https://github.com/hellosign/hellosign-php-sdk/issues), assuming one does not already exist.
   * Clearly describe the issue including steps to reproduce when it is a bug.
   * Make sure to include the version you are using which has the issue (and confirm that the issue you are having has not been fixed in a later version)
 * Fork the repository on GitHub

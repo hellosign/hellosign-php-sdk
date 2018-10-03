@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -30,7 +30,7 @@
 namespace HelloSign;
 
 /**
- * Represents an array of Signature
+ * Represents an array of Signatures
  */
 class SignatureList extends AbstractList
 {

@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -30,10 +30,10 @@
 namespace HelloSign;
 
 /**
- * Represents an Embedded signature request (either standard or templated)
+ * Represents an Embedded SignatureRequest (either standard or templated)
  *
- * An embedded request is one that can be signed from either within HelloSign or
- * from within an iFrame on your website.
+ * An embedded SignatureRequest is one that can be signed from within an
+ * iFrame on your website.
  */
 class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
 {
@@ -44,18 +44,20 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
     public function toParams()
     {
         /**
-         * Here we union (using the + operator) the param arrays for the
-         * SignatureRequest object with ourself (the EmbeddedSignatureRequest
+         * Here we combine (using the + operator) the param arrays for the
+         * SignatureRequest object with itself (the Embedded SignatureRequest
          * object) to get the final params array. The order of this union is
          * important! The params from $this->request must be left of the union
          * operator so that its values (e.g. test_mode) take precedence over
          * our defaults.
          */
         return $this->request->toParams(array(
-            'except' => array('')
+            'except' => array(
+            )
         )) + $this->toArray(array(
             'except' => array(
-                'request'
+                'request',
+                'skip_me_now'
             )
         ));
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -84,6 +84,13 @@ abstract class AbstractSignatureRequest extends AbstractResource
      * @var string
      */
     protected $client_id = null;
+
+    /**
+     * A JSON array of Custom Field objects
+     *
+     * @var string
+     */
+    protected $custom_fields = null;
 
     /**
      * Constructor
@@ -212,6 +219,32 @@ abstract class AbstractSignatureRequest extends AbstractResource
     public function setHideTextTags($hide_text_tags)
     {
         $this->hide_text_tags = $hide_text_tags;
+        return $this;
+    }
+
+    /**
+     * Set the value for a custom field with the given field name
+     * and optionally define a Role allowed to edit it and if the field is required to be filled
+     *
+     * @param  string $field_name field name to be filled in
+     * @param  string $value
+     * @param  string $editor
+     * @param  string $required
+     * @return AbstractSignatureRequest
+     */
+    public function setCustomFieldValue($field_name, $value, $editor = null, $required = null)
+    {
+        $custom_fields = isset($this->custom_fields) ? json_decode($this->custom_fields) : array();
+
+        $custom_fields[] = array(
+            'name'     => $field_name,
+            'value'    => $value,
+            'editor'   => $editor,
+            'required'   => $required
+        );
+
+        $this->custom_fields = json_encode($custom_fields);
+
         return $this;
     }
 

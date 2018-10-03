@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -41,24 +41,24 @@ class Template extends AbstractResource
     protected $resource_type = 'template';
 
     /**
-     * The id of the ReusableForm
+     * The id of the Template
      *
      * @var string
      */
     protected $template_id;
 
     /**
-     * Client id of the app you're using to create this draft.
+     * Client ID of the API App used to create this draft.
      *
      * @var string
      */
     protected $client_id;
 
     /**
-     * The title of the ReusableForm
+     * The title of the Template
      *
      * This will also be the default subject of the message sent to signers
-     * when using this ReusableForm to send a SignatureRequest. This can be
+     * when using this Template to send a SignatureRequest. This can be
      * overriden when sending the SignatureRequest.
      *
      * @var string
@@ -67,7 +67,7 @@ class Template extends AbstractResource
 
     /**
      * The default message that will be sent to signers when using this
-     * ReusableForm to send a SignatureRequest. This can be overriden when
+     * Template to send a SignatureRequest. This can be overriden when
      * sending the SignatureRequest.
      *
      * @var string
@@ -75,28 +75,28 @@ class Template extends AbstractResource
     protected $message;
 
     /**
-     * You are creator of template or not
+     * Specifies if the current account is the creator of the Template.
      *
      * @var boolean
      */
     protected $is_creator = false;
 
     /**
-     * You can edit template or not
+     * Specifies if the current account can edit the Template.
      *
      * @var boolean
      */
     protected $can_edit = false;
 
     /**
-     * Used when creating embedded draft requests - Edit URL returned from server
+     * Used when creating embedded draft requests - Edit URL returned from server.
      *
      * @var string
      */
     protected $edit_url = null;
 
     /**
-     * Used when creating embedded draft requests - expiry date for $edit_url
+     * Used when creating embedded draft requests - Expiration timestamp for the $edit_url.
      *
      * @var integer
      */
@@ -104,30 +104,37 @@ class Template extends AbstractResource
 
     /**
      * An array of the designated signer roles that must be specified when
-     * sending a SignatureRequest using this ReusableForm
+     * sending a SignatureRequest using this Template.
      *
      * @var array
      */
     protected $signer_roles = array();
 
     /**
+     * Specifies whether or not to prompt the user to edit signer roles.
+     *
+     * @var boolean
+     */
+    protected $skip_signer_roles = false;
+
+    /**
      * An array of the designated CC roles that must be specified when sending
-     * a SignatureRequest using this ReusableForm
+     * a SignatureRequest using this Template.
      *
      * @var array
      */
     protected $cc_roles = array();
 
     /**
-     * An array describing each document associated with this ReusableForm.
-     * Includes form field data for each document.
+     * An array describing each document associated with this Template.
+     * Includes signer components for each document.
      *
      * @var array
      */
     protected $documents = array();
 
     /**
-     * A JSON array of Custom Field objects
+     * A JSON array of custom_field objects on the Template.
      *
      * @var string
      */
@@ -142,19 +149,43 @@ class Template extends AbstractResource
     protected $merge_fields = array();
 
     /**
-     * An array of the Accounts that can use this ReusableForm
+     * An array of the Accounts that can use this Template.
      *
      * @var array
      */
     protected $accounts = array();
 
     /**
-     * Used when creating an embedded template draft
-     * Whether this template should use preexisting fields from the original document
+     * Specifies whether or not the user is prompted to edit the subject and
+     * message, if they have already been provided.
+     *
+     * @var boolean
+     */
+    protected $skip_subject_message = false;
+
+    /**
+     * Disables the "Me (Now)" option for the person preparing the Template.
+     *
+     * @var boolean
+     */
+    protected $skip_me_now = false;
+
+    /**
+     * Used when creating an embedded template draft.
+     * Specifies if this Template should use preexisting fields from the original document.
      *
      * @var boolean
      */
     protected $use_preexisting_fields = false;
+
+    /**
+    * Whether the signers can reassign the SignatureRequest created using this Template
+    *
+    * Defaults to false.
+    *
+    * @var boolean
+    */
+   protected $allow_reassign = false;
 
     /**
      * @return string
@@ -249,7 +280,7 @@ class Template extends AbstractResource
     /* Setters for Create Embedded Draft */
 
     /**
-     * @param string $id clientID
+     * @param string $id Client ID of the API App
      * @return boolean
      * @ignore
      */
@@ -260,8 +291,8 @@ class Template extends AbstractResource
     }
 
     /**
-     * @param string $role role name
-     * @param integer $order optional, signer order
+     * @param string $role Role Name for the signer.
+     * @param integer $order Order of the signer. (optional)
      * @return boolean
      * @ignore
      */
@@ -280,7 +311,7 @@ class Template extends AbstractResource
     }
 
     /**
-     * @param string $role role name
+     * @param string $role Role Name for CC recipients.
      * @return boolean
      * @ignore
      */
@@ -291,8 +322,8 @@ class Template extends AbstractResource
     }
 
     /**
-     * @param string $name field name
-     * @param string $type field type
+     * @param string $name Name of the merge field. Names must be unique.
+     * @param string $type Type of the merge field. Type can only be "text" or "checkbox."
      * @return boolean
      * @ignore
      */
@@ -333,13 +364,68 @@ class Template extends AbstractResource
     }
 
     /**
-       * @param  boolean $use_preexisting_fields
+     * @return Template
+     * @ignore
+     */
+    public function enableAllowReassign()
+    {
+        $this->allow_reassign = true;
+        return $this;
+    }
+
+    /**
+     * @return Template
+     * @ignore
+     */
+    public function disableAllowReassign()
+    {
+        $this->allow_reassign = false;
+        return $this;
+    }
+
+    /**
+     * @return Template
+     * @ignore
+     */
+    public function enableSkipSignerRoles()
+    {
+        $this->skip_signer_roles = true;
+        return $this;
+    }
+
+    /**
+     * @return Template
+     * @ignore
+     */
+    public function enableSkipSubjectMessage()
+    {
+        $this->skip_subject_message = true;
+        return $this;
+    }
+
+    /**
+       * @param  boolean $use_preexisting_fields Set to true to use preexisting fields.
+       * @return Template
        * @ignore
        */
     public function setUsePreexistingFields($use_preexisting_fields)
     {
         $this->use_preexisting_fields = $use_preexisting_fields;
+        return $this;
     }
+
+    /**
+       * @param  boolean $skip_me_now Set to true to disable the "Me (Now)" option
+       * for the preparer.
+       * @return Template
+       * @ignore
+       */
+    public function enableSkipMeNow()
+    {
+        $this->skip_me_now = true;
+        return $this;
+    }
+
 
     /**
      * @param  stdClass $array
@@ -372,7 +458,9 @@ class Template extends AbstractResource
             'message',
             'signer_roles',
             'use_preexisting_fields',
-            'metadata'
+            'metadata',
+            'skip_me_now',
+            'allow_reassign'
         );
 
         if (isset($this->merge_fields) && count($this->merge_fields) > 0) {
@@ -403,7 +491,32 @@ class Template extends AbstractResource
             'file',
             'file_url',
             'subject',
-            'message'
+            'message',
+            'skip_signer_roles',
+            'skip_subject_message'
+        );
+
+        $params = $this->toArray();
+
+        foreach ($params as $key => $value) {
+            if (!in_array($key, $fields_to_include)) {
+                unset($params[$key]);
+            }
+        }
+
+        return $params;
+    }
+
+    public function toUpdateParams()
+    {
+        $fields_to_include = array(
+            'template_id',
+            'file',
+            'file_url',
+            'subject',
+            'message',
+            'client_id',
+            'test_mode'
         );
 
         $params = $this->toArray();

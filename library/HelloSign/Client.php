@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -41,7 +41,7 @@ use Comvi\REST;
 class Client
 {
 
-    const VERSION = '3.5.3';
+    const VERSION = '3.5.4';
 
     const API_URL = "https://api.hellosign.com/v3/";
 
@@ -55,6 +55,8 @@ class Client
 
     const SIGNATURE_REQUEST_CANCEL_PATH            = "signature_request/cancel";
     const SIGNATURE_REQUEST_REMIND_PATH            = "signature_request/remind";
+    const SIGNATURE_REQUEST_UPDATE_PATH            = "signature_request/update";
+    const SIGNATURE_REQUEST_REMOVE_PATH            = "signature_request/remove";
     const SIGNATURE_REQUEST_FILES_PATH             = "signature_request/files";
     const SIGNATURE_REQUEST_EMBEDDED_PATH          = "signature_request/create_embedded";
     const SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH = "signature_request/create_embedded_with_template";
@@ -81,6 +83,7 @@ class Client
     const UNCLAIMED_DRAFT_CREATE_PATH = "unclaimed_draft/create";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_PATH = "unclaimed_draft/create_embedded";
     const UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH = "unclaimed_draft/create_embedded_with_template";
+    const UNCLAIMED_DRAFT_EDIT_AND_RESEND_PATH = "unclaimed_draft/edit_and_resend";
 
     const APIAPP_PATH = "api_app";
     const APIAPP_LIST_PATH = "api_app/list";
@@ -130,27 +133,15 @@ class Client
     }
 
     /**
-     * Should only be used for unit tests that may be hitting a local endpoint
-     * @deprecated This is no longer necessary, as all environments should have valid SSL enabled.
-     */
-    public function disableCertificateCheck($rest = null) {
-        // TODO: Remove me
-    }
-
-    /**
      * Send a new SignatureRequest with the submitted documents
      *
      * @param  SignatureRequest $request
-     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function sendSignatureRequest(SignatureRequest $request, $ux_version = null)
+    public function sendSignatureRequest(SignatureRequest $request)
     {
         $params = $request->toParams();
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
 
         $response = $this->rest->post(
             static::SIGNATURE_REQUEST_SEND_PATH,
@@ -187,24 +178,65 @@ class Client
      * Instructs HelloSign to email the given address with a reminder to sign
      * the SignatureRequest referenced by the given request ID.
      *
-     * Note: You cannot send a reminder within 1 hours of the last reminder that
+     * Note: You cannot send a reminder within 1 hour of the last reminder that
      * was sent, manually or automatically.
      *
      * @param  string $request_id Signature Request ID
-     * @param  string $email
+     * @param  string $email Email address of the signer
+     * @param  string $name Name of signer to send reminder to (optional)
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function requestEmailReminder($request_id, $email)
+    public function requestEmailReminder($request_id, $email, $name = null)
     {
         $response = $this->rest->post(
             static::SIGNATURE_REQUEST_REMIND_PATH . '/' . $request_id,
-            array('email_address' => $email)
+            array('email_address' => $email, 'name' => $name)
         );
 
         $this->checkResponse($response);
 
         return new SignatureRequest($response);
+    }
+
+    /**
+     * Updates the email address for a given signer on a SignatureRequest
+     *
+     * @param  string $request_id Signature Request ID to update
+     * @param  string $signature_id The Signature ID for the recipient
+     * @param  string $email The new email address for the recipient
+     * @return SignatureRequest
+     * @throws BaseException
+     */
+    public function updateSignatureRequest($request_id, $signature_id, $email)
+    {
+        $response = $this->rest->post(
+            static::SIGNATURE_REQUEST_UPDATE_PATH . '/' . $request_id,
+            array('signature_id' => $signature_id, 'email_address' => $email)
+        );
+
+        $this->checkResponse($response);
+
+        return new SignatureRequest($response);
+    }
+
+    /**
+     * Removes your access to a completed SignatureRequest.
+     * Note that this action is NOT reversible.
+     *
+     * @param  string $request_id Signature Request ID to remove access
+     * @return boolean
+     * @throws BaseException
+     */
+    public function removeSignatureRequestAccess($request_id)
+    {
+        $response = $this->rest->post(
+            static::SIGNATURE_REQUEST_REMOVE_PATH . '/' . $request_id
+        );
+
+        $this->checkResponse($response, false);
+
+        return true;
     }
 
     /**
@@ -238,9 +270,9 @@ class Client
     }
 
     /**
-     * Retrieves the template by template id
+     * Retrieves the specified Template
      *
-     * @param  string $id
+     * @param  string $id Template ID to retrieve
      * @return stdClass
      * @throws BaseException
      */
@@ -256,15 +288,21 @@ class Client
     }
 
     /**
-     * Retrieves the templates for the current user account
+     * Retrieves a list of Templates that are accessible by this account
      *
-     * @param  integer $page
+     * @param  integer $page Specified page number to return. Defaults to 1. (optional)
+     * @param  integer $page_size Number of objects to return per page between 1 and 100. Defaults to 20. (optional)
+     * @param  string $account_id Account ID to return Templates for. Defaults to your account. (optional)
      * @return TemplateList
      * @throws BaseException
      */
-    public function getTemplates($page = 1)
+    public function getTemplates($page = 1, $page_size = null, $account_id = null)
     {
-        $response = $this->rest->get(static::TEMPLATE_LIST_PATH, array('page' => $page));
+        $response = $this->rest->get(static::TEMPLATE_LIST_PATH,
+          array('account_id' => $account_id,
+            'page' => $page,
+            'page_size' => $page_size)
+        );
 
         $this->checkResponse($response);
 
@@ -278,11 +316,11 @@ class Client
     }
 
     /**
-     * Gives the specified User access to the specified Template. The user can
+     * Gives the specified Account access to the specified Template. The user can
      * be designated using their account ID or email address.
      *
-     * @param  string $template_id template ID
-     * @param  string $id_or_email account ID or email address
+     * @param  string $template_id Template ID to give the Account access to.
+     * @param  string $id_or_email Account ID or email address to give access to the Template.
      * @return Template
      * @throws BaseException
      */
@@ -301,11 +339,11 @@ class Client
     }
 
     /**
-     * Removes the specified User's access to the specified Template. The user
+     * Removes the specified Account access to the specified Template. The user
      * can be designated using their account ID or email.
      *
-     * @param  string $template_id template ID
-     * @param  string $id_or_email account ID or email address
+     * @param  string $template_id Template ID to remove the Account access to.
+     * @param  string $id_or_email Account ID or email address to remove access to the Template.
      * @return Template
      * @throws BaseException
      */
@@ -324,7 +362,7 @@ class Client
     }
 
     /**
-     * The first step in an embedded template workflow.
+     * The first step in an EmbeddedTemplate workflow.
      * Creates a draft template that can then be further set up in the template 'edit' stage.
      *
      * @param  Template $request
@@ -345,9 +383,9 @@ class Client
     }
 
     /**
-     * Completely deletes the template specified from the account.
+     * Deletes the specified Template from the Account.
      *
-     * @param  string $template_id template ID
+     * @param  string $template_id Template ID to delete
      * @return boolean
      * @throws BaseException
      */
@@ -366,9 +404,9 @@ class Client
     /**
      * Retrieves a link or copy of the files associated with a template
      *
-     * @param  string $template_id
-     * @param  string $dest_path (optional) where should the file be saved. Will retrieve link if empty.
-     * @param  string $type (optional) get the files as a single pdf or a zip of many. Links will always be pdfs.
+     * @param  string $template_id Template ID to retrieve files
+     * @param  string $dest_path Where should the file be saved. Will retrieve link if empty. (optional)
+     * @param  string $type Return the files as a single PDF or a zip of each document. Links will always be PDFs. (optional)
      * @return string
      * @throws BaseException
      */
@@ -392,37 +430,34 @@ class Client
     }
 
     /**
-    * Creates a new template using the overlay of current template_id
+    * Creates a new Template using the overlay of specified Template
     *
-    * @param string $template_id
-    * @param string $file
+    * @param string $template_id Template ID to update
+    * @param Template $request Template Object settings to apply to the new Template
     * @return string
     */
 
-    public function updateTemplateFiles($template_id, $request)
+    public function updateTemplateFiles($template_id, Template $request)
     {
-      $params = $request->toParams();
+      $params = $request->toUpdateParams();
       $response = $this->rest->post(
         static::TEMPLATE_UPDATE_FILES_PATH . '/' . $template_id,
         $params
       );
+
       return new Template($response);
     }
 
     /**
-     * Creates a new Signature Request based on the template provided
+     * Creates a new Signature Request based on the Template provided
      *
      * @param  TemplateSignatureRequest $request
-     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function sendTemplateSignatureRequest(TemplateSignatureRequest $request, $ux_version = null)
+    public function sendTemplateSignatureRequest(TemplateSignatureRequest $request)
     {
         $params = $request->toParams();
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
 
         $response = $this->rest->post(
             static::TEMPLATE_SIGNATURE_REQUEST_PATH,
@@ -435,23 +470,16 @@ class Client
     }
 
     /**
-     * Retrieves a Signature Request with the given ID
+     * Retrieves a SignatureRequest with the given ID
      *
-     * @param  String $id signature ID
-     * @param  Integer $ux_version
+     * @param  String $id Signature Request ID
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function getSignatureRequest($id, $ux_version = null)
+    public function getSignatureRequest($id)
     {
-        $params = array();
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
-
         $response = $this->rest->get(
-            static::SIGNATURE_REQUEST_PATH . '/' . $id,
-            $params
+            static::SIGNATURE_REQUEST_PATH . '/' . $id
         );
 
         $this->checkResponse($response);
@@ -464,18 +492,14 @@ class Client
      * represents a paged query result.
      *
      * @param  Integer $page
-     * @param  Integer $ux_version
      * @return SignatureRequestList
      * @throws BaseException
      */
-    public function getSignatureRequests($page = 1, $ux_version = null)
+    public function getSignatureRequests($page = 1)
     {
         $params = array(
             'page' => $page
         );
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
 
         $response = $this->rest->get(
             static::SIGNATURE_REQUEST_LIST_PATH,
@@ -494,19 +518,15 @@ class Client
     }
 
     /**
-     * Creates a signature request that can be embedded within your website
+     * Creates a SignatureRequest that can be embedded within your website
      *
      * @param  EmbeddedSignatureRequest $request
-     * @param  Integer $ux_version
      * @return SignatureRequest
      * @throws BaseException
      */
-    public function createEmbeddedSignatureRequest(EmbeddedSignatureRequest $request, $ux_version = null)
+    public function createEmbeddedSignatureRequest(EmbeddedSignatureRequest $request)
     {
         $params = $request->toParams();
-        if ($ux_version !== null) {
-            $params['ux_version'] = $ux_version;
-        }
 
         // choose url
         $url = $request->isUsingTemplate()
@@ -521,10 +541,9 @@ class Client
     }
 
     /**
-     * Retrieves the necessary information to build an embedded signature
-     * request
+     * Retrieves an embedded object containing a signature URL that can be opened in an iFrame.
      *
-     * @param  string $id ID of the signature request to embed
+     * @param  string $id The signature_id of the SignatureRequest to embed
      * @return EmbeddedResponse
      * @throws BaseException
      */
@@ -540,18 +559,28 @@ class Client
     }
 
     /**
-     * Retrieves the necessary information to edit an embedded template
+     * Retrieves an embedded object containing an edit URL that can be opened in an iFrame
+     * to edit an EmbeddedTemplate.
      *
-     *
-     * @param  string $id ID of the template to embed
+     * @param  string $id The ID of the EmbeddedTemplate to edit or create.
+     * @param  Template $request Template object with settings for the Embedded Template
      * @return EmbeddedResponse
      * @throws BaseException
      */
-    public function getEmbeddedEditUrl($id)
+    public function getEmbeddedEditUrl($id, Template $request = null)
     {
-        $response = $this->rest->get(
+        if ($request !== null) {
+          $params = $request->toParams();
+          $response = $this->rest->post(
+            static::EMBEDDED_EDIT_URL_PATH . '/' . $id,
+            $params
+          );
+        } else {
+          $response = $this->rest->get(
             static::EMBEDDED_EDIT_URL_PATH . '/' . $id
-        );
+          );
+        };
+
 
         $this->checkResponse($response);
 
@@ -559,7 +588,7 @@ class Client
     }
 
     /**
-     * Creates an unclaimed draft using the provided request draft object
+     * Creates an UnclaimedDraft using the provided request draft object
      *
      * @param  UnclaimedDraft $draft
      * @return UnclaimedDraft The created draft
@@ -580,7 +609,7 @@ class Client
     }
 
     /**
-     * Creates an unclaimed draft using the provided request draft object
+     * Creates an UnclaimedDraft using the provided request draft object
      *
      * @param  EmbeddedSignatureRequest $request
      * @return UnclaimedDraft The created draft
@@ -600,8 +629,29 @@ class Client
     }
 
     /**
+     * Creates a new SignatureRequest from another request that can be edited
+     * prior to being sent to the recipients.
+     *
+     * @param  string $id The Signature Request ID to copy
+     * @param  UnclaimedDraft $draft
+     * @return UnclaimedDraft The newly created draft
+     * @throws BaseException
+     */
+    public function unclaimedDraftEditAndResend($id, UnclaimedDraft $draft)
+    {
+        $response = $this->rest->post(
+          static::UNCLAIMED_DRAFT_EDIT_AND_RESEND_PATH . '/' . $id,
+          $draft->toEditParams()
+        );
+
+        $this->checkResponse($response);
+
+        return $draft->fromResponse($response);
+    }
+
+    /**
      * Performs an OAuth request and returns the OAuthToken object for authorizing
-     * an API application, and will automatically set the access token for
+     * an API App, and will automatically set the access token for
      * making authenticated requests with this client.
      *
      * @param OAuthTokenRequest $request
@@ -673,7 +723,7 @@ class Client
     }
 
     /**
-     * Returns the current user's account information
+     * Returns the current user's HelloSign account information
      *
      * @return Account
      * @throws BaseException
@@ -690,10 +740,10 @@ class Client
     }
 
     /**
-     * Returns true if an account exists with the provided email address. Note
+     * Returns true if an Account exists with the provided email address. Note
      * this is limited to the visibility of the currently authenticated user.
      *
-     * @param  string $email
+     * @param  string $email Email address to validate.
      * @return boolean
      * @throws BaseException
      */
@@ -718,11 +768,11 @@ class Client
      * their email address to complete the creation process.
      *
      * Else: Creates a new HelloSign account and provides OAuth app credentials
-     * to automatically generate an OAuth token with the user Account response.
+     * to generate an OAuth token automatically with the user Account response.
      *
      * @param  Account $account
-     * @param  string $client_id
-     * @param  string $client_secret
+     * @param  string $client_id (optional)
+     * @param  string $client_secret (optional)
      * @return Account
      * @throws BaseException
      */
@@ -767,7 +817,7 @@ class Client
     }
 
     /**
-     * Retrieves the Team for the current user account
+     * Retrieves the Team for the current Account
      *
      * @return Team
      * @throws BaseException
@@ -784,7 +834,7 @@ class Client
     }
 
     /**
-     * Creates a new team for the current user
+     * Creates a new Team for the current Account
      *
      * @param  Team $team
      * @return Team
@@ -803,9 +853,9 @@ class Client
     }
 
     /**
-     * Updates the current user's team name
+     * Updates the current Account's Team name
      *
-     * @param  string $name Team name
+     * @param  string $name New Team name
      * @return Team
      * @throws BaseException
      */
@@ -824,7 +874,7 @@ class Client
     }
 
     /**
-     * Destroys the current user's team
+     * Deletes the current Account's Team
      *
      * @return boolean
      * @throws BaseException
@@ -841,9 +891,9 @@ class Client
     }
 
     /**
-     * Adds the user to the current user's team
+     * Adds the specified Account to the current Team
      *
-     * @param  string $id_or_email account ID or email address
+     * @param  string $id_or_email Account ID or email address of the Account to invite
      * @return Team
      * @throws BaseException
      */
@@ -862,9 +912,9 @@ class Client
     }
 
     /**
-     * Removes the team member indicated by the user account ID or email address
+     * Removes the specified Account from the current Team
      *
-     * @param  string $id_or_email account ID or email address
+     * @param  string $id_or_email Account ID or email address of the Account to remove
      * @return Team
      * @throws BaseException
      */
@@ -883,7 +933,7 @@ class Client
     }
 
     /**
-     * Removes all current user's team members
+     * Removes all team members from current Team
      *
      * @return Team
      * @throws BaseException
@@ -903,7 +953,7 @@ class Client
     }
 
     /**
-     * check response and throw Exception if response is not proper
+     * Checks response and throws Exception if response is not proper
      *
      * @param  mixed $response
      * @param  boolean $strict
@@ -927,7 +977,7 @@ class Client
     }
 
     /**
-     * check response and throw Exception if response is not proper
+     * Checks response and throws Exception if response is not proper
      *
      * @param  stdClass $response
      * @throws Error
@@ -941,7 +991,7 @@ class Client
     }
 
     /**
-     * Create REST object
+     * Creates REST object
      *
      * @param  mixed $first email address or apikey or OAuthToken
      * @param  string $last Null if using apikey or OAuthToken

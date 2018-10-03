@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -32,7 +32,7 @@ namespace HelloSign;
 use stdClass;
 
 /**
- * Represents a HelloSign signature request based on a Template
+ * Represents a HelloSign SignatureRequest based on a Template
  *
  * Unlike the SignatureRequest, this object is only used to submit
  * the request. A successfully submitted TemplateSignatureRequest will
@@ -55,13 +55,6 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
      * @var array
      */
     protected $ccs = array();
-
-    /**
-     * A JSON array of Custom Field objects
-     *
-     * @var string
-     */
-    protected $custom_fields = null;
 
     /**
      * Set the template ID, along with an optional order
@@ -111,32 +104,6 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     }
 
     /**
-     * Set the value for a custom field with the given field name
-     * and optionally define a Role allowed to edit it and if the field is required to be filled
-     *
-     * @param  string $field_name field name to be filled in
-     * @param  string $value
-     * @param  string $editor
-     * @param  string $required
-     * @return TemplateSignatureRequest
-     */
-    public function setCustomFieldValue($field_name, $value, $editor = null, $required = null)
-    {
-        $custom_fields = isset($this->custom_fields) ? json_decode($this->custom_fields) : array();
-
-        $custom_fields[] = array(
-            'name'     => $field_name,
-            'value'    => $value,
-            'editor'   => $editor,
-            'required'   => $required
-        );
-
-        $this->custom_fields = json_encode($custom_fields);
-
-        return $this;
-    }
-
-    /**
      * @return array
      * @ignore
      */
@@ -144,7 +111,8 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     {
         $except = array(
             'use_text_tags',
-            'hide_text_tags'
+            'hide_text_tags',
+            'use_preexisting_fields'
         );
         return $this->toArray(array(
             'except' => $except

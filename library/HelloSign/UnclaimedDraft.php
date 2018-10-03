@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -30,7 +30,7 @@
 namespace HelloSign;
 
 /**
- * Represents an unclaimed draft response and request
+ * Represents an UnclaimedDraft response and request
  *
  * The UnclaimedDraft object essentially "wraps" a SignatureRequest. There are
  * two types of unclaimed drafts that can be created:
@@ -48,7 +48,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     protected $resource_type = 'unclaimed_draft';
 
     /**
-     * The type of unclaimed draft to create
+     * The type of UnclaimedDraft to create
      *
      * Use "send_document" to create a claimable file, and "request_signature"
      * for a claimable signature request. If the type is "request_signature"
@@ -80,6 +80,13 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     protected $use_preexisting_fields = false;
 
     /**
+     * Disables the "Me (Now)" option for the person preparing the SignatureRequest.
+     *
+     * @var boolean
+     */
+    protected $skip_me_now = false;
+
+    /**
      * @param  boolean $is_for_embedded_signing
      * @return UnclaimedDraft
      * @ignore
@@ -91,11 +98,25 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
 
     /**
        * @param  boolean $use_preexisting_fields
+       * @return UnclaimedDraft
        * @ignore
        */
     public function setUsePreexistingFields($use_preexisting_fields)
     {
         $this->use_preexisting_fields = $use_preexisting_fields;
+        return $this;
+    }
+
+    /**
+       * @param  boolean $skip_me_now Set to true to disable the "Me (Now)" option
+       * for the preparer.
+       * @return UnclaimedDraft
+       * @ignore
+       */
+    public function enableSkipMeNow()
+    {
+        $this->skip_me_now = true;
+        return $this;
     }
 
     /**
@@ -185,11 +206,32 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
          */
         return $this->request->toParams(array(
             'except' => array(
-                'title', // title not supported for unclaimed draft endpoints
-                'allow_decline'
+                'title' // title not supported for unclaimed draft endpoints
             )
         )) + $this->toArray(array(
             'except' => $except
         ));
+    }
+
+    public function toEditParams()
+    {
+        $fields_to_include = array(
+            'client_id',
+            'test_mode',
+            'requesting_redirect_url',
+            'signing_redirect_url',
+            'is_for_embedded_signing',
+            'requester_email_address'
+        );
+
+        $params = $this->toArray();
+
+        foreach ($params as $key => $value) {
+            if (!in_array($key, $fields_to_include)) {
+                unset($params[$key]);
+            }
+        }
+
+        return $params;
     }
 }

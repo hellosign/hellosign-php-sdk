@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -36,18 +36,25 @@ namespace HelloSign;
 abstract class AbstractSignatureRequestWrapper extends AbstractResource
 {
     /**
-     * Client id of the app
+     * Client ID of the API App
      *
      * @var string
      */
     protected $client_id = null;
 
     /**
-     * Related signature request
+     * Related SignatureRequest
      *
      * @var AbstractSignatureRequest
      */
     protected $request = null;
+
+    /**
+     * Disables the "Me (Now)" option for the person preparing the SignatureRequest.
+     *
+     * @var boolean
+     */
+    protected $skip_me_now = false;
 
     /**
      * Constructor
@@ -82,7 +89,7 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     }
 
     /**
-     * include only if enabling embedded signing
+     * Include only if enabling embedded signing
      * when using EmbeddedSignatureRequest
      * with createUnclaimedDraftEmbeddedWithTemplate
      * @return static
@@ -121,6 +128,18 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     public function isUsingTemplate()
     {
         return $this->request instanceof TemplateSignatureRequest;
+    }
+
+    /**
+       * @param  boolean $skip_me_now Set to true to disable the "Me (Now)" option
+       * for the preparer.
+       * @return static
+       * @ignore
+       */
+    public function enableSkipMeNow()
+    {
+        $this->skip_me_now = true;
+        return $this;
     }
 
     /**

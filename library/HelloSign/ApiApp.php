@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloSign PHP SDK (https://github.com/HelloFax/hellosign-php-sdk/)
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
  */
 
 /**
@@ -78,17 +78,17 @@ class ApiApp extends AbstractResource
     protected $name = null;
 
     /**
-     * If the API App is approved will return true. Defaults to false.
+     * Returns true if the API App is approved. Defaults to false.
      *
      * @var boolean
      */
     protected $is_approved = false;
 
     /**
-     * An object detailing API App owner
+     * An object detailing the API App owner
      *
-     * account_id: Account ID of owner
-     * email_address: Email address of owner
+     * account_id: Owner's HelloSign account ID
+     * email_address: Owner's HelloSign account email address
      *
      * @var stdClass
      */
@@ -102,7 +102,7 @@ class ApiApp extends AbstractResource
     protected $oauth = ["callback_url" => null, "scopes" => null];
 
     /**
-     * A JSON array of Custom Field objects
+     * A JSON array of set white labeling options
      *
      * @var string
      */
