@@ -48,6 +48,7 @@ class UnclaimedDraftTest extends AbstractTest
         $request->addSigner('beck@example.com', 'Beck');
         $request->addCC('ancelotti@example.com');
         $request->addFile(__DIR__ . '/nda.docx');
+        $request->addAttachment('Passport', 0, 'Attach your passport', false);
         $client_id = $_ENV['CLIENT_ID'];
         $draft = new UnclaimedDraft($request, $client_id);
         $draft->setUsePreexistingFields(true);
