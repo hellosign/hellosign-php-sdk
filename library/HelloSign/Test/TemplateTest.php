@@ -135,6 +135,7 @@ class TemplateTest extends AbstractTest
         $request->addMetadata('custom_id', '1234');
         $request->addMetadata('favorite_movie', 'Big Fish');
         $request->setUsePreexistingFields(true);
+        $request->addAttachment('Passport', 0, 'Attach your passport', false);
 
         $return = $this->client->createEmbeddedDraft($request);
 
