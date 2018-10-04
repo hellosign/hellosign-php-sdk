@@ -65,7 +65,15 @@ class SignatureRequestTest extends AbstractTest
         $request->addCC("lawyer@example.com");
         $request->addFile(__DIR__ . '/nda.docx');
         $request->addAttachment('Passport', 0, 'Attach your passport', false);
-
+        $request->setSignerOptions(
+          array(
+            "draw" => true,
+            "type" => true,
+            "upload" => false,
+            "phone" => false,
+            "default" => "type"
+          )
+        );
         // Send Signature Request
         $response = $this->client->sendSignatureRequest($request);
 
