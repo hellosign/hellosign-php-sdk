@@ -93,6 +93,14 @@ abstract class AbstractSignatureRequest extends AbstractResource
     protected $custom_fields = null;
 
     /**
+     * This allows the sender to specify the types allowed for creating a signature.
+     * Defaults to the allowed types in the sender's account settings.
+     *
+     * @var array
+     */
+    protected $signing_options = array();
+
+    /**
      * Constructor
      *
      * @param  stdClass $response
@@ -219,6 +227,17 @@ abstract class AbstractSignatureRequest extends AbstractResource
     public function setHideTextTags($hide_text_tags)
     {
         $this->hide_text_tags = $hide_text_tags;
+        return $this;
+    }
+
+    /**
+     * @param  array $options
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function setSignerOptions($options)
+    {
+        $this->signing_options = json_encode($options);
         return $this;
     }
 
