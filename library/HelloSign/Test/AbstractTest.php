@@ -28,7 +28,7 @@ namespace HelloSign\Test;
 
 use HelloSign\Client;
 
-abstract class AbstractTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractTest extends \PHPUnit\Framework\TestCase
 {
     protected $client;
 
@@ -53,10 +53,10 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         $this->team_member_1 = rand(1, 10000000) . "@example.com";
         $this->team_member_2 = rand(1, 10000000) . "@example.com";
         // $this->client->enableDebugMode();
-      
+
         if ($api_url != Client::API_URL) {
             $this->client->disableCertificateCheck();
         }
-        
+
     }
 }
