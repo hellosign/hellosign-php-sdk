@@ -122,11 +122,6 @@ class Account extends AbstractResource
         } else {
             parent::__construct($email_or_obj);
         }
-
-        $this->quotas = new stdClass;
-        $this->quotas->templates_left = null;
-        $this->quotas->api_signature_requests_left = null;
-        $this->quotas->documents_left = null;
     }
 
     /**
