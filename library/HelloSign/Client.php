@@ -1126,7 +1126,6 @@ class Client
         return $list;
     }
 
-
     /**
      * Creates a new Bulk Send Job using the specified Template
      *
