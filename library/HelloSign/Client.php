@@ -1107,6 +1107,7 @@ class Client
      * Retrieves a list of API Apps for account
      *
      * @param  integer $page
+     * @param  integer $page_size
      * @return ApiAppList
      * @throws BaseException
      */
@@ -1146,4 +1147,28 @@ class Client
 
         return new BulkSendJob($response);
     }
+
+    /**
+     * Retrieves a list of Bulk Send Jobs for account
+     *
+     * @param  integer $page
+     * @param  integer $page_size
+     * @return BulkSendJobList
+     * @throws BaseException
+     */
+    public function getBulkSendJobs($page = 1, $page_size = 20)
+    {
+        $response = $this->rest->get(static::BULK_SEND_JOB_LIST_PATH, array('page' => $page, 'page_size' => $page_size));
+
+        $this->checkResponse($response);
+
+        $list = new BulkSendJobList($response);
+
+        if ($page > $list->getNumPages()) {
+            throw new Error('page_not_found', 'Page not found');
+        }
+
+        return $list;
+    }
+
 }

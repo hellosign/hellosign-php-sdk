@@ -156,6 +156,28 @@
      $this->assertNotNull($response->getId());
    }
 
+    /**
+    * @group list
+    *
+    */
+    public function testGetBulkSendJobs() {
+      // Testing default getBulkSendJobs() method
+      $list = $this->client->getBulkSendJobs();
+      $this->assertNotNull($list);
+      $this->assertEquals($list->getPageSize(), 20);
+      $this->assertEquals($list->getPage(), 1);
+    }
+
+    /**
+    * @group list
+    */
+    public function testGetBulkSendJobsWithParams() {
+      // Testing parameters for getBulkSendJobs()
+      $list = $this->client->getBulkSendJobs(2, 5);
+      $this->assertNotNull($list);
+      $this->assertEquals($list->getPageSize(), 5);
+      $this->assertEquals($list->getPage(), 2);
+    }
  }
 
 ?>
