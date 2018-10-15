@@ -52,7 +52,7 @@
    }
 
    /**
-   * @group sendFile
+   * @group send
    */
    public function testSendBulkSendJobWithSignerFile() {
      $templates = $this->client->getTemplates();
@@ -73,7 +73,7 @@
    }
 
    /**
-   * @group sendList
+   * @group send
    */
    public function testSendBulkSendJobWithSignerList() {
      $templates = $this->client->getTemplates();
@@ -109,6 +109,46 @@
      $request->setTitle('Bulk Send Job Example Title');
      $request->setTemplateId($template->getId());
      $request->addSignerList($signers);
+
+     $response = $this->client->sendBulkSendJobWithTemplate($request);
+
+     $this->assertInstanceOf('HelloSign\BulkSendJob', $response);
+     $this->assertNotNull($response->getId());
+   }
+
+   /**
+   * @group sendWithParametersEnabled
+   */
+   public function testSendBulkSendJobWithAllParameters() {
+     $templates = $this->client->getTemplates();
+     $template = $templates[1];
+     $field = $template->getCustomFields()[0];
+     $cc = $template->getCCRoles()[0];
+     $app = $this->client->getApiApps()[0];
+     $app_id = $app->getClientId();
+
+     $signers = __DIR__ . "/bulk_send_test_signers.csv";
+
+     $request = new BulkSendJob;
+     $request->enableTestMode();
+     $request->enableAllowDecline();
+     $request->setTemplateId($template->getId());
+     $request->setTitle('Bulk Send Job With All Parameters');
+     $request->setSubject('Bulk Send Job Subject');
+     $request->setMessage('Bulk Send Job Message');
+     $request->setSigningRedirectUrl('http://www.calbears.com');
+     $request->addSignerFile($signers);
+
+     if (isset($field)) {
+       $request->setCustomFieldValue($field->name, 'Test Test');
+     };
+
+     if (isset($cc)) {
+       $request->setCC($cc->name, 'cc@example.com');
+     };
+
+     $request->addMetadata('user_id', '1234');
+     $request->setClientId($app_id);
 
      $response = $this->client->sendBulkSendJobWithTemplate($request);
 
