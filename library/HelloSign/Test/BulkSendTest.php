@@ -178,6 +178,31 @@
       $this->assertEquals($list->getPageSize(), 5);
       $this->assertEquals($list->getPage(), 2);
     }
+
+   /**
+   * @group read
+   */
+   public function testGetBulkSendJob() {
+     $templates = $this->client->getTemplates();
+     $template = $templates[0];
+
+     $signers = __DIR__ . "/bulk_send_test_signers.csv";
+
+     $request = new BulkSendJob;
+     $request->enableTestMode();
+     $request->setTitle('Bulk Send Job Example Title');
+     $request->setTemplateId($template->getId());
+     $request->addSignerFile($signers);
+
+     $response = $this->client->sendBulkSendJobWithTemplate($request);
+     $id = $response->getId();
+
+     $bulk_send_job = $this->client->getBulkSendJob($id);
+     $requests = $bulk_send_job->getSignatureRequests();
+
+     $this->assertNotNull($bulk_send_job->getId());
+     $this->assertNotNull($bulk_send_job->getSignatureRequests());
+   }
  }
 
 ?>

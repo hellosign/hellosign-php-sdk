@@ -1064,24 +1064,24 @@ class Client
     }
 
     /**
-     * Retrieves an API App with the given Client ID
+     * Retrieves a Bulk Send Job with the given Bulk Send Job ID
      *
-     * @param  String $id Client ID
-     * @return ApiApp
+     * @param  String $id Bulk Send Job ID
+     * @return BulkSendJob
      * @throws BaseException
      */
-    public function getApiApp($id)
+    public function getBulkSendJob($id)
     {
         $params = array();
 
         $response = $this->rest->get(
-            static::APIAPP_PATH . '/' . $id,
+            static::BULK_SEND_JOB_PATH . '/' . $id,
             $params
         );
 
         $this->checkResponse($response);
 
-        return new ApiApp($response);
+        return new BulkSendJob($response);
     }
 
     /**

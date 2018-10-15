@@ -88,6 +88,14 @@ class BulkSendJob extends AbstractSignatureRequest
     protected $signature_requests = null;
 
     /**
+     * An array with information about the Signature Requests
+     * sent as part of the Bulk Send Job
+     *
+     * @var array
+     */
+    protected $list_info = array();
+
+    /**
      * Set the template ID, along with an optional order
      * @param string $id
      * @param int null $index
@@ -158,7 +166,31 @@ class BulkSendJob extends AbstractSignatureRequest
     {
         return $this->bulk_send_job_id;
     }
-    
+
+    /**
+     * @return SignatureRequestList
+     * @ignore
+     */
+    public function getSignatureRequests()
+    {
+        return $this->signature_requests;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param  stdClass $response
+     * @param  array $options
+     * @ignore
+     */
+    public function __construct($response = null, $options = array())
+    {
+        $this->signature_requests = $response->signature_requests;
+        $this->list_info = $response->list_info;
+
+        parent::__construct($response, $options);
+    }
+
     /**
      * @return array
      * @ignore
