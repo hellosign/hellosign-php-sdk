@@ -60,6 +60,7 @@ class Client
     const SIGNATURE_REQUEST_FILES_PATH             = "signature_request/files";
     const SIGNATURE_REQUEST_EMBEDDED_PATH          = "signature_request/create_embedded";
     const SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH = "signature_request/create_embedded_with_template";
+    const SIGNATURE_REQUEST_BULK_SEND              = "signature_request/bulk_send_with_template";
 
     const TEMPLATE_PATH                   = "template";
     const TEMPLATE_LIST_PATH              = "template/list";
@@ -70,6 +71,9 @@ class Client
     const TEMPLATE_DELETE_PATH            = "template/delete";
     const TEMPLATE_FILES_PATH             = "template/files";
     const TEMPLATE_UPDATE_FILES_PATH      = "template/update_files";
+
+    const BULK_SEND_JOB_PATH              = "bulk_send_job";
+    const BULK_SEND_JOB_LIST_PATH         = "bulk_send_job/list";
 
     const TEAM_PATH               = "team";
     const TEAM_CREATE_PATH        = "team/create";
@@ -1121,4 +1125,25 @@ class Client
         return $list;
     }
 
+
+    /**
+     * Creates a new Bulk Send Job using the specified Template
+     *
+     * @param  BulkSendJob $request
+     * @return BulkSendJob
+     * @throws BaseException
+     */
+    public function sendBulkSendJobWithTemplate(BulkSendJob $request)
+    {
+        $params = $request->toParams();
+
+        $response = $this->rest->post(
+            static::SIGNATURE_REQUEST_BULK_SEND,
+            $params
+        );
+
+        $this->checkResponse($response);
+
+        return new BulkSendJob($response);
+    }
 }

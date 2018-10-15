@@ -26,10 +26,11 @@
 
  namespace HelloSign\Test;
 
+ use HelloSign\Template;
  use HelloSign\BulkSendJob;
 
- class BulkSendTest extends AbstractTest {
-
+ class BulkSendTest extends AbstractTest
+ {
    /**
    * @group initiate
    */
@@ -49,6 +50,72 @@
      $this->assertClassHasAttribute('metadata', BulkSendJob::class);
      $this->assertClassHasAttribute('client_id', BulkSendJob::class);
    }
+
+   /**
+   * @group sendFile
+   */
+   public function testSendBulkSendJobWithSignerFile() {
+     $templates = $this->client->getTemplates();
+     $template = $templates[0];
+
+     $signers = __DIR__ . "/bulk_send_test_signers.csv";
+
+     $request = new BulkSendJob;
+     $request->enableTestMode();
+     $request->setTitle('Bulk Send Job Example Title');
+     $request->setTemplateId($template->getId());
+     $request->addSignerFile($signers);
+
+     $response = $this->client->sendBulkSendJobWithTemplate($request);
+
+     $this->assertInstanceOf('HelloSign\BulkSendJob', $response);
+     $this->assertNotNull($response->getId());
+   }
+
+   /**
+   * @group sendList
+   */
+   public function testSendBulkSendJobWithSignerList() {
+     $templates = $this->client->getTemplates();
+     $template = $templates[0];
+     $signer_role = $template->getSignerRoles()[0]->name;
+     $custom_field = $template->getCustomFields()[0]->name;
+
+     $signers = array(
+       array(
+         "signers" => array(
+           $signer_role => array(
+             "name" => "Adam HelloSign",
+             "email_address" => "test1@example.com",
+             "pin" => "1234"
+           )
+         )
+       ),
+       array(
+         "signers" => array(
+           $signer_role => array(
+             "name" => "Jane HelloSign",
+             "email_address" => "test2@example.com"
+           )
+         ),
+         "custom_fields" => array(
+           $custom_field => "123 Main St."
+         )
+       )
+     );
+
+     $request = new BulkSendJob;
+     $request->enableTestMode();
+     $request->setTitle('Bulk Send Job Example Title');
+     $request->setTemplateId($template->getId());
+     $request->addSignerList($signers);
+
+     $response = $this->client->sendBulkSendJobWithTemplate($request);
+
+     $this->assertInstanceOf('HelloSign\BulkSendJob', $response);
+     $this->assertNotNull($response->getId());
+   }
+
  }
 
 ?>
