@@ -465,7 +465,10 @@ class Template extends AbstractResource
      */
     public function fromArray($array, $options = array())
     {
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        };
+
         $options['except'][] = 'named_form_fields';
 
         return parent::fromArray($array, $options);

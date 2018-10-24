@@ -267,7 +267,10 @@ class SignatureRequest extends AbstractSignatureRequest
     public function toParams($options = array())
     {
         // default value
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        };
+
         $options['except'] = array_merge($options['except'], array(
             'signature_request_id',
             'is_complete',
@@ -297,7 +300,10 @@ class SignatureRequest extends AbstractSignatureRequest
     {
         array_key_exists('signatures', $array) && $this->setSignatures($array['signatures']);
 
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        };
+        
         $options['except'] = array_merge($options['except'], array(
             'signatures',
             'original_title',

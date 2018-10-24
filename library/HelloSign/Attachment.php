@@ -62,17 +62,4 @@ class Attachment extends AbstractObject
      * @var boolean
      */
     protected $required = false;
-
-    /**
-     * @param  array $options
-     * @return array
-     * @see    AbstractObject::toArray()
-     * @ignore
-     */
-    public function toArray($options = array())
-    {
-        !isset($options['include_null']) && $options['include_null'] = false;
-
-        return parent::toArray($options);
-    }
 }

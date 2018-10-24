@@ -134,10 +134,18 @@ class Team extends AbstractResource
      */
     public function fromArray($array, $options = array())
     {
-        array_key_exists('accounts', $array) && $this->setAccounts($array['accounts']);
-        array_key_exists('invited_accounts', $array) && $this->setInvitedAccounts($array['invited_accounts']);
+        if (array_key_exists('accounts', $array)) {
+          $this->setAccounts($array['accounts']);
+        };
 
-        !isset($options['except']) && $options['except'] = array();
+        if (array_key_exists('invited_accounts', $array)) {
+          $this->setInvitedAccounts($array['invited_accounts']);
+        };
+
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        };
+
         $options['except'] = array_merge($options['except'], array(
             'accounts',
             'invited_accounts',

@@ -173,7 +173,8 @@ abstract class AbstractSignatureRequest extends AbstractResource
     {
       $group = new SignerGroup(array(
         'name' => $name
-      ));
+        )
+      );
 
       $this->signers[$group_index_or_role] = $group;
 
@@ -181,7 +182,7 @@ abstract class AbstractSignatureRequest extends AbstractResource
     }
 
     /**
-     * Adds a Signers to a Signer Group in the Signature Request
+     * Adds Signers to a Signer Group in the Signature Request
      *
      * @param  string $name Name of the Signer
      * @param  string $email Email address of the Signer
@@ -212,7 +213,10 @@ abstract class AbstractSignatureRequest extends AbstractResource
     {
         array_key_exists('signers', $array) && $this->setSigners($array['signers']);
 
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        };
+
         $options['except'][] = 'signers';
 
         return parent::fromArray($array, $options);
