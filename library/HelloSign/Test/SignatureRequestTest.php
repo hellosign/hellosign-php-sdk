@@ -27,6 +27,7 @@
 namespace HelloSign\Test;
 
 use HelloSign\SignatureRequest;
+use HelloSign\SignerGroup;
 use HelloSign\Signer;
 use HelloSign\Error;
 
@@ -215,6 +216,37 @@ class SignatureRequestTest extends AbstractTest
         $this->assertEquals($response->metadata->custom_id, '1234');
         $this->assertObjectHasAttribute('custom_text', $response->metadata);
         $this->assertEquals($response->metadata->custom_text, 'oranges, apples, and bananas');
+
+        return $response->getId();
+    }
+
+    /**
+     * @group create
+     */
+    public function testSendSignatureRequestWithSignerGroup()
+    {
+        // Enable Test Mode
+        $request = new SignatureRequest;
+        $request->enableTestMode();
+
+        // Set Request Param Signature Request
+        $request->setTitle("NDA with Acme Co.");
+        $request->setSubject("The NDA we talked about");
+        $request->setMessage("Sign this NDA and then we can discuss more. Let me know if you have any questions.");
+        $request->addFile(__DIR__ . '/nda.docx');
+
+        // Add Signer Group to Signature Request
+        $request->addGroup("Authorized Signatory", 0);
+        $request->addGroupSigner("Possible Signer 1", "jen.young+1@hellosign.com", 0);
+        $request->addGroupSigner("Possible Signer 2", "jen.young+2@hellosign.com", 1);
+
+        // Send Signature Request
+        $response = $this->client->sendSignatureRequest($request);
+
+        $this->assertInstanceOf('HelloSign\SignatureRequest', $response);
+        $this->assertNotNull($response->getId());
+        $this->assertEquals($request, $response);
+        $this->assertEquals($response->getTitle(), $response->title);
 
         return $response->getId();
     }

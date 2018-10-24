@@ -82,7 +82,6 @@ abstract class AbstractObject
                 $array[$key] = $value->toArray();
             }
         }
-
         return $array;
     }
 

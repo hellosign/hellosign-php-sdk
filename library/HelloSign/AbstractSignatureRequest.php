@@ -163,6 +163,46 @@ abstract class AbstractSignatureRequest extends AbstractResource
     }
 
     /**
+     * Adds a Signer Group to the Signature Request
+     *
+     * @param  string $name Signer Group name
+     * @param  mixed $group_index_or_role Group Index or Signer Role. Defaults to 0.
+     * @return AbstractSignatureRequest
+     */
+    public function addGroup($name, $group_index_or_role = 0)
+    {
+      $group = new SignerGroup(array(
+        'name' => $name
+      ));
+
+      $this->signers[$group_index_or_role] = $group;
+
+      return $this;
+    }
+
+    /**
+     * Adds a Signers to a Signer Group in the Signature Request
+     *
+     * @param  string $name Name of the Signer
+     * @param  string $email Email address of the Signer
+     * @param  integer $signer_index Signer Index of the Signer
+     * @param  mixed $group_index_or_role Group Index or Signer Role. Defaults to 0.
+     * @return AbstractSignatureRequest
+     */
+    public function addGroupSigner($name, $email, $signer_index, $group_index_or_role = 0)
+    {
+      $signer = new Signer(array(
+          'name' => $name,
+          'email_address' => $email
+        )
+      );
+
+      $this->signers[$group_index_or_role]->$signer_index = $signer;
+
+      return $this;
+    }
+
+    /**
      * @param  array $array
      * @param  array $options
      * @return AbstractSignatureRequest

@@ -179,7 +179,6 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     public function toArray($options = array())
     {
         $array = array();
-
         foreach ($this->collection as $key => $obj) {
             $array[$key] = $obj->toArray($options);
         }
