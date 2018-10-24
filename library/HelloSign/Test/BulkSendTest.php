@@ -32,8 +32,8 @@
  class BulkSendTest extends AbstractTest
  {
    /**
-   * @group initiate
-   */
+    * @group initiate
+    */
    public function testBulkSendJobClass() {
      $stub = $this->createMock(BulkSendJob::class);
      $this->assertClassHasAttribute('test_mode', BulkSendJob::class);
@@ -52,8 +52,8 @@
    }
 
    /**
-   * @group send
-   */
+    * @group send
+    */
    public function testSendBulkSendJobWithSignerFile() {
      $templates = $this->client->getTemplates();
      $template = $templates[0];
@@ -73,8 +73,8 @@
    }
 
    /**
-   * @group send
-   */
+    * @group send
+    */
    public function testSendBulkSendJobWithSignerList() {
      $templates = $this->client->getTemplates();
      $template = $templates[0];
@@ -117,8 +117,8 @@
    }
 
    /**
-   * @group sendWithParametersEnabled
-   */
+    * @group sendWithParametersEnabled
+    */
    public function testSendBulkSendJobWithAllParameters() {
      $templates = $this->client->getTemplates();
      $template = $templates[1];
@@ -156,9 +156,8 @@
      $this->assertNotNull($response->getId());
    }
 
-    /**
+   /**
     * @group list
-    *
     */
     public function testGetBulkSendJobs() {
       // Testing default getBulkSendJobs() method
@@ -169,8 +168,8 @@
     }
 
     /**
-    * @group list
-    */
+     * @group send
+     */
     public function testGetBulkSendJobsWithParams() {
       // Testing parameters for getBulkSendJobs()
       $list = $this->client->getBulkSendJobs(2, 5);
@@ -179,9 +178,9 @@
       $this->assertEquals($list->getPage(), 2);
     }
 
-   /**
-   * @group read
-   */
+    /**
+     * @group read
+     */
    public function testGetBulkSendJob() {
      $templates = $this->client->getTemplates();
      $template = $templates[0];

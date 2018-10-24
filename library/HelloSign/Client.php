@@ -1064,24 +1064,21 @@ class Client
     }
 
     /**
-     * Retrieves a Bulk Send Job with the given Bulk Send Job ID
+     * Retrieves an API App with the given Client ID
      *
-     * @param  String $id Bulk Send Job ID
-     * @return BulkSendJob
+     * @param  String $id Client ID
+     * @return ApiApp
      * @throws BaseException
      */
-    public function getBulkSendJob($id)
+    public function getApiApp($id)
     {
         $params = array();
-
         $response = $this->rest->get(
-            static::BULK_SEND_JOB_PATH . '/' . $id,
+            static::APIAPP_PATH . '/' . $id,
             $params
         );
-
         $this->checkResponse($response);
-
-        return new BulkSendJob($response);
+        return new ApiApp($response);
     }
 
     /**
@@ -1139,6 +1136,27 @@ class Client
 
         $response = $this->rest->post(
             static::SIGNATURE_REQUEST_BULK_SEND,
+            $params
+        );
+
+        $this->checkResponse($response);
+
+        return new BulkSendJob($response);
+    }
+
+    /**
+     * Retrieves a Bulk Send Job with the given Bulk Send Job ID
+     *
+     * @param  String $id Bulk Send Job ID
+     * @return BulkSendJob
+     * @throws BaseException
+     */
+    public function getBulkSendJob($id)
+    {
+        $params = array();
+
+        $response = $this->rest->get(
+            static::BULK_SEND_JOB_PATH . '/' . $id,
             $params
         );
 

@@ -33,7 +33,6 @@ use stdClass;
 
 /**
  * Represents a HelloSign BulkSendJob to send SignatureRequests based on a Template
- *
  */
 class BulkSendJob extends AbstractSignatureRequest
 {
