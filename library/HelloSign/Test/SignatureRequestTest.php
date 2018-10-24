@@ -229,7 +229,7 @@ class SignatureRequestTest extends AbstractTest
         $request = new SignatureRequest;
         $request->enableTestMode();
 
-        // Set Request Param Signature Request
+        // Set Request Params
         $request->setTitle("NDA with Acme Co.");
         $request->setSubject("The NDA we talked about");
         $request->setMessage("Sign this NDA and then we can discuss more. Let me know if you have any questions.");
@@ -237,8 +237,9 @@ class SignatureRequestTest extends AbstractTest
 
         // Add Signer Group to Signature Request
         $request->addGroup("Authorized Signatory", 0);
-        $request->addGroupSigner("Possible Signer 1", "jen.young+1@hellosign.com", 0);
-        $request->addGroupSigner("Possible Signer 2", "jen.young+2@hellosign.com", 1);
+        $request->addGroupSigner("Jack Example", "jack@example.com", 0);
+        $request->addGroupSigner("Jill Example", "jill@example.com", 1);
+        $request->addGroupSigner("Jane Example", "jane@example.com", 2);
 
         // Send Signature Request
         $response = $this->client->sendSignatureRequest($request);
