@@ -241,6 +241,7 @@ In order to pass the unit tests, you will need:
 3. A HelloSign subscription (to create a team)
 4. A HelloSign API subscription (to access paid API endpoints)
 5. A template with 1 signer role named 'Signer'
+6. A Team with 1 additional team member
 
 *** WARNING: these tests will add and remove users from your team. Use with caution.
 
