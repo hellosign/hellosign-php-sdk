@@ -181,8 +181,6 @@ class TemplateTest extends AbstractTest
      */
     public function testGetTemplateFiles()
     {
-//        sleep(60);
-
         $templates = $this->client->getTemplates();
         $template_id = $templates[0]->getId();
 
@@ -196,7 +194,6 @@ class TemplateTest extends AbstractTest
 
         return $response;
     }
-
 
     /**
      * @group updateFile
