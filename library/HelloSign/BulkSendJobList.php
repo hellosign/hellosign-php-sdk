@@ -30,7 +30,7 @@
 namespace HelloSign;
 
 /**
- * Represents a paged list of HelloSign API Apps
+ * Represents a paged list of HelloSign BulkSendJobs
  */
 class BulkSendJobList extends AbstractResourceList
 {
