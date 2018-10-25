@@ -76,19 +76,21 @@ class TemplateTest extends AbstractTest
      */
     public function testAddTemplateUser($template)
     {
-        $response = $this->client->inviteTeamMember($this->team_member_2);
-        $response = $this->client->addTemplateUser($template->getId(), $this->team_member_2);
+        $team_members = $this->client->getTeam()->getAccounts();
+        $team_member_email = $team_members[1]->getEmail();
+
+        $response = $this->client->addTemplateUser($template->getId(), $team_member_email);
 
         $this->assertInstanceOf('HelloSign\Template', $response);
         $has_template = false;
         foreach ($response->getAccounts() as $account) {
-            if ($account->email_address == $this->team_member_2 || $account->account_id == $this->team_member_2) {
+            if ($account->email_address == $team_member_email) {
                 $has_template = true;
             }
         }
 
         $this->isTrue($has_template);
-        return array($template, $this->team_member_2);
+        return array($template, $team_member_email);
     }
 
     /**
@@ -105,7 +107,7 @@ class TemplateTest extends AbstractTest
 
         $has_template = false;
         foreach ($response->getAccounts() as $account) {
-            if ($account->email_address == $member || $account->account_id == $member) {
+            if ($account->email_address == $member) {
                 $has_template = true;
             }
         }
