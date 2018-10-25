@@ -198,7 +198,9 @@ class Event extends AbstractResource
      */
     public function fromResponse($response, $options = array())
     {
-        isset($response->signature_request) && $this->setSignatureRequest($response->signature_request);
+        if(isset($response->signature_request)) {
+          $this->setSignatureRequest($response->signature_request);
+        };
 
         return parent::fromResponse($response, $options);
     }

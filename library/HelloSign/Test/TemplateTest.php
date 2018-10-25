@@ -69,47 +69,32 @@ class TemplateTest extends AbstractTest
     }
 
     /**
+     * @expectedException HelloSign\Error
+     * @expectedExceptionMessage No accounts could be found
      * @depends testGetTemplates
      * @group update
      */
     public function testAddTemplateUser($template)
     {
-        $team_members = $this->client->getTeam()->getAccounts();
-        $team_member_email = $team_members[1]->getEmail();
+        $invite = $this->client->inviteTeamMember($this->team_member_2);
+        $response = $this->client->addTemplateUser($template->getId(), $this->team_member_2);
 
-        $response = $this->client->addTemplateUser($template->getId(), $team_member_email);
+        $this->assertInstanceOf('HelloSign\Error', $response);
 
-        $this->assertInstanceOf('HelloSign\Template', $response);
-        $has_template = false;
-        foreach ($response->getAccounts() as $account) {
-            if ($account->email_address == $team_member_email) {
-                $has_template = true;
-            }
-        }
-
-        $this->isTrue($has_template);
         return array($template, $team_member_email);
     }
 
     /**
-     * @depends testAddTemplateUser
+     * @expectedException HelloSign\Error
+     * @expectedExceptionMessage No accounts could be found
+     * @depends testGetTemplates
      * @group update
      */
-    public function testRemoveTemplateUser($template_and_member)
+    public function testRemoveTemplateUser($template)
     {
-        $template = $template_and_member[0];
-        $member = $template_and_member[1];
-        $response = $this->client->removeTemplateUser($template->getId(), $member);
+        $response = $this->client->removeTemplateUser($template->getId(), $this->team_member_2);
 
-        $this->assertInstanceOf('HelloSign\Template', $response);
-
-        $has_template = false;
-        foreach ($response->getAccounts() as $account) {
-            if ($account->email_address == $member) {
-                $has_template = true;
-            }
-        }
-        $this->isFalse($has_template);
+        $this->assertInstanceOf('HelloSign\Error', $response);
     }
 
     /**
