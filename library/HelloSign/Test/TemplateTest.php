@@ -205,7 +205,7 @@ class TemplateTest extends AbstractTest
     public function testUpdateTemplateFiles()
     {
       $templates = $this->client->getTemplates();
-      $template_id = '01e0af3105fc7d880280ceb446bbc386b71a6981';
+      $template_id = $templates[0]->getId();
 
       $request = new \HelloSign\Template();
       $request->enableTestMode();

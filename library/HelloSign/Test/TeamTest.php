@@ -99,15 +99,16 @@ class TeamTest extends AbstractTest
      * @depends testUpdateTeamName
      * @group update
      */
-    public function testInviteTeamMember($team)
+    public function testInviteTeamMember($account)
     {
-        $accounts_count = count($team->getAccounts());
+        $accounts_count = count($account->getAccounts());
         $response = $this->client->inviteTeamMember($this->team_member_1);
+        $team = $this->client->getTeam();
 
         $this->assertInstanceOf('HelloSign\Team', $response);
         $this->assertNotNull($response->getName());
         $this->assertEquals(
-            count($response->getAccounts()),
+            count($response->getAccounts()) + count($team->getInvitedAccounts()),
             $accounts_count + 1
         );
     }
