@@ -54,7 +54,6 @@ class TemplateTest extends AbstractTest
 
         $template2 = $this->client->getTemplate($template->getId());
 
-
         $this->assertInstanceOf('HelloSign\TemplateList', $templates);
         $this->assertGreaterThan(0, count($templates));
 
@@ -65,7 +64,6 @@ class TemplateTest extends AbstractTest
         $this->assertNotNull($template2->getId());
 
         $this->assertEquals($template, $template2);
-
 
         return $template;
     }
@@ -120,7 +118,6 @@ class TemplateTest extends AbstractTest
     public function testCreateEmbeddedDraft()
     {
         $client_id = $_ENV['CLIENT_ID'];
-
 
         $request = new \HelloSign\Template();
         $request->enableTestMode();
@@ -202,8 +199,8 @@ class TemplateTest extends AbstractTest
 
 
     /**
-      * @group updateFile
-    */
+     * @group updateFile
+     */
     public function testUpdateTemplateFiles()
     {
       $templates = $this->client->getTemplates();
