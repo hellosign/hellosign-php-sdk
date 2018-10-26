@@ -1,6 +1,7 @@
 language: php
 php:
-- 7.1
+- 5.5
+- 7.0
 before_install:
 - cp phpunit.xml.sample phpunit.xml
 - composer install
