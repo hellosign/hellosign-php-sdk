@@ -145,11 +145,11 @@ class BulkSendTest extends AbstractTest
 
    if (isset($field)) {
      $request->setCustomFieldValue($field->name, 'Test Test');
-   };
+   }
 
    if (isset($cc)) {
      $request->setCC($cc->name, 'cc@example.com');
-   };
+   }
 
    $request->addMetadata('user_id', '1234');
    $request->setClientId($app_id);

@@ -269,7 +269,7 @@ class SignatureRequest extends AbstractSignatureRequest
         // default value
         if (!isset($options['except'])) {
           $options['except'] = array();
-        };
+        }
 
         $options['except'] = array_merge($options['except'], array(
             'signature_request_id',
@@ -302,8 +302,8 @@ class SignatureRequest extends AbstractSignatureRequest
 
         if (!isset($options['except'])) {
           $options['except'] = array();
-        };
-        
+        }
+
         $options['except'] = array_merge($options['except'], array(
             'signatures',
             'original_title',

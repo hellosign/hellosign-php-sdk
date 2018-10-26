@@ -467,7 +467,7 @@ class Template extends AbstractResource
     {
         if (!isset($options['except'])) {
           $options['except'] = array();
-        };
+        }
 
         $options['except'][] = 'named_form_fields';
 

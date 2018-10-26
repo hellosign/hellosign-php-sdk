@@ -583,7 +583,7 @@ class Client
           $response = $this->rest->get(
             static::EMBEDDED_EDIT_URL_PATH . '/' . $id
           );
-        };
+        }
 
 
         $this->checkResponse($response);

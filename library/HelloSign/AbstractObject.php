@@ -60,11 +60,11 @@ abstract class AbstractObject
         // default value
         if (!isset($options['include_null'])) {
           $options['include_null'] = false;
-        };
+        }
 
         if (!isset($options['except'])) {
           $options['except'] = array();
-        };
+        }
 
         $options['except'][] = 'resource_type';
 
@@ -116,7 +116,7 @@ abstract class AbstractObject
         // default options
         if (!isset($options['except'])) {
           $options['except'] = array();
-        };
+        }
 
         foreach ($options['except'] as $value) {
             unset($array[$value]);

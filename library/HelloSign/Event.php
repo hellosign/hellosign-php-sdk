@@ -200,7 +200,7 @@ class Event extends AbstractResource
     {
         if(isset($response->signature_request)) {
           $this->setSignatureRequest($response->signature_request);
-        };
+        }
 
         return parent::fromResponse($response, $options);
     }

@@ -215,7 +215,7 @@ abstract class AbstractSignatureRequest extends AbstractResource
 
         if (!isset($options['except'])) {
           $options['except'] = array();
-        };
+        }
 
         $options['except'][] = 'signers';
 

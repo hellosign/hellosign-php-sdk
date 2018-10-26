@@ -136,15 +136,15 @@ class Team extends AbstractResource
     {
         if (array_key_exists('accounts', $array)) {
           $this->setAccounts($array['accounts']);
-        };
+        }
 
         if (array_key_exists('invited_accounts', $array)) {
           $this->setInvitedAccounts($array['invited_accounts']);
-        };
+        }
 
         if (!isset($options['except'])) {
           $options['except'] = array();
-        };
+        }
 
         $options['except'] = array_merge($options['except'], array(
             'accounts',
