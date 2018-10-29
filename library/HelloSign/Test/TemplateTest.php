@@ -187,7 +187,8 @@ class TemplateTest extends AbstractTest
     {
         $templates = $this->client->getTemplates();
         $template_id = $templates[0]->getId();
-
+        $client_id = $_ENV['CLIENT_ID'];
+        
         $request = new \HelloSign\Template();
         $request->enableTestMode();
         $request->setClientId($client_id);
