@@ -173,8 +173,7 @@ abstract class AbstractSignatureRequest extends AbstractResource
     {
       $group = new SignerGroup(array(
         'name' => $name
-        )
-      );
+      ));
 
       $this->signers[$group_index_or_role] = $group;
 
