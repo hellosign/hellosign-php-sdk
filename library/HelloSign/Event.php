@@ -79,7 +79,7 @@ class Event extends AbstractResource
      * A map of values containing data related to this event
      *
      * related_signature_id: Signature associated with this event. Only set when
-     * even_type is signature_request_signed
+     * event_type is signature_request_signed
      * reported_for_account_id: Id of the account this event is reported for
      * reported_for_app_id: Client id of the app this event is reported for
      * @var stdClass
@@ -198,7 +198,9 @@ class Event extends AbstractResource
      */
     public function fromResponse($response, $options = array())
     {
-        isset($response->signature_request) && $this->setSignatureRequest($response->signature_request);
+        if(isset($response->signature_request)) {
+          $this->setSignatureRequest($response->signature_request);
+        }
 
         return parent::fromResponse($response, $options);
     }

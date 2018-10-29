@@ -41,7 +41,7 @@ use Comvi\REST;
 class Client
 {
 
-    const VERSION = '3.5.4';
+    const VERSION = '3.5.5';
 
     const API_URL = "https://api.hellosign.com/v3/";
 
@@ -60,6 +60,7 @@ class Client
     const SIGNATURE_REQUEST_FILES_PATH             = "signature_request/files";
     const SIGNATURE_REQUEST_EMBEDDED_PATH          = "signature_request/create_embedded";
     const SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH = "signature_request/create_embedded_with_template";
+    const SIGNATURE_REQUEST_BULK_SEND              = "signature_request/bulk_send_with_template";
 
     const TEMPLATE_PATH                   = "template";
     const TEMPLATE_LIST_PATH              = "template/list";
@@ -70,6 +71,9 @@ class Client
     const TEMPLATE_DELETE_PATH            = "template/delete";
     const TEMPLATE_FILES_PATH             = "template/files";
     const TEMPLATE_UPDATE_FILES_PATH      = "template/update_files";
+
+    const BULK_SEND_JOB_PATH              = "bulk_send_job";
+    const BULK_SEND_JOB_LIST_PATH         = "bulk_send_job/list";
 
     const TEAM_PATH               = "team";
     const TEAM_CREATE_PATH        = "team/create";
@@ -579,7 +583,7 @@ class Client
           $response = $this->rest->get(
             static::EMBEDDED_EDIT_URL_PATH . '/' . $id
           );
-        };
+        }
 
 
         $this->checkResponse($response);
@@ -1069,14 +1073,11 @@ class Client
     public function getApiApp($id)
     {
         $params = array();
-
         $response = $this->rest->get(
             static::APIAPP_PATH . '/' . $id,
             $params
         );
-
         $this->checkResponse($response);
-
         return new ApiApp($response);
     }
 
@@ -1103,6 +1104,7 @@ class Client
      * Retrieves a list of API Apps for account
      *
      * @param  integer $page
+     * @param  integer $page_size
      * @return ApiAppList
      * @throws BaseException
      */
@@ -1113,6 +1115,71 @@ class Client
         $this->checkResponse($response);
 
         $list = new ApiAppList($response);
+
+        if ($page > $list->getNumPages()) {
+            throw new Error('page_not_found', 'Page not found');
+        }
+
+        return $list;
+    }
+
+    /**
+     * Creates a new Bulk Send Job using the specified Template
+     *
+     * @param  BulkSendJob $request
+     * @return BulkSendJob
+     * @throws BaseException
+     */
+    public function sendBulkSendJobWithTemplate(BulkSendJob $request)
+    {
+        $params = $request->toParams();
+
+        $response = $this->rest->post(
+            static::SIGNATURE_REQUEST_BULK_SEND,
+            $params
+        );
+
+        $this->checkResponse($response);
+
+        return new BulkSendJob($response);
+    }
+
+    /**
+     * Retrieves a Bulk Send Job with the given Bulk Send Job ID
+     *
+     * @param  String $id Bulk Send Job ID
+     * @return BulkSendJob
+     * @throws BaseException
+     */
+    public function getBulkSendJob($id)
+    {
+        $params = array();
+
+        $response = $this->rest->get(
+            static::BULK_SEND_JOB_PATH . '/' . $id,
+            $params
+        );
+
+        $this->checkResponse($response);
+
+        return new BulkSendJob($response);
+    }
+
+    /**
+     * Retrieves a list of Bulk Send Jobs for account
+     *
+     * @param  integer $page
+     * @param  integer $page_size
+     * @return BulkSendJobList
+     * @throws BaseException
+     */
+    public function getBulkSendJobs($page = 1, $page_size = 20)
+    {
+        $response = $this->rest->get(static::BULK_SEND_JOB_LIST_PATH, array('page' => $page, 'page_size' => $page_size));
+
+        $this->checkResponse($response);
+
+        $list = new BulkSendJobList($response);
 
         if ($page > $list->getNumPages()) {
             throw new Error('page_not_found', 'Page not found');

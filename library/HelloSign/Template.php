@@ -111,6 +111,13 @@ class Template extends AbstractResource
     protected $signer_roles = array();
 
     /**
+     * An array of signer attachements
+     *
+     * @var AttachmentList
+     */
+    protected $attachments = null;
+
+    /**
      * Specifies whether or not to prompt the user to edit signer roles.
      *
      * @var boolean
@@ -337,6 +344,29 @@ class Template extends AbstractResource
     }
 
     /**
+     * Adds an Attachment to the EmbeddedTemplate
+     *
+     * @param  string $name Name of the Attachment.
+     * @param  integer $signer_index Index of the signer to upload this Attachment.
+     * @param  string $instructions Instructions for uploading the Attachment. (optional)
+     * @param  boolean $required Whether or not the signer is required to upload this Attachment. (optional)
+     * @return SignatureRequest
+     */
+    public function addAttachment($name, $signer_index, $instructions = null, $required = null)
+    {
+        $attachment = new Attachment(array(
+                'name' => $name,
+                'instructions' => $instructions,
+                'signer_index' => $signer_index,
+                'required' => $required
+            ));
+
+        $this->attachments[] = $attachment;
+
+        return $this;
+    }
+
+    /**
      * @return string
      * @ignore
      */
@@ -435,7 +465,10 @@ class Template extends AbstractResource
      */
     public function fromArray($array, $options = array())
     {
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        }
+
         $options['except'][] = 'named_form_fields';
 
         return parent::fromArray($array, $options);
@@ -460,13 +493,13 @@ class Template extends AbstractResource
             'use_preexisting_fields',
             'metadata',
             'skip_me_now',
-            'allow_reassign'
+            'allow_reassign',
+            'attachments'
         );
 
         if (isset($this->merge_fields) && count($this->merge_fields) > 0) {
             $merge_fields = json_encode($this->merge_fields);
         }
-
         $params = $this->toArray();
 
         foreach ($params as $key => $value) {

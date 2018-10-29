@@ -54,7 +54,6 @@ class TemplateTest extends AbstractTest
 
         $template2 = $this->client->getTemplate($template->getId());
 
-
         $this->assertInstanceOf('HelloSign\TemplateList', $templates);
         $this->assertGreaterThan(0, count($templates));
 
@@ -66,50 +65,36 @@ class TemplateTest extends AbstractTest
 
         $this->assertEquals($template, $template2);
 
-
         return $template;
     }
 
     /**
+     * @expectedException HelloSign\Error
+     * @expectedExceptionMessage No accounts could be found
      * @depends testGetTemplates
      * @group update
      */
     public function testAddTemplateUser($template)
     {
-        $response = $this->client->inviteTeamMember($this->team_member_2);
+        $invite = $this->client->inviteTeamMember($this->team_member_2);
         $response = $this->client->addTemplateUser($template->getId(), $this->team_member_2);
 
-        $this->assertInstanceOf('HelloSign\Template', $response);
-        $has_template = false;
-        foreach ($response->getAccounts() as $account) {
-            if ($account->email_address == $this->team_member_2 || $account->account_id == $this->team_member_2) {
-                $has_template = true;
-            }
-        }
+        $this->assertInstanceOf('HelloSign\Error', $response);
 
-        $this->isTrue($has_template);
-        return array($template, $this->team_member_2);
+        return array($template, $team_member_email);
     }
 
     /**
-     * @depends testAddTemplateUser
+     * @expectedException HelloSign\Error
+     * @expectedExceptionMessage No accounts could be found
+     * @depends testGetTemplates
      * @group update
      */
-    public function testRemoveTemplateUser($template_and_member)
+    public function testRemoveTemplateUser($template)
     {
-        $template = $template_and_member[0];
-        $member = $template_and_member[1];
-        $response = $this->client->removeTemplateUser($template->getId(), $member);
+        $response = $this->client->removeTemplateUser($template->getId(), $this->team_member_2);
 
-        $this->assertInstanceOf('HelloSign\Template', $response);
-
-        $has_template = false;
-        foreach ($response->getAccounts() as $account) {
-            if ($account->email_address == $member || $account->account_id == $member) {
-                $has_template = true;
-            }
-        }
-        $this->isFalse($has_template);
+        $this->assertInstanceOf('HelloSign\Error', $response);
     }
 
     /**
@@ -118,7 +103,6 @@ class TemplateTest extends AbstractTest
     public function testCreateEmbeddedDraft()
     {
         $client_id = $_ENV['CLIENT_ID'];
-
 
         $request = new \HelloSign\Template();
         $request->enableTestMode();
@@ -135,6 +119,7 @@ class TemplateTest extends AbstractTest
         $request->addMetadata('custom_id', '1234');
         $request->addMetadata('favorite_movie', 'Big Fish');
         $request->setUsePreexistingFields(true);
+        $request->addAttachment('Passport', 0, 'Attach your passport', false);
 
         $return = $this->client->createEmbeddedDraft($request);
 
@@ -181,8 +166,6 @@ class TemplateTest extends AbstractTest
      */
     public function testGetTemplateFiles()
     {
-//        sleep(60);
-
         $templates = $this->client->getTemplates();
         $template_id = $templates[0]->getId();
 
@@ -197,24 +180,23 @@ class TemplateTest extends AbstractTest
         return $response;
     }
 
-
     /**
-      * @group updateFile
-    */
+     * @group updateFile
+     */
     public function testUpdateTemplateFiles()
     {
-      $templates = $this->client->getTemplates();
-      $template_id = '01e0af3105fc7d880280ceb446bbc386b71a6981';
+        $templates = $this->client->getTemplates();
+        $template_id = $templates[0]->getId();
 
-      $request = new \HelloSign\Template();
-      $request->enableTestMode();
-      $request->setClientId($client_id);
-      $request->addFile(__DIR__ . '/nda.docx');
-      $request->setMessage('PHP SDK Test Update File Message');
-      $request->setSubject('PHP SDK Test Update File Subject');
+        $request = new \HelloSign\Template();
+        $request->enableTestMode();
+        $request->setClientId($client_id);
+        $request->addFile(__DIR__ . '/nda.docx');
+        $request->setMessage('PHP SDK Test Update File Message');
+        $request->setSubject('PHP SDK Test Update File Subject');
 
-      $response = $this->client->updateTemplateFiles($template_id, $request);
-      $this->assertTrue(is_string($response->getId()));
-      return $response;
+        $response = $this->client->updateTemplateFiles($template_id, $request);
+        $this->assertTrue(is_string($response->getId()));
+        return $response;
     }
 }

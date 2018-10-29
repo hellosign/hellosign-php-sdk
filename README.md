@@ -6,7 +6,7 @@ This is the official PHP SDK for HelloSign's API.  [View API Documentation and E
 
 ### Requirements
 
-The latest version of the SDK requires PHP version 5.5 or higher.
+The latest version of the SDK requires PHP version 7.1 or higher.
 
 You can import this SDK into your library two ways, either through including the base HelloSign.php file into your
 project or using [Composer](https://getcomposer.org/doc/00-intro.md).
@@ -241,6 +241,7 @@ In order to pass the unit tests, you will need:
 3. A HelloSign subscription (to create a team)
 4. A HelloSign API subscription (to access paid API endpoints)
 5. A template with 1 signer role named 'Signer'
+6. A Team with 1 additional team member
 
 *** WARNING: these tests will add and remove users from your team. Use with caution.
 

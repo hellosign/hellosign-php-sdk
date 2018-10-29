@@ -116,6 +116,8 @@ abstract class AbstractResource extends AbstractObject
      */
     public function __construct($response = null, $options = array())
     {
+        $this->attachments = new AttachmentList;
+
         if (isset($response)) {
             $this->fromResponse($response, $options);
             $this->warningsFromResponse($response);

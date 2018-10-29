@@ -27,6 +27,7 @@
 namespace HelloSign\Test;
 
 use HelloSign\SignatureRequest;
+use HelloSign\SignerGroup;
 use HelloSign\Signer;
 use HelloSign\Error;
 
@@ -64,7 +65,16 @@ class SignatureRequestTest extends AbstractTest
         )));
         $request->addCC("lawyer@example.com");
         $request->addFile(__DIR__ . '/nda.docx');
-
+        $request->addAttachment('Passport', 0, 'Attach your passport', false);
+        $request->setSignerOptions(
+          array(
+            "draw" => true,
+            "type" => true,
+            "upload" => false,
+            "phone" => false,
+            "default" => "type"
+          )
+        );
         // Send Signature Request
         $response = $this->client->sendSignatureRequest($request);
 
@@ -76,7 +86,7 @@ class SignatureRequestTest extends AbstractTest
 
         return $response->getId();
     }
-    
+
     /**
      * @group create
      */
@@ -138,7 +148,7 @@ class SignatureRequestTest extends AbstractTest
 
         return $response->getId();
     }
-    
+
     /**
      * @group create
      */
@@ -206,6 +216,38 @@ class SignatureRequestTest extends AbstractTest
         $this->assertEquals($response->metadata->custom_id, '1234');
         $this->assertObjectHasAttribute('custom_text', $response->metadata);
         $this->assertEquals($response->metadata->custom_text, 'oranges, apples, and bananas');
+
+        return $response->getId();
+    }
+
+    /**
+     * @group create
+     */
+    public function testSendSignatureRequestWithSignerGroup()
+    {
+        // Enable Test Mode
+        $request = new SignatureRequest;
+        $request->enableTestMode();
+
+        // Set Request Params
+        $request->setTitle("NDA with Acme Co.");
+        $request->setSubject("The NDA we talked about");
+        $request->setMessage("Sign this NDA and then we can discuss more. Let me know if you have any questions.");
+        $request->addFile(__DIR__ . '/nda.docx');
+
+        // Add Signer Group to Signature Request
+        $request->addGroup("Authorized Signatory", 0);
+        $request->addGroupSigner("Jack Example", "jack@example.com", 0);
+        $request->addGroupSigner("Jill Example", "jill@example.com", 1);
+        $request->addGroupSigner("Jane Example", "jane@example.com", 2);
+
+        // Send Signature Request
+        $response = $this->client->sendSignatureRequest($request);
+
+        $this->assertInstanceOf('HelloSign\SignatureRequest', $response);
+        $this->assertNotNull($response->getId());
+        $this->assertEquals($request, $response);
+        $this->assertEquals($response->getTitle(), $response->title);
 
         return $response->getId();
     }

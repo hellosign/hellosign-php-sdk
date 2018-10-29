@@ -58,8 +58,14 @@ abstract class AbstractObject
         $array = get_object_vars($this);
 
         // default value
-        !isset($options['include_null']) && $options['include_null'] = false;
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['include_null'])) {
+          $options['include_null'] = false;
+        }
+
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        }
+
         $options['except'][] = 'resource_type';
 
         if (isset($options['only'])) {
@@ -82,7 +88,6 @@ abstract class AbstractObject
                 $array[$key] = $value->toArray();
             }
         }
-
         return $array;
     }
 
@@ -109,7 +114,9 @@ abstract class AbstractObject
     public function fromArray($array, $options = array())
     {
         // default options
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        }
 
         foreach ($options['except'] as $value) {
             unset($array[$value]);

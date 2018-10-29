@@ -1,4 +1,7 @@
 <?php
+/**
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
+ */
 
 /**
  * The MIT License (MIT)
@@ -24,39 +27,22 @@
  * SOFTWARE.
  */
 
-namespace HelloSign\Test;
+namespace HelloSign;
 
-use HelloSign\Client;
-
-abstract class AbstractTest extends \PHPUnit\Framework\TestCase
+/**
+ * Represents a paged list of HelloSign BulkSendJobs
+ */
+class BulkSendJobList extends AbstractResourceList
 {
-    protected $client;
+    /**
+     * @var string
+     * @ignore
+     */
+    protected $list_type = 'bulk_send_jobs';
 
-    protected function setUp()
-    {
-        $keys = array(
-            'API_KEY',
-            'CLIENT_ID',
-            'CLIENT_SECRET',
-            'API_URL',
-            'OAUTH_TOKEN_URL'
-        );
-
-        foreach ($keys as $key) {
-            array_key_exists($key, $_SERVER) && $_ENV[$key] = $_SERVER[$key];
-        }
-
-
-        $api_url = $_ENV['API_URL'] == null ? Client::API_URL : $_ENV['API_URL'];
-        $oauth_token_url = $_ENV['OAUTH_TOKEN_URL'] == null ? Client::OAUTH_TOKEN_URL : $_ENV['OAUTH_TOKEN_URL'];
-        $this->client = new Client($_ENV['API_KEY'], null, $api_url, $oauth_token_url);
-        $this->team_member_1 = rand(1, 10000000) . "@example.com";
-        $this->team_member_2 = rand(1, 10000000) . "@example.com";
-        // $this->client->enableDebugMode();
-
-        if ($api_url != Client::API_URL) {
-            $this->client->disableCertificateCheck();
-        }
-
-    }
+    /**
+     * @var string
+     * @ignore
+     */
+    protected $resource_class = 'BulkSendJob';
 }

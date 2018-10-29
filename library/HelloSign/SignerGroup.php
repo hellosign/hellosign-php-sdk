@@ -1,4 +1,7 @@
 <?php
+/**
+ * HelloSign PHP SDK (https://github.com/hellosign/hellosign-php-sdk/)
+ */
 
 /**
  * The MIT License (MIT)
@@ -24,39 +27,27 @@
  * SOFTWARE.
  */
 
-namespace HelloSign\Test;
+namespace HelloSign;
 
-use HelloSign\Client;
-
-abstract class AbstractTest extends \PHPUnit\Framework\TestCase
+/**
+ * Class that stores Signer Group information for a Signature Request
+ */
+class SignerGroup extends AbstractObject
 {
-    protected $client;
+    /**
+     * The name of the Signer Group
+     *
+     * @var string
+     */
+    protected $group = null;
 
-    protected function setUp()
+    /**
+     * Constructor
+     *
+     * @param  array $array
+     */
+    public function __construct($array = array())
     {
-        $keys = array(
-            'API_KEY',
-            'CLIENT_ID',
-            'CLIENT_SECRET',
-            'API_URL',
-            'OAUTH_TOKEN_URL'
-        );
-
-        foreach ($keys as $key) {
-            array_key_exists($key, $_SERVER) && $_ENV[$key] = $_SERVER[$key];
-        }
-
-
-        $api_url = $_ENV['API_URL'] == null ? Client::API_URL : $_ENV['API_URL'];
-        $oauth_token_url = $_ENV['OAUTH_TOKEN_URL'] == null ? Client::OAUTH_TOKEN_URL : $_ENV['OAUTH_TOKEN_URL'];
-        $this->client = new Client($_ENV['API_KEY'], null, $api_url, $oauth_token_url);
-        $this->team_member_1 = rand(1, 10000000) . "@example.com";
-        $this->team_member_2 = rand(1, 10000000) . "@example.com";
-        // $this->client->enableDebugMode();
-
-        if ($api_url != Client::API_URL) {
-            $this->client->disableCertificateCheck();
-        }
-
+        $this->group = $array['name'];
     }
 }

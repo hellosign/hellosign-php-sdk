@@ -93,6 +93,14 @@ abstract class AbstractSignatureRequest extends AbstractResource
     protected $custom_fields = null;
 
     /**
+     * This allows the sender to specify the types allowed for creating a signature.
+     * Defaults to the allowed types in the sender's account settings.
+     *
+     * @var array
+     */
+    protected $signing_options = array();
+
+    /**
      * Constructor
      *
      * @param  stdClass $response
@@ -155,6 +163,46 @@ abstract class AbstractSignatureRequest extends AbstractResource
     }
 
     /**
+     * Adds a Signer Group to the Signature Request
+     *
+     * @param  string $name Signer Group name
+     * @param  mixed $group_index_or_role Group Index or Signer Role. Defaults to 0.
+     * @return AbstractSignatureRequest
+     */
+    public function addGroup($name, $group_index_or_role = 0)
+    {
+      $group = new SignerGroup(array(
+        'name' => $name
+      ));
+
+      $this->signers[$group_index_or_role] = $group;
+
+      return $this;
+    }
+
+    /**
+     * Adds Signers to a Signer Group in the Signature Request
+     *
+     * @param  string $name Name of the Signer
+     * @param  string $email Email address of the Signer
+     * @param  integer $signer_index Signer Index of the Signer
+     * @param  mixed $group_index_or_role Group Index or Signer Role. Defaults to 0.
+     * @return AbstractSignatureRequest
+     */
+    public function addGroupSigner($name, $email, $signer_index, $group_index_or_role = 0)
+    {
+      $signer = new Signer(array(
+          'name' => $name,
+          'email_address' => $email
+        )
+      );
+
+      $this->signers[$group_index_or_role]->$signer_index = $signer;
+
+      return $this;
+    }
+
+    /**
      * @param  array $array
      * @param  array $options
      * @return AbstractSignatureRequest
@@ -164,7 +212,10 @@ abstract class AbstractSignatureRequest extends AbstractResource
     {
         array_key_exists('signers', $array) && $this->setSigners($array['signers']);
 
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        }
+
         $options['except'][] = 'signers';
 
         return parent::fromArray($array, $options);
@@ -219,6 +270,17 @@ abstract class AbstractSignatureRequest extends AbstractResource
     public function setHideTextTags($hide_text_tags)
     {
         $this->hide_text_tags = $hide_text_tags;
+        return $this;
+    }
+
+    /**
+     * @param  array $options
+     * @return SignatureRequest
+     * @ignore
+     */
+    public function setSignerOptions($options)
+    {
+        $this->signing_options = json_encode($options);
         return $this;
     }
 

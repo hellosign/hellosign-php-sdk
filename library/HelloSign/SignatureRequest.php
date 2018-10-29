@@ -119,6 +119,13 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $custom_fields = null;
 
     /**
+     * An array of signer attachements
+     *
+     * @var AttachmentList
+     */
+    protected $attachments = null;
+
+    /**
      * An array of form field objects containing the name, value, and type of
      * each textbox or checkmark field filled in by the signers
      *
@@ -230,6 +237,29 @@ class SignatureRequest extends AbstractSignatureRequest
     }
 
     /**
+     * Adds an Attachment to the SignatureRequest
+     *
+     * @param  string $name Name of the Attachment.
+     * @param  integer $signer_index Index of the signer to upload this Attachment.
+     * @param  string $instructions Instructions for uploading the Attachment. (optional)
+     * @param  boolean $required Whether or not the signer is required to upload this Attachment. (optional)
+     * @return SignatureRequest
+     */
+    public function addAttachment($name, $signer_index, $instructions = null, $required = null)
+    {
+        $attachment = new Attachment(array(
+                'name' => $name,
+                'instructions' => $instructions,
+                'signer_index' => $signer_index,
+                'required' => $required
+            ));
+
+        $this->attachments[] = $attachment;
+
+        return $this;
+    }
+
+    /**
      * @param  array $options
      * @return array
      * @ignore
@@ -237,7 +267,10 @@ class SignatureRequest extends AbstractSignatureRequest
     public function toParams($options = array())
     {
         // default value
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        }
+
         $options['except'] = array_merge($options['except'], array(
             'signature_request_id',
             'is_complete',
@@ -267,7 +300,10 @@ class SignatureRequest extends AbstractSignatureRequest
     {
         array_key_exists('signatures', $array) && $this->setSignatures($array['signatures']);
 
-        !isset($options['except']) && $options['except'] = array();
+        if (!isset($options['except'])) {
+          $options['except'] = array();
+        }
+
         $options['except'] = array_merge($options['except'], array(
             'signatures',
             'original_title',

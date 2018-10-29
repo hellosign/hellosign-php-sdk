@@ -66,4 +66,37 @@ class TemplateSignatureRequestTest extends AbstractTest
 
         return $response->getId();
     }
+
+    /**
+     * @group create
+     */
+    public function testSendTemplateSignatureRequestWithSignerGroup()
+    {
+        // Retrieve Template Information
+        $templates = $this->client->getTemplates();
+        $template = $templates[0];
+        $signer_role = $template->getSignerRoles()[0]->name;
+
+        // Enable Test Mode
+        $request = new TemplateSignatureRequest;
+        $request->enableTestMode();
+
+        // Set Request Params
+        $request->setTemplateId($template->getId());
+        $request->setSubject('Purchase Order');
+        $request->setMessage('Glad we could come to an agreement.');
+
+        // Add Signer Group to Signature Request
+        $request->addGroup("Client Group", $signer_role);
+        $request->addGroupSigner("Jack Example", "jack@example.com", 0, $signer_role);
+        $request->addGroupSigner("Jill Example", "jill@example.com", 1, $signer_role);
+        $request->addGroupSigner("Jane Example", "jane@example.com", 2, $signer_role);
+
+        $response = $this->client->sendTemplateSignatureRequest($request);
+
+        $this->assertInstanceOf('HelloSign\SignatureRequest', $response);
+        $this->assertNotNull($response->getId());
+
+        return $response->getId();
+    }
 }

@@ -62,17 +62,4 @@ class Signer extends AbstractObject
      * @var string
      */
     protected $pin = null;
-
-    /**
-     * @param  array $options
-     * @return array
-     * @see    AbstractObject::toArray()
-     * @ignore
-     */
-    public function toArray($options = array())
-    {
-        !isset($options['include_null']) && $options['include_null'] = false;
-
-        return parent::toArray($options);
-    }
 }
