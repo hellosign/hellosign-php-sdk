@@ -125,7 +125,7 @@ class BulkSendTest extends AbstractTest
   public function testSendBulkSendJobWithAllParameters()
   {
    $templates = $this->client->getTemplates();
-   $template = $templates[1];
+   $template = $templates[0];
    $field = $template->getCustomFields()[0];
    $cc = $template->getCCRoles()[0];
    $app = $this->client->getApiApps()[0];
