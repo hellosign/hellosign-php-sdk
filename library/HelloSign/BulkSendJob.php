@@ -184,7 +184,10 @@ class BulkSendJob extends AbstractSignatureRequest
      */
     public function __construct($response = null, $options = array())
     {
-        $this->signature_requests = $response->signature_requests;
+        if (isset($response->signature_requests))
+        {
+          $this->signature_requests = $response->signature_requests;
+        }
         $this->list_info = $response->list_info;
 
         parent::__construct($response, $options);
