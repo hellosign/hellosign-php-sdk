@@ -1,4 +1,5 @@
 ## HelloSign PHP SDK
+[![Build Status](https://travis-ci.org/hellosign/hellosign-php-sdk.svg?branch=v3)](https://travis-ci.org/hellosign/hellosign-php-sdk)
 
 This is the official PHP SDK for HelloSign's API.  [View API Documentation and Examples.](https://app.hellosign.com/api/documentation)
 
