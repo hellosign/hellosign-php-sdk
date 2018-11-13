@@ -495,15 +495,14 @@ class Client
      * Retrieves the current user's signature requests. The resulting object
      * represents a paged query result.
      *
-     * @param  Integer $page
+     * @param  Array of search parameters ['query'=>'to:user@email.com']
      * @return SignatureRequestList
      * @throws BaseException
      */
-    public function getSignatureRequests($page = 1)
+    public function getSignatureRequests($params = [])
     {
-        $params = array(
-            'page' => $page
-        );
+        if(!$params['page'])
+            $params['page'] =1;
 
         $response = $this->rest->get(
             static::SIGNATURE_REQUEST_LIST_PATH,
