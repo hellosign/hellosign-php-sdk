@@ -28,6 +28,7 @@ namespace HelloSign\Test;
 
 use HelloSign\Template;
 use HelloSign\BulkSendJob;
+use HelloSign\EmbeddedBulkSendJob;
 
 class BulkSendTest extends AbstractTest
 {
@@ -155,6 +156,33 @@ class BulkSendTest extends AbstractTest
    $request->setClientId($app_id);
 
    $response = $this->client->sendBulkSendJobWithTemplate($request);
+
+   $this->assertInstanceOf('HelloSign\BulkSendJob', $response);
+   $this->assertNotNull($response->getId());
+  }
+
+  /**
+   * @group embedded
+   */
+  public function testSendEmbeddedBulkSendJob()
+  {
+   $templates = $this->client->getTemplates();
+   $template = $templates[0];
+
+   $signers = __DIR__ . "/bulk_send_test_signers.csv";
+
+   $request = new BulkSendJob;
+   $request->enableTestMode();
+   $request->setTitle('Embedded Bulk Send Job Example Title');
+   $request->setTemplateId($template->getId());
+   $request->addSignerFile($signers);
+
+   // Turn it into an embedded request
+   $client_id = $_ENV['CLIENT_ID'];
+   $embedded_request = new EmbeddedBulkSendJob($request, $client_id);
+
+   // Send it to HelloSign
+   $response = $this->client->sendEmbeddedBulkSendJobWithTemplate($embedded_request);
 
    $this->assertInstanceOf('HelloSign\BulkSendJob', $response);
    $this->assertNotNull($response->getId());

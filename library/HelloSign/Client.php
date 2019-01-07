@@ -1148,16 +1148,16 @@ class Client
     /**
      * Creates a new embedded Bulk Send Job using the specified Template
      *
-     * @param  BulkSendJob $request
+     * @param  EmbeddedBulkSendJob $request
      * @return BulkSendJob
      * @throws BaseException
      */
-    public function sendEmbeddedBulkSendJobWithTemplate(BulkSendJob $request)
+    public function sendEmbeddedBulkSendJobWithTemplate(EmbeddedBulkSendJob $request)
     {
         $params = $request->toParams();
 
         $response = $this->rest->post(
-            static::SIGNATURE_REQUEST_BULK_SEND_PATH,
+            static::SIGNATURE_REQUEST_EMBEDDED_BULK_SEND_PATH,
             $params
         );
 
