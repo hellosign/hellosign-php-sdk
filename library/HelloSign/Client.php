@@ -41,7 +41,7 @@ use Comvi\REST;
 class Client
 {
 
-    const VERSION = '3.5.6';
+    const VERSION = '3.5.7';
 
     const API_URL = "https://api.hellosign.com/v3/";
 
@@ -60,7 +60,8 @@ class Client
     const SIGNATURE_REQUEST_FILES_PATH             = "signature_request/files";
     const SIGNATURE_REQUEST_EMBEDDED_PATH          = "signature_request/create_embedded";
     const SIGNATURE_REQUEST_EMBEDDED_TEMPLATE_PATH = "signature_request/create_embedded_with_template";
-    const SIGNATURE_REQUEST_BULK_SEND              = "signature_request/bulk_send_with_template";
+    const SIGNATURE_REQUEST_BULK_SEND_PATH         = "signature_request/bulk_send_with_template";
+    const SIGNATURE_REQUEST_EMBEDDED_BULK_SEND_PATH = "signature_request/bulk_create_embedded_with_template";
 
     const TEMPLATE_PATH                   = "template";
     const TEMPLATE_LIST_PATH              = "template/list";
@@ -1135,7 +1136,28 @@ class Client
         $params = $request->toParams();
 
         $response = $this->rest->post(
-            static::SIGNATURE_REQUEST_BULK_SEND,
+            static::SIGNATURE_REQUEST_BULK_SEND_PATH,
+            $params
+        );
+
+        $this->checkResponse($response);
+
+        return new BulkSendJob($response);
+    }
+
+    /**
+     * Creates a new embedded Bulk Send Job using the specified Template
+     *
+     * @param  EmbeddedBulkSendJob $request
+     * @return BulkSendJob
+     * @throws BaseException
+     */
+    public function sendEmbeddedBulkSendJobWithTemplate(EmbeddedBulkSendJob $request)
+    {
+        $params = $request->toParams();
+
+        $response = $this->rest->post(
+            static::SIGNATURE_REQUEST_EMBEDDED_BULK_SEND_PATH,
             $params
         );
 
