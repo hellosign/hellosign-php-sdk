@@ -69,17 +69,17 @@ class REST
     protected $mime_type;
 
 
-    function __construct($config = array())
+    function __construct($config = array(), $options = array())
     {
         // If a URL was passed to the library
         empty($config) OR $this->initialize($config);
 
-        $options = ['connect_timeout' => 300.0, 'timeout' => 30.0, 'allow_redirects' => true];
+        $default_options = ['connect_timeout' => 300.0, 'timeout' => 30.0, 'allow_redirects' => true];
         if (!empty($this->server)) {
-            $options['base_uri'] = $this->server;
+            $default_options['base_uri'] = $this->server;
         }
 
-        $this->guzzleClient = new \GuzzleHttp\Client($options);
+        $this->guzzleClient = new \GuzzleHttp\Client(array_merge($default_options, $options));
     }
 
     public function initialize($config)

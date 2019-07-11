@@ -105,6 +105,13 @@ class Client
     protected $rest;
 
     /**
+     * HTTP client configuration via the Guzzle library specification
+     *
+     * @var array $rest_client_config
+     */
+    protected $rest_client_config = array();
+
+    /**
      * Enable debug mode or not
      *
      * @var boolean
@@ -117,10 +124,12 @@ class Client
      * @param  mixed $first email address or apikey or OAuthToken
      * @param  string $last Null if using apikey or OAuthToken
      * @param  string $api_url (optional) alternative api base url
+     * @param  array $rest_client_config (optional) configuration for the http client
      */
-    public function __construct($first, $last = null, $api_url = self::API_URL, $oauth_token_url = self::OAUTH_TOKEN_URL)
+    public function __construct($first, $last = null, $api_url = self::API_URL, $oauth_token_url = self::OAUTH_TOKEN_URL, $rest_client_config = array())
     {
         $this->oauth_token_url = $oauth_token_url;
+        $this->rest_client_config = $rest_client_config;
         $this->rest = $this->createREST($first, $last, $api_url);
         $this->rest->setHeader('User-Agent', 'hellosign-php-sdk/' . self::VERSION);
     }
@@ -1016,12 +1025,15 @@ class Client
             return $rest;
         }
 
-        return new REST(array(
-            'server' => $api_url,
-            'user'   => $first,
-            'pass'   => $last,
-            'debug_mode' => $this->debug_mode
-        ));
+        return new REST(
+            array(
+                'server' => $api_url,
+                'user'   => $first,
+                'pass'   => $last,
+                'debug_mode' => $this->debug_mode
+            ),
+            $this->rest_client_config
+        );
     }
 
     /**
