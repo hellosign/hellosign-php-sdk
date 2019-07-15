@@ -1015,10 +1015,13 @@ class Client
     protected function createREST($first, $last = null, $api_url = self::API_URL)
     {
         if ($first instanceof OAuthToken) {
-            $rest = new REST(array(
-                'server' => $api_url,
-                'debug_mode' => $this->debug_mode
-            ));
+            $rest = new REST(
+                    array(
+                    'server' => $api_url,
+                    'debug_mode' => $this->debug_mode
+                ),
+                $this->http_client_config
+            );
             $auth = $first->getTokenType() . ' ' . $first->getAccessToken();
             $rest->setHeader('Authorization', $auth);
 
