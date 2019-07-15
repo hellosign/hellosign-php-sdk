@@ -105,6 +105,13 @@ class Client
     protected $rest;
 
     /**
+     * HTTP client configuration via the Guzzle library specification
+     *
+     * @var array $http_client_config
+     */
+    protected $http_client_config = array();
+
+    /**
      * Enable debug mode or not
      *
      * @var boolean
@@ -117,10 +124,12 @@ class Client
      * @param  mixed $first email address or apikey or OAuthToken
      * @param  string $last Null if using apikey or OAuthToken
      * @param  string $api_url (optional) alternative api base url
+     * @param  array $http_client_config (optional) configuration for the http client
      */
-    public function __construct($first, $last = null, $api_url = self::API_URL, $oauth_token_url = self::OAUTH_TOKEN_URL)
+    public function __construct($first, $last = null, $api_url = self::API_URL, $oauth_token_url = self::OAUTH_TOKEN_URL, $http_client_config = array())
     {
         $this->oauth_token_url = $oauth_token_url;
+        $this->http_client_config = $http_client_config;
         $this->rest = $this->createREST($first, $last, $api_url);
         $this->rest->setHeader('User-Agent', 'hellosign-php-sdk/' . self::VERSION);
     }
@@ -667,10 +676,13 @@ class Client
      */
     public function requestOAuthToken(OAuthTokenRequest $request, $auto_set_request_token = false)
     {
-        $rest = new REST(array(
-            'server' => $this->oauth_token_url,
-            'debug_mode' => $this->debug_mode
-        ));
+        $rest = new REST(
+                array(
+                'server' => $this->oauth_token_url,
+                'debug_mode' => $this->debug_mode
+            ),
+            $this->http_client_config
+        );
 
         if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
             $this->disableCertificateCheck($rest);
@@ -703,10 +715,13 @@ class Client
      */
     public function refreshOAuthToken(OAuthToken $token, $auto_set_request_token = false)
     {
-        $rest = new REST(array(
-            'server' => $this->oauth_token_url,
-            'debug_mode' => $this->debug_mode
-        ));
+        $rest = new REST(
+                array(
+                'server' => $this->oauth_token_url,
+                'debug_mode' => $this->debug_mode
+            ),
+            $this->http_client_config
+        );
 
         if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
             $this->disableCertificateCheck($rest);
@@ -1006,22 +1021,28 @@ class Client
     protected function createREST($first, $last = null, $api_url = self::API_URL)
     {
         if ($first instanceof OAuthToken) {
-            $rest = new REST(array(
-                'server' => $api_url,
-                'debug_mode' => $this->debug_mode
-            ));
+            $rest = new REST(
+                    array(
+                    'server' => $api_url,
+                    'debug_mode' => $this->debug_mode
+                ),
+                $this->http_client_config
+            );
             $auth = $first->getTokenType() . ' ' . $first->getAccessToken();
             $rest->setHeader('Authorization', $auth);
 
             return $rest;
         }
 
-        return new REST(array(
-            'server' => $api_url,
-            'user'   => $first,
-            'pass'   => $last,
-            'debug_mode' => $this->debug_mode
-        ));
+        return new REST(
+            array(
+                'server' => $api_url,
+                'user'   => $first,
+                'pass'   => $last,
+                'debug_mode' => $this->debug_mode
+            ),
+            $this->http_client_config
+        );
     }
 
     /**
