@@ -676,10 +676,13 @@ class Client
      */
     public function requestOAuthToken(OAuthTokenRequest $request, $auto_set_request_token = false)
     {
-        $rest = new REST(array(
-            'server' => $this->oauth_token_url,
-            'debug_mode' => $this->debug_mode
-        ));
+        $rest = new REST(
+                array(
+                'server' => $this->oauth_token_url,
+                'debug_mode' => $this->debug_mode
+            ),
+            $this->http_client_config
+        );
 
         if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
             $this->disableCertificateCheck($rest);
@@ -712,10 +715,13 @@ class Client
      */
     public function refreshOAuthToken(OAuthToken $token, $auto_set_request_token = false)
     {
-        $rest = new REST(array(
-            'server' => $this->oauth_token_url,
-            'debug_mode' => $this->debug_mode
-        ));
+        $rest = new REST(
+                array(
+                'server' => $this->oauth_token_url,
+                'debug_mode' => $this->debug_mode
+            ),
+            $this->http_client_config
+        );
 
         if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
             $this->disableCertificateCheck($rest);
