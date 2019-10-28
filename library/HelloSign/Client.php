@@ -496,14 +496,19 @@ class Client
      * Retrieves the current user's signature requests. The resulting object
      * represents a paged query result.
      *
-     * @param  Integer $page
+     * @param int $page
+     * @param int $pageSize
+     * @param null|string $query
      * @return SignatureRequestList
      * @throws BaseException
+     * @throws Error
      */
-    public function getSignatureRequests($page = 1)
+    public function getSignatureRequests($page = 1, $pageSize = 20, $query = null)
     {
         $params = array(
-            'page' => $page
+            'page' => $page,
+            'page_size' => $pageSize,
+            'query' => $query,
         );
 
         $response = $this->rest->get(
