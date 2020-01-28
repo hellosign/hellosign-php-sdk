@@ -41,7 +41,7 @@ use Comvi\REST;
 class Client
 {
 
-    const VERSION = '3.5.7';
+    const VERSION = '3.5.8';
 
     const API_URL = "https://api.hellosign.com/v3/";
 
