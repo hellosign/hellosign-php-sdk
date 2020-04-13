@@ -31,28 +31,8 @@ use HelloSign\Error;
 
 class TeamTest extends AbstractTest
 {
-    /**
-     * @group destroy
-     */
-    public function testRemoveAllTeamMembers()
-    {
-        try {
-            $response = $this->client->removeAllTeamMembers();
-            $accounts = $response->getAccounts();
-
-            $this->assertInstanceOf('HelloSign\Team', $response);
-            $this->assertNotNull($response->getName());
-            // A team can have more than 1 admin
-            $this->assertGreaterThan(0, count($accounts));
-        } catch (Error $e) {
-            if ($e->getMessage() != 'Team does not exist') {
-                throw $e;
-            }
-        }
-    }
 
     /**
-    * @depends testRemoveAllTeamMembers
      * @group destroy
      */
     public function testRemoveAllTeamMembersAndAdmins()
