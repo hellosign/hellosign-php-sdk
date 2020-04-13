@@ -52,7 +52,28 @@ class TeamTest extends AbstractTest
     }
 
     /**
-     * @depends testRemoveAllTeamMembers
+    * @depends testRemoveAllTeamMembers
+     * @group destroy
+     */
+    public function testRemoveAllTeamMembersAndAdmins()
+    {
+        try {
+            $response = $this->client->removeAllTeamMembersAndAdmins();
+            $accounts = $response->getAccounts();
+
+            $this->assertInstanceOf('HelloSign\Team', $response);
+            $this->assertNotNull($response->getName());
+            // Remove all accounts, including admins so that we don't run out of users
+            $this->assertEquals(0, count($accounts));
+        } catch (Error $e) {
+            if ($e->getMessage() != 'Team does not exist') {
+                throw $e;
+            }
+        }
+    }
+
+    /**
+     * @depends testRemoveAllTeamMembersAndAdmins
      * @group destroy
      */
     public function testDestroyTeam()

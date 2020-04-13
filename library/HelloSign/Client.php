@@ -973,6 +973,24 @@ class Client
     }
 
     /**
+     * Removes all team members from current Team
+     *
+     * @return Team
+     * @throws BaseException
+     */
+    public function removeAllTeamMembersAndAdmins()
+    {
+        $team = $this->getTeam();
+        $last_team = $team;
+
+        foreach ($team->getAccounts() as $account) {
+            $last_team = $this->removeTeamMember($account->getId());
+        }
+
+        return $last_team;
+    }
+
+    /**
      * Checks response and throws Exception if response is not proper
      *
      * @param  mixed $response
