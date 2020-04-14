@@ -32,7 +32,7 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
 {
     protected $client;
 
-    public static function setUpBeforeClass()
+    protected function setUp()
     {
         $keys = array(
             'API_KEY',
@@ -58,10 +58,5 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
             $this->client->disableCertificateCheck();
         }
 
-    }
-
-    public static function tearDownAfterClass() {
-        //remove any users after each test class has finished execution
-        $this->client->removeAllTeamMembers();
     }
 }
