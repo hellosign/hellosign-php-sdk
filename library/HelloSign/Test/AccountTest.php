@@ -32,12 +32,12 @@ class AccountTest extends AbstractTest
 {
     /**
      * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Could not create user
+     * @expectedExceptionMessage Account already exists
      * @group create
      */
     public function testCreateAccount()
     {
-        $random_email = rand(1, 10000000) . "@example.com";
+        $random_email = "acounttest@example.com";
         $response = $this->client->createAccount(
             new Account($random_email)
         );
