@@ -58,7 +58,6 @@ class ApiAppTest extends AbstractTest
         $this->assertNotNull($response->getClientId());
 
         //trying to create it again should fail
-
         $duplicate_app = new ApiApp;
         $duplicate_app->setName($name);
         $duplicate_app->setDomain($domain);
@@ -67,7 +66,7 @@ class ApiAppTest extends AbstractTest
         $duplicate_app->setWhiteLabeling($wl);
 
         $second_response = $this->client->createApiApp($duplicate_app);
-        //
+
         return $second_response;
     }
 

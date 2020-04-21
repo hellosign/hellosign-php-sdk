@@ -37,10 +37,7 @@ class AccountTest extends AbstractTest
      */
     public function testCreateAccount()
     {
-        //clean slate this first
-        $this->client->removeAllTeamMembers();
-
-        $random_email = "acounttest@example.com";
+        $random_email = rand(1, 10000000) . "@example.com";
         $response = $this->client->createAccount(
             new Account($random_email)
         );
