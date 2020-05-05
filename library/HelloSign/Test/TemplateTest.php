@@ -70,7 +70,7 @@ class TemplateTest extends AbstractTest
 
     /**
      * @expectedException HelloSign\Error
-     * @expectedExceptionMessage No accounts could be found
+     * @expectedExceptionMessage Account does not belong to your team
      * @depends testGetTemplates
      * @group update
      */
@@ -86,7 +86,7 @@ class TemplateTest extends AbstractTest
 
     /**
      * @expectedException HelloSign\Error
-     * @expectedExceptionMessage No accounts could be found
+     * @expectedExceptionMessage Account does not belong to your team
      * @depends testGetTemplates
      * @group update
      */
