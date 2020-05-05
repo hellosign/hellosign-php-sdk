@@ -148,6 +148,13 @@ class Template extends AbstractResource
     protected $custom_fields = null;
 
     /**
+     * A JSON array of form_fields objects on the Template.
+     *
+     * @var string
+     */
+    protected $form_fields = null;
+
+    /**
      * An array of Merge Field objects containing the name and type of each
      * merge field. Used when creating embedded drafts.
      *
@@ -255,6 +262,15 @@ class Template extends AbstractResource
     public function getCustomFields()
     {
         return $this->custom_fields;
+    }
+
+    /**
+     * @return array
+     * @ignore
+     */
+    public function getFormFields()
+    {
+        return $this->form_fields;
     }
 
     /**
