@@ -41,10 +41,6 @@ class OAuthTest extends AbstractTest
         $oauth_client = new Client($token, null, $api_url, $oauth_token_url);
         // $oauth_client->enableDebugMode();
 
-        if ($api_url != Client::API_URL) {
-            $oauth_client->disableCertificateCheck();
-        }
-
         return $oauth_client;
     }
 
@@ -53,16 +49,24 @@ class OAuthTest extends AbstractTest
      */
     public function testCreateAccount()
     {
-        $response = $this->client->createAccount(
-            new Account($this->team_member_1),
-            $_ENV['CLIENT_ID'],
-            $_ENV['CLIENT_SECRET']
-        );
+        // Check for the account you're trying to create.  
+        // If it already exists, then don't error from trying to build it again
+        $acct = $this->client->isAccountValid($this->team_member_1);
+        if(!$acct) {
+            $response = $this->client->createAccount(
+                new Account($this->team_member_1),
+                $_ENV['CLIENT_ID'],
+                $_ENV['CLIENT_SECRET']
+            );
 
-        $this->assertInstanceOf('HelloSign\Account', $response);
-        $this->assertInstanceOf('HelloSign\OAuthToken', $response->getOAuthData());
+            $this->assertInstanceOf('HelloSign\Account', $response);
+            $this->assertInstanceOf('HelloSign\OAuthToken', $response->getOAuthData());
 
-        return $response->getOAuthData();
+            return $response->getOAuthData();
+        } else {
+            $this->assertTrue($acct);
+            return $acct;
+        }
     }
 
     /**

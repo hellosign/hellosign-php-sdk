@@ -50,13 +50,9 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
         $api_url = $_ENV['API_URL'] == null ? Client::API_URL : $_ENV['API_URL'];
         $oauth_token_url = $_ENV['OAUTH_TOKEN_URL'] == null ? Client::OAUTH_TOKEN_URL : $_ENV['OAUTH_TOKEN_URL'];
         $this->client = new Client($_ENV['API_KEY'], null, $api_url, $oauth_token_url);
-        $this->team_member_1 = "test1@example.com";
-        $this->team_member_2 = "test2@example.com";
+        $this->team_member_1 = "sdk-test-php+test1@hellosign.com";
+        $this->team_member_2 = "sdk-test-php+test2@hellosign.com";
         // $this->client->enableDebugMode();
-
-        if ($api_url != Client::API_URL) {
-            $this->client->disableCertificateCheck();
-        }
 
     }
 }

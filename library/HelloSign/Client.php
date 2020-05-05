@@ -1230,12 +1230,4 @@ class Client
 
         return $list;
     }
-
-    public function disableCertificateCheck($rest = null) {
-        if (!$rest) {
-            $rest = $this->rest;
-        }
-        $rest->disableCertificateCheck();
-    }
-
 }
