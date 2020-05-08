@@ -44,7 +44,6 @@ class TemplateSignatureRequestTest extends AbstractTest
         $template = $templates[0];
 
         $request = new TemplateSignatureRequest;
-        $request->enableTestMode();
         $request->setTemplateId($template->getId());
         $request->setSubject('Purchase Order');
         $request->setMessage('Glad we could come to an agreement.');
@@ -79,7 +78,6 @@ class TemplateSignatureRequestTest extends AbstractTest
 
         // Enable Test Mode
         $request = new TemplateSignatureRequest;
-        $request->enableTestMode();
 
         // Set Request Params
         $request->setTemplateId($template->getId());

@@ -51,7 +51,6 @@ class SignatureRequestTest extends AbstractTest
     {
         // Enable Test Mode
         $request = new SignatureRequest;
-        $request->enableTestMode();
 
         // Set Request Param Signature Request
         $request->setTitle("NDA with Acme Co.");
@@ -94,7 +93,6 @@ class SignatureRequestTest extends AbstractTest
     {
         // Enable Test Mode
         $request = new SignatureRequest;
-        $request->enableTestMode();
 
         // Set Request Param Signature Request
         $request->setTitle("NDA with Acme Co.");
@@ -156,7 +154,6 @@ class SignatureRequestTest extends AbstractTest
     {
         // Enable Test Mode
         $request = new SignatureRequest;
-        $request->enableTestMode();
 
         // Set Request Param Signature Request
         $request->setTitle("NDA with Acme Co.");
@@ -192,7 +189,6 @@ class SignatureRequestTest extends AbstractTest
     {
         // Enable Test Mode
         $request = new SignatureRequest;
-        $request->enableTestMode();
 
         // Set Request Param Signature Request
         $request->setTitle("Document with Metadata");
@@ -227,7 +223,6 @@ class SignatureRequestTest extends AbstractTest
     {
         // Enable Test Mode
         $request = new SignatureRequest;
-        $request->enableTestMode();
 
         // Set Request Params
         $request->setTitle("NDA with Acme Co.");

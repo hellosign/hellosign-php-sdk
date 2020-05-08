@@ -105,7 +105,6 @@ class TemplateTest extends AbstractTest
         $client_id = $_ENV['CLIENT_ID'];
 
         $request = new \HelloSign\Template();
-        $request->enableTestMode();
         $request->setClientId($client_id);
         $request->addFile(__DIR__ . '/nda.docx');
         $request->setTitle('Test Title');
@@ -190,7 +189,6 @@ class TemplateTest extends AbstractTest
         $client_id = $_ENV['CLIENT_ID'];
         
         $request = new \HelloSign\Template();
-        $request->enableTestMode();
         $request->setClientId($client_id);
         $request->addFile(__DIR__ . '/nda.docx');
         $request->setMessage('PHP SDK Test Update File Message');
