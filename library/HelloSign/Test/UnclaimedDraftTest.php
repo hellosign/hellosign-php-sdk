@@ -39,7 +39,6 @@ class UnclaimedDraftTest extends AbstractTest
         $account = $this->client->getAccount();
 
         $request = new SignatureRequest;
-        $request->enableTestMode();
         $request->setRequesterEmail($account->getEmail());
         $request->setTitle('NDA with Acme Co.');
         $request->setSubject('The NDA we talked about');
@@ -71,7 +70,6 @@ class UnclaimedDraftTest extends AbstractTest
     public function testCreateUnclaimedDraft()
     {
         $request = new SignatureRequest;
-        $request->enableTestMode();
         $request->addFile(__DIR__ . '/nda.docx');
 
         $draft = new UnclaimedDraft($request);
@@ -110,7 +108,6 @@ class UnclaimedDraftTest extends AbstractTest
 
         $request = new \HelloSign\EmbeddedSignatureRequest($baseReq);
         $request->setClientId($client_id);
-        $request->enableTestMode();
         $request->setEmbeddedSigning();
 
         $response = $this->client->createUnclaimedDraftEmbeddedWithTemplate($request);

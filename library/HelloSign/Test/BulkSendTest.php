@@ -64,7 +64,6 @@ class BulkSendTest extends AbstractTest
    $signers = __DIR__ . "/bulk_send_test_signers.csv";
 
    $request = new BulkSendJob;
-   $request->enableTestMode();
    $request->setTitle('Bulk Send Job Example Title');
    $request->setTemplateId($template->getId());
    $request->addSignerFile($signers);
@@ -109,7 +108,6 @@ class BulkSendTest extends AbstractTest
    );
 
    $request = new BulkSendJob;
-   $request->enableTestMode();
    $request->setTitle('Bulk Send Job Example Title');
    $request->setTemplateId($template->getId());
    $request->addSignerList($signers);
@@ -135,7 +133,6 @@ class BulkSendTest extends AbstractTest
    $signers = __DIR__ . "/bulk_send_test_signers.csv";
 
    $request = new BulkSendJob;
-   $request->enableTestMode();
    $request->enableAllowDecline();
    $request->setTemplateId($template->getId());
    $request->setTitle('Bulk Send Job With All Parameters');
@@ -172,7 +169,6 @@ class BulkSendTest extends AbstractTest
    $signers = __DIR__ . "/bulk_send_test_signers.csv";
 
    $request = new BulkSendJob;
-   $request->enableTestMode();
    $request->setTitle('Embedded Bulk Send Job Example Title');
    $request->setTemplateId($template->getId());
    $request->addSignerFile($signers);
@@ -223,7 +219,6 @@ class BulkSendTest extends AbstractTest
    $signers = __DIR__ . "/bulk_send_test_signers.csv";
 
    $request = new BulkSendJob;
-   $request->enableTestMode();
    $request->setTitle('Bulk Send Job Example Title');
    $request->setTemplateId($template->getId());
    $request->addSignerFile($signers);

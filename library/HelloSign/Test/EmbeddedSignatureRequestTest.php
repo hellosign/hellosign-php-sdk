@@ -42,7 +42,6 @@ class EmbeddedSignatureRequestTest extends AbstractTest
     {
         // Create the signature request
         $request = new SignatureRequest;
-        $request->enableTestMode();
         $request->setTitle('Embedded NDA');
         $request->addSigner('jack@example.com', 'Jack');
         $request->addFile(__DIR__ . '/nda.docx');
@@ -70,7 +69,6 @@ class EmbeddedSignatureRequestTest extends AbstractTest
     {
         // Create the signature request
         $request = new SignatureRequest;
-        $request->enableTestMode();
         $request->setRequesterEmail('jolene_request1@example.com');
         $request->addFile(__DIR__ . '/nda.docx');
 
@@ -93,7 +91,6 @@ class EmbeddedSignatureRequestTest extends AbstractTest
     {
         // Create the signature request
         $request = new SignatureRequest;
-        $request->enableTestMode();
         $request->setRequesterEmail('jolene_request2@example.com');
         $request->addFile(__DIR__ . '/nda.docx');
 
@@ -122,7 +119,6 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         // Create the signature request
 
         $request = new TemplateSignatureRequest;
-        $request->enableTestMode();
         $request->setTemplateId($template->getId());
         $request->setSubject('Purchase Order');
         $request->setMessage('Glad we could come to an agreement.');

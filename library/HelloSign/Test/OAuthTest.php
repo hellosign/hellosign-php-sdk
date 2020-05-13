@@ -41,10 +41,6 @@ class OAuthTest extends AbstractTest
         $oauth_client = new Client($token, null, $api_url, $oauth_token_url);
         // $oauth_client->enableDebugMode();
 
-        if ($api_url != Client::API_URL) {
-            $oauth_client->disableCertificateCheck();
-        }
-
         return $oauth_client;
     }
 
@@ -53,8 +49,10 @@ class OAuthTest extends AbstractTest
      */
     public function testCreateAccount()
     {
+        //fails if account has already been created
+        $random_email = rand(1, 10000000) . "@example.com";
         $response = $this->client->createAccount(
-            new Account($this->team_member_1),
+            new Account($random_email),
             $_ENV['CLIENT_ID'],
             $_ENV['CLIENT_SECRET']
         );
