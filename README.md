@@ -122,10 +122,33 @@ Or if you want to set Form Fields per Document:
 
 ```php
 $request->setFormFieldsPerDocument(
-array(
-array(array("type"=>"radio","x"=> 200,"y"=> 300,"width"=> 150,"height"=> 30,"required"=> true,"signer"=> 0,"group"=> null),), //array of fields
-)//array of pages
-);
+            array(
+                array( //document 1
+                    array( //field 1
+                        "api_id"=> $random_prefix . "_1",
+                        "name"=> "",
+                        "type"=> "text",
+                        "x"=> 112,
+                        "y"=> 328,
+                        "width"=> 100,
+                        "height"=> 16,
+                        "required"=> true,
+                        "signer"=> 0
+                    ),
+                    array( //field 2
+                        "api_id"=> $random_prefix . "_2",
+                        "name"=> "",
+                        "type"=> "signature",
+                        "x"=> 530,
+                        "y"=> 415,
+                        "width"=> 150,
+                        "height"=> 30,
+                        "required"=> true,
+                        "signer"=> 1
+                    ),
+                ),
+            )
+        );
 ```
 
 ### Retrieving a User's Templates
