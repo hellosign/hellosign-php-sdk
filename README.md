@@ -219,7 +219,7 @@ $response = $client->createUnclaimedDraft($draft);
 
 // Store it to use with the embedded.js HelloSign.open() call
 $sign_url = $response->getClaimUrl();
-ç
+```
 
 
 ### Enabling OAuth
