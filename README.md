@@ -100,9 +100,55 @@ $request->setMessage('Please sign this NDA and let\'s discuss.');
 $request->addSigner('jack@example.com', 'Jack');
 $request->addSigner('jill@example.com', 'Jill');
 $request->addCC('lawyer@example.com');
-$request->addFile('nda.pdf');
+$request->addFile('nda.pdf'); //Adding file from local
 
 $response = $client->sendSignatureRequest($request);
+```
+
+To specify a URL to a remote file instead use:
+
+```php
+$request->addFileURL('PUBLIC_URL_TO_YOUR_FILE');
+```
+
+If you are using Text Tags in your document, you can enable and configure them through the respective methods:
+
+```php
+$request->setUseTextTags(true);
+$request->setHideTextTags(true);
+```
+
+Or if you want to set Form Fields per Document:
+
+```php
+$request->setFormFieldsPerDocument(
+            array(
+                array( //document 1
+                    array( //field 1
+                        "api_id"=> $random_prefix . "_1",
+                        "name"=> "",
+                        "type"=> "text",
+                        "x"=> 112,
+                        "y"=> 328,
+                        "width"=> 100,
+                        "height"=> 16,
+                        "required"=> true,
+                        "signer"=> 0
+                    ),
+                    array( //field 2
+                        "api_id"=> $random_prefix . "_2",
+                        "name"=> "",
+                        "type"=> "signature",
+                        "x"=> 530,
+                        "y"=> 415,
+                        "width"=> 150,
+                        "height"=> 30,
+                        "required"=> true,
+                        "signer"=> 1
+                    ),
+                ),
+            )
+        );
 ```
 
 ### Retrieving a User's Templates
@@ -167,6 +213,23 @@ $response = $client->getEmbeddedSignUrl($signature_id);
 
 // Store it to use with the embedded.js HelloSign.open() call
 $sign_url = $response->getSignUrl();
+```
+
+
+### Creating an Embedded Template draft
+
+```php
+$template = new HelloSign\Template();
+$template->enableTestMode();
+$template->setClientId($client_id);
+$template->addFile('nda.pdf');
+$template->setTitle('Test Title');
+$template->setSubject('Test Subject');
+$template->setMessage('Test Message');
+$template->addSignerRole('Test Role');
+$template->addMetadata('custom_id', '1234');
+
+$response = $client->createEmbeddedDraft($template);
 ```
 
 ### Creating an Unclaimed Draft to use for Embedded Requesting
