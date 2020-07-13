@@ -532,24 +532,6 @@ class Client
     }
 
     /**
-     * Deletes a SignatureRequest with the given ID
-     *
-     * @param  String $id Signature Request ID
-     * @return boolean
-     * @throws BaseException
-     */
-    public function deleteSignatureRequest($id)
-    {
-        $response = $this->rest->delete(
-            static::SIGNATURE_REQUEST_PATH . '/' . $id
-        );
-
-        $this->checkResponse($response, false);
-
-        return true;
-    }
-
-    /**
      * Creates a SignatureRequest that can be embedded within your website
      *
      * @param  EmbeddedSignatureRequest $request
