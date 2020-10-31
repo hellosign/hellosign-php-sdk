@@ -506,17 +506,17 @@ class Client
      * represents a paged query result.
      *
      * @param int $page
-     * @param int $pageSize
+     * @param int $page_size
      * @param null|string $query
      * @return SignatureRequestList
      * @throws BaseException
      * @throws Error
      */
-    public function getSignatureRequests($page = 1, $pageSize = 20, $query = null)
+    public function getSignatureRequests($page = 1, $page_size = 20, $query = null)
     {
         $params = array(
             'page' => $page,
-            'page_size' => $pageSize,
+            'page_size' => $page_size,
             'query' => $query,
         );
 
