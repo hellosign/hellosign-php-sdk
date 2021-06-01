@@ -17,6 +17,6 @@
         "phpunit/phpunit": "7.3.*"
     },
     "require": {
-        "guzzlehttp/guzzle": "^6.2|^7.0"
+        "guzzlehttp/guzzle": "^6.3|^7.0"
     }
 }
