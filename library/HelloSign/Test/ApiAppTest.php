@@ -30,6 +30,12 @@ use HelloSign\ApiApp;
 
 class ApiAppTest extends AbstractTest
 {
+    private function generateApiAppName(string $prefix): string
+    {
+        $guid = TestUtils::generateGuid(8);
+        return $prefix . $guid;
+    }
+
     /**
     * @expectedException HelloSign\Error
     * @expectedExceptionMessage An app with the same name already exists
@@ -40,7 +46,7 @@ class ApiAppTest extends AbstractTest
         $wl = array('primary_button_color' => '#626567', 'primary_button_text_color' => '#ffffff');
         $wl = json_encode($wl);
 
-        $name = "Test" . rand(1, 2000);
+        $name = $this->generateApiAppName('Test');
         $domain = "www.testdomain.com";
         $callback = $_ENV['CALLBACK_URL'];
         $logo = __DIR__ . "/logo.jpg";
@@ -75,7 +81,7 @@ class ApiAppTest extends AbstractTest
     */
     public function testCreateOauthApiApp()
     {
-        $name = "Test Oauth" . rand(1, 2000);
+        $name = $this->generateApiAppName('Test Oauth');
         $domain = "www.testdomain.com";
         $callback = $_ENV['CALLBACK_URL'];
         $logo = __DIR__ . "/logo.jpg";
@@ -104,7 +110,7 @@ class ApiAppTest extends AbstractTest
     public function testUpdateApiApp()
     {
 
-        $name = "Test" . rand(1, 2000);
+        $name = $this->generateApiAppName('Test');
         $domain = "www.testdomain.com";
 
         $app = new ApiApp;
@@ -131,7 +137,7 @@ class ApiAppTest extends AbstractTest
      */
     public function testGetApiApp()
     {
-        $name = "Test" . rand(1, 2000);
+        $name = $this->generateApiAppName('Test');
         $domain = "www.testdomain.com";
         $callback_url = $_ENV['CALLBACK_URL'];
 
