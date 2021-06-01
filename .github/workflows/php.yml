@@ -1,0 +1,38 @@
+
+name: Latest Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: [ '7.2', '7.3', '7.4' ]
+        dependency-stability: [ prefer-stable ]
+
+    name: PHP ${{ matrix.php-versions }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install PHP versions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+
+      - name: Install Dependencies
+        if: steps.vendor-cache.outputs.cache-hit != 'true'
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Copy PHPUnit Xml
+        run: cp phpunit.xml.sample phpunit.xml
+
+      - name: Run PHPUnit
+        run: php vendor/bin/phpunit

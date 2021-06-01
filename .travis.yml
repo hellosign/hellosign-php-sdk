@@ -1,8 +1,0 @@
-language: php
-php:
-- 7.1
-before_install:
-- cp phpunit.xml.sample phpunit.xml
-- composer install
-script:
-- ./vendor/bin/phpunit
