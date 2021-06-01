@@ -118,7 +118,7 @@ class Event extends AbstractResource
     }
 
     /**
-     * @return integer
+     * @return string
      * @ignore
      */
     public function getType()
