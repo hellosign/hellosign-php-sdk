@@ -1,14 +1,23 @@
 language: php
-matrix:
+jobs:
   include:
-    - php: 7.1
+    - stage: php71-lowest
+      php: 7.1
       env: dependencies=lowest
-    - php: 7.2
+      script: ./vendor/bin/phpunit
+    - stage: php72-lowest
+      php: 7.2
       env: dependencies=lowest
-    - php: 7.2
-      env: dependencies=highest
-    - php: 7.3
-    - php: 7.4
+      script: ./vendor/bin/phpunit
+    - stage: php72
+      php: 7.2
+      script: ./vendor/bin/phpunit
+    - stage: php73
+      php: 7.3
+      script: ./vendor/bin/phpunit
+    - stage: php74
+      php: 7.4
+      script: ./vendor/bin/phpunit
 
 before_script:
   - composer self-update -q
