@@ -311,7 +311,7 @@ In order to pass the unit tests, you will need:
 
 ### To run the tests
 
-- Copy file `phpunit.xml.sample` to `phpunit.xml`
+- Copy file `phpunit.xml.dist` to `phpunit.xml`
 - Edit the new file and enter your values for `API_KEY`, `CLIENT_ID`, `CLIENT_SECRET`, `CALLBACK_URL`, `API_URL`, AND `OAUTH_TOKEN_URL`
 - Run `./vendor/bin/phpunit`
 

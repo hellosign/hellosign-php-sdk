@@ -41,7 +41,7 @@ class TemplateTest extends AbstractTest
      */
     public function testGetTemplatesWithPageNotFound()
     {
-        $templates = $this->client->getTemplates(9999);
+        $templates = $this->client->getTemplates(9999, 1);
     }
 
     /**
@@ -187,7 +187,7 @@ class TemplateTest extends AbstractTest
         $templates = $this->client->getTemplates();
         $template_id = $templates[0]->getId();
         $client_id = $_ENV['CLIENT_ID'];
-        
+
         $request = new \HelloSign\Template();
         $request->setClientId($client_id);
         $request->addFile(__DIR__ . '/nda.docx');
