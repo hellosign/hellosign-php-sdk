@@ -545,12 +545,19 @@ class Template extends AbstractResource
             'skip_subject_message'
         );
 
+        if (isset($this->merge_fields) && count($this->merge_fields) > 0) {
+            $merge_fields = json_encode($this->merge_fields);
+        }
         $params = $this->toArray();
 
         foreach ($params as $key => $value) {
             if (!in_array($key, $fields_to_include)) {
                 unset($params[$key]);
             }
+        }
+
+        if (isset($merge_fields)) {
+            $params['merge_fields'] = $merge_fields;
         }
 
         return $params;
