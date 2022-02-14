@@ -1,0 +1,8 @@
+{
+  "default": {
+    "embedded": {
+      "sign_url": "https://app.hellosign.com/editor/embeddedSign?signature_id=50e3542f738adfa7ddd4cbd4c00d2a8ab6e4194b&amp;token=b6b8e7deaf8f0b95c029dca049356d4a2cf9710a",
+      "expires_at": 1634313821
+    }
+  }
+}

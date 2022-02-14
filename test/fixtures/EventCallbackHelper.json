@@ -1,0 +1,50 @@
+{
+  "base": {
+    "account_guid": "63522885f9261e2b04eea043933ee7313eb674fd",
+    "event": {
+      "event_time": "1348177752",
+      "event_type": "unknown_error",
+      "event_hash": "c574f5d3090c2936360b4e36cf6835cf3e2206b84fdc6347e6b28ca721ae1371",
+      "event_metadata": {
+        "related_signature_id": "ad4d8a769b555fa5ef38691465d426682bf2c992",
+        "reported_for_account_id": "63522885f9261e2b04eea043933ee7313eb674fd"
+      }
+    }
+  },
+  "account": {
+    "account_guid": "63522885f9261e2b04eea043933ee7313eb674fd",
+    "event": {
+      "event_time": "1348177752",
+      "event_type": "account_confirmed",
+      "event_hash": "6dc5b7aad93cf54915e0089d6c31d61b3833f66f51459171c69f8fa211308848",
+      "event_metadata": {
+        "related_signature_id": "ad4d8a769b555fa5ef38691465d426682bf2c992",
+        "reported_for_account_id": "63522885f9261e2b04eea043933ee7313eb674fd"
+      }
+    }
+  },
+  "signature_request": {
+    "account_guid": "63522885f9261e2b04eea043933ee7313eb674fd",
+    "event": {
+      "event_time": "1348177752",
+      "event_type": "signature_request_sent",
+      "event_hash": "08d45a6b7677492b78be030cef18cfeaece8fe67e163cc8e526ee638ad483756",
+      "event_metadata": {
+        "related_signature_id": "ad4d8a769b555fa5ef38691465d426682bf2c992",
+        "reported_for_account_id": "63522885f9261e2b04eea043933ee7313eb674fd"
+      }
+    }
+  },
+  "template": {
+    "account_guid": "63522885f9261e2b04eea043933ee7313eb674fd",
+    "event": {
+      "event_time": "1348177752",
+      "event_type": "template_created",
+      "event_hash": "4a9b22fa68d5addb8b6313eea9d42ecb393903a4240b71503ef78e9dac6c100d",
+      "event_metadata": {
+        "related_signature_id": "ad4d8a769b555fa5ef38691465d426682bf2c992",
+        "reported_for_account_id": "63522885f9261e2b04eea043933ee7313eb674fd"
+      }
+    }
+  }
+}

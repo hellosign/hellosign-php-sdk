@@ -1,0 +1,12 @@
+# {{#models}}{{#model}}# {{classname}}
+
+{{unescapedDescription}}
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+{{#vars}}| `{{name}}`{{#required}}<sup>*_required_</sup>{{/required}} | {{#isPrimitiveType}}```{{{dataType}}}```{{/isPrimitiveType}}{{^isPrimitiveType}}[```{{{dataType}}}```]({{complexType}}.md){{/isPrimitiveType}} | REPLACE_ME_WITH_DESCRIPTION_BEGIN {{unescapedDescription}} REPLACE_ME_WITH_DESCRIPTION_END | {{#isReadOnly}} [readonly]{{/isReadOnly}}{{#defaultValue}} [default to {{{.}}}]{{/defaultValue}} |
+{{/vars}}
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md){{/model}}{{/models}}

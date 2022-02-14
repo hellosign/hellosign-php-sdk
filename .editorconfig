@@ -1,0 +1,6 @@
+[{*.html,*.md,*.json,*.css,*.yml,*.yaml}]
+indent_style = space
+indent_size = 2
+
+[{composer.json,composer-lock.json,*.php,*.mustache}]
+indent_size = 4

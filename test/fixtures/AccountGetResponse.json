@@ -1,0 +1,14 @@
+{
+  "default": {
+    "account": {
+      "account_id": "5008b25c7f67153e57d5a357b1687968068fb465",
+      "email_address": "me@hellosign.com",
+      "is_locked": false,
+      "is_paid_hs": true,
+      "is_paid_hf": false,
+      "quotas": {
+        "api_signature_requests_left": 1250
+      }
+    }
+  }
+}

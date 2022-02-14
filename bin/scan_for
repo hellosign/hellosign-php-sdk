@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -e
+DIR=$(cd `dirname $0` && pwd)
+ROOT_DIR="${DIR}/.."
+
+scan_for () {
+  SEARCH_STRING=$1
+  SCAN_DIRS=( "docs" "src/Api" "src/Model" )
+
+  printf "Scanning for '${SEARCH_STRING}': "
+
+  set +e
+  for i in "${SCAN_DIRS[@]}"
+  do
+    grep -ilr "${SEARCH_STRING}" "${ROOT_DIR}/${i}"
+    if [ $? -eq 0 ]; then
+      printf "Error: ${SEARCH_STRING} found in ${i} directory\n"
+      exit 1
+    fi
+  done
+
+  printf "'${SEARCH_STRING}' not found\n"
+  set -e
+}
+
+scan_for "allof"
+scan_for "oneof"
+printf "\n"

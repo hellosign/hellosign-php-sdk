@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+DIR=$(cd `dirname $0` && pwd)
+ROOT_DIR="${DIR}/.."
+
+docker run -it --rm \
+  -v "${ROOT_DIR}:/app" \
+  -v "hellosign-sdk-composer-cache:/.composer" \
+  -w /app \
+  jtreminio/php-cli:7.3 "$@"
