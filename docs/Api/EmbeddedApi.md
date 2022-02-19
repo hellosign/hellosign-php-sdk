@@ -45,7 +45,7 @@ $data->setCcRoles([""])
 $templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
 try {
-    $result = $api->embeddedEditUrl($templateId);
+    $result = $api->embeddedEditUrl($templateId, $data);
     print_r($result);
 } catch (Exception $e) {
     echo "Exception when calling HelloSign API: "

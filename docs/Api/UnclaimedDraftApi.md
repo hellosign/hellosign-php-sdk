@@ -142,7 +142,7 @@ $api = new HelloSignSDK\Api\UnclaimedDraftApi(
 );
 
 $data = new HelloSignSDK\Model\UnclaimedDraftCreateEmbeddedRequest();
-$data->setClientId("b6b8e7deaf8f0b95c029dca049356d4a2cf9710a")
+$data->setClientId("ec64a202072370a737edf4a0eb7f4437")
     ->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"])
     ->setRequesterEmailAddress("jack@hellosign.com")
     ->setTestMode(true);
@@ -216,11 +216,11 @@ $signer1->setRole("Client")
     ->setEmailAddress("george@example.com");
 
 $cc1 = new HelloSignSDK\Model\SubCC();
-$cc1->setRole("Account")
+$cc1->setRole("Accounting")
     ->setEmailAddress("accounting@hellosign.com");
 
 $data = new HelloSignSDK\Model\UnclaimedDraftCreateEmbeddedWithTemplateRequest();
-$data->setClientId("b6b8e7deaf8f0b95c029dca049356d4a2cf9710a")
+$data->setClientId("ec64a202072370a737edf4a0eb7f4437")
     ->setTemplateIds(["61a832ff0d8423f91d503e76bfbcc750f7417c78"])
     ->setRequesterEmailAddress("jack@hellosign.com")
     ->setSigners([$signer1])
@@ -291,7 +291,7 @@ $api = new HelloSignSDK\Api\UnclaimedDraftApi(
 );
 
 $data = new HelloSignSDK\Model\UnclaimedDraftEditAndResendRequest();
-$data->setClientId("b6b8e7deaf8f0b95c029dca049356d4a2cf9710a")
+$data->setClientId("ec64a202072370a737edf4a0eb7f4437")
     ->setTestMode(true);
 
 $signatureRequestId = "2f9781e1a83jdja934d808c153c2e1d3df6f8f2f";

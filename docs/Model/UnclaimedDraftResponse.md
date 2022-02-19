@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 | `signing_redirect_url` | ```string``` |  The URL you want signers redirected to after they successfully sign.  |  |
 | `requesting_redirect_url` | ```string``` |  The URL you want signers redirected to after they successfully request a signature (Will only be returned in the response if it is applicable to the request.).  |  |
 | `expires_at` | ```int``` |  When the link expires.  |  |
-| `test_mode` | ```int``` |  Whether this is a test draft. Signature requests made from test drafts have no legal value.  |  |
+| `test_mode` | ```bool``` |  Whether this is a test draft. Signature requests made from test drafts have no legal value.  |  |
 | `warnings` | [```\HelloSignSDK\Model\WarningResponse[]```](WarningResponse.md) |    |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

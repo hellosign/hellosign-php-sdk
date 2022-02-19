@@ -30,7 +30,6 @@ namespace HelloSignSDK\Model;
 
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
-use InvalidArgumentException;
 use JsonSerializable;
 
 /**
@@ -66,7 +65,7 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
         'signing_redirect_url' => 'string',
         'requesting_redirect_url' => 'string',
         'expires_at' => 'int',
-        'test_mode' => 'int',
+        'test_mode' => 'bool',
         'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
@@ -194,22 +193,6 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
         return self::$openAPIModelName;
     }
 
-    public const TEST_MODE_0 = 0;
-    public const TEST_MODE_1 = 1;
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTestModeAllowableValues()
-    {
-        return [
-            self::TEST_MODE_0,
-            self::TEST_MODE_1,
-        ];
-    }
-
     /**
      * Associative array for storing property values
      *
@@ -253,15 +236,6 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        $allowedValues = $this->getTestModeAllowableValues();
-        if (!is_null($this->container['test_mode']) && !in_array($this->container['test_mode'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'test_mode', must be one of '%s'",
-                $this->container['test_mode'],
-                implode("', '", $allowedValues)
-            );
-        }
 
         return $invalidProperties;
     }
@@ -400,7 +374,7 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets test_mode
      *
-     * @return int|null
+     * @return bool|null
      */
     public function getTestMode()
     {
@@ -410,22 +384,12 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets test_mode
      *
-     * @param int|null $test_mode Whether this is a test draft. Signature requests made from test drafts have no legal value.
+     * @param bool|null $test_mode Whether this is a test draft. Signature requests made from test drafts have no legal value.
      *
      * @return self
      */
-    public function setTestMode(?int $test_mode)
+    public function setTestMode(?bool $test_mode)
     {
-        $allowedValues = $this->getTestModeAllowableValues();
-        if (!is_null($test_mode) && !in_array($test_mode, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'test_mode', must be one of '%s'",
-                    $test_mode,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['test_mode'] = $test_mode;
 
         return $this;

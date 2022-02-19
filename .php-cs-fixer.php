@@ -1,8 +1,8 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude('templates')
-    ->in(__DIR__);
+    ->in(__DIR__)
+    ->exclude(['templates', 'oas', 'examples', 'docs']);
 
 $config = new PhpCsFixer\Config();
 return $config->setRules([

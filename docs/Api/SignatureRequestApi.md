@@ -336,7 +336,7 @@ $signingOptions->setDraw(true)
     ->setDefaultType(HelloSignSDK\Model\SubSigningOptions::DEFAULT_TYPE_DRAW);
 
 $data = new HelloSignSDK\Model\SignatureRequestCreateEmbeddedRequest();
-$data->setClientId("b6b8e7deaf8f0b95c029dca049356d4a2cf9710a")
+$data->setClientId("ec64a202072370a737edf4a0eb7f4437")
     ->setTitle("NDA with Acme Co.")
     ->setSubject("The NDA we talked about")
     ->setMessage("Please sign this NDA and then we can discuss more. Let me know if you have any questions.")
@@ -425,7 +425,7 @@ $signingOptions->setDraw(true)
     ->setDefaultType(HelloSignSDK\Model\SubSigningOptions::DEFAULT_TYPE_DRAW);
 
 $data = new HelloSignSDK\Model\SignatureRequestCreateEmbeddedWithTemplateRequest();
-$data->setClientId("b6b8e7deaf8f0b95c029dca049356d4a2cf9710a")
+$data->setClientId("ec64a202072370a737edf4a0eb7f4437")
     ->setTemplateIds(["c26b8a16784a872da37ea946b9ddec7c1e11dff6"])
     ->setSubject("Purchase Order")
     ->setMessage("Glad we could come to an agreement.")
@@ -1000,7 +1000,7 @@ $signer1->setRole("Client")
     ->setName("George");
 
 $cc1 = new HelloSignSDK\Model\SubCC();
-$cc1->setRole("Account")
+$cc1->setRole("Accounting")
     ->setEmailAddress("accounting@example.com");
 
 $customField1 = new HelloSignSDK\Model\SubCustomField();

@@ -109,7 +109,7 @@ $api = new HelloSignSDK\Api\TeamApi(
 );
 
 $data = new HelloSignSDK\Model\TeamCreateRequest();
-$data->setName("Team America World Police");
+$data->setName("New Team Name");
 
 try {
     $result = $api->teamCreate($data);

@@ -3,9 +3,10 @@
 set -e
 DIR=$(cd `dirname $0` && pwd)
 ROOT_DIR="${DIR}/.."
+WORKINGDIR="/app/php"
 
 docker run -it --rm \
-  -v "${ROOT_DIR}:/app" \
+  -v "${ROOT_DIR}:${WORKINGDIR}" \
   -v "hellosign-sdk-composer-cache:/.composer" \
-  -w /app \
-  jtreminio/php-cli:7.3 "$@"
+  -w "${WORKINGDIR}" \
+  jtreminio/php-cli:7.4 "$@"
