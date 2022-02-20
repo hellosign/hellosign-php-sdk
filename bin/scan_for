@@ -6,16 +6,16 @@ ROOT_DIR="${DIR}/.."
 
 scan_for () {
   SEARCH_STRING=$1
-  SCAN_DIRS=( "docs" "src/Api" "src/Model" )
+  SCAN_TARGETS=( "docs" "src/Api" "src/Model" "README.md" )
 
   printf "Scanning for '${SEARCH_STRING}': "
 
   set +e
-  for i in "${SCAN_DIRS[@]}"
+  for i in "${SCAN_TARGETS[@]}"
   do
     grep -ilr "${SEARCH_STRING}" "${ROOT_DIR}/${i}"
     if [ $? -eq 0 ]; then
-      printf "Error: ${SEARCH_STRING} found in ${i} directory\n"
+      printf "Error: ${SEARCH_STRING} found in ${i}\n"
       exit 1
     fi
   done
