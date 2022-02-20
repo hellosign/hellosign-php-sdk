@@ -14,33 +14,77 @@ set_error_handler(function ($level, $msg) {
     exit(1);
 });
 
+/**
+ * Read code samples and unescaped descriptions from OAS file and injects the
+ * data into Markdown documentation.
+ *
+ * When openapi-generator generates the SDK code, all markdown documentation
+ * files will contain escaped descriptions for method parameters. This is due
+ * to parameter documentation existing within markdown tables, surrounded by
+ * pipes `|`. Markdown table rows must contain all data in a single line, but
+ * unescaped descriptions will often contain linebreaks, list items, etc, that
+ * cannot correctly be displayed in markdown tables.
+ *
+ * This tool replaces linebreaks with `<br>`, fixes list items, fixes broken
+ * anchor links for specific parameter definitions.
+ */
 class GenerateExamples
 {
-    protected const YAML_FILE = __DIR__ . '/../oas/openapi.yaml';
-
+    /**
+     * @var Array<string, string>
+     */
     protected array $codeSamples = [];
 
+    /**
+     * openapi-generator considers array of array of object to be a primitive
+     * type so it does not create a link to the doc file.
+     *
+     * Array<string, string>
+     */
     protected array $extraReplace = [];
 
+    /**
+     * Languages of the code samples we are looking for. Usually will be a single
+     * language, ["PHP"], but the javascript SDK can generate both typescript and
+     * javascript.
+     *
+     * @var string[]
+     */
     protected array $languages = [];
 
+    /**
+     * Our OAS in array form
+     *
+     * @var array
+     */
+    protected array $openapi;
+
+    /**
+     * Search and replace all files in these directories
+     *
+     * @var string[]
+     */
     protected array $replaceInDirectories = [];
 
+    /**
+     * Target specific files for search and replace
+     *
+     * @var string[]
+     */
     protected array $replaceInFiles = [];
 
-    protected array $yaml;
-
     public function __construct(
+        array $openapi,
         array $languages,
         array $replaceInDirectories,
         array $replaceInFiles,
         array $extraReplace = []
     ) {
+        $this->openapi = $openapi;
         $this->languages = $languages;
         $this->replaceInDirectories = $replaceInDirectories;
         $this->replaceInFiles = $replaceInFiles;
         $this->extraReplace = $extraReplace;
-        $this->yaml = Yaml::parse(file_get_contents(self::YAML_FILE));
     }
 
     public function run(): void
@@ -56,9 +100,23 @@ class GenerateExamples
         }
     }
 
+    /**
+     * Reads OAS file and grabs code samples related to chosen languages,
+     * defined in Redocly's custom `x-codeSamples` spec extension:
+     *
+     * x-codeSamples:
+         -
+           lang: PHP
+           label: PHP
+           source:
+             $ref: examples/AccountCreate.php
+     *
+     * @return void
+     * @see https://redoc.ly/docs/api-reference-docs/specification-extensions/x-code-samples/
+     */
     protected function getCodeSamples(): void
     {
-        foreach ($this->yaml['paths'] as $paths) {
+        foreach ($this->openapi['paths'] as $paths) {
             foreach ($paths as $action) {
                 if (empty($action['x-codeSamples'])) {
                     continue;
@@ -83,6 +141,13 @@ class GenerateExamples
         }
     }
 
+    /**
+     * Scans provided directories for markdown (.md) files to inject code
+     * samples and documentation into
+     *
+     * @param string $directory
+     * @return void
+     */
     protected function replaceInDirectory(string $directory): void
     {
         /** @var DirectoryIterator $fileInfo */
@@ -99,10 +164,25 @@ class GenerateExamples
         }
     }
 
+    /**
+     * Injects code samples into provided files. Not limited to markdown (.md)
+     * files, can be anything. But usually markdown files.
+     *
+     * @param string $filepath
+     * @return void
+     */
     protected function replaceInFile(string $filepath): void
     {
         $fileContents = file_get_contents($filepath);
 
+        $fileContents = $this->replaceCodeSample($fileContents);
+        $fileContents = $this->replaceDocumentation($fileContents);
+
+        file_put_contents($filepath, $fileContents);
+    }
+
+    protected function replaceCodeSample(string $fileContents): string
+    {
         foreach ($this->codeSamples as $operationId => $codeSamples) {
             foreach ($codeSamples as $language => $codeSample) {
                 $toReplace = $this->getReplaceCodeString($operationId, $language);
@@ -115,6 +195,11 @@ class GenerateExamples
             }
         }
 
+        return $fileContents;
+    }
+
+    public function replaceDocumentation(string $fileContents): string
+    {
         $search = "/(REPLACE_ME_WITH_DESCRIPTION_BEGIN)([\s\S][^|]*)(REPLACE_ME_WITH_DESCRIPTION_END)/";
         $fileContents = preg_replace_callback(
             $search,
@@ -131,18 +216,27 @@ class GenerateExamples
 
         $fileContents = str_replace('&#x60;', '`', $fileContents);
 
-        /*
-         * openapi-generator considers
-         * array of array of object to be a primitive
-         * type so it does not create a link to the doc file.
-         */
         foreach ($this->extraReplace as $k => $v) {
             $fileContents = str_replace($k, $v, $fileContents, );
         }
 
-        file_put_contents($filepath, $fileContents);
+        return $fileContents;
     }
 
+    /**
+     * Our templates initially generate markdown documentation files with
+     * REPLACE_ME_WITH_EXAMPLE_FOR__{{{operationId}}}_{language}_CODE
+     * in place of the actual auto-generated examples that openapi-generator
+     * would usually generate.
+     *
+     * We simply search for this string and replace with associated code sample.
+     *
+     * Ex: REPLACE_ME_WITH_EXAMPLE_FOR__accountCreate_PHP_CODE
+     *
+     * @param string $operationId
+     * @param string $language
+     * @return string
+     */
     protected function getReplaceCodeString(
         string $operationId,
         string $language
@@ -152,11 +246,13 @@ class GenerateExamples
 }
 
 $generate = new GenerateExamples(
+    Yaml::parse(file_get_contents(__DIR__ . '/../oas/openapi.yaml')),
     ['PHP'],
     [__DIR__ . '/../docs/Api', __DIR__ . '/../docs/Model'],
     [__DIR__ . '/../README.md'],
     [
-        '```\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]```' => '[```\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]```](SubFormFieldsPerDocumentBase.md)',
+        '```\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]```'
+            => '[```\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]```](SubFormFieldsPerDocumentBase.md)',
     ]
 );
 

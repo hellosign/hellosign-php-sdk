@@ -26,4 +26,6 @@ scan_for () {
 
 scan_for "allof"
 scan_for "oneof"
+scan_for "REPLACE_ME_WITH_DESCRIPTION"
+scan_for "REPLACE_ME_WITH_EXAMPLE_FOR"
 printf "\n"
