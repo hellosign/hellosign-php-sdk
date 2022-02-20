@@ -127,15 +127,17 @@ class GenerateExamples
                         continue;
                     }
 
+                    $id = $action['operationId'];
+
+                    if (empty($this->codeSamples[$id])) {
+                        $this->codeSamples[$id] = [];
+                    }
+
                     $contents = file_get_contents(
                         __DIR__ . "/../{$sample['source']['$ref']}"
                     );
 
-                    $this->codeSamples[$action['operationId']] = [
-                        $sample['lang'] => $contents,
-                    ];
-
-                    break;
+                    $this->codeSamples[$id][$sample['lang']] = $contents;
                 }
             }
         }

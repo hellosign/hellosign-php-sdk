@@ -1,11 +1,13 @@
-/.openapi-generator export-ignore
-/bin                export-ignore
-/templates          export-ignore
-/test               export-ignore
-
+/.openapi-generator         export-ignore
 /.openapi-generator-ignore  export-ignore
-/.php-cs-fixer.php          export-ignore
 /.travis.yml                export-ignore
+/bin                        export-ignore
 /build                      export-ignore
+/examples                   export-ignore
+/oas                        export-ignore
+/openapi-config.yaml        export-ignore
+/templates                  export-ignore
+/test                       export-ignore
+
+/.php-cs-fixer.php          export-ignore
 /phpunit.xml.dist           export-ignore
-/oas
