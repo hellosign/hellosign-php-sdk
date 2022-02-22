@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Warning: You should run this from rootless Docker (or Podman, or other)
+
 set -e
 DIR=$(cd `dirname $0` && pwd)
 ROOT_DIR="${DIR}/.."
@@ -9,4 +11,5 @@ docker run -it --rm \
   -v "${ROOT_DIR}:${WORKINGDIR}" \
   -v "hellosign-sdk-composer-cache:/.composer" \
   -w "${WORKINGDIR}" \
+  -u root:root \
   jtreminio/php-cli:7.4 "$@"
