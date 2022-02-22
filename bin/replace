@@ -6,7 +6,7 @@ ROOT_DIR="${DIR}/.."
 
 perl -pi -e 's/(.*)AllOf.md\)\n//g' "${ROOT_DIR}/README.md"
 
-printf "Replacing FQDN from our namespaces ...\n";
+printf "Replacing FQDN from our namespaces ...\n"
 perl -pi -e 's#@param \\HelloSignSDK\\#@param #g' \
   "${ROOT_DIR}/src/Api/"*.php
 perl -pi -e 's#@param \\HelloSignSDK\\Model\\#@param #g' \

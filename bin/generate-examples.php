@@ -73,6 +73,8 @@ class GenerateExamples
      */
     protected array $replaceInFiles = [];
 
+    protected bool $useSnakeCase = false;
+
     public function __construct(
         array $openapi,
         array $languages,
@@ -85,6 +87,11 @@ class GenerateExamples
         $this->replaceInDirectories = $replaceInDirectories;
         $this->replaceInFiles = $replaceInFiles;
         $this->extraReplace = $extraReplace;
+    }
+
+    public function setUseSnakeCase(bool $flag): void
+    {
+        $this->useSnakeCase = $flag;
     }
 
     public function run(): void
@@ -243,6 +250,10 @@ class GenerateExamples
         string $operationId,
         string $language
     ): string {
+        $operationId = $this->useSnakeCase
+            ? strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $operationId))
+            : $operationId;
+
         return "REPLACE_ME_WITH_EXAMPLE_FOR__{$operationId}_{$language}_CODE";
     }
 }
@@ -257,5 +268,6 @@ $generate = new GenerateExamples(
             => '[```\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]```](SubFormFieldsPerDocumentBase.md)',
     ]
 );
+$generate->setUseSnakeCase(false);
 
 $generate->run();
