@@ -342,17 +342,13 @@ class EmbeddedApi
         }
 
         $resourcePath = '/embedded/edit_url/{template_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($embedded_edit_url_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $embedded_edit_url_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $embedded_edit_url_request
+        );
 
         // path params
         if ($template_id !== null) {
@@ -656,17 +652,12 @@ class EmbeddedApi
         }
 
         $resourcePath = '/embedded/sign_url/{signature_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($signature_id !== null) {

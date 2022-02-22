@@ -326,17 +326,13 @@ class OAuthApi
         }
 
         $resourcePath = '/oauth/token';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($o_auth_token_generate_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $o_auth_token_generate_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $o_auth_token_generate_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -623,17 +619,13 @@ class OAuthApi
         }
 
         $resourcePath = '/oauth/token?refresh';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($o_auth_token_refresh_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $o_auth_token_refresh_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $o_auth_token_refresh_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(

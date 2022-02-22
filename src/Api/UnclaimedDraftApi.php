@@ -331,17 +331,13 @@ class UnclaimedDraftApi
         }
 
         $resourcePath = '/unclaimed_draft/create';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($unclaimed_draft_create_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $unclaimed_draft_create_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $unclaimed_draft_create_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -636,17 +632,13 @@ class UnclaimedDraftApi
         }
 
         $resourcePath = '/unclaimed_draft/create_embedded';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($unclaimed_draft_create_embedded_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $unclaimed_draft_create_embedded_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $unclaimed_draft_create_embedded_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -941,17 +933,13 @@ class UnclaimedDraftApi
         }
 
         $resourcePath = '/unclaimed_draft/create_embedded_with_template';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($unclaimed_draft_create_embedded_with_template_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $unclaimed_draft_create_embedded_with_template_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $unclaimed_draft_create_embedded_with_template_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1257,17 +1245,13 @@ class UnclaimedDraftApi
         }
 
         $resourcePath = '/unclaimed_draft/edit_and_resend/{signature_request_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($unclaimed_draft_edit_and_resend_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $unclaimed_draft_edit_and_resend_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $unclaimed_draft_edit_and_resend_request
+        );
 
         // path params
         if ($signature_request_id !== null) {

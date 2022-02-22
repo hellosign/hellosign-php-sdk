@@ -331,17 +331,12 @@ class BulkSendJobApi
         }
 
         $resourcePath = '/bulk_send_job/{bulk_send_job_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($bulk_send_job_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $bulk_send_job_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($bulk_send_job_id !== null) {
@@ -637,17 +632,12 @@ class BulkSendJobApi
     public function bulkSendJobListRequest(int $page = 1, int $page_size = 20)
     {
         $resourcePath = '/bulk_send_job/list';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($page_size instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $page_size
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // query params
         if ($page !== null) {

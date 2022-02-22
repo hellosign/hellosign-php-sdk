@@ -493,21 +493,19 @@ use {{invokerPackage}}\ObjectSerializer;
         {{/allParams}}
 
         $resourcePath = '{{{path}}}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        {{#allParams}}
-        {{#-last}}
-        if (${{paramName}} instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                ${{paramName}}
-            );
-        }
-        {{/-last}}
-        {{/allParams}}
+        {{#bodyParam}}
+        [$formParams, $multipart] = $this->getFormParams(
+            ${{paramName}}
+        );
+        {{/bodyParam}}
+        {{^bodyParam}}
+        $formParams = [];
+        $multipart = false;
+        {{/bodyParam}}
 
         {{#queryParams}}
         // query params

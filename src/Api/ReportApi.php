@@ -331,17 +331,13 @@ class ReportApi
         }
 
         $resourcePath = '/report/create';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($report_create_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $report_create_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $report_create_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(

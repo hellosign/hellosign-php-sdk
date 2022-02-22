@@ -331,17 +331,13 @@ class TeamApi
         }
 
         $resourcePath = '/team/add_member';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($team_add_member_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $team_add_member_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $team_add_member_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -636,17 +632,13 @@ class TeamApi
         }
 
         $resourcePath = '/team/create';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($team_create_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $team_create_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $team_create_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -866,10 +858,11 @@ class TeamApi
     public function teamDeleteRequest()
     {
         $resourcePath = '/team/destroy';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
+
+        $formParams = [];
         $multipart = false;
 
         if ($multipart) {
@@ -1142,10 +1135,11 @@ class TeamApi
     public function teamGetRequest()
     {
         $resourcePath = '/team';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
+
+        $formParams = [];
         $multipart = false;
 
         if ($multipart) {
@@ -1435,17 +1429,13 @@ class TeamApi
         }
 
         $resourcePath = '/team/remove_member';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($team_remove_member_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $team_remove_member_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $team_remove_member_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1740,17 +1730,13 @@ class TeamApi
         }
 
         $resourcePath = '/team';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($team_update_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $team_update_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $team_update_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(

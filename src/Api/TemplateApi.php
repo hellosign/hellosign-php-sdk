@@ -342,17 +342,13 @@ class TemplateApi
         }
 
         $resourcePath = '/template/add_user/{template_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($template_add_user_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $template_add_user_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $template_add_user_request
+        );
 
         // path params
         if ($template_id !== null) {
@@ -656,17 +652,13 @@ class TemplateApi
         }
 
         $resourcePath = '/template/create_embedded_draft';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($template_create_embedded_draft_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $template_create_embedded_draft_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $template_create_embedded_draft_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -903,17 +895,12 @@ class TemplateApi
         }
 
         $resourcePath = '/template/delete/{template_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($template_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $template_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($template_id !== null) {
@@ -1226,17 +1213,12 @@ class TemplateApi
         }
 
         $resourcePath = '/template/files/{template_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($get_data_uri instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $get_data_uri
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // query params
         if ($file_type !== null) {
@@ -1565,17 +1547,12 @@ class TemplateApi
         }
 
         $resourcePath = '/template/{template_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($template_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $template_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($template_id !== null) {
@@ -1888,17 +1865,12 @@ class TemplateApi
         }
 
         $resourcePath = '/template/list';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($query instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $query
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // query params
         if ($account_id !== null) {
@@ -2239,17 +2211,13 @@ class TemplateApi
         }
 
         $resourcePath = '/template/remove_user/{template_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($template_remove_user_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $template_remove_user_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $template_remove_user_request
+        );
 
         // path params
         if ($template_id !== null) {
@@ -2564,17 +2532,13 @@ class TemplateApi
         }
 
         $resourcePath = '/template/update_files/{template_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($template_update_files_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $template_update_files_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $template_update_files_request
+        );
 
         // path params
         if ($template_id !== null) {

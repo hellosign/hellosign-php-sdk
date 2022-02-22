@@ -331,17 +331,13 @@ class AccountApi
         }
 
         $resourcePath = '/account/create';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($account_create_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $account_create_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $account_create_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -619,10 +615,11 @@ class AccountApi
     public function accountGetRequest()
     {
         $resourcePath = '/account';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
+
+        $formParams = [];
         $multipart = false;
 
         if ($multipart) {
@@ -912,17 +909,13 @@ class AccountApi
         }
 
         $resourcePath = '/account';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($account_update_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $account_update_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $account_update_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1217,17 +1210,13 @@ class AccountApi
         }
 
         $resourcePath = '/account/verify';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($account_verify_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $account_verify_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $account_verify_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(

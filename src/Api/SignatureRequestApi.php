@@ -331,17 +331,13 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/bulk_create_embedded_with_template';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_bulk_create_embedded_with_template_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_bulk_create_embedded_with_template_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $signature_request_bulk_create_embedded_with_template_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -632,17 +628,13 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/bulk_send_with_template';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_bulk_send_with_template_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_bulk_send_with_template_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $signature_request_bulk_send_with_template_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -879,17 +871,12 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/cancel/{signature_request_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($signature_request_id !== null) {
@@ -1187,17 +1174,13 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/create_embedded';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_create_embedded_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_create_embedded_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $signature_request_create_embedded_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1492,17 +1475,13 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/create_embedded_with_template';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_create_embedded_with_template_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_create_embedded_with_template_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $signature_request_create_embedded_with_template_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1812,17 +1791,12 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/files/{signature_request_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($get_data_uri instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $get_data_uri
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // query params
         if ($file_type !== null) {
@@ -2151,17 +2125,12 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/{signature_request_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($signature_request_id !== null) {
@@ -2467,17 +2436,12 @@ class SignatureRequestApi
     public function signatureRequestListRequest(string $account_id = null, int $page = 1, int $page_size = 20, string $query = null)
     {
         $resourcePath = '/signature_request/list';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($query instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $query
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // query params
         if ($account_id !== null) {
@@ -2807,17 +2771,12 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/release_hold/{signature_request_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($signature_request_id !== null) {
@@ -3126,17 +3085,13 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/remind/{signature_request_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_remind_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_remind_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $signature_request_remind_request
+        );
 
         // path params
         if ($signature_request_id !== null) {
@@ -3382,17 +3337,12 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/remove/{signature_request_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($signature_request_id !== null) {
@@ -3686,17 +3636,13 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/send';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_send_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_send_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $signature_request_send_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -3991,17 +3937,13 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/send_with_template';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_send_with_template_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_send_with_template_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $signature_request_send_with_template_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -4307,17 +4249,13 @@ class SignatureRequestApi
         }
 
         $resourcePath = '/signature_request/update/{signature_request_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($signature_request_update_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $signature_request_update_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $signature_request_update_request
+        );
 
         // path params
         if ($signature_request_id !== null) {

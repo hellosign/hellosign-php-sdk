@@ -331,17 +331,13 @@ class ApiAppApi
         }
 
         $resourcePath = '/api_app';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($api_app_create_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $api_app_create_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $api_app_create_request
+        );
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -578,17 +574,12 @@ class ApiAppApi
         }
 
         $resourcePath = '/api_app/{client_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($client_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $client_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($client_id !== null) {
@@ -886,17 +877,12 @@ class ApiAppApi
         }
 
         $resourcePath = '/api_app/{client_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($client_id instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $client_id
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // path params
         if ($client_id !== null) {
@@ -1192,17 +1178,12 @@ class ApiAppApi
     public function apiAppListRequest(int $page = 1, int $page_size = 20)
     {
         $resourcePath = '/api_app/list';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($page_size instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $page_size
-            );
-        }
+        $formParams = [];
+        $multipart = false;
 
         // query params
         if ($page !== null) {
@@ -1523,17 +1504,13 @@ class ApiAppApi
         }
 
         $resourcePath = '/api_app/{client_id}';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        if ($api_app_update_request instanceof Model\ModelInterface) {
-            [$formParams, $multipart] = $this->getFormParams(
-                $api_app_update_request
-            );
-        }
+        [$formParams, $multipart] = $this->getFormParams(
+            $api_app_update_request
+        );
 
         // path params
         if ($client_id !== null) {
