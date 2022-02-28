@@ -1,11 +1,9 @@
 <?php
 
-namespace HelloSignSDK\Test\Model;
+namespace HelloSignSDK\Test;
 
 use HelloSignSDK\EventCallbackHelper;
 use HelloSignSDK\Model\EventCallbackApiAppRequest;
-use HelloSignSDK\Test\HelloTestCase;
-use HelloSignSDK\Test\TestUtils;
 
 class EventCallbackHelperTest extends HelloTestCase
 {

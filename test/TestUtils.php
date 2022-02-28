@@ -9,14 +9,12 @@ use Psr\Http\Message\StreamInterface;
 
 abstract class TestUtils
 {
-    public const ROOT_FILE_PATH = __DIR__ . '/fixtures';
-
     public static function getFixtureData(string $filename): array
     {
         $name = explode('\\', $filename);
         $fixtureFile = array_pop($name);
         $contents = file_get_contents(
-            self::ROOT_FILE_PATH . "/{$fixtureFile}.json"
+            __DIR__ . "/fixtures/{$fixtureFile}.json"
         );
 
         return json_decode(

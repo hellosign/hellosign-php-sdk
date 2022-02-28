@@ -51,7 +51,7 @@
         "actions": [
           {
             "field_id": "uniqueIdHere_2",
-            "hidden": 1,
+            "hidden": true,
             "type": "change-field-visibility"
           }
         ]
@@ -68,7 +68,7 @@
           "width": 100,
           "height": 16,
           "required": true,
-          "signer": 0,
+          "signer": "0",
           "page": 1,
           "validation_type": "numbers_only"
         },
@@ -81,7 +81,7 @@
           "width": 120,
           "height": 30,
           "required": true,
-          "signer": 0,
+          "signer": "0",
           "page": 1
         }
       ]

@@ -63,7 +63,7 @@
   },
   "SubFormFieldsPerDocumentText": {
     "type" : "text",
-    "signer": 1,
+    "signer": "1",
     "width": 100,
     "height": 16,
     "x": 112,
@@ -71,7 +71,7 @@
   },
   "SubFormFieldsPerDocumentTextMerge": {
     "type" : "text-merge",
-    "signer": 1,
+    "signer": "1",
     "width": 100,
     "height": 16,
     "x": 112,
