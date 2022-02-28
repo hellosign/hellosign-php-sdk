@@ -1,7 +1,6 @@
 # # TemplateResponseDocument
 
-An array describing each document associated with this Template.
-Includes form field data for each document.
+An array describing each document associated with this Template. Includes form field data for each document.
 
 ## Properties
 

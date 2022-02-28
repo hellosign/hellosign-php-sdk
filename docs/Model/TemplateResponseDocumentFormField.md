@@ -1,7 +1,6 @@
 # # TemplateResponseDocumentFormField
 
-An array of Form Field objects containing the name and type of each named
-textbox and checkmark field.
+An array of Form Field objects containing the name and type of each named textbox and checkmark field.
 
 ## Properties
 

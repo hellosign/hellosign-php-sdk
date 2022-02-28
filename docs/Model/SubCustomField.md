@@ -1,8 +1,6 @@
 # # SubCustomField
 
-An array defining values and options for custom fields. Required when
-defining pre-set values in `form_fields_per_document` or
-[Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
 
 ## Properties
 

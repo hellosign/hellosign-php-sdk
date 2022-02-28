@@ -64,7 +64,7 @@ class ApiAppResponseOAuth implements ModelInterface, ArrayAccess, JsonSerializab
         'callback_url' => 'string',
         'secret' => 'string',
         'scopes' => 'string[]',
-        'charges_users' => 'string',
+        'charges_users' => 'bool',
     ];
 
     /**
@@ -309,7 +309,7 @@ class ApiAppResponseOAuth implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets charges_users
      *
-     * @return string|null
+     * @return bool|null
      */
     public function getChargesUsers()
     {
@@ -319,11 +319,11 @@ class ApiAppResponseOAuth implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets charges_users
      *
-     * @param string|null $charges_users boolean indicating whether the app owner or the account granting permission is billed for OAuth requests
+     * @param bool|null $charges_users boolean indicating whether the app owner or the account granting permission is billed for OAuth requests
      *
      * @return self
      */
-    public function setChargesUsers(?string $charges_users)
+    public function setChargesUsers(?bool $charges_users)
     {
         $this->container['charges_users'] = $charges_users;
 

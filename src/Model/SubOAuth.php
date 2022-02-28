@@ -180,6 +180,7 @@ class SubOAuth implements ModelInterface, ArrayAccess, JsonSerializable
     public const SCOPES_TEMPLATE_ACCESS = 'template_access';
     public const SCOPES_TEAM_ACCESS = 'team_access';
     public const SCOPES_API_APP_ACCESS = 'api_app_access';
+    public const SCOPES_UNIVERSAL_SIGNATURE_REQUEST_ACCESS = 'universal_signature_request_access';
     public const SCOPES_EMPTY = '';
 
     /**
@@ -202,6 +203,7 @@ class SubOAuth implements ModelInterface, ArrayAccess, JsonSerializable
             self::SCOPES_TEMPLATE_ACCESS,
             self::SCOPES_TEAM_ACCESS,
             self::SCOPES_API_APP_ACCESS,
+            self::SCOPES_UNIVERSAL_SIGNATURE_REQUEST_ACCESS,
             self::SCOPES_EMPTY,
         ];
     }

@@ -307,7 +307,7 @@ class SubFormFieldRuleTrigger implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets operator
      *
-     * @param string $operator Different field types allow different `operator` values: - Field type of **text**:     - **is**: exact match     - **not**: not exact match     - **match**: regular expression, without /. Example:         - OK `[a-zA-Z0-9]`         - Not OK `/[a-zA-Z0-9]/` - Field type of **dropdown**:     - **is**: exact match, single value     - **not**: not exact match, single value     - **any**: exact match, array of values.     - **none**: not exact match, array of values. - Field type of **checkbox**:     - **is**: exact match, single value     - **not**: not exact match, single value - Field type of **radio**:     - **is**: exact match, single value     - **not**: not exact match, single value
+     * @param string $operator Different field types allow different `operator` values: - Field type of **text**:   - **is**: exact match   - **not**: not exact match   - **match**: regular expression, without /. Example:     - OK `[a-zA-Z0-9]`     - Not OK `/[a-zA-Z0-9]/` - Field type of **dropdown**:   - **is**: exact match, single value   - **not**: not exact match, single value   - **any**: exact match, array of values.   - **none**: not exact match, array of values. - Field type of **checkbox**:   - **is**: exact match, single value   - **not**: not exact match, single value - Field type of **radio**:   - **is**: exact match, single value   - **not**: not exact match, single value
      *
      * @return self
      */
@@ -341,7 +341,7 @@ class SubFormFieldRuleTrigger implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets value
      *
-     * @param string|null $value **value** or **values** is required, but not both.  The value to match against **operator**.  - When **operator** is one of the following, **value** must be `String`:     - `is`     - `not`     - `match`  Otherwise, - **checkbox**: When **type** of trigger is **checkbox**, **value** must be `0` or `1` - **radio**: When **type** of trigger is **radio**, **value** must be `1`
+     * @param string|null $value **value** or **values** is required, but not both.  The value to match against **operator**.  - When **operator** is one of the following, **value** must be `String`:   - `is`   - `not`   - `match`  Otherwise, - **checkbox**: When **type** of trigger is **checkbox**, **value** must be `0` or `1` - **radio**: When **type** of trigger is **radio**, **value** must be `1`
      *
      * @return self
      */

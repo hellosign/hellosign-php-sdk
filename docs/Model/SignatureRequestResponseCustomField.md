@@ -1,7 +1,6 @@
 # # SignatureRequestResponseCustomField
 
-An array of Custom Field objects containing the name and type of each
-custom field.
+An array of Custom Field objects containing the name and type of each custom field.
 
 ## Properties
 

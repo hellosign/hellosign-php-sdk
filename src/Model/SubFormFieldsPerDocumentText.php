@@ -350,7 +350,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
     /**
      * Sets auto_fill_type
      *
-     * @param string|null $auto_fill_type Auto fill type for populating fields automatically. Check out the list of  [auto fill types](https://app.hellosign.com/api/reference#AutoFillTypes) to learn more about the possible values.
+     * @param string|null $auto_fill_type Auto fill type for populating fields automatically. Check out the list of [auto fill types](https://app.hellosign.com/api/reference#AutoFillTypes) to learn more about the possible values.
      *
      * @return self
      */

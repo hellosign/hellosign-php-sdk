@@ -398,6 +398,14 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         if ($this->container['requester_email_address'] === null) {
             $invalidProperties[] = "'requester_email_address' can't be null";
         }
+        if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 5000)) {
+            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 5000.";
+        }
+
+        if (!is_null($this->container['subject']) && (mb_strlen($this->container['subject']) > 200)) {
+            $invalidProperties[] = "invalid value for 'subject', the character length must be smaller than or equal to 200.";
+        }
+
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -872,6 +880,10 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
      */
     public function setMessage(?string $message)
     {
+        if (!is_null($message) && (mb_strlen($message) > 5000)) {
+            throw new InvalidArgumentException('invalid length for $message when calling UnclaimedDraftCreateEmbeddedRequest., must be smaller than or equal to 5000.');
+        }
+
         $this->container['message'] = $message;
 
         return $this;
@@ -1040,6 +1052,10 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
      */
     public function setSubject(?string $subject)
     {
+        if (!is_null($subject) && (mb_strlen($subject) > 200)) {
+            throw new InvalidArgumentException('invalid length for $subject when calling UnclaimedDraftCreateEmbeddedRequest., must be smaller than or equal to 200.');
+        }
+
         $this->container['subject'] = $subject;
 
         return $this;
@@ -1082,7 +1098,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string|null $type the email address of the user that should be designated as the requester of this draft, if the draft type is `request_signature`
+     * @param string|null $type The type of the draft. By default this is `request_signature`, but you can set it to `send_document` if you want to self sign a document and download it.
      *
      * @return self
      */

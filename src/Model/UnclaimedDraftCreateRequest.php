@@ -338,6 +338,14 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 5000)) {
+            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 5000.";
+        }
+
+        if (!is_null($this->container['subject']) && (mb_strlen($this->container['subject']) > 200)) {
+            $invalidProperties[] = "invalid value for 'subject', the character length must be smaller than or equal to 200.";
+        }
+
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -644,6 +652,10 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
      */
     public function setMessage(?string $message)
     {
+        if (!is_null($message) && (mb_strlen($message) > 5000)) {
+            throw new InvalidArgumentException('invalid length for $message when calling UnclaimedDraftCreateRequest., must be smaller than or equal to 5000.');
+        }
+
         $this->container['message'] = $message;
 
         return $this;
@@ -764,6 +776,10 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
      */
     public function setSubject(?string $subject)
     {
+        if (!is_null($subject) && (mb_strlen($subject) > 200)) {
+            throw new InvalidArgumentException('invalid length for $subject when calling UnclaimedDraftCreateRequest., must be smaller than or equal to 200.');
+        }
+
         $this->container['subject'] = $subject;
 
         return $this;

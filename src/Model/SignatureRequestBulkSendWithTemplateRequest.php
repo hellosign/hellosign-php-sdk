@@ -30,6 +30,7 @@ namespace HelloSignSDK\Model;
 
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
+use InvalidArgumentException;
 use JsonSerializable;
 use SplFileObject;
 
@@ -270,6 +271,17 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
         if ($this->container['template_ids'] === null) {
             $invalidProperties[] = "'template_ids' can't be null";
         }
+        if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 5000)) {
+            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 5000.";
+        }
+
+        if (!is_null($this->container['subject']) && (mb_strlen($this->container['subject']) > 255)) {
+            $invalidProperties[] = "invalid value for 'subject', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 255)) {
+            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 255.";
+        }
 
         return $invalidProperties;
     }
@@ -448,6 +460,10 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
      */
     public function setMessage(?string $message)
     {
+        if (!is_null($message) && (mb_strlen($message) > 5000)) {
+            throw new InvalidArgumentException('invalid length for $message when calling SignatureRequestBulkSendWithTemplateRequest., must be smaller than or equal to 5000.');
+        }
+
         $this->container['message'] = $message;
 
         return $this;
@@ -520,6 +536,10 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
      */
     public function setSubject(?string $subject)
     {
+        if (!is_null($subject) && (mb_strlen($subject) > 255)) {
+            throw new InvalidArgumentException('invalid length for $subject when calling SignatureRequestBulkSendWithTemplateRequest., must be smaller than or equal to 255.');
+        }
+
         $this->container['subject'] = $subject;
 
         return $this;
@@ -568,6 +588,10 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
      */
     public function setTitle(?string $title)
     {
+        if (!is_null($title) && (mb_strlen($title) > 255)) {
+            throw new InvalidArgumentException('invalid length for $title when calling SignatureRequestBulkSendWithTemplateRequest., must be smaller than or equal to 255.');
+        }
+
         $this->container['title'] = $title;
 
         return $this;
