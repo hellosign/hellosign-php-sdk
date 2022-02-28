@@ -1,9 +1,0 @@
-{
-  "default": {
-    "state": "900e06e2",
-    "code": "1b0d28d90c86c141",
-    "grant_type": "authorization_code",
-    "client_id": "cc91c61d00f8bb2ece1428035716b",
-    "client_secret": "1d14434088507ffa390e6f5528465"
-  }
-}
