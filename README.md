@@ -12,6 +12,48 @@ You should think twice before using package on anything critical.
 The interfaces may change without warning. Backwards compatibility is not yet
 guaranteed nor implied!
 
+## Contributing
+
+### Submodule
+
+This repo uses the [hellosign/openapi](https://github.com/hellosign/openapi) repo
+as a submodule for its OAS source. When you first clone this repo you must also
+instantiate the submodule by running the following:
+
+```shell
+git submodule init
+git submodule update
+```
+
+### Changes to the OAS
+
+You must make OAS changes in the `oas/openapi.yaml` file within the
+[hellosign/openapi](https://github.com/hellosign/openapi) submodule.
+
+### Changes to the SDK code
+
+You must make SDK code changes in the mustache file within the `templates`
+directory that corresponds to the file you want updated.
+
+We use [OpenAPI Generator](https://openapi-generator.tech/) to automatically
+generate this SDK from the OAS, using the template files.
+
+### Building
+
+You must have `docker` (or `podman` linked to `docker`) installed. Highly
+recommended to use
+[rootless docker](https://docs.docker.com/engine/security/rootless/).
+
+Run the following and everything is done for you:
+
+```shell
+./build
+```
+
+*Attention*: Any changes you have made to the SDK code that you have not made
+to the OAS file and/or the mustache template files _will be lost_ when you run
+this command.
+
 ## Installation & Usage
 
 ### Requirements
