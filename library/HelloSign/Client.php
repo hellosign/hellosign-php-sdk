@@ -307,7 +307,7 @@ class Client
      * @param  integer $page Specified page number to return. Defaults to 1. (optional)
      * @param  integer $page_size Number of objects to return per page between 1 and 100. Defaults to 20. (optional)
      * @param  string $account_id Account ID to return Templates for. Defaults to your account. (optional)
-     * @param  string $query Search terms to filters templates result. (optional)
+     * @param  string $query String that includes search terms and/or fields to be used to filter the Template objects. (optional)
      * @return TemplateList
      * @throws BaseException
      */
