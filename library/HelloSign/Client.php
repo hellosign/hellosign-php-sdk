@@ -307,15 +307,17 @@ class Client
      * @param  integer $page Specified page number to return. Defaults to 1. (optional)
      * @param  integer $page_size Number of objects to return per page between 1 and 100. Defaults to 20. (optional)
      * @param  string $account_id Account ID to return Templates for. Defaults to your account. (optional)
+     * @param  string $query Search terms to filters templates result. (optional)
      * @return TemplateList
      * @throws BaseException
      */
-    public function getTemplates($page = 1, $page_size = null, $account_id = null)
+    public function getTemplates($page = 1, $page_size = null, $account_id = null, $query = null)
     {
         $response = $this->rest->get(static::TEMPLATE_LIST_PATH,
           array('account_id' => $account_id,
             'page' => $page,
-            'page_size' => $page_size)
+            'page_size' => $page_size,
+            'query' => $query)
         );
 
         $this->checkResponse($response);
