@@ -6,7 +6,6 @@ namespace HelloSignSDK\Test;
 
 use ArrayAccess;
 use GuzzleHttp\Psr7;
-use HelloSignSDK\Configuration;
 use Psr\Http\Message\StreamInterface;
 
 abstract class TestUtils

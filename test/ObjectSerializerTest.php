@@ -180,7 +180,7 @@ class ObjectSerializerTest extends HelloTestCase
 
         $expectedOauth = json_encode([
             'callback_url' => $oauth->getCallbackUrl(),
-            'scopes'       => $oauth->getScopes(),
+            'scopes' => $oauth->getScopes(),
         ]);
 
         $this->assertEquals($expectedOauth, $result['oauth']);
