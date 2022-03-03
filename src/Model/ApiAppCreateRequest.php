@@ -222,7 +222,7 @@ class ApiAppCreateRequest implements ModelInterface, ArrayAccess, JsonSerializab
     {
         /** @var ApiAppCreateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             ApiAppCreateRequest::class,
         );
 

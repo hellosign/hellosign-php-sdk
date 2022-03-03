@@ -190,7 +190,7 @@ class TemplateRemoveUserRequest implements ModelInterface, ArrayAccess, JsonSeri
     {
         /** @var TemplateRemoveUserRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateRemoveUserRequest::class,
         );
 

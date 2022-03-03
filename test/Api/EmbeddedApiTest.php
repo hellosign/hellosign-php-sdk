@@ -45,7 +45,7 @@ class EmbeddedApiTest extends HelloTestCase
         $obj = Model\EmbeddedEditUrlRequest::fromArray($requestData);
 
         $response = $this->api->embeddedEditUrl($templateId, $obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -62,7 +62,7 @@ class EmbeddedApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->embeddedSignUrl($signatureId);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);

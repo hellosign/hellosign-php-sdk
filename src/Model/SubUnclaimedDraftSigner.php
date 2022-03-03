@@ -196,7 +196,7 @@ class SubUnclaimedDraftSigner implements ModelInterface, ArrayAccess, JsonSerial
     {
         /** @var SubUnclaimedDraftSigner $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubUnclaimedDraftSigner::class,
         );
 

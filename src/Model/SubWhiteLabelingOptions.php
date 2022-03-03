@@ -280,7 +280,7 @@ class SubWhiteLabelingOptions implements ModelInterface, ArrayAccess, JsonSerial
     {
         /** @var SubWhiteLabelingOptions $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubWhiteLabelingOptions::class,
         );
 

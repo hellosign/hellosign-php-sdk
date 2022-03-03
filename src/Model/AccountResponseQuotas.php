@@ -197,7 +197,7 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
     {
         /** @var AccountResponseQuotas $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             AccountResponseQuotas::class,
         );
 

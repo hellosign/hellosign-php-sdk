@@ -45,7 +45,7 @@ class SignatureRequestApiTest extends HelloTestCase
         );
 
         $response = $this->api->signatureRequestBulkCreateEmbeddedWithTemplate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -67,7 +67,7 @@ class SignatureRequestApiTest extends HelloTestCase
         );
 
         $response = $this->api->signatureRequestBulkSendWithTemplate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -94,7 +94,7 @@ class SignatureRequestApiTest extends HelloTestCase
         );
 
         $response = $this->api->signatureRequestCreateEmbedded($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -116,7 +116,7 @@ class SignatureRequestApiTest extends HelloTestCase
         );
 
         $response = $this->api->signatureRequestCreateEmbeddedWithTemplate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -141,7 +141,7 @@ class SignatureRequestApiTest extends HelloTestCase
             $getUrl,
             $getDataUri
         );
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -158,7 +158,7 @@ class SignatureRequestApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->signatureRequestGet($signatureRequestId);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -175,7 +175,7 @@ class SignatureRequestApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->signatureRequestList($accountId);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -192,7 +192,7 @@ class SignatureRequestApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->signatureRequestReleaseHold($signatureRequestId);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -213,7 +213,7 @@ class SignatureRequestApiTest extends HelloTestCase
         $obj = Model\SignatureRequestRemindRequest::fromArray($requestData);
 
         $response = $this->api->signatureRequestRemind($signatureRequestId, $obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -238,7 +238,7 @@ class SignatureRequestApiTest extends HelloTestCase
         $obj = Model\SignatureRequestSendRequest::fromArray($requestData);
 
         $response = $this->api->signatureRequestSend($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -260,7 +260,7 @@ class SignatureRequestApiTest extends HelloTestCase
         );
 
         $response = $this->api->signatureRequestSendWithTemplate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -284,7 +284,7 @@ class SignatureRequestApiTest extends HelloTestCase
             $signatureRequestId,
             $obj
         );
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);

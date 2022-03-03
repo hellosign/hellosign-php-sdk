@@ -335,9 +335,11 @@ class SignatureRequestApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $signature_request_bulk_create_embedded_with_template_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -632,9 +634,11 @@ class SignatureRequestApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $signature_request_bulk_send_with_template_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1178,9 +1182,11 @@ class SignatureRequestApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $signature_request_create_embedded_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1479,9 +1485,11 @@ class SignatureRequestApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $signature_request_create_embedded_with_template_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -3089,9 +3097,11 @@ class SignatureRequestApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $signature_request_remind_request
         );
+
+        $multipart = !empty($formParams);
 
         // path params
         if ($signature_request_id !== null) {
@@ -3640,9 +3650,11 @@ class SignatureRequestApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $signature_request_send_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -3941,9 +3953,11 @@ class SignatureRequestApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $signature_request_send_with_template_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -4253,9 +4267,11 @@ class SignatureRequestApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $signature_request_update_request
         );
+
+        $multipart = !empty($formParams);
 
         // path params
         if ($signature_request_id !== null) {

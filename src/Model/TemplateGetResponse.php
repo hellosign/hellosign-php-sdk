@@ -191,7 +191,7 @@ class TemplateGetResponse implements ModelInterface, ArrayAccess, JsonSerializab
     {
         /** @var TemplateGetResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateGetResponse::class,
         );
 

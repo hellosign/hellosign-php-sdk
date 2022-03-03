@@ -330,9 +330,11 @@ class OAuthApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $o_auth_token_generate_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -623,9 +625,11 @@ class OAuthApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $o_auth_token_refresh_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(

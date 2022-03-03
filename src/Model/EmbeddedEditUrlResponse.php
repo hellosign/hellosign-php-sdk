@@ -191,7 +191,7 @@ class EmbeddedEditUrlResponse implements ModelInterface, ArrayAccess, JsonSerial
     {
         /** @var EmbeddedEditUrlResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             EmbeddedEditUrlResponse::class,
         );
 

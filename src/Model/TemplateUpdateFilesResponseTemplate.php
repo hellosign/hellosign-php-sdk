@@ -191,7 +191,7 @@ class TemplateUpdateFilesResponseTemplate implements ModelInterface, ArrayAccess
     {
         /** @var TemplateUpdateFilesResponseTemplate $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateUpdateFilesResponseTemplate::class,
         );
 

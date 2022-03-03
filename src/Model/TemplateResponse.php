@@ -269,7 +269,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var TemplateResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateResponse::class,
         );
 

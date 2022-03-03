@@ -192,7 +192,7 @@ class TemplateResponseSignerRole implements ModelInterface, ArrayAccess, JsonSer
     {
         /** @var TemplateResponseSignerRole $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateResponseSignerRole::class,
         );
 

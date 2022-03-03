@@ -202,7 +202,7 @@ class SubAttachment implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubAttachment $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubAttachment::class,
         );
 

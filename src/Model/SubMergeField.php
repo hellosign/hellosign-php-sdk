@@ -208,7 +208,7 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubMergeField $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubMergeField::class,
         );
 

@@ -345,16 +345,8 @@ class ObjectSerializer
         }
 
         if ($class === '\SplFileObject') {
-            /*
-             * If user passed a string representing path + filename
-             * append the root file path if it has been set
-             */
-            if (is_string($data)) {
-                $rootFilePath = Configuration::getDefaultConfiguration()
-                    ->getRootFilePath();
-                if ($rootFilePath) {
-                    $data = "{$rootFilePath}/{$data}";
-                }
+            if (is_a($data, SplFileObject::class)) {
+                return $data;
             }
 
             $data = Psr7\Utils::streamFor($data);
@@ -458,6 +450,74 @@ class ObjectSerializer
     }
 
     /**
+     * When a user calls ::fromArray() on a model, they can use the string path
+     * to a file. We want to instantiate an SplFileObject for these scenarios.
+     *
+     * This method should only be used for initiating requests where the user
+     * knows the path of the file is safe to read from.
+     *
+     * Not to be used for responses!
+     *
+     * @param string $classname
+     * @param array $data
+     * @return array
+     */
+    public static function instantiateFiles(
+        string $classname,
+        array $data
+    ): array {
+        if (!Configuration::getDefaultConfiguration()->getInstantiateFiles()) {
+            return $data;
+        }
+
+        if (!method_exists($classname, 'openAPITypes')) {
+            return $data;
+        }
+
+        $openAPITypes = call_user_func("{$classname}::openAPITypes");
+
+        foreach ($openAPITypes as $param => $type) {
+            if (strpos($type, 'SplFileObject') === false) {
+                continue;
+            }
+
+            if (empty($data[$param])) {
+                continue;
+            }
+
+            $data[$param] = self::instantiateFilesRecursive($data[$param]);
+        }
+
+        return $data;
+    }
+
+    protected static function instantiateFilesRecursive($value)
+    {
+        $rootFilePath = Configuration::getDefaultConfiguration()
+            ->getRootFilePath();
+
+        if (is_array($value)) {
+            return self::instantiateFilesRecursive($value);
+        }
+
+        if (!is_string($value)) {
+            return $value;
+        }
+
+        $filepath = $value;
+
+        if ($rootFilePath) {
+            $filepath = "{$rootFilePath}/{$filepath}";
+        }
+
+        if (file_exists($filepath)) {
+            return new SplFileObject($filepath, 'r');
+        }
+
+        return $value;
+    }
+
+    /**
      * Allows a multipart/form-data request to grab data from the typed
      * class created by OpenAPI.
      */
@@ -465,9 +525,9 @@ class ObjectSerializer
     {
         $apiTypes = $model::openAPITypes();
         $formParams = [];
-        $multipart = false;
+        $hasFile = false;
 
-        $key_count = [];
+        $keyCount = [];
         foreach ($model::attributeMap() as $key => $_) {
             // form params
             $value = $model->offsetGet($key);
@@ -479,38 +539,39 @@ class ObjectSerializer
             $true_key = $key;
 
             if (strpos($apiTypes[$key], 'SplFileObject') !== false) {
-                $multi = false;
+                $hasFile = true;
+
                 if (strpos($apiTypes[$key], 'SplFileObject[]') !== false) {
-                    if (!array_key_exists($key, $key_count)) {
-                        $key_count[$key] = 0;
+                    if (!array_key_exists($key, $keyCount)) {
+                        $keyCount[$key] = 0;
                     }
 
-                    $multi = true;
-                }
+                    foreach ($value as $file) {
+                        $fileIndex = $keyCount[$key];
 
-                $file = $value;
-                $multipart = true;
-                $paramFiles = is_array($file) ? $file : [$file];
-                foreach ($paramFiles as $paramFile) {
-                    if ($multi) {
-                        // flat convert nested arrays into flat arrays, but making
-                        // the literal [] a part of key value
-                        $true_key = "{$key}[{$key_count[$key]}]";
-                        $key_count[$key]++;
+                        /**
+                         * flat convert nested arrays into flat arrays, but making
+                         * the literal [] a part of key value
+                         *
+                         * example: "file[0]={resource}"
+                         */
+                        $true_key = "{$key}[{$fileIndex}]";
+
+                        $keyCount[$key]++;
 
                         $formParams[$true_key] = Psr7\Utils::tryFopen(
-                            ObjectSerializer::toFormValue($paramFile),
+                            ObjectSerializer::toFormValue($file),
                             'rb'
                         );
-
-                        continue;
                     }
 
-                    $formParams[$true_key][] = Psr7\Utils::tryFopen(
-                        ObjectSerializer::toFormValue($paramFile),
-                        'rb'
-                    );
+                    continue;
                 }
+
+                $formParams[$true_key] = Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($value),
+                    'rb'
+                );
 
                 continue;
             }
@@ -524,6 +585,6 @@ class ObjectSerializer
                 );
         }
 
-        return [$formParams, $multipart];
+        return $hasFile ? $formParams : [];
     }
 }

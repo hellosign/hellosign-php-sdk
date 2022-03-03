@@ -186,7 +186,7 @@ class ApiAppResponseOptions implements ModelInterface, ArrayAccess, JsonSerializ
     {
         /** @var ApiAppResponseOptions $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             ApiAppResponseOptions::class,
         );
 

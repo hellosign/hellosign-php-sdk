@@ -209,7 +209,7 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
     {
         /** @var SubBulkSignerListSigner $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubBulkSignerListSigner::class,
         );
 

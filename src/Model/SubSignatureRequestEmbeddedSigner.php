@@ -209,7 +209,7 @@ class SubSignatureRequestEmbeddedSigner implements ModelInterface, ArrayAccess, 
     {
         /** @var SubSignatureRequestEmbeddedSigner $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubSignatureRequestEmbeddedSigner::class,
         );
 

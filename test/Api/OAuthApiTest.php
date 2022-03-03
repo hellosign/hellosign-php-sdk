@@ -43,7 +43,7 @@ class OAuthApiTest extends HelloTestCase
         $obj = Model\OAuthTokenGenerateRequest::fromArray($requestData);
 
         $response = $this->api->oauthTokenGenerate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -63,7 +63,7 @@ class OAuthApiTest extends HelloTestCase
         $obj = Model\OAuthTokenRefreshRequest::fromArray($requestData);
 
         $response = $this->api->oauthTokenRefresh($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);

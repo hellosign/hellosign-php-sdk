@@ -233,7 +233,7 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
     {
         /** @var SignatureRequestResponseCustomField $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SignatureRequestResponseCustomField::class,
         );
 

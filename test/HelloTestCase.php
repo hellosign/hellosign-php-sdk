@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class HelloTestCase extends TestCase
 {
-    public const ROOT_FILE_PATH = __DIR__ . '/fixtures';
+    public const ROOT_FILE_PATH = __DIR__ . '/../oas/test_fixtures';
 
     /** @var GuzzleHttp\Client */
     protected $client;
@@ -26,6 +26,7 @@ abstract class HelloTestCase extends TestCase
 
         $config = new Configuration();
         $config->setUsername('YOUR_API_KEY')
+            ->setInstantiateFiles(true)
             ->setRootFilePath(self::ROOT_FILE_PATH);
 
         Configuration::setDefaultConfiguration($config);

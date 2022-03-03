@@ -215,7 +215,7 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     {
         /** @var SubSignatureRequestSigner $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubSignatureRequestSigner::class,
         );
 

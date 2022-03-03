@@ -196,7 +196,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var ErrorResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             ErrorResponse::class,
         );
 

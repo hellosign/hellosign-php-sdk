@@ -44,7 +44,7 @@ class TemplateApiTest extends HelloTestCase
         $obj = Model\TemplateAddUserRequest::fromArray($requestData);
 
         $response = $this->api->templateAddUser($templateId, $obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -64,7 +64,7 @@ class TemplateApiTest extends HelloTestCase
         $obj = Model\TemplateCreateEmbeddedDraftRequest::fromArray($requestData);
 
         $response = $this->api->templateCreateEmbeddedDraft($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -94,7 +94,7 @@ class TemplateApiTest extends HelloTestCase
             $getUrl,
             $getDataUri
         );
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -111,7 +111,7 @@ class TemplateApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->templateGet($templateId);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -128,7 +128,7 @@ class TemplateApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->templateList($accountId);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -149,7 +149,7 @@ class TemplateApiTest extends HelloTestCase
         $obj = Model\TemplateRemoveUserRequest::fromArray($requestData);
 
         $response = $this->api->templateRemoveUser($templateId, $obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -170,7 +170,7 @@ class TemplateApiTest extends HelloTestCase
         $obj = Model\TemplateUpdateFilesRequest::fromArray($requestData);
 
         $response = $this->api->templateUpdateFiles($templateId, $obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);

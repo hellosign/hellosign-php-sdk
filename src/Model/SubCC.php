@@ -190,7 +190,7 @@ class SubCC implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubCC $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubCC::class,
         );
 

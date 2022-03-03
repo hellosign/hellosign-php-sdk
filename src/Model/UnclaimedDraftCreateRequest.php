@@ -322,7 +322,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     {
         /** @var UnclaimedDraftCreateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             UnclaimedDraftCreateRequest::class,
         );
 

@@ -186,7 +186,7 @@ class TemplateResponseCCRole implements ModelInterface, ArrayAccess, JsonSeriali
     {
         /** @var TemplateResponseCCRole $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateResponseCCRole::class,
         );
 

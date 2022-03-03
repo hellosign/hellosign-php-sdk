@@ -178,7 +178,7 @@ class SubFormFieldsPerDocumentInitials extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentInitials $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubFormFieldsPerDocumentInitials::class,
         );
 

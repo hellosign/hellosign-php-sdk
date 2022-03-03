@@ -178,7 +178,7 @@ class SubFormFieldsPerDocumentCheckboxMerge extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentCheckboxMerge $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubFormFieldsPerDocumentCheckboxMerge::class,
         );
 

@@ -192,7 +192,7 @@ class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface
     {
         /** @var TemplateResponseDocumentCustomFieldAvgTextLength $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateResponseDocumentCustomFieldAvgTextLength::class,
         );
 

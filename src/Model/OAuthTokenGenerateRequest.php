@@ -208,7 +208,7 @@ class OAuthTokenGenerateRequest implements ModelInterface, ArrayAccess, JsonSeri
     {
         /** @var OAuthTokenGenerateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             OAuthTokenGenerateRequest::class,
         );
 

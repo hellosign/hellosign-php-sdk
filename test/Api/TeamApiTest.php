@@ -43,7 +43,7 @@ class TeamApiTest extends HelloTestCase
         $obj = Model\TeamAddMemberRequest::fromArray($requestData);
 
         $response = $this->api->teamAddMember($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -63,7 +63,7 @@ class TeamApiTest extends HelloTestCase
         $obj = Model\TeamCreateRequest::fromArray($requestData);
 
         $response = $this->api->teamCreate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -83,7 +83,7 @@ class TeamApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->teamGet();
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -103,7 +103,7 @@ class TeamApiTest extends HelloTestCase
         $obj = Model\TeamUpdateRequest::fromArray($requestData);
 
         $response = $this->api->teamUpdate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -123,7 +123,7 @@ class TeamApiTest extends HelloTestCase
         $obj = Model\TeamRemoveMemberRequest::fromArray($requestData);
 
         $response = $this->api->teamRemoveMember($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);

@@ -245,7 +245,7 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var ApiAppResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             ApiAppResponse::class,
         );
 

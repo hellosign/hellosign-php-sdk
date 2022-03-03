@@ -17,9 +17,7 @@ class FixturesTest extends HelloTestCase
     public function testValues(string $type, array $data)
     {
         $obj = ObjectSerializer::deserialize($data, $type);
-        $serialized = TestUtils::removeRootPathFromFiles(
-            TestUtils::toArray($obj)
-        );
+        $serialized = TestUtils::toArray($obj);
 
         $this->assertInstanceOf($type, $obj);
         $this->assertEquals($data, $serialized);

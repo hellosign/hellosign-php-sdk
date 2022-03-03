@@ -335,9 +335,11 @@ class ApiAppApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $api_app_create_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1508,9 +1510,11 @@ class ApiAppApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $api_app_update_request
         );
+
+        $multipart = !empty($formParams);
 
         // path params
         if ($client_id !== null) {

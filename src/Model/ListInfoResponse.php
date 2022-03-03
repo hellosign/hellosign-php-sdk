@@ -209,7 +209,7 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var ListInfoResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             ListInfoResponse::class,
         );
 

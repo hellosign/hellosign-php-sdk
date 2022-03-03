@@ -222,7 +222,7 @@ class ApiAppUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializab
     {
         /** @var ApiAppUpdateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             ApiAppUpdateRequest::class,
         );
 

@@ -191,7 +191,7 @@ class SubEditorOptions implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubEditorOptions $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubEditorOptions::class,
         );
 

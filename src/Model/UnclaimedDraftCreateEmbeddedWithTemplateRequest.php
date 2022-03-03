@@ -330,7 +330,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
     {
         /** @var UnclaimedDraftCreateEmbeddedWithTemplateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             UnclaimedDraftCreateEmbeddedWithTemplateRequest::class,
         );
 

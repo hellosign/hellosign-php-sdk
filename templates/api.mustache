@@ -498,9 +498,11 @@ use {{invokerPackage}}\ObjectSerializer;
         $httpBody = '';
 
         {{#bodyParam}}
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             ${{paramName}}
         );
+
+        $multipart = !empty($formParams);
         {{/bodyParam}}
         {{^bodyParam}}
         $formParams = [];

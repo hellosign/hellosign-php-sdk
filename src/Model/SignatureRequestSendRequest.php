@@ -312,7 +312,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
     {
         /** @var SignatureRequestSendRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SignatureRequestSendRequest::class,
         );
 

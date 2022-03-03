@@ -203,7 +203,7 @@ class TeamResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var TeamResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TeamResponse::class,
         );
 

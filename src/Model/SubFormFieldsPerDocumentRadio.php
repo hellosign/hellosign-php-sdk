@@ -190,7 +190,7 @@ class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentRadio $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubFormFieldsPerDocumentRadio::class,
         );
 

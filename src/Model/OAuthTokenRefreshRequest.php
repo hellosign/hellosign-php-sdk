@@ -190,7 +190,7 @@ class OAuthTokenRefreshRequest implements ModelInterface, ArrayAccess, JsonSeria
     {
         /** @var OAuthTokenRefreshRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             OAuthTokenRefreshRequest::class,
         );
 

@@ -252,7 +252,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
     {
         /** @var SignatureRequestBulkSendWithTemplateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SignatureRequestBulkSendWithTemplateRequest::class,
         );
 

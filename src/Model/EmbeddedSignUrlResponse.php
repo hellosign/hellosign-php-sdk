@@ -191,7 +191,7 @@ class EmbeddedSignUrlResponse implements ModelInterface, ArrayAccess, JsonSerial
     {
         /** @var EmbeddedSignUrlResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             EmbeddedSignUrlResponse::class,
         );
 

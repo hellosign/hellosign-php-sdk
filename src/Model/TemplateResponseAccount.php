@@ -216,7 +216,7 @@ class TemplateResponseAccount implements ModelInterface, ArrayAccess, JsonSerial
     {
         /** @var TemplateResponseAccount $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateResponseAccount::class,
         );
 

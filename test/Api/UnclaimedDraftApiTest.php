@@ -43,7 +43,7 @@ class UnclaimedDraftApiTest extends HelloTestCase
         $obj = Model\UnclaimedDraftCreateRequest::fromArray($requestData);
 
         $response = $this->api->unclaimedDraftCreate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -63,7 +63,7 @@ class UnclaimedDraftApiTest extends HelloTestCase
         $obj = Model\UnclaimedDraftCreateEmbeddedRequest::fromArray($requestData);
 
         $response = $this->api->unclaimedDraftCreateEmbedded($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -85,7 +85,7 @@ class UnclaimedDraftApiTest extends HelloTestCase
         );
 
         $response = $this->api->unclaimedDraftCreateEmbeddedWithTemplate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -109,7 +109,7 @@ class UnclaimedDraftApiTest extends HelloTestCase
             $signatureRequestId,
             $obj
         );
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);

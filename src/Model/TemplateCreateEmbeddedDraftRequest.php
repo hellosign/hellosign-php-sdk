@@ -312,7 +312,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     {
         /** @var TemplateCreateEmbeddedDraftRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateCreateEmbeddedDraftRequest::class,
         );
 

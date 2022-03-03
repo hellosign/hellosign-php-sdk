@@ -197,7 +197,7 @@ class BulkSendJobListResponse implements ModelInterface, ArrayAccess, JsonSerial
     {
         /** @var BulkSendJobListResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             BulkSendJobListResponse::class,
         );
 

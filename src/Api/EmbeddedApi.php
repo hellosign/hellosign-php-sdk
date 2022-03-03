@@ -346,9 +346,11 @@ class EmbeddedApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $embedded_edit_url_request
         );
+
+        $multipart = !empty($formParams);
 
         // path params
         if ($template_id !== null) {

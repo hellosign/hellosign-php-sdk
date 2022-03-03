@@ -230,7 +230,7 @@ class SubSigningOptions implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubSigningOptions $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubSigningOptions::class,
         );
 

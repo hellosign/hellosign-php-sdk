@@ -191,7 +191,7 @@ class FileResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var FileResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             FileResponse::class,
         );
 

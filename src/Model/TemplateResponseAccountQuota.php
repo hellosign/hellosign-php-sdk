@@ -198,7 +198,7 @@ class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonS
     {
         /** @var TemplateResponseAccountQuota $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateResponseAccountQuota::class,
         );
 

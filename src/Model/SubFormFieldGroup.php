@@ -196,7 +196,7 @@ class SubFormFieldGroup implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubFormFieldGroup $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubFormFieldGroup::class,
         );
 

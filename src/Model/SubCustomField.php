@@ -203,7 +203,7 @@ class SubCustomField implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubCustomField $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubCustomField::class,
         );
 

@@ -335,9 +335,11 @@ class UnclaimedDraftApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $unclaimed_draft_create_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -636,9 +638,11 @@ class UnclaimedDraftApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $unclaimed_draft_create_embedded_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -937,9 +941,11 @@ class UnclaimedDraftApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $unclaimed_draft_create_embedded_with_template_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1249,9 +1255,11 @@ class UnclaimedDraftApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $unclaimed_draft_edit_and_resend_request
         );
+
+        $multipart = !empty($formParams);
 
         // path params
         if ($signature_request_id !== null) {

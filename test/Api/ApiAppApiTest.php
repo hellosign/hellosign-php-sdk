@@ -43,7 +43,7 @@ class ApiAppApiTest extends HelloTestCase
         $obj = Model\ApiAppCreateRequest::fromArray($requestData);
 
         $response = $this->api->apiAppCreate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -60,7 +60,7 @@ class ApiAppApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->apiAppGet($clientId);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -82,7 +82,7 @@ class ApiAppApiTest extends HelloTestCase
         $obj = Model\ApiAppUpdateRequest::fromArray($requestData);
 
         $response = $this->api->apiAppUpdate($clientId, $obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
@@ -105,7 +105,7 @@ class ApiAppApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->apiAppList($page, $pageSize);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);

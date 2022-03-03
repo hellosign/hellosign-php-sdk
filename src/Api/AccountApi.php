@@ -335,9 +335,11 @@ class AccountApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $account_create_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -913,9 +915,11 @@ class AccountApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $account_update_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1214,9 +1218,11 @@ class AccountApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $account_verify_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(

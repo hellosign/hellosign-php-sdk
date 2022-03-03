@@ -190,7 +190,7 @@ class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentCheckbox $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubFormFieldsPerDocumentCheckbox::class,
         );
 

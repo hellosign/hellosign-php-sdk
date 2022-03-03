@@ -196,7 +196,7 @@ class SubUnclaimedDraftEmbeddedTemplateSigner implements ModelInterface, ArrayAc
     {
         /** @var SubUnclaimedDraftEmbeddedTemplateSigner $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubUnclaimedDraftEmbeddedTemplateSigner::class,
         );
 

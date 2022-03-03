@@ -190,7 +190,7 @@ class SubTemplateRole implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubTemplateRole $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubTemplateRole::class,
         );
 

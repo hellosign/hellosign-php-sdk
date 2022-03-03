@@ -259,7 +259,7 @@ class SignatureRequestBulkCreateEmbeddedWithTemplateRequest implements ModelInte
     {
         /** @var SignatureRequestBulkCreateEmbeddedWithTemplateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SignatureRequestBulkCreateEmbeddedWithTemplateRequest::class,
         );
 

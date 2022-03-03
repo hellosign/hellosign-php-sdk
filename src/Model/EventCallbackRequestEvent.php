@@ -255,7 +255,7 @@ class EventCallbackRequestEvent implements ModelInterface, ArrayAccess, JsonSeri
     {
         /** @var EventCallbackRequestEvent $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             EventCallbackRequestEvent::class,
         );
 

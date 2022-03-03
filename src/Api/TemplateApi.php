@@ -346,9 +346,11 @@ class TemplateApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $template_add_user_request
         );
+
+        $multipart = !empty($formParams);
 
         // path params
         if ($template_id !== null) {
@@ -656,9 +658,11 @@ class TemplateApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $template_create_embedded_draft_request
         );
+
+        $multipart = !empty($formParams);
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -2215,9 +2219,11 @@ class TemplateApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $template_remove_user_request
         );
+
+        $multipart = !empty($formParams);
 
         // path params
         if ($template_id !== null) {
@@ -2536,9 +2542,11 @@ class TemplateApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = ObjectSerializer::getFormParams(
+        $formParams = ObjectSerializer::getFormParams(
             $template_update_files_request
         );
+
+        $multipart = !empty($formParams);
 
         // path params
         if ($template_id !== null) {

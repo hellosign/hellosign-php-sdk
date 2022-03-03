@@ -43,7 +43,7 @@ class ReportApiTest extends HelloTestCase
         $obj = Model\ReportCreateRequest::fromArray($requestData);
 
         $response = $this->api->reportCreate($obj);
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
+        $serialized = TestUtils::toArray($response);
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);

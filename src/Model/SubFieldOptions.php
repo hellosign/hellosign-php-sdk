@@ -210,7 +210,7 @@ class SubFieldOptions implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubFieldOptions $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubFieldOptions::class,
         );
 

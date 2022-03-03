@@ -178,7 +178,7 @@ class SubFormFieldsPerDocumentTextMerge extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentTextMerge $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SubFormFieldsPerDocumentTextMerge::class,
         );
 

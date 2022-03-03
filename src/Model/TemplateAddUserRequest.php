@@ -190,7 +190,7 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     {
         /** @var TemplateAddUserRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             TemplateAddUserRequest::class,
         );
 

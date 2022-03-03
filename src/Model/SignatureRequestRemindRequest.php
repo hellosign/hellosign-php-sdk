@@ -190,7 +190,7 @@ class SignatureRequestRemindRequest implements ModelInterface, ArrayAccess, Json
     {
         /** @var SignatureRequestRemindRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             SignatureRequestRemindRequest::class,
         );
 

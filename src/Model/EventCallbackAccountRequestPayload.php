@@ -208,7 +208,7 @@ class EventCallbackAccountRequestPayload implements ModelInterface, ArrayAccess,
     {
         /** @var EventCallbackAccountRequestPayload $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             EventCallbackAccountRequestPayload::class,
         );
 

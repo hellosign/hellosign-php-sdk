@@ -192,7 +192,7 @@ class ApiAppResponseOwnerAccount implements ModelInterface, ArrayAccess, JsonSer
     {
         /** @var ApiAppResponseOwnerAccount $obj */
         $obj = ObjectSerializer::deserialize(
-            $data,
+            ObjectSerializer::instantiateFiles(static::class, $data),
             ApiAppResponseOwnerAccount::class,
         );
 
