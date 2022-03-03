@@ -335,7 +335,7 @@ class ReportApi
         $headerParams = [];
         $httpBody = '';
 
-        [$formParams, $multipart] = $this->getFormParams(
+        [$formParams, $multipart] = ObjectSerializer::getFormParams(
             $report_create_request
         );
 
@@ -410,76 +410,6 @@ class ReportApi
             $headers,
             $httpBody
         );
-    }
-
-    /**
-     * Allows a multipart/form-data request to grab data from the typed
-     * class created by OpenAPI.
-     */
-    protected function getFormParams(Model\ModelInterface $model): array
-    {
-        $apiTypes = $model::openAPITypes();
-        $formParams = [];
-        $multipart = false;
-
-        $key_count = [];
-        foreach ($model::attributeMap() as $key => $_) {
-            // form params
-            $value = $model->offsetGet($key);
-
-            if ($value === null) {
-                continue;
-            }
-
-            $true_key = $key;
-
-            if (strpos($apiTypes[$key], 'SplFileObject') !== false) {
-                $multi = false;
-                if (strpos($apiTypes[$key], 'SplFileObject[]') !== false) {
-                    if (!array_key_exists($key, $key_count)) {
-                        $key_count[$key] = 0;
-                    }
-
-                    $multi = true;
-                }
-
-                $file = $value;
-                $multipart = true;
-                $paramFiles = is_array($file) ? $file : [$file];
-                foreach ($paramFiles as $paramFile) {
-                    if ($multi) {
-                        // flat convert nested arrays into flat arrays, but making
-                        // the literal [] a part of key value
-                        $true_key = "{$key}[{$key_count[$key]}]";
-                        $key_count[$key]++;
-
-                        $formParams[$true_key] = Psr7\Utils::tryFopen(
-                            ObjectSerializer::toFormValue($paramFile),
-                            'rb'
-                        );
-
-                        continue;
-                    }
-
-                    $formParams[$true_key][] = Psr7\Utils::tryFopen(
-                        ObjectSerializer::toFormValue($paramFile),
-                        'rb'
-                    );
-                }
-
-                continue;
-            }
-
-            $formParams[$true_key] = is_scalar($value)
-                ? ObjectSerializer::toFormValue($value)
-                : Utils::jsonEncode(
-                    ObjectSerializer::sanitizeForSerialization(
-                        $value
-                    )
-                );
-        }
-
-        return [$formParams, $multipart];
     }
 
     /**
