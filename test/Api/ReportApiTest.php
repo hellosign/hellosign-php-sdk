@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HelloSignSDK\Test\Api;
 
 use GuzzleHttp;
@@ -9,7 +11,7 @@ use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
 use HelloSignSDK\Test\TestUtils;
 
-class ReportTest extends HelloTestCase
+class ReportApiTest extends HelloTestCase
 {
     /** @var Api\ReportApi */
     protected $api;
@@ -28,7 +30,7 @@ class ReportTest extends HelloTestCase
         );
     }
 
-    public function testTokenGenerate()
+    public function testReportCreate()
     {
         $requestClass = Model\ReportCreateRequest::class;
         $requestData = TestUtils::getFixtureData($requestClass)['default'];

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HelloSignSDK\Test\Api;
 
 use GuzzleHttp;
@@ -9,9 +11,9 @@ use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
 use HelloSignSDK\Test\TestUtils;
 
-class OAuthTest extends HelloTestCase
+class EmbeddedApiTest extends HelloTestCase
 {
-    /** @var Api\OAuthApi */
+    /** @var Api\EmbeddedApi */
     protected $api;
 
     protected function setUp(): void
@@ -22,25 +24,27 @@ class OAuthTest extends HelloTestCase
             'handler' => GuzzleHttp\HandlerStack::create($this->handler),
         ]);
 
-        $this->api = new Api\OAuthApi(
+        $this->api = new Api\EmbeddedApi(
             $this->client,
             Configuration::getDefaultConfiguration()
         );
     }
 
-    public function testTokenGenerate()
+    public function testEmbeddedEditUrl()
     {
-        $requestClass = Model\OAuthTokenGenerateRequest::class;
+        $templateId = '5de8179668f2033afac48da1868d0093bf133266';
+
+        $requestClass = Model\EmbeddedEditUrlRequest::class;
         $requestData = TestUtils::getFixtureData($requestClass)['default'];
 
-        $responseClass = Model\OAuthTokenResponse::class;
+        $responseClass = Model\EmbeddedEditUrlResponse::class;
         $responseData = TestUtils::getFixtureData($responseClass)['default'];
 
         $this->setExpectedResponse($responseData);
 
-        $obj = Model\OAuthTokenGenerateRequest::fromArray($requestData);
+        $obj = Model\EmbeddedEditUrlRequest::fromArray($requestData);
 
-        $response = $this->api->oauthTokenGenerate($obj);
+        $response = $this->api->embeddedEditUrl($templateId, $obj);
         $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
 
         $this->assertInstanceOf($responseClass, $response);
@@ -48,19 +52,16 @@ class OAuthTest extends HelloTestCase
         $this->assertEquals($responseData, TestUtils::toArray($response));
     }
 
-    public function testTokenRefresh()
+    public function testEmbeddedSignUrl()
     {
-        $requestClass = Model\OAuthTokenRefreshRequest::class;
-        $requestData = TestUtils::getFixtureData($requestClass)['default'];
+        $signatureId = '50e3542f738adfa7ddd4cbd4c00d2a8ab6e4194b';
 
-        $responseClass = Model\OAuthTokenResponse::class;
-        $responseData = TestUtils::getFixtureData($responseClass)['refresh'];
+        $responseClass = Model\EmbeddedSignUrlResponse::class;
+        $responseData = TestUtils::getFixtureData($responseClass)['default'];
 
         $this->setExpectedResponse($responseData);
 
-        $obj = Model\OAuthTokenRefreshRequest::fromArray($requestData);
-
-        $response = $this->api->oauthTokenRefresh($obj);
+        $response = $this->api->embeddedSignUrl($signatureId);
         $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
 
         $this->assertInstanceOf($responseClass, $response);

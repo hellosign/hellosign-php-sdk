@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HelloSignSDK\Test\Api;
 
 use GuzzleHttp;
@@ -9,7 +11,7 @@ use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
 use HelloSignSDK\Test\TestUtils;
 
-class UnclaimedDraftTest extends HelloTestCase
+class UnclaimedDraftApiTest extends HelloTestCase
 {
     /** @var Api\UnclaimedDraftApi */
     protected $api;

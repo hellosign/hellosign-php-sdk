@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HelloSignSDK\Test\Api;
 
 use GuzzleHttp;
@@ -45,8 +47,6 @@ class ApiAppApiTest extends HelloTestCase
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
-
-        $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, TestUtils::toArray($response));
     }
 
@@ -64,8 +64,6 @@ class ApiAppApiTest extends HelloTestCase
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
-
-        $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, TestUtils::toArray($response));
     }
 
@@ -88,8 +86,6 @@ class ApiAppApiTest extends HelloTestCase
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
-
-        $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, TestUtils::toArray($response));
     }
 
@@ -113,8 +109,6 @@ class ApiAppApiTest extends HelloTestCase
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
-
-        $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, TestUtils::toArray($response));
     }
 }

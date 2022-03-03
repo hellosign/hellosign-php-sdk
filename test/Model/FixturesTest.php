@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HelloSignSDK\Test\Model;
 
 use HelloSignSDK\Model as ModelNS;

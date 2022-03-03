@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HelloSignSDK\Test\Api;
 
 use GuzzleHttp;
@@ -9,7 +11,7 @@ use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
 use HelloSignSDK\Test\TestUtils;
 
-class TemplateTest extends HelloTestCase
+class TemplateApiTest extends HelloTestCase
 {
     /** @var Api\TemplateApi */
     protected $api;
@@ -76,6 +78,7 @@ class TemplateTest extends HelloTestCase
 
     public function testTemplateFiles()
     {
+        $templateId = 'f57db65d3f933b5316d398057a36176831451a35';
         $fileType = 'pdf';
         $getUrl = false;
         $getDataUri = false;
@@ -86,6 +89,7 @@ class TemplateTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->templateFiles(
+            $templateId,
             $fileType,
             $getUrl,
             $getDataUri

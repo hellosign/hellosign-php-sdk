@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HelloSignSDK\Test\Api;
 
 use GuzzleHttp;
-use GuzzleHttp\Psr7;
 use HelloSignSDK\Api;
 use HelloSignSDK\Configuration;
 use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
 use HelloSignSDK\Test\TestUtils;
 
-class SignatureRequestTest extends HelloTestCase
+class SignatureRequestApiTest extends HelloTestCase
 {
     /** @var Api\SignatureRequestApi */
     protected $api;
@@ -124,6 +125,7 @@ class SignatureRequestTest extends HelloTestCase
 
     public function testSignatureRequestFiles()
     {
+        $signatureRequestId = 'fa5c8a0b0f492d768749333ad6fcc214c111e967';
         $fileType = 'pdf';
         $getUrl = false;
         $getDataUri = false;
@@ -134,6 +136,7 @@ class SignatureRequestTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $response = $this->api->signatureRequestFiles(
+            $signatureRequestId,
             $fileType,
             $getUrl,
             $getDataUri
@@ -240,104 +243,6 @@ class SignatureRequestTest extends HelloTestCase
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
         $this->assertEquals($responseData, TestUtils::toArray($response));
-    }
-
-    public function testSignatureRequestSendFileForcesMultipartFormData()
-    {
-        $requestClass = Model\SignatureRequestSendRequest::class;
-        $requestData = TestUtils::getFixtureData($requestClass)['with_file'];
-
-        $responseClass = Model\SignatureRequestGetResponse::class;
-        $responseData = TestUtils::getFixtureData($responseClass)['default'];
-
-        $this->setExpectedResponse($responseData);
-
-        $obj = Model\SignatureRequestSendRequest::fromArray($requestData);
-
-        $response = $this->api->signatureRequestSend($obj);
-        $request = $this->handler->getLastRequest();
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
-
-        $this->assertEquals(
-            'multipart/form-data',
-            $request->getHeaderLine('Accept')
-        );
-        $this->assertInstanceOf(
-            Psr7\MultipartStream::class,
-            $request->getBody()
-        );
-        $this->assertInstanceOf($responseClass, $response);
-        $this->assertEquals($responseData, $serialized);
-
-        $body = TestUtils::streamToArray($request->getBody());
-        $body = TestUtils::removeRootPathFromFiles($body);
-
-        /*
-         * We expect non-scalar params to be JSON stringified in
-         * multipart/form-data endpoints,
-         * except for binary (file uploads) params,
-         * where binary params are supported and used in the current request.
-         */
-        $this->assertEquals(
-            $requestData['signers'],
-            json_decode($body['signers'], true),
-        );
-
-        $this->assertEquals(
-            $requestData['file'][0],
-            $body['file[0]'],
-        );
-
-        $this->assertEquals(
-            $requestData['file'][1],
-            $body['file[1]'],
-        );
-    }
-
-    public function testSignatureRequestSendNoFileForcesApplicationJson()
-    {
-        $requestClass = Model\SignatureRequestSendRequest::class;
-        $requestData = TestUtils::getFixtureData($requestClass)['with_file_url'];
-
-        $responseClass = Model\SignatureRequestGetResponse::class;
-        $responseData = TestUtils::getFixtureData($responseClass)['default'];
-
-        $this->setExpectedResponse($responseData);
-
-        $obj = Model\SignatureRequestSendRequest::fromArray($requestData);
-
-        $response = $this->api->signatureRequestSend($obj);
-        $request = $this->handler->getLastRequest();
-        $serialized = TestUtils::removeRootPathFromFiles(TestUtils::toArray($response));
-
-        $this->assertEquals(
-            'application/json',
-            $request->getHeaderLine('Accept')
-        );
-        $this->assertInstanceOf(
-            Psr7\Stream::class,
-            $request->getBody()
-        );
-
-        $this->assertInstanceOf($responseClass, $response);
-        $this->assertEquals($responseData, $serialized);
-
-        $body = json_decode($request->getBody()->getContents(), true);
-
-        /*
-         * We expect non-scalar params to be JSON stringified in
-         * application/json endpoints where binary (file uploads) params are
-         * supported but not used in the current request.
-         */
-        $this->assertEquals(
-            $requestData['signers'],
-            json_decode($body['signers'], true),
-        );
-
-        $this->assertEquals(
-            $requestData['file_url'],
-            json_decode($body['file_url'], true),
-        );
     }
 
     public function testSignatureRequestSendWithTemplate()
