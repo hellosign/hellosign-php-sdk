@@ -146,7 +146,7 @@ $data = HelloSignSDK\Model\SignatureRequestSendRequest::fromArray([
         ],
     ],
     "file"    => [
-        "/absolute/path/to/file.pdf",
+        new SplFileObject("/absolute/path/to/file.pdf"),
     ],
 ]);
 
