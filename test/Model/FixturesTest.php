@@ -19,8 +19,8 @@ class FixturesTest extends HelloTestCase
         $obj = ObjectSerializer::deserialize($data, $type);
         $serialized = TestUtils::toArray($obj);
 
-        $this->assertInstanceOf($type, $obj);
-        $this->assertEquals($data, $serialized);
+        $this->assertInstanceOf($type, $obj, "Expecting instance of {$type}");
+        $this->assertEquals($data, $serialized, "Equality failed for {$type}");
     }
 
     public function providerValues(): iterable

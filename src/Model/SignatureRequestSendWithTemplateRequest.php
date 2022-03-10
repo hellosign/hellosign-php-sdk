@@ -69,6 +69,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
         'custom_fields' => '\HelloSignSDK\Model\SubCustomField[]',
         'file' => '\SplFileObject[]',
         'file_url' => 'string[]',
+        'is_qualified_signature' => 'bool',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
@@ -94,6 +95,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
         'custom_fields' => null,
         'file' => 'binary',
         'file_url' => null,
+        'is_qualified_signature' => null,
         'message' => null,
         'metadata' => null,
         'signing_options' => null,
@@ -138,6 +140,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
         'custom_fields' => 'custom_fields',
         'file' => 'file',
         'file_url' => 'file_url',
+        'is_qualified_signature' => 'is_qualified_signature',
         'message' => 'message',
         'metadata' => 'metadata',
         'signing_options' => 'signing_options',
@@ -161,6 +164,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
         'custom_fields' => 'setCustomFields',
         'file' => 'setFile',
         'file_url' => 'setFileUrl',
+        'is_qualified_signature' => 'setIsQualifiedSignature',
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
         'signing_options' => 'setSigningOptions',
@@ -184,6 +188,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
         'custom_fields' => 'getCustomFields',
         'file' => 'getFile',
         'file_url' => 'getFileUrl',
+        'is_qualified_signature' => 'getIsQualifiedSignature',
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
         'signing_options' => 'getSigningOptions',
@@ -257,6 +262,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
         $this->container['file'] = $data['file'] ?? null;
         $this->container['file_url'] = $data['file_url'] ?? null;
+        $this->container['is_qualified_signature'] = $data['is_qualified_signature'] ?? false;
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
         $this->container['signing_options'] = $data['signing_options'] ?? null;
@@ -506,6 +512,30 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
     public function setFileUrl(?array $file_url)
     {
         $this->container['file_url'] = $file_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_qualified_signature
+     *
+     * @return bool|null
+     */
+    public function getIsQualifiedSignature()
+    {
+        return $this->container['is_qualified_signature'];
+    }
+
+    /**
+     * Sets is_qualified_signature
+     *
+     * @param bool|null $is_qualified_signature Send with a value of `true` if you wish to enable  [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES),  which requires a face-to-face call to verify the signer's identity.<br> **Note**: QES is only available on the Premium API plan as an add-on purchase.  Cannot be used in `test_mode`. Only works on requests with one signer.
+     *
+     * @return self
+     */
+    public function setIsQualifiedSignature(?bool $is_qualified_signature)
+    {
+        $this->container['is_qualified_signature'] = $is_qualified_signature;
 
         return $this;
     }

@@ -75,6 +75,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'form_field_rules' => '\HelloSignSDK\Model\SubFormFieldRule[]',
         'form_fields_per_document' => '\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]',
         'hide_text_tags' => 'bool',
+        'is_qualified_signature' => 'bool',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
@@ -107,6 +108,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'form_field_rules' => null,
         'form_fields_per_document' => null,
         'hide_text_tags' => null,
+        'is_qualified_signature' => null,
         'message' => null,
         'metadata' => null,
         'signing_options' => null,
@@ -158,6 +160,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'form_field_rules' => 'form_field_rules',
         'form_fields_per_document' => 'form_fields_per_document',
         'hide_text_tags' => 'hide_text_tags',
+        'is_qualified_signature' => 'is_qualified_signature',
         'message' => 'message',
         'metadata' => 'metadata',
         'signing_options' => 'signing_options',
@@ -188,6 +191,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'form_field_rules' => 'setFormFieldRules',
         'form_fields_per_document' => 'setFormFieldsPerDocument',
         'hide_text_tags' => 'setHideTextTags',
+        'is_qualified_signature' => 'setIsQualifiedSignature',
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
         'signing_options' => 'setSigningOptions',
@@ -218,6 +222,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'form_field_rules' => 'getFormFieldRules',
         'form_fields_per_document' => 'getFormFieldsPerDocument',
         'hide_text_tags' => 'getHideTextTags',
+        'is_qualified_signature' => 'getIsQualifiedSignature',
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
         'signing_options' => 'getSigningOptions',
@@ -298,6 +303,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         $this->container['form_field_rules'] = $data['form_field_rules'] ?? null;
         $this->container['form_fields_per_document'] = $data['form_fields_per_document'] ?? null;
         $this->container['hide_text_tags'] = $data['hide_text_tags'] ?? false;
+        $this->container['is_qualified_signature'] = $data['is_qualified_signature'] ?? false;
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
         $this->container['signing_options'] = $data['signing_options'] ?? null;
@@ -689,6 +695,30 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
     public function setHideTextTags(?bool $hide_text_tags)
     {
         $this->container['hide_text_tags'] = $hide_text_tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_qualified_signature
+     *
+     * @return bool|null
+     */
+    public function getIsQualifiedSignature()
+    {
+        return $this->container['is_qualified_signature'];
+    }
+
+    /**
+     * Sets is_qualified_signature
+     *
+     * @param bool|null $is_qualified_signature Send with a value of `true` if you wish to enable  [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES),  which requires a face-to-face call to verify the signer's identity.<br>  **Note**: QES is only available on the Premium API plan as an add-on purchase.  Cannot be used in `test_mode`. Only works on requests with one signer.
+     *
+     * @return self
+     */
+    public function setIsQualifiedSignature(?bool $is_qualified_signature)
+    {
+        $this->container['is_qualified_signature'] = $is_qualified_signature;
 
         return $this;
     }
