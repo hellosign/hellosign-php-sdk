@@ -245,6 +245,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [EmbeddedSignUrlResponse](docs/Model/EmbeddedSignUrlResponse.md)
 - [EmbeddedSignUrlResponseEmbedded](docs/Model/EmbeddedSignUrlResponseEmbedded.md)
 - [ErrorResponse](docs/Model/ErrorResponse.md)
+- [ErrorResponseError](docs/Model/ErrorResponseError.md)
 - [EventCallbackAccountRequest](docs/Model/EventCallbackAccountRequest.md)
 - [EventCallbackAccountRequestPayload](docs/Model/EventCallbackAccountRequestPayload.md)
 - [EventCallbackApiAppRequest](docs/Model/EventCallbackApiAppRequest.md)

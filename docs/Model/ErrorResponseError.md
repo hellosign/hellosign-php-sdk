@@ -1,4 +1,4 @@
-# # ErrorResponse
+# # ErrorResponseError
 
 
 
@@ -6,6 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `error`<sup>*_required_</sup> | [```\HelloSignSDK\Model\ErrorResponseError```](ErrorResponseError.md) |    |  |
+| `error_msg`<sup>*_required_</sup> | ```string``` |    |  |
+| `error_name`<sup>*_required_</sup> | ```string``` |    |  |
+| `error_path` | ```string``` |    |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -1,6 +1,6 @@
 <?php
 /**
- * ErrorResponse
+ * ErrorResponseError
  *
  * PHP version 7.3
  *
@@ -33,7 +33,7 @@ use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
 
 /**
- * ErrorResponse Class Doc Comment
+ * ErrorResponseError Class Doc Comment
  *
  * @category Class
  * @author   OpenAPI Generator team
@@ -42,7 +42,7 @@ use JsonSerializable;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
+class ErrorResponseError implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ErrorResponse';
+    protected static $openAPIModelName = 'ErrorResponseError';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,9 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'error' => '\HelloSignSDK\Model\ErrorResponseError',
+        'error_msg' => 'string',
+        'error_name' => 'string',
+        'error_path' => 'string',
     ];
 
     /**
@@ -70,7 +72,9 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'error' => null,
+        'error_msg' => null,
+        'error_name' => null,
+        'error_path' => null,
     ];
 
     /**
@@ -100,7 +104,9 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'error' => 'error',
+        'error_msg' => 'error_msg',
+        'error_name' => 'error_name',
+        'error_path' => 'error_path',
     ];
 
     /**
@@ -109,7 +115,9 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'error' => 'setError',
+        'error_msg' => 'setErrorMsg',
+        'error_name' => 'setErrorName',
+        'error_path' => 'setErrorPath',
     ];
 
     /**
@@ -118,7 +126,9 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'error' => 'getError',
+        'error_msg' => 'getErrorMsg',
+        'error_name' => 'getErrorName',
+        'error_path' => 'getErrorPath',
     ];
 
     /**
@@ -177,15 +187,17 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['error'] = $data['error'] ?? null;
+        $this->container['error_msg'] = $data['error_msg'] ?? null;
+        $this->container['error_name'] = $data['error_name'] ?? null;
+        $this->container['error_path'] = $data['error_path'] ?? null;
     }
 
-    public static function fromArray(array $data): ErrorResponse
+    public static function fromArray(array $data): ErrorResponseError
     {
-        /** @var ErrorResponse $obj */
+        /** @var ErrorResponseError $obj */
         $obj = ObjectSerializer::deserialize(
             ObjectSerializer::instantiateFiles(static::class, $data),
-            ErrorResponse::class,
+            ErrorResponseError::class,
         );
 
         return $obj;
@@ -200,8 +212,11 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['error'] === null) {
-            $invalidProperties[] = "'error' can't be null";
+        if ($this->container['error_msg'] === null) {
+            $invalidProperties[] = "'error_msg' can't be null";
+        }
+        if ($this->container['error_name'] === null) {
+            $invalidProperties[] = "'error_name' can't be null";
         }
 
         return $invalidProperties;
@@ -219,25 +234,73 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets error
+     * Gets error_msg
      *
-     * @return ErrorResponseError
+     * @return string
      */
-    public function getError()
+    public function getErrorMsg()
     {
-        return $this->container['error'];
+        return $this->container['error_msg'];
     }
 
     /**
-     * Sets error
+     * Sets error_msg
      *
-     * @param ErrorResponseError $error error
+     * @param string $error_msg error_msg
      *
      * @return self
      */
-    public function setError(ErrorResponseError $error)
+    public function setErrorMsg(string $error_msg)
     {
-        $this->container['error'] = $error;
+        $this->container['error_msg'] = $error_msg;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_name
+     *
+     * @return string
+     */
+    public function getErrorName()
+    {
+        return $this->container['error_name'];
+    }
+
+    /**
+     * Sets error_name
+     *
+     * @param string $error_name error_name
+     *
+     * @return self
+     */
+    public function setErrorName(string $error_name)
+    {
+        $this->container['error_name'] = $error_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_path
+     *
+     * @return string|null
+     */
+    public function getErrorPath()
+    {
+        return $this->container['error_path'];
+    }
+
+    /**
+     * Sets error_path
+     *
+     * @param string|null $error_path error_path
+     *
+     * @return self
+     */
+    public function setErrorPath(?string $error_path)
+    {
+        $this->container['error_path'] = $error_path;
 
         return $this;
     }
