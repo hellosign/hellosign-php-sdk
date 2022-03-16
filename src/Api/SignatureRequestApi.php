@@ -118,7 +118,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestBulkCreateEmbeddedWithTemplate
      *
-     * Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s) to be signed in an embedded window.
+     * Embedded Bulk Send with Template
      *
      * @param Model\SignatureRequestBulkCreateEmbeddedWithTemplateRequest $signature_request_bulk_create_embedded_with_template_request signature_request_bulk_create_embedded_with_template_request (required)
      *
@@ -136,7 +136,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestBulkCreateEmbeddedWithTemplateWithHttpInfo
      *
-     * Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s) to be signed in an embedded window.
+     * Embedded Bulk Send with Template
      *
      * @param Model\SignatureRequestBulkCreateEmbeddedWithTemplateRequest $signature_request_bulk_create_embedded_with_template_request (required)
      *
@@ -248,7 +248,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestBulkCreateEmbeddedWithTemplateAsync
      *
-     * Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s) to be signed in an embedded window.
+     * Embedded Bulk Send with Template
      *
      * @param Model\SignatureRequestBulkCreateEmbeddedWithTemplateRequest $signature_request_bulk_create_embedded_with_template_request (required)
      *
@@ -268,7 +268,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestBulkCreateEmbeddedWithTemplateAsyncWithHttpInfo
      *
-     * Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s) to be signed in an embedded window.
+     * Embedded Bulk Send with Template
      *
      * @param Model\SignatureRequestBulkCreateEmbeddedWithTemplateRequest $signature_request_bulk_create_embedded_with_template_request (required)
      *
@@ -417,7 +417,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestBulkSendWithTemplate
      *
-     * Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s).
+     * Bulk Send with Template
      *
      * @param Model\SignatureRequestBulkSendWithTemplateRequest $signature_request_bulk_send_with_template_request signature_request_bulk_send_with_template_request (required)
      *
@@ -435,7 +435,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestBulkSendWithTemplateWithHttpInfo
      *
-     * Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s).
+     * Bulk Send with Template
      *
      * @param Model\SignatureRequestBulkSendWithTemplateRequest $signature_request_bulk_send_with_template_request (required)
      *
@@ -547,7 +547,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestBulkSendWithTemplateAsync
      *
-     * Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s).
+     * Bulk Send with Template
      *
      * @param Model\SignatureRequestBulkSendWithTemplateRequest $signature_request_bulk_send_with_template_request (required)
      *
@@ -567,7 +567,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestBulkSendWithTemplateAsyncWithHttpInfo
      *
-     * Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s).
+     * Bulk Send with Template
      *
      * @param Model\SignatureRequestBulkSendWithTemplateRequest $signature_request_bulk_send_with_template_request (required)
      *
@@ -720,7 +720,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCancel
      *
-     * Cancels an incomplete SignatureRequest.
+     * Cancel Incomplete Signature Request
      *
      * @param string $signature_request_id The id of the incomplete SignatureRequest to cancel. (required)
      *
@@ -736,7 +736,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCancelWithHttpInfo
      *
-     * Cancels an incomplete SignatureRequest.
+     * Cancel Incomplete Signature Request
      *
      * @param string $signature_request_id The id of the incomplete SignatureRequest to cancel. (required)
      *
@@ -802,7 +802,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCancelAsync
      *
-     * Cancels an incomplete SignatureRequest.
+     * Cancel Incomplete Signature Request
      *
      * @param string $signature_request_id The id of the incomplete SignatureRequest to cancel. (required)
      *
@@ -822,7 +822,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCancelAsyncWithHttpInfo
      *
-     * Cancels an incomplete SignatureRequest.
+     * Cancel Incomplete Signature Request
      *
      * @param string $signature_request_id The id of the incomplete SignatureRequest to cancel. (required)
      *
@@ -965,7 +965,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCreateEmbedded
      *
-     * Creates a new SignatureRequest to be signed in an embedded window.
+     * Create Embedded Signature Request
      *
      * @param Model\SignatureRequestCreateEmbeddedRequest $signature_request_create_embedded_request signature_request_create_embedded_request (required)
      *
@@ -983,7 +983,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCreateEmbeddedWithHttpInfo
      *
-     * Creates a new SignatureRequest to be signed in an embedded window.
+     * Create Embedded Signature Request
      *
      * @param Model\SignatureRequestCreateEmbeddedRequest $signature_request_create_embedded_request (required)
      *
@@ -1095,7 +1095,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCreateEmbeddedAsync
      *
-     * Creates a new SignatureRequest to be signed in an embedded window.
+     * Create Embedded Signature Request
      *
      * @param Model\SignatureRequestCreateEmbeddedRequest $signature_request_create_embedded_request (required)
      *
@@ -1115,7 +1115,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCreateEmbeddedAsyncWithHttpInfo
      *
-     * Creates a new SignatureRequest to be signed in an embedded window.
+     * Create Embedded Signature Request
      *
      * @param Model\SignatureRequestCreateEmbeddedRequest $signature_request_create_embedded_request (required)
      *
@@ -1268,7 +1268,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCreateEmbeddedWithTemplate
      *
-     * Creates and sends a new SignatureRequest based off of the provided Template(s).
+     * Create Embedded Signature Request with Template
      *
      * @param Model\SignatureRequestCreateEmbeddedWithTemplateRequest $signature_request_create_embedded_with_template_request signature_request_create_embedded_with_template_request (required)
      *
@@ -1286,7 +1286,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCreateEmbeddedWithTemplateWithHttpInfo
      *
-     * Creates and sends a new SignatureRequest based off of the provided Template(s).
+     * Create Embedded Signature Request with Template
      *
      * @param Model\SignatureRequestCreateEmbeddedWithTemplateRequest $signature_request_create_embedded_with_template_request (required)
      *
@@ -1398,7 +1398,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCreateEmbeddedWithTemplateAsync
      *
-     * Creates and sends a new SignatureRequest based off of the provided Template(s).
+     * Create Embedded Signature Request with Template
      *
      * @param Model\SignatureRequestCreateEmbeddedWithTemplateRequest $signature_request_create_embedded_with_template_request (required)
      *
@@ -1418,7 +1418,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestCreateEmbeddedWithTemplateAsyncWithHttpInfo
      *
-     * Creates and sends a new SignatureRequest based off of the provided Template(s).
+     * Create Embedded Signature Request with Template
      *
      * @param Model\SignatureRequestCreateEmbeddedWithTemplateRequest $signature_request_create_embedded_with_template_request (required)
      *
@@ -1571,7 +1571,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFiles
      *
-     * Obtain a copy of the current documents.
+     * Download Files
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
@@ -1592,7 +1592,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFilesWithHttpInfo
      *
-     * Obtain a copy of the current documents.
+     * Download Files
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
@@ -1707,7 +1707,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFilesAsync
      *
-     * Obtain a copy of the current documents.
+     * Download Files
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
@@ -1730,7 +1730,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFilesAsyncWithHttpInfo
      *
-     * Obtain a copy of the current documents.
+     * Download Files
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
@@ -1920,7 +1920,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestGet
      *
-     * Gets a SignatureRequest that includes the current status for each signer.
+     * Get Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      *
@@ -1938,7 +1938,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestGetWithHttpInfo
      *
-     * Gets a SignatureRequest that includes the current status for each signer.
+     * Get Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      *
@@ -2050,7 +2050,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestGetAsync
      *
-     * Gets a SignatureRequest that includes the current status for each signer.
+     * Get Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      *
@@ -2070,7 +2070,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestGetAsyncWithHttpInfo
      *
-     * Gets a SignatureRequest that includes the current status for each signer.
+     * Get Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      *
@@ -2223,7 +2223,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestList
      *
-     * Lists the SignatureRequests (both inbound and outbound) that you have access to.
+     * List Signature Requests
      *
      * @param string $account_id Which account to return SignatureRequests for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the SignatureRequest List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
@@ -2244,7 +2244,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestListWithHttpInfo
      *
-     * Lists the SignatureRequests (both inbound and outbound) that you have access to.
+     * List Signature Requests
      *
      * @param string $account_id Which account to return SignatureRequests for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the SignatureRequest List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
@@ -2359,7 +2359,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestListAsync
      *
-     * Lists the SignatureRequests (both inbound and outbound) that you have access to.
+     * List Signature Requests
      *
      * @param string $account_id Which account to return SignatureRequests for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the SignatureRequest List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
@@ -2382,7 +2382,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestListAsyncWithHttpInfo
      *
-     * Lists the SignatureRequests (both inbound and outbound) that you have access to.
+     * List Signature Requests
      *
      * @param string $account_id Which account to return SignatureRequests for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the SignatureRequest List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
@@ -2566,7 +2566,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestReleaseHold
      *
-     * Releases a SignatureRequest from hold.
+     * Release On-Hold Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to release. (required)
      *
@@ -2584,7 +2584,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestReleaseHoldWithHttpInfo
      *
-     * Releases a SignatureRequest from hold.
+     * Release On-Hold Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to release. (required)
      *
@@ -2696,7 +2696,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestReleaseHoldAsync
      *
-     * Releases a SignatureRequest from hold.
+     * Release On-Hold Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to release. (required)
      *
@@ -2716,7 +2716,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestReleaseHoldAsyncWithHttpInfo
      *
-     * Releases a SignatureRequest from hold.
+     * Release On-Hold Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to release. (required)
      *
@@ -2869,7 +2869,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestRemind
      *
-     * Sends an email to the signer reminding them to sign the signature request.
+     * Send Request Reminder
      *
      * @param string $signature_request_id The id of the SignatureRequest to send a reminder for. (required)
      * @param Model\SignatureRequestRemindRequest $signature_request_remind_request signature_request_remind_request (required)
@@ -2888,7 +2888,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestRemindWithHttpInfo
      *
-     * Sends an email to the signer reminding them to sign the signature request.
+     * Send Request Reminder
      *
      * @param string $signature_request_id The id of the SignatureRequest to send a reminder for. (required)
      * @param Model\SignatureRequestRemindRequest $signature_request_remind_request (required)
@@ -3001,7 +3001,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestRemindAsync
      *
-     * Sends an email to the signer reminding them to sign the signature request.
+     * Send Request Reminder
      *
      * @param string $signature_request_id The id of the SignatureRequest to send a reminder for. (required)
      * @param Model\SignatureRequestRemindRequest $signature_request_remind_request (required)
@@ -3022,7 +3022,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestRemindAsyncWithHttpInfo
      *
-     * Sends an email to the signer reminding them to sign the signature request.
+     * Send Request Reminder
      *
      * @param string $signature_request_id The id of the SignatureRequest to send a reminder for. (required)
      * @param Model\SignatureRequestRemindRequest $signature_request_remind_request (required)
@@ -3192,7 +3192,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestRemove
      *
-     * Remove access to a completed SignatureRequest.
+     * Remove Signature Request Access
      *
      * @param string $signature_request_id The id of the SignatureRequest to remove. (required)
      *
@@ -3208,7 +3208,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestRemoveWithHttpInfo
      *
-     * Remove access to a completed SignatureRequest.
+     * Remove Signature Request Access
      *
      * @param string $signature_request_id The id of the SignatureRequest to remove. (required)
      *
@@ -3274,7 +3274,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestRemoveAsync
      *
-     * Remove access to a completed SignatureRequest.
+     * Remove Signature Request Access
      *
      * @param string $signature_request_id The id of the SignatureRequest to remove. (required)
      *
@@ -3294,7 +3294,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestRemoveAsyncWithHttpInfo
      *
-     * Remove access to a completed SignatureRequest.
+     * Remove Signature Request Access
      *
      * @param string $signature_request_id The id of the SignatureRequest to remove. (required)
      *
@@ -3433,7 +3433,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestSend
      *
-     * Creates and sends a new SignatureRequest with the submitted documents.
+     * Send Signature Request
      *
      * @param Model\SignatureRequestSendRequest $signature_request_send_request signature_request_send_request (required)
      *
@@ -3451,7 +3451,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestSendWithHttpInfo
      *
-     * Creates and sends a new SignatureRequest with the submitted documents.
+     * Send Signature Request
      *
      * @param Model\SignatureRequestSendRequest $signature_request_send_request (required)
      *
@@ -3563,7 +3563,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestSendAsync
      *
-     * Creates and sends a new SignatureRequest with the submitted documents.
+     * Send Signature Request
      *
      * @param Model\SignatureRequestSendRequest $signature_request_send_request (required)
      *
@@ -3583,7 +3583,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestSendAsyncWithHttpInfo
      *
-     * Creates and sends a new SignatureRequest with the submitted documents.
+     * Send Signature Request
      *
      * @param Model\SignatureRequestSendRequest $signature_request_send_request (required)
      *
@@ -3736,7 +3736,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestSendWithTemplate
      *
-     * Creates and sends a new SignatureRequest based off of one or more Templates.
+     * Send with Template
      *
      * @param Model\SignatureRequestSendWithTemplateRequest $signature_request_send_with_template_request signature_request_send_with_template_request (required)
      *
@@ -3754,7 +3754,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestSendWithTemplateWithHttpInfo
      *
-     * Creates and sends a new SignatureRequest based off of one or more Templates.
+     * Send with Template
      *
      * @param Model\SignatureRequestSendWithTemplateRequest $signature_request_send_with_template_request (required)
      *
@@ -3866,7 +3866,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestSendWithTemplateAsync
      *
-     * Creates and sends a new SignatureRequest based off of one or more Templates.
+     * Send with Template
      *
      * @param Model\SignatureRequestSendWithTemplateRequest $signature_request_send_with_template_request (required)
      *
@@ -3886,7 +3886,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestSendWithTemplateAsyncWithHttpInfo
      *
-     * Creates and sends a new SignatureRequest based off of one or more Templates.
+     * Send with Template
      *
      * @param Model\SignatureRequestSendWithTemplateRequest $signature_request_send_with_template_request (required)
      *
@@ -4039,7 +4039,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestUpdate
      *
-     * Update an email address on a signature request.
+     * Update Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to update. (required)
      * @param Model\SignatureRequestUpdateRequest $signature_request_update_request signature_request_update_request (required)
@@ -4058,7 +4058,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestUpdateWithHttpInfo
      *
-     * Update an email address on a signature request.
+     * Update Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to update. (required)
      * @param Model\SignatureRequestUpdateRequest $signature_request_update_request (required)
@@ -4171,7 +4171,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestUpdateAsync
      *
-     * Update an email address on a signature request.
+     * Update Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to update. (required)
      * @param Model\SignatureRequestUpdateRequest $signature_request_update_request (required)
@@ -4192,7 +4192,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestUpdateAsyncWithHttpInfo
      *
-     * Update an email address on a signature request.
+     * Update Signature Request
      *
      * @param string $signature_request_id The id of the SignatureRequest to update. (required)
      * @param Model\SignatureRequestUpdateRequest $signature_request_update_request (required)

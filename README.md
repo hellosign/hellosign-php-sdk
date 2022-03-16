@@ -165,54 +165,54 @@ All URIs are relative to *https://api.hellosign.com/v3*
 
 | Class      | Method        | HTTP request  | Description   |
 | ---------- | ------------- | ------------- | ------------- |
-| *AccountApi* | [**accountCreate**](docs/Api/AccountApi.md#accountcreate) | **POST** /account/create | Signs up for a new HelloSign Account. |
-| *AccountApi* | [**accountGet**](docs/Api/AccountApi.md#accountget) | **GET** /account | Returns your Account settings. |
-| *AccountApi* | [**accountUpdate**](docs/Api/AccountApi.md#accountupdate) | **PUT** /account | Updates your Account&#39;s settings. |
-| *AccountApi* | [**accountVerify**](docs/Api/AccountApi.md#accountverify) | **POST** /account/verify | Verify whether a HelloSign Account exists. |
-| *ApiAppApi* | [**apiAppCreate**](docs/Api/ApiAppApi.md#apiappcreate) | **POST** /api_app | Creates a new API App. |
-| *ApiAppApi* | [**apiAppDelete**](docs/Api/ApiAppApi.md#apiappdelete) | **DELETE** /api_app/{client_id} | Deletes an API App. |
-| *ApiAppApi* | [**apiAppGet**](docs/Api/ApiAppApi.md#apiappget) | **GET** /api_app/{client_id} | Gets an API App. |
-| *ApiAppApi* | [**apiAppList**](docs/Api/ApiAppApi.md#apiapplist) | **GET** /api_app/list | Lists your API Apps. |
-| *ApiAppApi* | [**apiAppUpdate**](docs/Api/ApiAppApi.md#apiappupdate) | **PUT** /api_app/{client_id} | Updates an existing API App. |
-| *BulkSendJobApi* | [**bulkSendJobGet**](docs/Api/BulkSendJobApi.md#bulksendjobget) | **GET** /bulk_send_job/{bulk_send_job_id} | Gets a BulkSendJob that includes all SignatureRequests it has sent. |
-| *BulkSendJobApi* | [**bulkSendJobList**](docs/Api/BulkSendJobApi.md#bulksendjoblist) | **GET** /bulk_send_job/list | Lists the BulkSendJob that you have access to. |
-| *EmbeddedApi* | [**embeddedEditUrl**](docs/Api/EmbeddedApi.md#embeddedediturl) | **POST** /embedded/edit_url/{template_id} | Retrieves an embedded template object. |
-| *EmbeddedApi* | [**embeddedSignUrl**](docs/Api/EmbeddedApi.md#embeddedsignurl) | **GET** /embedded/sign_url/{signature_id} | Retrieves an embedded signing object. |
+| *AccountApi* | [**accountCreate**](docs/Api/AccountApi.md#accountcreate) | **POST** /account/create | Create Account |
+| *AccountApi* | [**accountGet**](docs/Api/AccountApi.md#accountget) | **GET** /account | Get Account |
+| *AccountApi* | [**accountUpdate**](docs/Api/AccountApi.md#accountupdate) | **PUT** /account | Update Account |
+| *AccountApi* | [**accountVerify**](docs/Api/AccountApi.md#accountverify) | **POST** /account/verify | Verify Account |
+| *ApiAppApi* | [**apiAppCreate**](docs/Api/ApiAppApi.md#apiappcreate) | **POST** /api_app | Create API App |
+| *ApiAppApi* | [**apiAppDelete**](docs/Api/ApiAppApi.md#apiappdelete) | **DELETE** /api_app/{client_id} | Delete API App |
+| *ApiAppApi* | [**apiAppGet**](docs/Api/ApiAppApi.md#apiappget) | **GET** /api_app/{client_id} | Get API App |
+| *ApiAppApi* | [**apiAppList**](docs/Api/ApiAppApi.md#apiapplist) | **GET** /api_app/list | List API Apps |
+| *ApiAppApi* | [**apiAppUpdate**](docs/Api/ApiAppApi.md#apiappupdate) | **PUT** /api_app/{client_id} | Update API App |
+| *BulkSendJobApi* | [**bulkSendJobGet**](docs/Api/BulkSendJobApi.md#bulksendjobget) | **GET** /bulk_send_job/{bulk_send_job_id} | Get Bulk Send Job |
+| *BulkSendJobApi* | [**bulkSendJobList**](docs/Api/BulkSendJobApi.md#bulksendjoblist) | **GET** /bulk_send_job/list | List Bulk Send Jobs |
+| *EmbeddedApi* | [**embeddedEditUrl**](docs/Api/EmbeddedApi.md#embeddedediturl) | **POST** /embedded/edit_url/{template_id} | Get Embedded Template Edit URL |
+| *EmbeddedApi* | [**embeddedSignUrl**](docs/Api/EmbeddedApi.md#embeddedsignurl) | **GET** /embedded/sign_url/{signature_id} | Get Embedded Sign URL |
 | *OAuthApi* | [**oauthTokenGenerate**](docs/Api/OAuthApi.md#oauthtokengenerate) | **POST** /oauth/token | OAuth Token Generate |
 | *OAuthApi* | [**oauthTokenRefresh**](docs/Api/OAuthApi.md#oauthtokenrefresh) | **POST** /oauth/token?refresh | OAuth Token Refresh |
-| *ReportApi* | [**reportCreate**](docs/Api/ReportApi.md#reportcreate) | **POST** /report/create | Creates one or more report(s). |
-| *SignatureRequestApi* | [**signatureRequestBulkCreateEmbeddedWithTemplate**](docs/Api/SignatureRequestApi.md#signaturerequestbulkcreateembeddedwithtemplate) | **POST** /signature_request/bulk_create_embedded_with_template | Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s) to be signed in an embedded window. |
-| *SignatureRequestApi* | [**signatureRequestBulkSendWithTemplate**](docs/Api/SignatureRequestApi.md#signaturerequestbulksendwithtemplate) | **POST** /signature_request/bulk_send_with_template | Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s). |
-| *SignatureRequestApi* | [**signatureRequestCancel**](docs/Api/SignatureRequestApi.md#signaturerequestcancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancels an incomplete SignatureRequest. |
-| *SignatureRequestApi* | [**signatureRequestCreateEmbedded**](docs/Api/SignatureRequestApi.md#signaturerequestcreateembedded) | **POST** /signature_request/create_embedded | Creates a new SignatureRequest to be signed in an embedded window. |
-| *SignatureRequestApi* | [**signatureRequestCreateEmbeddedWithTemplate**](docs/Api/SignatureRequestApi.md#signaturerequestcreateembeddedwithtemplate) | **POST** /signature_request/create_embedded_with_template | Creates and sends a new SignatureRequest based off of the provided Template(s). |
-| *SignatureRequestApi* | [**signatureRequestFiles**](docs/Api/SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Obtain a copy of the current documents. |
-| *SignatureRequestApi* | [**signatureRequestGet**](docs/Api/SignatureRequestApi.md#signaturerequestget) | **GET** /signature_request/{signature_request_id} | Gets a SignatureRequest that includes the current status for each signer. |
-| *SignatureRequestApi* | [**signatureRequestList**](docs/Api/SignatureRequestApi.md#signaturerequestlist) | **GET** /signature_request/list | Lists the SignatureRequests (both inbound and outbound) that you have access to. |
-| *SignatureRequestApi* | [**signatureRequestReleaseHold**](docs/Api/SignatureRequestApi.md#signaturerequestreleasehold) | **POST** /signature_request/release_hold/{signature_request_id} | Releases a SignatureRequest from hold. |
-| *SignatureRequestApi* | [**signatureRequestRemind**](docs/Api/SignatureRequestApi.md#signaturerequestremind) | **POST** /signature_request/remind/{signature_request_id} | Sends an email to the signer reminding them to sign the signature request. |
-| *SignatureRequestApi* | [**signatureRequestRemove**](docs/Api/SignatureRequestApi.md#signaturerequestremove) | **POST** /signature_request/remove/{signature_request_id} | Remove access to a completed SignatureRequest. |
-| *SignatureRequestApi* | [**signatureRequestSend**](docs/Api/SignatureRequestApi.md#signaturerequestsend) | **POST** /signature_request/send | Creates and sends a new SignatureRequest with the submitted documents. |
-| *SignatureRequestApi* | [**signatureRequestSendWithTemplate**](docs/Api/SignatureRequestApi.md#signaturerequestsendwithtemplate) | **POST** /signature_request/send_with_template | Creates and sends a new SignatureRequest based off of one or more Templates. |
-| *SignatureRequestApi* | [**signatureRequestUpdate**](docs/Api/SignatureRequestApi.md#signaturerequestupdate) | **POST** /signature_request/update/{signature_request_id} | Update an email address on a signature request. |
-| *TeamApi* | [**teamAddMember**](docs/Api/TeamApi.md#teamaddmember) | **PUT** /team/add_member | Adds or invites a user to your Team. |
-| *TeamApi* | [**teamCreate**](docs/Api/TeamApi.md#teamcreate) | **POST** /team/create | Creates a new Team. |
-| *TeamApi* | [**teamDelete**](docs/Api/TeamApi.md#teamdelete) | **DELETE** /team/destroy | Deletes your Team. |
-| *TeamApi* | [**teamGet**](docs/Api/TeamApi.md#teamget) | **GET** /team | Gets your Team and a list of its members. |
-| *TeamApi* | [**teamRemoveMember**](docs/Api/TeamApi.md#teamremovemember) | **POST** /team/remove_member | Removes a user from your Team. |
-| *TeamApi* | [**teamUpdate**](docs/Api/TeamApi.md#teamupdate) | **PUT** /team | Updates a Team&#39;s name. |
-| *TemplateApi* | [**templateAddUser**](docs/Api/TemplateApi.md#templateadduser) | **POST** /template/add_user/{template_id} | Gives the specified Account access to the specified Template. |
-| *TemplateApi* | [**templateCreateEmbeddedDraft**](docs/Api/TemplateApi.md#templatecreateembeddeddraft) | **POST** /template/create_embedded_draft | Creates an embedded template draft for further editing. |
-| *TemplateApi* | [**templateDelete**](docs/Api/TemplateApi.md#templatedelete) | **POST** /template/delete/{template_id} | Deletes the specified template. |
-| *TemplateApi* | [**templateFiles**](docs/Api/TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Obtain a copy of a template&#39;s original files. |
-| *TemplateApi* | [**templateGet**](docs/Api/TemplateApi.md#templateget) | **GET** /template/{template_id} | Gets a Template which includes a list of Accounts that can access it. |
-| *TemplateApi* | [**templateList**](docs/Api/TemplateApi.md#templatelist) | **GET** /template/list | Lists your Templates. |
-| *TemplateApi* | [**templateRemoveUser**](docs/Api/TemplateApi.md#templateremoveuser) | **POST** /template/remove_user/{template_id} | Removes the specified Account&#39;s access to the specified Template. |
-| *TemplateApi* | [**templateUpdateFiles**](docs/Api/TemplateApi.md#templateupdatefiles) | **POST** /template/update_files/{template_id} | Overlays a new file with the overlay of an existing template. |
-| *UnclaimedDraftApi* | [**unclaimedDraftCreate**](docs/Api/UnclaimedDraftApi.md#unclaimeddraftcreate) | **POST** /unclaimed_draft/create | Creates a new Draft that can be claimed using the claim URL. |
-| *UnclaimedDraftApi* | [**unclaimedDraftCreateEmbedded**](docs/Api/UnclaimedDraftApi.md#unclaimeddraftcreateembedded) | **POST** /unclaimed_draft/create_embedded | Creates a new Draft that will be claimed for use in an embedded iFrame. |
-| *UnclaimedDraftApi* | [**unclaimedDraftCreateEmbeddedWithTemplate**](docs/Api/UnclaimedDraftApi.md#unclaimeddraftcreateembeddedwithtemplate) | **POST** /unclaimed_draft/create_embedded_with_template | Creates a new Draft using existing template(s) that will be claimed for use in an embedded iFrame. |
-| *UnclaimedDraftApi* | [**unclaimedDraftEditAndResend**](docs/Api/UnclaimedDraftApi.md#unclaimeddrafteditandresend) | **POST** /unclaimed_draft/edit_and_resend/{signature_request_id} | Creates a new signature request from an embedded request that can be edited prior to being sent. |
+| *ReportApi* | [**reportCreate**](docs/Api/ReportApi.md#reportcreate) | **POST** /report/create | Create Report |
+| *SignatureRequestApi* | [**signatureRequestBulkCreateEmbeddedWithTemplate**](docs/Api/SignatureRequestApi.md#signaturerequestbulkcreateembeddedwithtemplate) | **POST** /signature_request/bulk_create_embedded_with_template | Embedded Bulk Send with Template |
+| *SignatureRequestApi* | [**signatureRequestBulkSendWithTemplate**](docs/Api/SignatureRequestApi.md#signaturerequestbulksendwithtemplate) | **POST** /signature_request/bulk_send_with_template | Bulk Send with Template |
+| *SignatureRequestApi* | [**signatureRequestCancel**](docs/Api/SignatureRequestApi.md#signaturerequestcancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request |
+| *SignatureRequestApi* | [**signatureRequestCreateEmbedded**](docs/Api/SignatureRequestApi.md#signaturerequestcreateembedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request |
+| *SignatureRequestApi* | [**signatureRequestCreateEmbeddedWithTemplate**](docs/Api/SignatureRequestApi.md#signaturerequestcreateembeddedwithtemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template |
+| *SignatureRequestApi* | [**signatureRequestFiles**](docs/Api/SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download Files |
+| *SignatureRequestApi* | [**signatureRequestGet**](docs/Api/SignatureRequestApi.md#signaturerequestget) | **GET** /signature_request/{signature_request_id} | Get Signature Request |
+| *SignatureRequestApi* | [**signatureRequestList**](docs/Api/SignatureRequestApi.md#signaturerequestlist) | **GET** /signature_request/list | List Signature Requests |
+| *SignatureRequestApi* | [**signatureRequestReleaseHold**](docs/Api/SignatureRequestApi.md#signaturerequestreleasehold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request |
+| *SignatureRequestApi* | [**signatureRequestRemind**](docs/Api/SignatureRequestApi.md#signaturerequestremind) | **POST** /signature_request/remind/{signature_request_id} | Send Request Reminder |
+| *SignatureRequestApi* | [**signatureRequestRemove**](docs/Api/SignatureRequestApi.md#signaturerequestremove) | **POST** /signature_request/remove/{signature_request_id} | Remove Signature Request Access |
+| *SignatureRequestApi* | [**signatureRequestSend**](docs/Api/SignatureRequestApi.md#signaturerequestsend) | **POST** /signature_request/send | Send Signature Request |
+| *SignatureRequestApi* | [**signatureRequestSendWithTemplate**](docs/Api/SignatureRequestApi.md#signaturerequestsendwithtemplate) | **POST** /signature_request/send_with_template | Send with Template |
+| *SignatureRequestApi* | [**signatureRequestUpdate**](docs/Api/SignatureRequestApi.md#signaturerequestupdate) | **POST** /signature_request/update/{signature_request_id} | Update Signature Request |
+| *TeamApi* | [**teamAddMember**](docs/Api/TeamApi.md#teamaddmember) | **PUT** /team/add_member | Add User to Team |
+| *TeamApi* | [**teamCreate**](docs/Api/TeamApi.md#teamcreate) | **POST** /team/create | Create Team |
+| *TeamApi* | [**teamDelete**](docs/Api/TeamApi.md#teamdelete) | **DELETE** /team/destroy | Delete Team |
+| *TeamApi* | [**teamGet**](docs/Api/TeamApi.md#teamget) | **GET** /team | Get Team |
+| *TeamApi* | [**teamRemoveMember**](docs/Api/TeamApi.md#teamremovemember) | **POST** /team/remove_member | Remove User from Team |
+| *TeamApi* | [**teamUpdate**](docs/Api/TeamApi.md#teamupdate) | **PUT** /team | Update Team |
+| *TemplateApi* | [**templateAddUser**](docs/Api/TemplateApi.md#templateadduser) | **POST** /template/add_user/{template_id} | Add User to Template |
+| *TemplateApi* | [**templateCreateEmbeddedDraft**](docs/Api/TemplateApi.md#templatecreateembeddeddraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
+| *TemplateApi* | [**templateDelete**](docs/Api/TemplateApi.md#templatedelete) | **POST** /template/delete/{template_id} | Delete Template |
+| *TemplateApi* | [**templateFiles**](docs/Api/TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template Files |
+| *TemplateApi* | [**templateGet**](docs/Api/TemplateApi.md#templateget) | **GET** /template/{template_id} | Get Template |
+| *TemplateApi* | [**templateList**](docs/Api/TemplateApi.md#templatelist) | **GET** /template/list | List Templates |
+| *TemplateApi* | [**templateRemoveUser**](docs/Api/TemplateApi.md#templateremoveuser) | **POST** /template/remove_user/{template_id} | Remove User from Template |
+| *TemplateApi* | [**templateUpdateFiles**](docs/Api/TemplateApi.md#templateupdatefiles) | **POST** /template/update_files/{template_id} | Update Template Files |
+| *UnclaimedDraftApi* | [**unclaimedDraftCreate**](docs/Api/UnclaimedDraftApi.md#unclaimeddraftcreate) | **POST** /unclaimed_draft/create | Create Unclaimed Draft |
+| *UnclaimedDraftApi* | [**unclaimedDraftCreateEmbedded**](docs/Api/UnclaimedDraftApi.md#unclaimeddraftcreateembedded) | **POST** /unclaimed_draft/create_embedded | Create Embedded Unclaimed Draft |
+| *UnclaimedDraftApi* | [**unclaimedDraftCreateEmbeddedWithTemplate**](docs/Api/UnclaimedDraftApi.md#unclaimeddraftcreateembeddedwithtemplate) | **POST** /unclaimed_draft/create_embedded_with_template | Create Embedded Unclaimed Draft with Template |
+| *UnclaimedDraftApi* | [**unclaimedDraftEditAndResend**](docs/Api/UnclaimedDraftApi.md#unclaimeddrafteditandresend) | **POST** /unclaimed_draft/edit_and_resend/{signature_request_id} | Edit and Resend Unclaimed Draft |
 
 ## Models
 

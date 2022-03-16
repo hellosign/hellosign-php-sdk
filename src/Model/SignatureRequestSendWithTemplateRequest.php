@@ -529,7 +529,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
     /**
      * Sets is_qualified_signature
      *
-     * @param bool|null $is_qualified_signature Send with a value of `true` if you wish to enable  [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES),  which requires a face-to-face call to verify the signer's identity.<br> **Note**: QES is only available on the Premium API plan as an add-on purchase.  Cannot be used in `test_mode`. Only works on requests with one signer.
+     * @param bool|null $is_qualified_signature Send with a value of `true` if you wish to enable [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES), which requires a face-to-face call to verify the signer's identity.<br> **Note**: QES is only available on the Premium API plan as an add-on purchase. Cannot be used in `test_mode`. Only works on requests with one signer.
      *
      * @return self
      */

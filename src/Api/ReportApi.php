@@ -118,7 +118,7 @@ class ReportApi
     /**
      * Operation reportCreate
      *
-     * Creates one or more report(s).
+     * Create Report
      *
      * @param Model\ReportCreateRequest $report_create_request report_create_request (required)
      *
@@ -136,7 +136,7 @@ class ReportApi
     /**
      * Operation reportCreateWithHttpInfo
      *
-     * Creates one or more report(s).
+     * Create Report
      *
      * @param Model\ReportCreateRequest $report_create_request (required)
      *
@@ -248,7 +248,7 @@ class ReportApi
     /**
      * Operation reportCreateAsync
      *
-     * Creates one or more report(s).
+     * Create Report
      *
      * @param Model\ReportCreateRequest $report_create_request (required)
      *
@@ -268,7 +268,7 @@ class ReportApi
     /**
      * Operation reportCreateAsyncWithHttpInfo
      *
-     * Creates one or more report(s).
+     * Create Report
      *
      * @param Model\ReportCreateRequest $report_create_request (required)
      *

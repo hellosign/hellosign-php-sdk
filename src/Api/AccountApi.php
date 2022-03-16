@@ -118,7 +118,7 @@ class AccountApi
     /**
      * Operation accountCreate
      *
-     * Signs up for a new HelloSign Account.
+     * Create Account
      *
      * @param Model\AccountCreateRequest $account_create_request account_create_request (required)
      *
@@ -136,7 +136,7 @@ class AccountApi
     /**
      * Operation accountCreateWithHttpInfo
      *
-     * Signs up for a new HelloSign Account.
+     * Create Account
      *
      * @param Model\AccountCreateRequest $account_create_request (required)
      *
@@ -248,7 +248,7 @@ class AccountApi
     /**
      * Operation accountCreateAsync
      *
-     * Signs up for a new HelloSign Account.
+     * Create Account
      *
      * @param Model\AccountCreateRequest $account_create_request (required)
      *
@@ -268,7 +268,7 @@ class AccountApi
     /**
      * Operation accountCreateAsyncWithHttpInfo
      *
-     * Signs up for a new HelloSign Account.
+     * Create Account
      *
      * @param Model\AccountCreateRequest $account_create_request (required)
      *
@@ -421,7 +421,7 @@ class AccountApi
     /**
      * Operation accountGet
      *
-     * Returns your Account settings.
+     * Get Account
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -437,7 +437,7 @@ class AccountApi
     /**
      * Operation accountGetWithHttpInfo
      *
-     * Returns your Account settings.
+     * Get Account
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -547,7 +547,7 @@ class AccountApi
     /**
      * Operation accountGetAsync
      *
-     * Returns your Account settings.
+     * Get Account
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -565,7 +565,7 @@ class AccountApi
     /**
      * Operation accountGetAsyncWithHttpInfo
      *
-     * Returns your Account settings.
+     * Get Account
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -698,7 +698,7 @@ class AccountApi
     /**
      * Operation accountUpdate
      *
-     * Updates your Account&#39;s settings.
+     * Update Account
      *
      * @param Model\AccountUpdateRequest $account_update_request account_update_request (required)
      *
@@ -716,7 +716,7 @@ class AccountApi
     /**
      * Operation accountUpdateWithHttpInfo
      *
-     * Updates your Account&#39;s settings.
+     * Update Account
      *
      * @param Model\AccountUpdateRequest $account_update_request (required)
      *
@@ -828,7 +828,7 @@ class AccountApi
     /**
      * Operation accountUpdateAsync
      *
-     * Updates your Account&#39;s settings.
+     * Update Account
      *
      * @param Model\AccountUpdateRequest $account_update_request (required)
      *
@@ -848,7 +848,7 @@ class AccountApi
     /**
      * Operation accountUpdateAsyncWithHttpInfo
      *
-     * Updates your Account&#39;s settings.
+     * Update Account
      *
      * @param Model\AccountUpdateRequest $account_update_request (required)
      *
@@ -1001,7 +1001,7 @@ class AccountApi
     /**
      * Operation accountVerify
      *
-     * Verify whether a HelloSign Account exists.
+     * Verify Account
      *
      * @param Model\AccountVerifyRequest $account_verify_request account_verify_request (required)
      *
@@ -1019,7 +1019,7 @@ class AccountApi
     /**
      * Operation accountVerifyWithHttpInfo
      *
-     * Verify whether a HelloSign Account exists.
+     * Verify Account
      *
      * @param Model\AccountVerifyRequest $account_verify_request (required)
      *
@@ -1131,7 +1131,7 @@ class AccountApi
     /**
      * Operation accountVerifyAsync
      *
-     * Verify whether a HelloSign Account exists.
+     * Verify Account
      *
      * @param Model\AccountVerifyRequest $account_verify_request (required)
      *
@@ -1151,7 +1151,7 @@ class AccountApi
     /**
      * Operation accountVerifyAsyncWithHttpInfo
      *
-     * Verify whether a HelloSign Account exists.
+     * Verify Account
      *
      * @param Model\AccountVerifyRequest $account_verify_request (required)
      *

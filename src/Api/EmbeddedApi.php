@@ -118,7 +118,7 @@ class EmbeddedApi
     /**
      * Operation embeddedEditUrl
      *
-     * Retrieves an embedded template object.
+     * Get Embedded Template Edit URL
      *
      * @param string $template_id The id of the template to edit. (required)
      * @param Model\EmbeddedEditUrlRequest $embedded_edit_url_request embedded_edit_url_request (required)
@@ -137,7 +137,7 @@ class EmbeddedApi
     /**
      * Operation embeddedEditUrlWithHttpInfo
      *
-     * Retrieves an embedded template object.
+     * Get Embedded Template Edit URL
      *
      * @param string $template_id The id of the template to edit. (required)
      * @param Model\EmbeddedEditUrlRequest $embedded_edit_url_request (required)
@@ -250,7 +250,7 @@ class EmbeddedApi
     /**
      * Operation embeddedEditUrlAsync
      *
-     * Retrieves an embedded template object.
+     * Get Embedded Template Edit URL
      *
      * @param string $template_id The id of the template to edit. (required)
      * @param Model\EmbeddedEditUrlRequest $embedded_edit_url_request (required)
@@ -271,7 +271,7 @@ class EmbeddedApi
     /**
      * Operation embeddedEditUrlAsyncWithHttpInfo
      *
-     * Retrieves an embedded template object.
+     * Get Embedded Template Edit URL
      *
      * @param string $template_id The id of the template to edit. (required)
      * @param Model\EmbeddedEditUrlRequest $embedded_edit_url_request (required)
@@ -441,7 +441,7 @@ class EmbeddedApi
     /**
      * Operation embeddedSignUrl
      *
-     * Retrieves an embedded signing object.
+     * Get Embedded Sign URL
      *
      * @param string $signature_id The id of the signature to get a signature url for. (required)
      *
@@ -459,7 +459,7 @@ class EmbeddedApi
     /**
      * Operation embeddedSignUrlWithHttpInfo
      *
-     * Retrieves an embedded signing object.
+     * Get Embedded Sign URL
      *
      * @param string $signature_id The id of the signature to get a signature url for. (required)
      *
@@ -571,7 +571,7 @@ class EmbeddedApi
     /**
      * Operation embeddedSignUrlAsync
      *
-     * Retrieves an embedded signing object.
+     * Get Embedded Sign URL
      *
      * @param string $signature_id The id of the signature to get a signature url for. (required)
      *
@@ -591,7 +591,7 @@ class EmbeddedApi
     /**
      * Operation embeddedSignUrlAsyncWithHttpInfo
      *
-     * Retrieves an embedded signing object.
+     * Get Embedded Sign URL
      *
      * @param string $signature_id The id of the signature to get a signature url for. (required)
      *

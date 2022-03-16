@@ -118,7 +118,7 @@ class TeamApi
     /**
      * Operation teamAddMember
      *
-     * Adds or invites a user to your Team.
+     * Add User to Team
      *
      * @param Model\TeamAddMemberRequest $team_add_member_request team_add_member_request (required)
      *
@@ -136,7 +136,7 @@ class TeamApi
     /**
      * Operation teamAddMemberWithHttpInfo
      *
-     * Adds or invites a user to your Team.
+     * Add User to Team
      *
      * @param Model\TeamAddMemberRequest $team_add_member_request (required)
      *
@@ -248,7 +248,7 @@ class TeamApi
     /**
      * Operation teamAddMemberAsync
      *
-     * Adds or invites a user to your Team.
+     * Add User to Team
      *
      * @param Model\TeamAddMemberRequest $team_add_member_request (required)
      *
@@ -268,7 +268,7 @@ class TeamApi
     /**
      * Operation teamAddMemberAsyncWithHttpInfo
      *
-     * Adds or invites a user to your Team.
+     * Add User to Team
      *
      * @param Model\TeamAddMemberRequest $team_add_member_request (required)
      *
@@ -421,7 +421,7 @@ class TeamApi
     /**
      * Operation teamCreate
      *
-     * Creates a new Team.
+     * Create Team
      *
      * @param Model\TeamCreateRequest $team_create_request team_create_request (required)
      *
@@ -439,7 +439,7 @@ class TeamApi
     /**
      * Operation teamCreateWithHttpInfo
      *
-     * Creates a new Team.
+     * Create Team
      *
      * @param Model\TeamCreateRequest $team_create_request (required)
      *
@@ -551,7 +551,7 @@ class TeamApi
     /**
      * Operation teamCreateAsync
      *
-     * Creates a new Team.
+     * Create Team
      *
      * @param Model\TeamCreateRequest $team_create_request (required)
      *
@@ -571,7 +571,7 @@ class TeamApi
     /**
      * Operation teamCreateAsyncWithHttpInfo
      *
-     * Creates a new Team.
+     * Create Team
      *
      * @param Model\TeamCreateRequest $team_create_request (required)
      *
@@ -724,7 +724,7 @@ class TeamApi
     /**
      * Operation teamDelete
      *
-     * Deletes your Team.
+     * Delete Team
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -738,7 +738,7 @@ class TeamApi
     /**
      * Operation teamDeleteWithHttpInfo
      *
-     * Deletes your Team.
+     * Delete Team
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -802,7 +802,7 @@ class TeamApi
     /**
      * Operation teamDeleteAsync
      *
-     * Deletes your Team.
+     * Delete Team
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -820,7 +820,7 @@ class TeamApi
     /**
      * Operation teamDeleteAsyncWithHttpInfo
      *
-     * Deletes your Team.
+     * Delete Team
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -943,7 +943,7 @@ class TeamApi
     /**
      * Operation teamGet
      *
-     * Gets your Team and a list of its members.
+     * Get Team
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -959,7 +959,7 @@ class TeamApi
     /**
      * Operation teamGetWithHttpInfo
      *
-     * Gets your Team and a list of its members.
+     * Get Team
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -1069,7 +1069,7 @@ class TeamApi
     /**
      * Operation teamGetAsync
      *
-     * Gets your Team and a list of its members.
+     * Get Team
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -1087,7 +1087,7 @@ class TeamApi
     /**
      * Operation teamGetAsyncWithHttpInfo
      *
-     * Gets your Team and a list of its members.
+     * Get Team
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -1220,7 +1220,7 @@ class TeamApi
     /**
      * Operation teamRemoveMember
      *
-     * Removes a user from your Team.
+     * Remove User from Team
      *
      * @param Model\TeamRemoveMemberRequest $team_remove_member_request team_remove_member_request (required)
      *
@@ -1238,7 +1238,7 @@ class TeamApi
     /**
      * Operation teamRemoveMemberWithHttpInfo
      *
-     * Removes a user from your Team.
+     * Remove User from Team
      *
      * @param Model\TeamRemoveMemberRequest $team_remove_member_request (required)
      *
@@ -1350,7 +1350,7 @@ class TeamApi
     /**
      * Operation teamRemoveMemberAsync
      *
-     * Removes a user from your Team.
+     * Remove User from Team
      *
      * @param Model\TeamRemoveMemberRequest $team_remove_member_request (required)
      *
@@ -1370,7 +1370,7 @@ class TeamApi
     /**
      * Operation teamRemoveMemberAsyncWithHttpInfo
      *
-     * Removes a user from your Team.
+     * Remove User from Team
      *
      * @param Model\TeamRemoveMemberRequest $team_remove_member_request (required)
      *
@@ -1523,7 +1523,7 @@ class TeamApi
     /**
      * Operation teamUpdate
      *
-     * Updates a Team&#39;s name.
+     * Update Team
      *
      * @param Model\TeamUpdateRequest $team_update_request team_update_request (required)
      *
@@ -1541,7 +1541,7 @@ class TeamApi
     /**
      * Operation teamUpdateWithHttpInfo
      *
-     * Updates a Team&#39;s name.
+     * Update Team
      *
      * @param Model\TeamUpdateRequest $team_update_request (required)
      *
@@ -1653,7 +1653,7 @@ class TeamApi
     /**
      * Operation teamUpdateAsync
      *
-     * Updates a Team&#39;s name.
+     * Update Team
      *
      * @param Model\TeamUpdateRequest $team_update_request (required)
      *
@@ -1673,7 +1673,7 @@ class TeamApi
     /**
      * Operation teamUpdateAsyncWithHttpInfo
      *
-     * Updates a Team&#39;s name.
+     * Update Team
      *
      * @param Model\TeamUpdateRequest $team_update_request (required)
      *

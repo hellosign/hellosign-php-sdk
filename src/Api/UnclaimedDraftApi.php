@@ -118,7 +118,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreate
      *
-     * Creates a new Draft that can be claimed using the claim URL.
+     * Create Unclaimed Draft
      *
      * @param Model\UnclaimedDraftCreateRequest $unclaimed_draft_create_request unclaimed_draft_create_request (required)
      *
@@ -136,7 +136,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateWithHttpInfo
      *
-     * Creates a new Draft that can be claimed using the claim URL.
+     * Create Unclaimed Draft
      *
      * @param Model\UnclaimedDraftCreateRequest $unclaimed_draft_create_request (required)
      *
@@ -248,7 +248,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateAsync
      *
-     * Creates a new Draft that can be claimed using the claim URL.
+     * Create Unclaimed Draft
      *
      * @param Model\UnclaimedDraftCreateRequest $unclaimed_draft_create_request (required)
      *
@@ -268,7 +268,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateAsyncWithHttpInfo
      *
-     * Creates a new Draft that can be claimed using the claim URL.
+     * Create Unclaimed Draft
      *
      * @param Model\UnclaimedDraftCreateRequest $unclaimed_draft_create_request (required)
      *
@@ -421,7 +421,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateEmbedded
      *
-     * Creates a new Draft that will be claimed for use in an embedded iFrame.
+     * Create Embedded Unclaimed Draft
      *
      * @param Model\UnclaimedDraftCreateEmbeddedRequest $unclaimed_draft_create_embedded_request unclaimed_draft_create_embedded_request (required)
      *
@@ -439,7 +439,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateEmbeddedWithHttpInfo
      *
-     * Creates a new Draft that will be claimed for use in an embedded iFrame.
+     * Create Embedded Unclaimed Draft
      *
      * @param Model\UnclaimedDraftCreateEmbeddedRequest $unclaimed_draft_create_embedded_request (required)
      *
@@ -551,7 +551,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateEmbeddedAsync
      *
-     * Creates a new Draft that will be claimed for use in an embedded iFrame.
+     * Create Embedded Unclaimed Draft
      *
      * @param Model\UnclaimedDraftCreateEmbeddedRequest $unclaimed_draft_create_embedded_request (required)
      *
@@ -571,7 +571,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateEmbeddedAsyncWithHttpInfo
      *
-     * Creates a new Draft that will be claimed for use in an embedded iFrame.
+     * Create Embedded Unclaimed Draft
      *
      * @param Model\UnclaimedDraftCreateEmbeddedRequest $unclaimed_draft_create_embedded_request (required)
      *
@@ -724,7 +724,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateEmbeddedWithTemplate
      *
-     * Creates a new Draft using existing template(s) that will be claimed for use in an embedded iFrame.
+     * Create Embedded Unclaimed Draft with Template
      *
      * @param Model\UnclaimedDraftCreateEmbeddedWithTemplateRequest $unclaimed_draft_create_embedded_with_template_request unclaimed_draft_create_embedded_with_template_request (required)
      *
@@ -742,7 +742,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateEmbeddedWithTemplateWithHttpInfo
      *
-     * Creates a new Draft using existing template(s) that will be claimed for use in an embedded iFrame.
+     * Create Embedded Unclaimed Draft with Template
      *
      * @param Model\UnclaimedDraftCreateEmbeddedWithTemplateRequest $unclaimed_draft_create_embedded_with_template_request (required)
      *
@@ -854,7 +854,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateEmbeddedWithTemplateAsync
      *
-     * Creates a new Draft using existing template(s) that will be claimed for use in an embedded iFrame.
+     * Create Embedded Unclaimed Draft with Template
      *
      * @param Model\UnclaimedDraftCreateEmbeddedWithTemplateRequest $unclaimed_draft_create_embedded_with_template_request (required)
      *
@@ -874,7 +874,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftCreateEmbeddedWithTemplateAsyncWithHttpInfo
      *
-     * Creates a new Draft using existing template(s) that will be claimed for use in an embedded iFrame.
+     * Create Embedded Unclaimed Draft with Template
      *
      * @param Model\UnclaimedDraftCreateEmbeddedWithTemplateRequest $unclaimed_draft_create_embedded_with_template_request (required)
      *
@@ -1027,7 +1027,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftEditAndResend
      *
-     * Creates a new signature request from an embedded request that can be edited prior to being sent.
+     * Edit and Resend Unclaimed Draft
      *
      * @param string $signature_request_id The ID of the signature request to edit and resend. (required)
      * @param Model\UnclaimedDraftEditAndResendRequest $unclaimed_draft_edit_and_resend_request unclaimed_draft_edit_and_resend_request (required)
@@ -1046,7 +1046,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftEditAndResendWithHttpInfo
      *
-     * Creates a new signature request from an embedded request that can be edited prior to being sent.
+     * Edit and Resend Unclaimed Draft
      *
      * @param string $signature_request_id The ID of the signature request to edit and resend. (required)
      * @param Model\UnclaimedDraftEditAndResendRequest $unclaimed_draft_edit_and_resend_request (required)
@@ -1159,7 +1159,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftEditAndResendAsync
      *
-     * Creates a new signature request from an embedded request that can be edited prior to being sent.
+     * Edit and Resend Unclaimed Draft
      *
      * @param string $signature_request_id The ID of the signature request to edit and resend. (required)
      * @param Model\UnclaimedDraftEditAndResendRequest $unclaimed_draft_edit_and_resend_request (required)
@@ -1180,7 +1180,7 @@ class UnclaimedDraftApi
     /**
      * Operation unclaimedDraftEditAndResendAsyncWithHttpInfo
      *
-     * Creates a new signature request from an embedded request that can be edited prior to being sent.
+     * Edit and Resend Unclaimed Draft
      *
      * @param string $signature_request_id The ID of the signature request to edit and resend. (required)
      * @param Model\UnclaimedDraftEditAndResendRequest $unclaimed_draft_edit_and_resend_request (required)

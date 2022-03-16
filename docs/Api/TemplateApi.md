@@ -4,14 +4,14 @@ All URIs are relative to https://api.hellosign.com/v3.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**templateAddUser()**](TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Gives the specified Account access to the specified Template. |
-| [**templateCreateEmbeddedDraft()**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Creates an embedded template draft for further editing. |
-| [**templateDelete()**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Deletes the specified template. |
-| [**templateFiles()**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Obtain a copy of a template&#39;s original files. |
-| [**templateGet()**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Gets a Template which includes a list of Accounts that can access it. |
-| [**templateList()**](TemplateApi.md#templateList) | **GET** /template/list | Lists your Templates. |
-| [**templateRemoveUser()**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Removes the specified Account&#39;s access to the specified Template. |
-| [**templateUpdateFiles()**](TemplateApi.md#templateUpdateFiles) | **POST** /template/update_files/{template_id} | Overlays a new file with the overlay of an existing template. |
+| [**templateAddUser()**](TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Add User to Template |
+| [**templateCreateEmbeddedDraft()**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
+| [**templateDelete()**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Delete Template |
+| [**templateFiles()**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template Files |
+| [**templateGet()**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Get Template |
+| [**templateList()**](TemplateApi.md#templateList) | **GET** /template/list | List Templates |
+| [**templateRemoveUser()**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Remove User from Template |
+| [**templateUpdateFiles()**](TemplateApi.md#templateUpdateFiles) | **POST** /template/update_files/{template_id} | Update Template Files |
 
 
 ## `templateAddUser()`
@@ -20,7 +20,7 @@ All URIs are relative to https://api.hellosign.com/v3.
 templateAddUser($template_id, $template_add_user_request): \HelloSignSDK\Model\TemplateGetResponse
 ```
 
-Gives the specified Account access to the specified Template.
+Add User to Template
 
 Gives the specified Account access to the specified Template. The specified Account must be a part of your Team.
 
@@ -89,7 +89,7 @@ try {
 templateCreateEmbeddedDraft($template_create_embedded_draft_request): \HelloSignSDK\Model\TemplateCreateEmbeddedDraftResponse
 ```
 
-Creates an embedded template draft for further editing.
+Create Embedded Template Draft
 
 The first step in an embedded template workflow. Creates a draft template that can then be further set up in the template 'edit' stage.
 
@@ -183,7 +183,7 @@ try {
 templateDelete($template_id)
 ```
 
-Deletes the specified template.
+Delete Template
 
 Completely deletes the template specified from the account.
 
@@ -247,7 +247,7 @@ void (empty response body)
 templateFiles($template_id, $file_type, $get_url, $get_data_uri): \HelloSignSDK\Model\FileResponse
 ```
 
-Obtain a copy of a template's original files.
+Get Template Files
 
 Obtain a copy of the current documents specified by the `template_id` parameter.  Returns a PDF or ZIP file, or if `get_url` is set, a JSON object with a url to the file (PDFs only). If `get_data_uri` is set, a JSON object with a `data_uri` representing the base64 encoded file (PDFs only) is returned.  If the files are currently being prepared, a status code of `409` will be returned instead.
 
@@ -315,7 +315,7 @@ try {
 templateGet($template_id): \HelloSignSDK\Model\TemplateGetResponse
 ```
 
-Gets a Template which includes a list of Accounts that can access it.
+Get Template
 
 Returns the Template specified by the id parameter.
 
@@ -380,7 +380,7 @@ try {
 templateList($account_id, $page, $page_size, $query): \HelloSignSDK\Model\TemplateListResponse
 ```
 
-Lists your Templates.
+List Templates
 
 Returns a list of the Templates that are accessible by you.  Take a look at our [search guide](https://app.hellosign.com/api/reference#Search) to learn more about querying templates.
 
@@ -448,7 +448,7 @@ try {
 templateRemoveUser($template_id, $template_remove_user_request): \HelloSignSDK\Model\TemplateGetResponse
 ```
 
-Removes the specified Account's access to the specified Template.
+Remove User from Template
 
 Removes the specified Account's access to the specified Template.
 
@@ -517,7 +517,7 @@ try {
 templateUpdateFiles($template_id, $template_update_files_request): \HelloSignSDK\Model\TemplateUpdateFilesResponse
 ```
 
-Overlays a new file with the overlay of an existing template.
+Update Template Files
 
 Overlays a new file with the overlay of an existing template. The new file(s) must:  1. have the same or higher page count 2. the same orientation as the file(s) being replaced.  This will not overwrite or in any way affect the existing template. Both the existing template and new template will be available for use after executing this endpoint. Also note that this will decrement your template quota.  Overlaying new files is asynchronous and a successful call to this endpoint will return an empty 200 OK response if the request passes initial validation checks.  It is recommended that a callback be implemented to listen for the callback event. A `template_created` event will be sent when the files are updated or a `template_error` event will be sent if there was a problem while updating the files. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the API dashboard and retry the request if necessary.  If the page orientation or page count is different from the original template document, we will notify you with a `template_error` [callback event](https://app.hellosign.com/api/eventsAndCallbacksWalkthrough).
 

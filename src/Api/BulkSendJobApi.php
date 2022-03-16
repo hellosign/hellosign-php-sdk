@@ -118,7 +118,7 @@ class BulkSendJobApi
     /**
      * Operation bulkSendJobGet
      *
-     * Gets a BulkSendJob that includes all SignatureRequests it has sent.
+     * Get Bulk Send Job
      *
      * @param string $bulk_send_job_id The id of the BulkSendJob to retrieve. (required)
      *
@@ -136,7 +136,7 @@ class BulkSendJobApi
     /**
      * Operation bulkSendJobGetWithHttpInfo
      *
-     * Gets a BulkSendJob that includes all SignatureRequests it has sent.
+     * Get Bulk Send Job
      *
      * @param string $bulk_send_job_id The id of the BulkSendJob to retrieve. (required)
      *
@@ -248,7 +248,7 @@ class BulkSendJobApi
     /**
      * Operation bulkSendJobGetAsync
      *
-     * Gets a BulkSendJob that includes all SignatureRequests it has sent.
+     * Get Bulk Send Job
      *
      * @param string $bulk_send_job_id The id of the BulkSendJob to retrieve. (required)
      *
@@ -268,7 +268,7 @@ class BulkSendJobApi
     /**
      * Operation bulkSendJobGetAsyncWithHttpInfo
      *
-     * Gets a BulkSendJob that includes all SignatureRequests it has sent.
+     * Get Bulk Send Job
      *
      * @param string $bulk_send_job_id The id of the BulkSendJob to retrieve. (required)
      *
@@ -421,7 +421,7 @@ class BulkSendJobApi
     /**
      * Operation bulkSendJobList
      *
-     * Lists the BulkSendJob that you have access to.
+     * List Bulk Send Jobs
      *
      * @param int $page Which page number of the BulkSendJob List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is 20. (optional, default to 20)
@@ -440,7 +440,7 @@ class BulkSendJobApi
     /**
      * Operation bulkSendJobListWithHttpInfo
      *
-     * Lists the BulkSendJob that you have access to.
+     * List Bulk Send Jobs
      *
      * @param int $page Which page number of the BulkSendJob List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is 20. (optional, default to 20)
@@ -553,7 +553,7 @@ class BulkSendJobApi
     /**
      * Operation bulkSendJobListAsync
      *
-     * Lists the BulkSendJob that you have access to.
+     * List Bulk Send Jobs
      *
      * @param int $page Which page number of the BulkSendJob List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is 20. (optional, default to 20)
@@ -574,7 +574,7 @@ class BulkSendJobApi
     /**
      * Operation bulkSendJobListAsyncWithHttpInfo
      *
-     * Lists the BulkSendJob that you have access to.
+     * List Bulk Send Jobs
      *
      * @param int $page Which page number of the BulkSendJob List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is 20. (optional, default to 20)

@@ -118,7 +118,7 @@ class TemplateApi
     /**
      * Operation templateAddUser
      *
-     * Gives the specified Account access to the specified Template.
+     * Add User to Template
      *
      * @param string $template_id The id of the Template to give the Account access to. (required)
      * @param Model\TemplateAddUserRequest $template_add_user_request template_add_user_request (required)
@@ -137,7 +137,7 @@ class TemplateApi
     /**
      * Operation templateAddUserWithHttpInfo
      *
-     * Gives the specified Account access to the specified Template.
+     * Add User to Template
      *
      * @param string $template_id The id of the Template to give the Account access to. (required)
      * @param Model\TemplateAddUserRequest $template_add_user_request (required)
@@ -250,7 +250,7 @@ class TemplateApi
     /**
      * Operation templateAddUserAsync
      *
-     * Gives the specified Account access to the specified Template.
+     * Add User to Template
      *
      * @param string $template_id The id of the Template to give the Account access to. (required)
      * @param Model\TemplateAddUserRequest $template_add_user_request (required)
@@ -271,7 +271,7 @@ class TemplateApi
     /**
      * Operation templateAddUserAsyncWithHttpInfo
      *
-     * Gives the specified Account access to the specified Template.
+     * Add User to Template
      *
      * @param string $template_id The id of the Template to give the Account access to. (required)
      * @param Model\TemplateAddUserRequest $template_add_user_request (required)
@@ -441,7 +441,7 @@ class TemplateApi
     /**
      * Operation templateCreateEmbeddedDraft
      *
-     * Creates an embedded template draft for further editing.
+     * Create Embedded Template Draft
      *
      * @param Model\TemplateCreateEmbeddedDraftRequest $template_create_embedded_draft_request template_create_embedded_draft_request (required)
      *
@@ -459,7 +459,7 @@ class TemplateApi
     /**
      * Operation templateCreateEmbeddedDraftWithHttpInfo
      *
-     * Creates an embedded template draft for further editing.
+     * Create Embedded Template Draft
      *
      * @param Model\TemplateCreateEmbeddedDraftRequest $template_create_embedded_draft_request (required)
      *
@@ -571,7 +571,7 @@ class TemplateApi
     /**
      * Operation templateCreateEmbeddedDraftAsync
      *
-     * Creates an embedded template draft for further editing.
+     * Create Embedded Template Draft
      *
      * @param Model\TemplateCreateEmbeddedDraftRequest $template_create_embedded_draft_request (required)
      *
@@ -591,7 +591,7 @@ class TemplateApi
     /**
      * Operation templateCreateEmbeddedDraftAsyncWithHttpInfo
      *
-     * Creates an embedded template draft for further editing.
+     * Create Embedded Template Draft
      *
      * @param Model\TemplateCreateEmbeddedDraftRequest $template_create_embedded_draft_request (required)
      *
@@ -744,7 +744,7 @@ class TemplateApi
     /**
      * Operation templateDelete
      *
-     * Deletes the specified template.
+     * Delete Template
      *
      * @param string $template_id The id of the Template to delete. (required)
      *
@@ -760,7 +760,7 @@ class TemplateApi
     /**
      * Operation templateDeleteWithHttpInfo
      *
-     * Deletes the specified template.
+     * Delete Template
      *
      * @param string $template_id The id of the Template to delete. (required)
      *
@@ -826,7 +826,7 @@ class TemplateApi
     /**
      * Operation templateDeleteAsync
      *
-     * Deletes the specified template.
+     * Delete Template
      *
      * @param string $template_id The id of the Template to delete. (required)
      *
@@ -846,7 +846,7 @@ class TemplateApi
     /**
      * Operation templateDeleteAsyncWithHttpInfo
      *
-     * Deletes the specified template.
+     * Delete Template
      *
      * @param string $template_id The id of the Template to delete. (required)
      *
@@ -989,7 +989,7 @@ class TemplateApi
     /**
      * Operation templateFiles
      *
-     * Obtain a copy of a template&#39;s original files.
+     * Get Template Files
      *
      * @param string $template_id The id of the Template to delete. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
@@ -1010,7 +1010,7 @@ class TemplateApi
     /**
      * Operation templateFilesWithHttpInfo
      *
-     * Obtain a copy of a template&#39;s original files.
+     * Get Template Files
      *
      * @param string $template_id The id of the Template to delete. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
@@ -1125,7 +1125,7 @@ class TemplateApi
     /**
      * Operation templateFilesAsync
      *
-     * Obtain a copy of a template&#39;s original files.
+     * Get Template Files
      *
      * @param string $template_id The id of the Template to delete. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
@@ -1148,7 +1148,7 @@ class TemplateApi
     /**
      * Operation templateFilesAsyncWithHttpInfo
      *
-     * Obtain a copy of a template&#39;s original files.
+     * Get Template Files
      *
      * @param string $template_id The id of the Template to delete. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
@@ -1338,7 +1338,7 @@ class TemplateApi
     /**
      * Operation templateGet
      *
-     * Gets a Template which includes a list of Accounts that can access it.
+     * Get Template
      *
      * @param string $template_id The id of the Template to retrieve. (required)
      *
@@ -1356,7 +1356,7 @@ class TemplateApi
     /**
      * Operation templateGetWithHttpInfo
      *
-     * Gets a Template which includes a list of Accounts that can access it.
+     * Get Template
      *
      * @param string $template_id The id of the Template to retrieve. (required)
      *
@@ -1468,7 +1468,7 @@ class TemplateApi
     /**
      * Operation templateGetAsync
      *
-     * Gets a Template which includes a list of Accounts that can access it.
+     * Get Template
      *
      * @param string $template_id The id of the Template to retrieve. (required)
      *
@@ -1488,7 +1488,7 @@ class TemplateApi
     /**
      * Operation templateGetAsyncWithHttpInfo
      *
-     * Gets a Template which includes a list of Accounts that can access it.
+     * Get Template
      *
      * @param string $template_id The id of the Template to retrieve. (required)
      *
@@ -1641,7 +1641,7 @@ class TemplateApi
     /**
      * Operation templateList
      *
-     * Lists your Templates.
+     * List Templates
      *
      * @param string $account_id Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the Template List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
@@ -1662,7 +1662,7 @@ class TemplateApi
     /**
      * Operation templateListWithHttpInfo
      *
-     * Lists your Templates.
+     * List Templates
      *
      * @param string $account_id Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the Template List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
@@ -1777,7 +1777,7 @@ class TemplateApi
     /**
      * Operation templateListAsync
      *
-     * Lists your Templates.
+     * List Templates
      *
      * @param string $account_id Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the Template List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
@@ -1800,7 +1800,7 @@ class TemplateApi
     /**
      * Operation templateListAsyncWithHttpInfo
      *
-     * Lists your Templates.
+     * List Templates
      *
      * @param string $account_id Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the Template List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
@@ -1991,7 +1991,7 @@ class TemplateApi
     /**
      * Operation templateRemoveUser
      *
-     * Removes the specified Account&#39;s access to the specified Template.
+     * Remove User from Template
      *
      * @param string $template_id The id of the Template to remove the Account&#39;s access to. (required)
      * @param Model\TemplateRemoveUserRequest $template_remove_user_request template_remove_user_request (required)
@@ -2010,7 +2010,7 @@ class TemplateApi
     /**
      * Operation templateRemoveUserWithHttpInfo
      *
-     * Removes the specified Account&#39;s access to the specified Template.
+     * Remove User from Template
      *
      * @param string $template_id The id of the Template to remove the Account&#39;s access to. (required)
      * @param Model\TemplateRemoveUserRequest $template_remove_user_request (required)
@@ -2123,7 +2123,7 @@ class TemplateApi
     /**
      * Operation templateRemoveUserAsync
      *
-     * Removes the specified Account&#39;s access to the specified Template.
+     * Remove User from Template
      *
      * @param string $template_id The id of the Template to remove the Account&#39;s access to. (required)
      * @param Model\TemplateRemoveUserRequest $template_remove_user_request (required)
@@ -2144,7 +2144,7 @@ class TemplateApi
     /**
      * Operation templateRemoveUserAsyncWithHttpInfo
      *
-     * Removes the specified Account&#39;s access to the specified Template.
+     * Remove User from Template
      *
      * @param string $template_id The id of the Template to remove the Account&#39;s access to. (required)
      * @param Model\TemplateRemoveUserRequest $template_remove_user_request (required)
@@ -2314,7 +2314,7 @@ class TemplateApi
     /**
      * Operation templateUpdateFiles
      *
-     * Overlays a new file with the overlay of an existing template.
+     * Update Template Files
      *
      * @param string $template_id The ID of the template whose files to update. (required)
      * @param Model\TemplateUpdateFilesRequest $template_update_files_request template_update_files_request (required)
@@ -2333,7 +2333,7 @@ class TemplateApi
     /**
      * Operation templateUpdateFilesWithHttpInfo
      *
-     * Overlays a new file with the overlay of an existing template.
+     * Update Template Files
      *
      * @param string $template_id The ID of the template whose files to update. (required)
      * @param Model\TemplateUpdateFilesRequest $template_update_files_request (required)
@@ -2446,7 +2446,7 @@ class TemplateApi
     /**
      * Operation templateUpdateFilesAsync
      *
-     * Overlays a new file with the overlay of an existing template.
+     * Update Template Files
      *
      * @param string $template_id The ID of the template whose files to update. (required)
      * @param Model\TemplateUpdateFilesRequest $template_update_files_request (required)
@@ -2467,7 +2467,7 @@ class TemplateApi
     /**
      * Operation templateUpdateFilesAsyncWithHttpInfo
      *
-     * Overlays a new file with the overlay of an existing template.
+     * Update Template Files
      *
      * @param string $template_id The ID of the template whose files to update. (required)
      * @param Model\TemplateUpdateFilesRequest $template_update_files_request (required)

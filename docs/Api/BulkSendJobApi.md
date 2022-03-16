@@ -4,8 +4,8 @@ All URIs are relative to https://api.hellosign.com/v3.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**bulkSendJobGet()**](BulkSendJobApi.md#bulkSendJobGet) | **GET** /bulk_send_job/{bulk_send_job_id} | Gets a BulkSendJob that includes all SignatureRequests it has sent. |
-| [**bulkSendJobList()**](BulkSendJobApi.md#bulkSendJobList) | **GET** /bulk_send_job/list | Lists the BulkSendJob that you have access to. |
+| [**bulkSendJobGet()**](BulkSendJobApi.md#bulkSendJobGet) | **GET** /bulk_send_job/{bulk_send_job_id} | Get Bulk Send Job |
+| [**bulkSendJobList()**](BulkSendJobApi.md#bulkSendJobList) | **GET** /bulk_send_job/list | List Bulk Send Jobs |
 
 
 ## `bulkSendJobGet()`
@@ -14,7 +14,7 @@ All URIs are relative to https://api.hellosign.com/v3.
 bulkSendJobGet($bulk_send_job_id): \HelloSignSDK\Model\BulkSendJobGetResponse
 ```
 
-Gets a BulkSendJob that includes all SignatureRequests it has sent.
+Get Bulk Send Job
 
 Returns the status of the BulkSendJob and its SignatureRequests specified by the `bulk_send_job_id` parameter.
 
@@ -79,7 +79,7 @@ try {
 bulkSendJobList($page, $page_size): \HelloSignSDK\Model\BulkSendJobListResponse
 ```
 
-Lists the BulkSendJob that you have access to.
+List Bulk Send Jobs
 
 Returns a list of BulkSendJob that you can access.
 

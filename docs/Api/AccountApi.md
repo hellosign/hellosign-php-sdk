@@ -4,10 +4,10 @@ All URIs are relative to https://api.hellosign.com/v3.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**accountCreate()**](AccountApi.md#accountCreate) | **POST** /account/create | Signs up for a new HelloSign Account. |
-| [**accountGet()**](AccountApi.md#accountGet) | **GET** /account | Returns your Account settings. |
-| [**accountUpdate()**](AccountApi.md#accountUpdate) | **PUT** /account | Updates your Account&#39;s settings. |
-| [**accountVerify()**](AccountApi.md#accountVerify) | **POST** /account/verify | Verify whether a HelloSign Account exists. |
+| [**accountCreate()**](AccountApi.md#accountCreate) | **POST** /account/create | Create Account |
+| [**accountGet()**](AccountApi.md#accountGet) | **GET** /account | Get Account |
+| [**accountUpdate()**](AccountApi.md#accountUpdate) | **PUT** /account | Update Account |
+| [**accountVerify()**](AccountApi.md#accountVerify) | **POST** /account/verify | Verify Account |
 
 
 ## `accountCreate()`
@@ -16,7 +16,7 @@ All URIs are relative to https://api.hellosign.com/v3.
 accountCreate($account_create_request): \HelloSignSDK\Model\AccountCreateResponse
 ```
 
-Signs up for a new HelloSign Account.
+Create Account
 
 Creates a new HelloSign Account that is associated with the specified `email_address`.
 
@@ -82,7 +82,7 @@ try {
 accountGet(): \HelloSignSDK\Model\AccountGetResponse
 ```
 
-Returns your Account settings.
+Get Account
 
 Returns the properties and settings of your Account.
 
@@ -143,7 +143,7 @@ try {
 accountUpdate($account_update_request): \HelloSignSDK\Model\AccountGetResponse
 ```
 
-Updates your Account's settings.
+Update Account
 
 Updates the properties and settings of your Account.
 
@@ -209,7 +209,7 @@ try {
 accountVerify($account_verify_request): \HelloSignSDK\Model\AccountVerifyResponse
 ```
 
-Verify whether a HelloSign Account exists.
+Verify Account
 
 Verifies whether an HelloSign Account exists for the given email address.  **NOTE** This method is restricted to paid API users.
 

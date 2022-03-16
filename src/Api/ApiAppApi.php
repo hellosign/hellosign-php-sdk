@@ -118,7 +118,7 @@ class ApiAppApi
     /**
      * Operation apiAppCreate
      *
-     * Creates a new API App.
+     * Create API App
      *
      * @param Model\ApiAppCreateRequest $api_app_create_request api_app_create_request (required)
      *
@@ -136,7 +136,7 @@ class ApiAppApi
     /**
      * Operation apiAppCreateWithHttpInfo
      *
-     * Creates a new API App.
+     * Create API App
      *
      * @param Model\ApiAppCreateRequest $api_app_create_request (required)
      *
@@ -248,7 +248,7 @@ class ApiAppApi
     /**
      * Operation apiAppCreateAsync
      *
-     * Creates a new API App.
+     * Create API App
      *
      * @param Model\ApiAppCreateRequest $api_app_create_request (required)
      *
@@ -268,7 +268,7 @@ class ApiAppApi
     /**
      * Operation apiAppCreateAsyncWithHttpInfo
      *
-     * Creates a new API App.
+     * Create API App
      *
      * @param Model\ApiAppCreateRequest $api_app_create_request (required)
      *
@@ -421,7 +421,7 @@ class ApiAppApi
     /**
      * Operation apiAppDelete
      *
-     * Deletes an API App.
+     * Delete API App
      *
      * @param string $client_id The client id of the ApiApp to delete. (required)
      *
@@ -437,7 +437,7 @@ class ApiAppApi
     /**
      * Operation apiAppDeleteWithHttpInfo
      *
-     * Deletes an API App.
+     * Delete API App
      *
      * @param string $client_id The client id of the ApiApp to delete. (required)
      *
@@ -503,7 +503,7 @@ class ApiAppApi
     /**
      * Operation apiAppDeleteAsync
      *
-     * Deletes an API App.
+     * Delete API App
      *
      * @param string $client_id The client id of the ApiApp to delete. (required)
      *
@@ -523,7 +523,7 @@ class ApiAppApi
     /**
      * Operation apiAppDeleteAsyncWithHttpInfo
      *
-     * Deletes an API App.
+     * Delete API App
      *
      * @param string $client_id The client id of the ApiApp to delete. (required)
      *
@@ -666,7 +666,7 @@ class ApiAppApi
     /**
      * Operation apiAppGet
      *
-     * Gets an API App.
+     * Get API App
      *
      * @param string $client_id The client ID of the ApiApp to retrieve. (required)
      *
@@ -684,7 +684,7 @@ class ApiAppApi
     /**
      * Operation apiAppGetWithHttpInfo
      *
-     * Gets an API App.
+     * Get API App
      *
      * @param string $client_id The client ID of the ApiApp to retrieve. (required)
      *
@@ -796,7 +796,7 @@ class ApiAppApi
     /**
      * Operation apiAppGetAsync
      *
-     * Gets an API App.
+     * Get API App
      *
      * @param string $client_id The client ID of the ApiApp to retrieve. (required)
      *
@@ -816,7 +816,7 @@ class ApiAppApi
     /**
      * Operation apiAppGetAsyncWithHttpInfo
      *
-     * Gets an API App.
+     * Get API App
      *
      * @param string $client_id The client ID of the ApiApp to retrieve. (required)
      *
@@ -969,7 +969,7 @@ class ApiAppApi
     /**
      * Operation apiAppList
      *
-     * Lists your API Apps.
+     * List API Apps
      *
      * @param int $page Which page number of the ApiApp List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
@@ -988,7 +988,7 @@ class ApiAppApi
     /**
      * Operation apiAppListWithHttpInfo
      *
-     * Lists your API Apps.
+     * List API Apps
      *
      * @param int $page Which page number of the ApiApp List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
@@ -1101,7 +1101,7 @@ class ApiAppApi
     /**
      * Operation apiAppListAsync
      *
-     * Lists your API Apps.
+     * List API Apps
      *
      * @param int $page Which page number of the ApiApp List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
@@ -1122,7 +1122,7 @@ class ApiAppApi
     /**
      * Operation apiAppListAsyncWithHttpInfo
      *
-     * Lists your API Apps.
+     * List API Apps
      *
      * @param int $page Which page number of the ApiApp List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
@@ -1282,7 +1282,7 @@ class ApiAppApi
     /**
      * Operation apiAppUpdate
      *
-     * Updates an existing API App.
+     * Update API App
      *
      * @param string $client_id The client ID of the ApiApp to update. (required)
      * @param Model\ApiAppUpdateRequest $api_app_update_request api_app_update_request (required)
@@ -1301,7 +1301,7 @@ class ApiAppApi
     /**
      * Operation apiAppUpdateWithHttpInfo
      *
-     * Updates an existing API App.
+     * Update API App
      *
      * @param string $client_id The client ID of the ApiApp to update. (required)
      * @param Model\ApiAppUpdateRequest $api_app_update_request (required)
@@ -1414,7 +1414,7 @@ class ApiAppApi
     /**
      * Operation apiAppUpdateAsync
      *
-     * Updates an existing API App.
+     * Update API App
      *
      * @param string $client_id The client ID of the ApiApp to update. (required)
      * @param Model\ApiAppUpdateRequest $api_app_update_request (required)
@@ -1435,7 +1435,7 @@ class ApiAppApi
     /**
      * Operation apiAppUpdateAsyncWithHttpInfo
      *
-     * Updates an existing API App.
+     * Update API App
      *
      * @param string $client_id The client ID of the ApiApp to update. (required)
      * @param Model\ApiAppUpdateRequest $api_app_update_request (required)
