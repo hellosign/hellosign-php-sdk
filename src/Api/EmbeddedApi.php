@@ -399,6 +399,9 @@ class EmbeddedApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+                if ($payloadHook = $this->config->getPayloadHook()) {
+                    $payloadHook('multipart', $multipartContents);
+                }
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -701,6 +704,9 @@ class EmbeddedApi
                         'contents' => $body,
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
+                }
+                if ($payloadHook = $this->config->getPayloadHook()) {
+                    $payloadHook('multipart', $multipartContents);
                 }
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {

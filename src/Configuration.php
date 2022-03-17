@@ -135,6 +135,9 @@ class Configuration
      */
     protected $rootFilePath = null;
 
+    /** @var ?callable */
+    protected $payloadHook = null;
+
     /**
      * Constructor
      */
@@ -555,5 +558,17 @@ class Configuration
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    public function setPayloadHook(callable $hook): self
+    {
+        $this->payloadHook = $hook;
+
+        return $this;
+    }
+
+    public function getPayloadHook(): ?callable
+    {
+        return $this->payloadHook;
     }
 }
