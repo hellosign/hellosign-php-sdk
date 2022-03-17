@@ -81,7 +81,6 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
         'custom_fields' => '\HelloSignSDK\Model\SignatureRequestResponseCustomField[]',
         'response_data' => '\HelloSignSDK\Model\SignatureRequestResponseData[]',
         'signatures' => '\HelloSignSDK\Model\SignatureRequestResponseSignatures[]',
-        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
         'bulk_send_job_id' => 'string',
     ];
 
@@ -114,7 +113,6 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
         'custom_fields' => null,
         'response_data' => null,
         'signatures' => null,
-        'warnings' => null,
         'bulk_send_job_id' => null,
     ];
 
@@ -166,7 +164,6 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
         'custom_fields' => 'custom_fields',
         'response_data' => 'response_data',
         'signatures' => 'signatures',
-        'warnings' => 'warnings',
         'bulk_send_job_id' => 'bulk_send_job_id',
     ];
 
@@ -197,7 +194,6 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
         'custom_fields' => 'setCustomFields',
         'response_data' => 'setResponseData',
         'signatures' => 'setSignatures',
-        'warnings' => 'setWarnings',
         'bulk_send_job_id' => 'setBulkSendJobId',
     ];
 
@@ -228,7 +224,6 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
         'custom_fields' => 'getCustomFields',
         'response_data' => 'getResponseData',
         'signatures' => 'getSignatures',
-        'warnings' => 'getWarnings',
         'bulk_send_job_id' => 'getBulkSendJobId',
     ];
 
@@ -309,7 +304,6 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
         $this->container['response_data'] = $data['response_data'] ?? null;
         $this->container['signatures'] = $data['signatures'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
         $this->container['bulk_send_job_id'] = $data['bulk_send_job_id'] ?? null;
     }
 
@@ -847,30 +841,6 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
     public function setSignatures(?array $signatures)
     {
         $this->container['signatures'] = $signatures;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return WarningResponse[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param WarningResponse[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings)
-    {
-        $this->container['warnings'] = $warnings;
 
         return $this;
     }

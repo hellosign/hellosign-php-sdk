@@ -81,7 +81,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'custom_fields' => '\HelloSignSDK\Model\SignatureRequestResponseCustomField[]',
         'response_data' => '\HelloSignSDK\Model\SignatureRequestResponseData[]',
         'signatures' => '\HelloSignSDK\Model\SignatureRequestResponseSignatures[]',
-        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -113,7 +112,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'custom_fields' => null,
         'response_data' => null,
         'signatures' => null,
-        'warnings' => null,
     ];
 
     /**
@@ -164,7 +162,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'custom_fields' => 'custom_fields',
         'response_data' => 'response_data',
         'signatures' => 'signatures',
-        'warnings' => 'warnings',
     ];
 
     /**
@@ -194,7 +191,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'custom_fields' => 'setCustomFields',
         'response_data' => 'setResponseData',
         'signatures' => 'setSignatures',
-        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -224,7 +220,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'custom_fields' => 'getCustomFields',
         'response_data' => 'getResponseData',
         'signatures' => 'getSignatures',
-        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -304,7 +299,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
         $this->container['response_data'] = $data['response_data'] ?? null;
         $this->container['signatures'] = $data['signatures'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): SignatureRequestResponse
@@ -841,30 +835,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setSignatures(?array $signatures)
     {
         $this->container['signatures'] = $signatures;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return WarningResponse[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param WarningResponse[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings)
-    {
-        $this->container['warnings'] = $warnings;
 
         return $this;
     }

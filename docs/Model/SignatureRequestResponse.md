@@ -27,6 +27,5 @@ Name | Type | Description | Notes
 | `custom_fields` | [```\HelloSignSDK\Model\SignatureRequestResponseCustomField[]```](SignatureRequestResponseCustomField.md) |    |  |
 | `response_data` | [```\HelloSignSDK\Model\SignatureRequestResponseData[]```](SignatureRequestResponseData.md) |    |  |
 | `signatures` | [```\HelloSignSDK\Model\SignatureRequestResponseSignatures[]```](SignatureRequestResponseSignatures.md) |    |  |
-| `warnings` | [```\HelloSignSDK\Model\WarningResponse[]```](WarningResponse.md) |    |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

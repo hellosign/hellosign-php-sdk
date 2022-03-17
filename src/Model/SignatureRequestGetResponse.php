@@ -61,6 +61,7 @@ class SignatureRequestGetResponse implements ModelInterface, ArrayAccess, JsonSe
      */
     protected static $openAPITypes = [
         'signature_request' => '\HelloSignSDK\Model\SignatureRequestResponse',
+        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -72,6 +73,7 @@ class SignatureRequestGetResponse implements ModelInterface, ArrayAccess, JsonSe
      */
     protected static $openAPIFormats = [
         'signature_request' => null,
+        'warnings' => null,
     ];
 
     /**
@@ -102,6 +104,7 @@ class SignatureRequestGetResponse implements ModelInterface, ArrayAccess, JsonSe
      */
     protected static $attributeMap = [
         'signature_request' => 'signature_request',
+        'warnings' => 'warnings',
     ];
 
     /**
@@ -111,6 +114,7 @@ class SignatureRequestGetResponse implements ModelInterface, ArrayAccess, JsonSe
      */
     protected static $setters = [
         'signature_request' => 'setSignatureRequest',
+        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -120,6 +124,7 @@ class SignatureRequestGetResponse implements ModelInterface, ArrayAccess, JsonSe
      */
     protected static $getters = [
         'signature_request' => 'getSignatureRequest',
+        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -179,6 +184,7 @@ class SignatureRequestGetResponse implements ModelInterface, ArrayAccess, JsonSe
     public function __construct(array $data = null)
     {
         $this->container['signature_request'] = $data['signature_request'] ?? null;
+        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): SignatureRequestGetResponse
@@ -235,6 +241,30 @@ class SignatureRequestGetResponse implements ModelInterface, ArrayAccess, JsonSe
     public function setSignatureRequest(?SignatureRequestResponse $signature_request)
     {
         $this->container['signature_request'] = $signature_request;
+
+        return $this;
+    }
+
+    /**
+     * Gets warnings
+     *
+     * @return WarningResponse[]|null
+     */
+    public function getWarnings()
+    {
+        return $this->container['warnings'];
+    }
+
+    /**
+     * Sets warnings
+     *
+     * @param WarningResponse[]|null $warnings warnings
+     *
+     * @return self
+     */
+    public function setWarnings(?array $warnings)
+    {
+        $this->container['warnings'] = $warnings;
 
         return $this;
     }
