@@ -40,7 +40,10 @@
         "symfony/yaml": "^5.4"
     },
     "autoload": {
-        "psr-4": { "HelloSignSDK\\" : "src/" }
+        "psr-4": {
+            "HelloSignSDK\\": "src/",
+            "HelloSignLegacy\\": "legacy/library/HelloSignLegacy/"
+        }
     },
     "autoload-dev": {
         "psr-4": { "HelloSignSDK\\Test\\" : "test/" }

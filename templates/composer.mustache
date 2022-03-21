@@ -43,7 +43,10 @@
         "symfony/yaml": "^5.4"
     },
     "autoload": {
-        "psr-4": { "{{escapedInvokerPackage}}\\" : "{{srcBasePath}}/" }
+        "psr-4": {
+            "{{escapedInvokerPackage}}\\": "{{srcBasePath}}/",
+            "HelloSignLegacy\\": "legacy/library/HelloSignLegacy/"
+        }
     },
     "autoload-dev": {
         "psr-4": { "{{escapedInvokerPackage}}\\Test\\" : "{{testBasePath}}/" }

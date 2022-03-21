@@ -1,0 +1,15 @@
+.DS_Store
+phpunit.xml
+composer.phar
+.buildpath
+.settings
+.project
+installed.json
+phpunit_test_file1.pdf
+phpunit_test_file2.pdf
+phpunit_test_file3.zip
+phpunit_test_template_file.pdf
+test.php
+.idea
+*.swp
+vendor

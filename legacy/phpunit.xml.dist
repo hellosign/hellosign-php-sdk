@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true"  bootstrap="./../vendor/autoload.php">
+    <testsuites>
+        <testsuite name="HelloSign Test Suite">
+            <directory>./library/HelloSignLegacy/Test/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+      <env name="API_KEY" value="REPLACE_WITH_YOUR_KEY"/>
+      <env name="CLIENT_ID" value="REPLACE_WITH_YOUR_CLIENT_ID"/>
+      <env name="CLIENT_SECRET" value="REPLACE_WITH_YOUR_CLIENT_SECRET"/>
+      <env name="CALLBACK_URL" value="http://example.com/callback"/>
+      <env name="API_URL" value="https://api.hellosign.com/v3/"/>
+      <env name="OAUTH_TOKEN_URL" value="https://app.hellosign.com/oauth/token"/>
+    </php>
+</phpunit>
