@@ -53,14 +53,14 @@ class BulkSendJob extends AbstractSignatureRequest
      * The list of Templates used when creating the SignatureRequest
      * @var array
      */
-    protected $template_ids = [];
+    protected $template_ids = array();
 
     /**
      * The CSV file definining values and options for signer fields.
      * Required unless signer_list is defined, but not both.
      * @var array
      */
-    protected $signer_file = [];
+    protected $signer_file = array();
 
     /**
      * A JSON array defining values and options for the signer fields.
@@ -77,7 +77,7 @@ class BulkSendJob extends AbstractSignatureRequest
      *
      * @var array
      */
-    protected $ccs = [];
+    protected $ccs = array();
 
     /**
      * An array of SignatureRequest objects
@@ -92,64 +92,64 @@ class BulkSendJob extends AbstractSignatureRequest
      *
      * @var array
      */
-    protected $list_info = [];
+    protected $list_info = array();
 
     /**
      * Set the template ID, along with an optional order
+     * @param string $id
      * @param int null $index
-     * @return \HelloSignLegacy\BulkSendJob
+     * @return \HelloSign\BulkSendJob
      */
-    public function setTemplateId(string $id, $order = null)
-    {
+    public function setTemplateId($id, $order = null) {
         if ($order === null) {
             // If no order is provided, append the template ID to the end of the list
             $this->template_ids[] = $id;
         } else {
             $this->template_ids[$order] = $id;
         }
-
         return $this;
     }
 
     /**
      * Adds a list of signers in a CSV file. Required unless signer_list is used.
      *
-     * @param string $file path for signer_file
+     * @param  string $file path for signer_file
      * @return BulkSendJob
      * @ignore
      */
-    public function addSignerfile(string $file)
+    public function addSignerfile($file)
     {
         if (!file_exists($file)) {
             throw new Error('file not found', 'File does not exist. Please use an absolute file path.');
         }
 
         $this->signer_file = fopen($file, 'rb');
-
         return $this;
     }
 
     /**
      * Adds a list of signers defined in a JSON array. Required unless signer_file is used.
      *
+     * @param  array $signer_list
      * @return BulkSendJob
      * @ignore
      */
-    public function addSignerList(array $signer_list)
-    {
-        $this->signer_list = json_encode($signer_list);
-
-        return $this;
-    }
+     public function addSignerList($signer_list)
+     {
+         $this->signer_list = json_encode($signer_list);
+         return $this;
+     }
 
     /**
-     * Sets the CC email address for the provided role
-     *
-     * @return BulkSendJob
-     */
-    public function setCC(string $role, string $email)
+    * Sets the CC email address for the provided role
+    *
+    * @param  string $role
+    * @param  string $email
+    * @return BulkSendJob
+    */
+    public function setCC($role, $email)
     {
-        $obj = new stdClass();
+        $obj = new stdClass;
         $obj->email_address = $email;
 
         $this->ccs[$role] = $obj;
@@ -178,17 +178,20 @@ class BulkSendJob extends AbstractSignatureRequest
     /**
      * Constructor
      *
-     * @param stdClass $response
+     * @param  stdClass $response
+     * @param  array $options
      * @ignore
      */
-    public function __construct(stdClass $response = null, array $options = [])
+    public function __construct($response = null, $options = array())
     {
-        if (isset($response->signature_requests)) {
-            $this->signature_requests = $response->signature_requests;
+        if (isset($response->signature_requests))
+        {
+          $this->signature_requests = $response->signature_requests;
         }
 
-        if (isset($response->list_info)) {
-            $this->list_info = $response->list_info;
+        if (isset($response->list_info))
+        {
+          $this->list_info = $response->list_info;
         }
 
         parent::__construct($response, $options);
@@ -200,7 +203,7 @@ class BulkSendJob extends AbstractSignatureRequest
      */
     public function toParams()
     {
-        $except = [
+        $except = array(
             'use_text_tags',
             'hide_text_tags',
             'use_preexisting_fields',
@@ -208,11 +211,10 @@ class BulkSendJob extends AbstractSignatureRequest
             'signers',
             'requester_email_address',
             'signing_options',
-            'allow_decline',
-        ];
-
-        return $this->toArray([
-            'except' => $except,
-        ]);
+            'allow_decline'
+        );
+        return $this->toArray(array(
+            'except' => $except
+        ));
     }
 }

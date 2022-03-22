@@ -33,26 +33,25 @@ class ApiAppTest extends AbstractTest
     private function generateApiAppName(string $prefix): string
     {
         $guid = TestUtils::generateGuid(8);
-
         return $prefix . $guid;
     }
 
     /**
-     * @expectedException \HelloSignLegacy\Error
-     * @expectedExceptionMessage An app with the same name already exists
-     * @group create
-     */
+    * @expectedException HelloSignLegacy\Error
+    * @expectedExceptionMessage An app with the same name already exists
+    * @group create
+    */
     public function testCreateApiApp()
     {
-        $wl = ['primary_button_color' => '#626567', 'primary_button_text_color' => '#ffffff'];
+        $wl = array('primary_button_color' => '#626567', 'primary_button_text_color' => '#ffffff');
         $wl = json_encode($wl);
 
         $name = $this->generateApiAppName('Test');
-        $domain = 'www.testdomain.com';
+        $domain = "www.testdomain.com";
         $callback = $_ENV['CALLBACK_URL'];
-        $logo = __DIR__ . '/logo.jpg';
+        $logo = __DIR__ . "/logo.jpg";
 
-        $app = new ApiApp();
+        $app = new ApiApp;
         $app->setName($name);
         $app->setDomain($domain);
         $app->setCallbackUrl($callback);
@@ -65,7 +64,7 @@ class ApiAppTest extends AbstractTest
         $this->assertNotNull($response->getClientId());
 
         //trying to create it again should fail
-        $duplicate_app = new ApiApp();
+        $duplicate_app = new ApiApp;
         $duplicate_app->setName($name);
         $duplicate_app->setDomain($domain);
         $duplicate_app->setCallbackUrl($callback);
@@ -78,18 +77,18 @@ class ApiAppTest extends AbstractTest
     }
 
     /**
-     * @group oauth
-     */
+    * @group oauth
+    */
     public function testCreateOauthApiApp()
     {
         $name = $this->generateApiAppName('Test Oauth');
-        $domain = 'www.testdomain.com';
+        $domain = "www.testdomain.com";
         $callback = $_ENV['CALLBACK_URL'];
-        $logo = __DIR__ . '/logo.jpg';
+        $logo = __DIR__ . "/logo.jpg";
         $oauth_callback = $_ENV['CALLBACK_URL'];
-        $oauth_scope = 'basic_account_info,request_signature';
+        $oauth_scope = "basic_account_info,request_signature";
 
-        $app = new ApiApp();
+        $app = new ApiApp;
         $app->setName($name);
         $app->setDomain($domain);
         $app->setCallbackUrl($callback);
@@ -110,19 +109,20 @@ class ApiAppTest extends AbstractTest
      */
     public function testUpdateApiApp()
     {
-        $name = $this->generateApiAppName('Test');
-        $domain = 'www.testdomain.com';
 
-        $app = new ApiApp();
+        $name = $this->generateApiAppName('Test');
+        $domain = "www.testdomain.com";
+
+        $app = new ApiApp;
         $app->setName($name);
         $app->setDomain($domain);
 
         $response = $this->client->createApiApp($app);
         $client_id = $response->getClientId();
 
-        $callback = 'http://www.testcallback.com';
+        $callback = "http://www.testcallback.com";
 
-        $update = new ApiApp();
+        $update = new ApiApp;
         $update->setCallbackUrl($callback);
         $updated_response = $this->client->updateApiApp($client_id, $update);
 
@@ -138,10 +138,10 @@ class ApiAppTest extends AbstractTest
     public function testGetApiApp()
     {
         $name = $this->generateApiAppName('Test');
-        $domain = 'www.testdomain.com';
+        $domain = "www.testdomain.com";
         $callback_url = $_ENV['CALLBACK_URL'];
 
-        $app = new ApiApp();
+        $app = new ApiApp;
         $app->setName($name);
         $app->setDomain($domain);
         $app->setCallbackUrl($callback_url);
@@ -154,19 +154,20 @@ class ApiAppTest extends AbstractTest
         $this->assertNotNull($app->name);
         $this->assertNotNull($app->callback_url);
         $this->assertNotNull($app->domain);
+
     }
 
     /**
      * @group delete
-     * @expectedException \HelloSignLegacy\Error
+     * @expectedException HelloSignLegacy\Error
      * @expectedExceptionMessage Not found
      */
     public function testDeleteApiApp()
     {
-        // Note that we won't be actually deleting an API app,
-        // but rather checking to make sure we get a Not found error
+        # Note that we won't be actually deleting an API app,
+        # but rather checking to make sure we get a Not found error
 
-        $client_id = 'c7e5031edf091e76796088e4e06443e9'; //random
+        $client_id = 'c7e5031edf091e76796088e4e06443e9'; #random
 
         $response = $this->client->deleteApiApp($client_id);
     }

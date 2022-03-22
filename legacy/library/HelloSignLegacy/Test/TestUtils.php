@@ -4,6 +4,10 @@ namespace HelloSignLegacy\Test;
 
 class TestUtils
 {
+    /**
+     * @param int|null $length
+     * @return string
+     */
     public static function generateGuid(?int $length = 40): string
     {
         $bytes = random_bytes((int) ceil($length / 2));

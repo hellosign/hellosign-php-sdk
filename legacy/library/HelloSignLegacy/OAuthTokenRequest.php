@@ -66,46 +66,46 @@ class OAuthTokenRequest extends AbstractObject
     protected $code = null;
 
     /**
+     * @param  string $state
      * @return OAuthTokenRequest
      * @ignore
      */
-    public function setState(string $state)
+    public function setState($state)
     {
         $this->state = $state;
-
         return $this;
     }
 
     /**
+     * @param  string $code
      * @return OAuthTokenRequest
      * @ignore
      */
-    public function setCode(string $code)
+    public function setCode($code)
     {
         $this->code = $code;
-
         return $this;
     }
 
     /**
+     * @param  string $client_id
      * @return OAuthTokenRequest
      * @ignore
      */
-    public function setClientID(string $client_id)
+    public function setClientID($client_id)
     {
         $this->client_id = $client_id;
-
         return $this;
     }
 
     /**
+     * @param  string $client_secret
      * @return OAuthTokenRequest
      * @ignore
      */
-    public function setClientSecret(string $client_secret)
+    public function setClientSecret($client_secret)
     {
         $this->client_secret = $client_secret;
-
         return $this;
     }
 
@@ -115,8 +115,8 @@ class OAuthTokenRequest extends AbstractObject
      */
     public function toParams()
     {
-        return $this->toArray() + [
-            'grant_type' => 'authorization_code',
-        ];
+        return $this->toArray() + array(
+            'grant_type' => 'authorization_code'
+        );
     }
 }

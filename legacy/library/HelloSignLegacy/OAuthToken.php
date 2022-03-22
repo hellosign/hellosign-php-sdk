@@ -51,7 +51,7 @@ class OAuthToken extends AbstractObject
     /**
      * Expire time in seconds
      *
-     * @var int
+     * @var integer
      */
     protected $expires_in = null;
 
@@ -91,7 +91,7 @@ class OAuthToken extends AbstractObject
     }
 
     /**
-     * @return int
+     * @return integer
      * @ignore
      */
     public function getExpiresIn()
@@ -105,12 +105,12 @@ class OAuthToken extends AbstractObject
      */
     public function toParams()
     {
-        return $this->toArray([
-            'except' => [
-                'state',
-            ],
-        ]) + [
-            'grant_type' => 'refresh_token',
-        ];
+        return $this->toArray(array(
+            'except' => array(
+                'state'
+            )
+        )) + array(
+            'grant_type' => 'refresh_token'
+        );
     }
 }

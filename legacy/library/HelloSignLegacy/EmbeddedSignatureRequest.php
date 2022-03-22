@@ -43,7 +43,7 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
      */
     public function toParams()
     {
-        /*
+        /**
          * Here we combine (using the + operator) the param arrays for the
          * SignatureRequest object with itself (the Embedded SignatureRequest
          * object) to get the final params array. The order of this union is
@@ -51,14 +51,14 @@ class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
          * operator so that its values (e.g. test_mode) take precedence over
          * our defaults.
          */
-        return $this->request->toParams([
-            'except' => [
-            ],
-        ]) + $this->toArray([
-            'except' => [
+        return $this->request->toParams(array(
+            'except' => array(
+            )
+        )) + $this->toArray(array(
+            'except' => array(
                 'request',
-                'skip_me_now',
-            ],
-        ]);
+                'skip_me_now'
+            )
+        ));
     }
 }

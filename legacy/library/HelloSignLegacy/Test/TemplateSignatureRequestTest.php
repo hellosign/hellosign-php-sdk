@@ -31,6 +31,7 @@ use HelloSignLegacy\TemplateSignatureRequest;
 /**
  * You must have created a template manually prior to running this test suite
  * @author Steve Gough
+ *
  */
 class TemplateSignatureRequestTest extends AbstractTest
 {
@@ -42,7 +43,7 @@ class TemplateSignatureRequestTest extends AbstractTest
         $templates = $this->client->getTemplates();
         $template = $templates[0];
 
-        $request = new TemplateSignatureRequest();
+        $request = new TemplateSignatureRequest;
         $request->setTemplateId($template->getId());
         $request->setSubject('Purchase Order');
         $request->setMessage('Glad we could come to an agreement.');
@@ -76,7 +77,7 @@ class TemplateSignatureRequestTest extends AbstractTest
         $signer_role = $template->getSignerRoles()[0]->name;
 
         // Enable Test Mode
-        $request = new TemplateSignatureRequest();
+        $request = new TemplateSignatureRequest;
 
         // Set Request Params
         $request->setTemplateId($template->getId());
@@ -84,10 +85,10 @@ class TemplateSignatureRequestTest extends AbstractTest
         $request->setMessage('Glad we could come to an agreement.');
 
         // Add Signer Group to Signature Request
-        $request->addGroup('Client Group', $signer_role);
-        $request->addGroupSigner('Jack Example', 'jack@example.com', 0, $signer_role);
-        $request->addGroupSigner('Jill Example', 'jill@example.com', 1, $signer_role);
-        $request->addGroupSigner('Jane Example', 'jane@example.com', 2, $signer_role);
+        $request->addGroup("Client Group", $signer_role);
+        $request->addGroupSigner("Jack Example", "jack@example.com", 0, $signer_role);
+        $request->addGroupSigner("Jill Example", "jill@example.com", 1, $signer_role);
+        $request->addGroupSigner("Jane Example", "jane@example.com", 2, $signer_role);
 
         $response = $this->client->sendTemplateSignatureRequest($request);
 

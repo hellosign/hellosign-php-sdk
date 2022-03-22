@@ -52,7 +52,7 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     /**
      * Disables the "Me (Now)" option for the person preparing the SignatureRequest.
      *
-     * @var bool
+     * @var boolean
      */
     protected $skip_me_now = false;
 
@@ -62,20 +62,20 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
      * @param AbstractSignatureRequest $request
      * @param string $client_id
      */
-    public function __construct(AbstractSignatureRequest $request = null, string $client_id = null)
+    public function __construct(AbstractSignatureRequest $request = null, $client_id = null)
     {
         $this->request = $request;
         $this->setClientId($client_id);
     }
 
     /**
+     * @param  string $id
      * @return static
      * @ignore
      */
-    public function setClientId(string $id)
+    public function setClientId($id)
     {
         $this->client_id = $id;
-
         return $this;
     }
 
@@ -98,18 +98,17 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     public function setEmbeddedSigning()
     {
         $this->is_for_embedded_signing = true;
-
         return $this;
     }
 
     /**
+     * @param AbstractSignatureRequest $request
      * @return static
      * @ignore
      */
     public function setRequest(AbstractSignatureRequest $request)
     {
         $this->request = $request;
-
         return $this;
     }
 
@@ -123,7 +122,7 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function isUsingTemplate()
@@ -132,15 +131,14 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
     }
 
     /**
-     * @param bool $skip_me_now set to true to disable the "Me (Now)" option
-     *                          for the preparer
-     * @return static
-     * @ignore
-     */
+       * @param  boolean $skip_me_now Set to true to disable the "Me (Now)" option
+       * for the preparer.
+       * @return static
+       * @ignore
+       */
     public function enableSkipMeNow()
     {
         $this->skip_me_now = true;
-
         return $this;
     }
 
@@ -150,14 +148,14 @@ abstract class AbstractSignatureRequestWrapper extends AbstractResource
      */
     public function toParams()
     {
-        return $this->toArray([
-            'except' => [
-                'request',
-            ],
-        ]) + $this->request->toParams([
-            'except' => [
-                'title',
-            ],
-        ]);
+        return $this->toArray(array(
+            'except' => array(
+                'request'
+            )
+        )) + $this->request->toParams(array(
+            'except' => array(
+                'title'
+            )
+        ));
     }
 }

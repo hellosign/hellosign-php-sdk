@@ -26,11 +26,12 @@
 
 namespace HelloSignLegacy\Test;
 
-use HelloSignLegacy\EmbeddedSignatureRequest;
+use HelloSignLegacy\UnclaimedDraft;
+
 use HelloSignLegacy\SignatureRequest;
 use HelloSignLegacy\Template;
 use HelloSignLegacy\TemplateSignatureRequest;
-use HelloSignLegacy\UnclaimedDraft;
+use HelloSignLegacy\EmbeddedSignatureRequest;
 
 class EmbeddedSignatureRequestTest extends AbstractTest
 {
@@ -40,7 +41,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
     public function testCreateEmbeddedSignatureRequest()
     {
         // Create the signature request
-        $request = new SignatureRequest();
+        $request = new SignatureRequest;
         $request->setTitle('Embedded NDA');
         $request->addSigner('jack@example.com', 'Jack');
         $request->addFile(__DIR__ . '/nda.docx');
@@ -52,11 +53,12 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         // Send it to HelloSign
         $response = $this->client->createEmbeddedSignatureRequest($embedded_request);
 
+
         $this->assertInstanceOf('HelloSignLegacy\SignatureRequest', $response);
         $this->assertNotNull($response->getId());
 
-        $signatures = $response->getSignatures();
 
+        $signatures = $response->getSignatures();
         return $signatures[0]->getId();
     }
 
@@ -66,7 +68,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
     public function testCreateEmbeddedRequesting()
     {
         // Create the signature request
-        $request = new SignatureRequest();
+        $request = new SignatureRequest;
         $request->setRequesterEmail('jolene_request1@example.com');
         $request->addFile(__DIR__ . '/nda.docx');
 
@@ -77,17 +79,18 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         // Send it to HelloSign
         $response = $this->client->createUnclaimedDraft($draft_request);
 
+
         $this->assertInstanceOf('HelloSignLegacy\UnclaimedDraft', $response);
         $this->assertNotNull($response->getClaimUrl());
     }
 
-    /**
+/**
      * @group create
      */
     public function testCreateEmbeddedRequestingWithEmbeddedSigning()
     {
         // Create the signature request
-        $request = new SignatureRequest();
+        $request = new SignatureRequest;
         $request->setRequesterEmail('jolene_request2@example.com');
         $request->addFile(__DIR__ . '/nda.docx');
 
@@ -97,6 +100,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         $draft_request->setIsForEmbeddedSigning(true);
         // Send it to HelloSign
         $response = $this->client->createUnclaimedDraft($draft_request);
+
 
         $this->assertInstanceOf('HelloSignLegacy\UnclaimedDraft', $response);
         $this->assertNotNull($response->getClaimUrl());
@@ -114,7 +118,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
 
         // Create the signature request
 
-        $request = new TemplateSignatureRequest();
+        $request = new TemplateSignatureRequest;
         $request->setTemplateId($template->getId());
         $request->setSubject('Purchase Order');
         $request->setMessage('Glad we could come to an agreement.');
@@ -139,7 +143,6 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         $this->assertInstanceOf('HelloSignLegacy\SignatureRequest', $response);
         $this->assertNotNull($response->getId());
         $signatures = $response->getSignatures();
-
         return $signatures[0]->getId();
     }
 

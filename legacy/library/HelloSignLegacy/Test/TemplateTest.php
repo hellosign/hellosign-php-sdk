@@ -27,14 +27,16 @@
 namespace HelloSignLegacy\Test;
 
 /**
+ *
  * You must have created a template manually prior to running this test suite
  * @author Steve Gough
+ *
  */
 class TemplateTest extends AbstractTest
 {
     /**
      * @group read
-     * @expectedException \HelloSignLegacy\Error
+     * @expectedException HelloSignLegacy\Error
      * @expectedExceptionMessage Page not found
      */
     public function testGetTemplatesWithPageNotFound()
@@ -67,7 +69,7 @@ class TemplateTest extends AbstractTest
     }
 
     /**
-     * @expectedException \HelloSignLegacy\Error
+     * @expectedException HelloSignLegacy\Error
      * @expectedExceptionMessage Account does not belong to your team
      * @depends testGetTemplates
      * @group update
@@ -79,11 +81,11 @@ class TemplateTest extends AbstractTest
 
         $this->assertInstanceOf('HelloSignLegacy\Error', $response);
 
-        return [$template, $team_member_email];
+        return array($template, $team_member_email);
     }
 
     /**
-     * @expectedException \HelloSignLegacy\Error
+     * @expectedException HelloSignLegacy\Error
      * @expectedExceptionMessage Account does not belong to your team
      * @depends testGetTemplates
      * @group update
@@ -123,36 +125,35 @@ class TemplateTest extends AbstractTest
         $this->assertTrue(is_string($return->getId()));
         $this->assertTrue(is_string($return->getEditUrl()));
         $this->assertTrue($return->isEmbeddedDraft());
-
         return $return->getId();
     }
 
     /**
      * @group embedded
-     * @expectedException \HelloSignLegacy\Error
+     * @expectedException HelloSignLegacy\Error
      * @expectedExceptionMessage Template not found
      */
     public function testGetEmbeddedEditUrl()
     {
-        // Similar to the delete_template function, we can't actually test this for success without human interaction.
-        // Instead, we'll be checking for a 404 - Template not found status code, which means our parameters are correct
+        # Similar to the delete_template function, we can't actually test this for success without human interaction.
+        # Instead, we'll be checking for a 404 - Template not found status code, which means our parameters are correct
 
-        $template_id = 'ax5d921d0d3ccfcd594d2b8c897ba774d89c9234'; //random
+        $template_id = 'ax5d921d0d3ccfcd594d2b8c897ba774d89c9234'; #random
 
         $res = $this->client->getEmbeddedEditUrl($template_id);
     }
 
     /**
      * @group embedded
-     * @expectedException \HelloSignLegacy\Error
+     * @expectedException HelloSignLegacy\Error
      * @expectedExceptionMessage Template not found
      */
     public function testDeleteTemplate()
     {
-        // Note that we won't be actually deleting a template,
-        // but rather checking to make sure we get a 404 - Template not found error
+        # Note that we won't be actually deleting a template,
+        # but rather checking to make sure we get a 404 - Template not found error
 
-        $template_id = 'ax5d921d0d3ccfcd594d2b8c897ba774d89c9234'; //random
+        $template_id = 'ax5d921d0d3ccfcd594d2b8c897ba774d89c9234'; #random
 
         $res = $this->client->deleteTemplate($template_id);
     }
@@ -195,7 +196,6 @@ class TemplateTest extends AbstractTest
 
         $response = $this->client->updateTemplateFiles($template_id, $request);
         $this->assertTrue(is_string($response->getId()));
-
         return $response;
     }
 }

@@ -97,12 +97,13 @@ class Event extends AbstractResource
     /**
      * Constructor
      *
-     * @param stdClass $response
+     * @param  stdClass $response
+     * @param  array $options
      * @ignore
      */
-    public function __construct(stdClass $response = null, array $options = [])
+    public function __construct($response = null, $options = array())
     {
-        $this->event_metadata = new stdClass();
+        $this->event_metadata = new stdClass;
 
         parent::__construct($response, $options);
     }
@@ -135,7 +136,7 @@ class Event extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function hasAccountId()
@@ -153,7 +154,7 @@ class Event extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function hasRelatedSignatureId()
@@ -190,13 +191,15 @@ class Event extends AbstractResource
     }
 
     /**
+     * @param  stdClass $response
+     * @param  array $options
      * @return SignatureRequest
      * @ignore
      */
-    public function fromResponse(stdClass $response, array $options = [])
+    public function fromResponse($response, $options = array())
     {
-        if (isset($response->signature_request)) {
-            $this->setSignatureRequest($response->signature_request);
+        if(isset($response->signature_request)) {
+          $this->setSignatureRequest($response->signature_request);
         }
 
         return parent::fromResponse($response, $options);
@@ -204,10 +207,11 @@ class Event extends AbstractResource
 
     /**
      * Check the event is valid or not
-     * @return bool
+     * @param  string $api_key
+     * @return boolean
      * @see Event::calculateHash()
      */
-    public function isValid(string $api_key)
+    public function isValid($api_key)
     {
         if (!$api_key) {
             return false;
@@ -223,16 +227,17 @@ class Event extends AbstractResource
      */
     protected function calculateHash($api_key)
     {
-        return hash_hmac('sha256', $this->event_time . $this->event_type, $api_key);
+        return hash_hmac("sha256", $this->event_time . $this->event_type, $api_key);
     }
 
     /**
+     * @param  stdClass $signature_request
      * @return Event
      * @ignore
      */
-    protected function setSignatureRequest(stdClass $signature_request)
+    protected function setSignatureRequest($signature_request)
     {
-        $this->signature_request = new SignatureRequest();
+        $this->signature_request = new SignatureRequest;
         $this->signature_request->fromObject($signature_request);
 
         return $this;

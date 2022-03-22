@@ -50,7 +50,7 @@ class FileResponse extends AbstractObject
     /**
      * When the link expires
      *
-     * @var int
+     * @var integer
      */
     protected $expires_at = null;
 
@@ -64,7 +64,7 @@ class FileResponse extends AbstractObject
     }
 
     /**
-     * @return int
+     * @return integer
      * @ignore
      */
     public function getExpiresAt()

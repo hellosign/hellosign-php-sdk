@@ -80,7 +80,7 @@ class ApiApp extends AbstractResource
     /**
      * Returns true if the API App is approved. Defaults to false.
      *
-     * @var bool
+     * @var boolean
      */
     protected $is_approved = false;
 
@@ -99,7 +99,7 @@ class ApiApp extends AbstractResource
      *
      * @var string
      */
-    protected $oauth = ['callback_url' => null, 'scopes' => null];
+    protected $oauth = ["callback_url" => null, "scopes" => null];
 
     /**
      * A JSON array of set white labeling options
@@ -114,18 +114,20 @@ class ApiApp extends AbstractResource
      *
      * @var array
      */
-    protected $options = ['can_insert_everywhere' => true];
+    protected $options = ["can_insert_everywhere" => true];
 
-    /**
-     * Constructor
-     *
-     * @param stdClass $response
-     * @see    static::fromResponse()
-     */
-    public function __construct(stdClass $response = null, array $options = [])
-    {
-        parent::__construct($response, $options);
-    }
+
+     /**
+      * Constructor
+      *
+      * @param  stdClass $response
+      * @param  array $options
+      * @see    static::fromResponse()
+      */
+     public function __construct($response = null, $options = array())
+     {
+         parent::__construct($response, $options);
+     }
 
     /**
      * @return ApiApp
@@ -134,7 +136,6 @@ class ApiApp extends AbstractResource
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -154,7 +155,6 @@ class ApiApp extends AbstractResource
     public function setDomain($domain)
     {
         $this->domain = $domain;
-
         return $this;
     }
 
@@ -165,7 +165,6 @@ class ApiApp extends AbstractResource
     public function setLogo($file)
     {
         $this->custom_logo_file = fopen($file, 'rb');
-
         return $this;
     }
 
@@ -176,7 +175,6 @@ class ApiApp extends AbstractResource
     public function setWhiteLabeling($wl)
     {
         $this->white_labeling_options = $wl;
-
         return $this;
     }
 
@@ -199,7 +197,7 @@ class ApiApp extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function isApproved()
@@ -208,7 +206,7 @@ class ApiApp extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function hasCallbackUrl()
@@ -217,36 +215,36 @@ class ApiApp extends AbstractResource
     }
 
     /**
+     * @param  string $url
      * @return ApiApp
      * @ignore
      */
-    public function setCallbackUrl(string $url)
+    public function setCallbackUrl($url)
     {
         $this->callback_url = $url;
-
         return $this;
     }
 
     /**
-     * @param  bool
+     * @param  boolean
      * @return ApiApp
      * @ignore
      */
     public function setInsertEverywhere($insert)
     {
-        $this->options = ['can_insert_everywhere' => $insert];
-
+        $this->options = ["can_insert_everywhere" => $insert];
         return $this;
     }
 
     /**
+     * @param string $url
+     * @param string $scopes
      * @return ApiApp
      * @ignore
      */
-    public function setOauthOptions(string $url, string $scopes)
+    public function setOauthOptions($url, $scopes)
     {
-        $this->oauth = ['callback_url' => $url, 'scopes' => $scopes];
-
+        $this->oauth = ["callback_url" => $url, "scopes" => $scopes];
         return $this;
     }
 
@@ -254,17 +252,17 @@ class ApiApp extends AbstractResource
      * @return array
      * @ignore
      */
-    public function toCreateParams($options = [])
+    public function toCreateParams($options = array())
     {
-        return $this->toArray(['only' => [
+      return $this->toArray(array('only' => array(
         'name',
         'domain',
         'callback_url',
         'custom_logo_file',
         'options',
         'oauth',
-        'white_labeling_options',
-      ]]);
+        'white_labeling_options'
+      )));
     }
 
     /**
@@ -273,16 +271,16 @@ class ApiApp extends AbstractResource
      */
     public function toUpdateParams()
     {
-        return $this->toArray([
-            'only' => [
+        return $this->toArray(array(
+            'only' => array(
               'name',
               'domain',
               'callback_url',
               'custom_logo_file',
               'options',
               'oauth',
-              'white_labeling_options',
-            ],
-        ]);
+              'white_labeling_options'
+            )
+        ));
     }
 }

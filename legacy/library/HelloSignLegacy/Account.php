@@ -66,14 +66,14 @@ class Account extends AbstractResource
     /**
      * If the user has a paid HelloSign subscription, will return true
      *
-     * @var bool
+     * @var boolean
      */
     protected $is_paid_hs = false;
 
     /**
      * If the user has a paid HelloFax subscription, will return true
      *
-     * @var bool
+     * @var boolean
      */
     protected $is_paid_hf = false;
 
@@ -115,7 +115,7 @@ class Account extends AbstractResource
      * @param mixed $email_or_obj
      * @param string $password DEPRECATED; This will be ignored if specified
      */
-    public function __construct($email_or_obj = null, string $password = null)
+    public function __construct($email_or_obj = null, $password = null)
     {
         if (is_string($email_or_obj)) {
             $this->email_address = $email_or_obj;
@@ -134,7 +134,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function hasId()
@@ -152,7 +152,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function hasEmail()
@@ -161,7 +161,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function isPaidHS()
@@ -170,7 +170,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function isPaidHF()
@@ -179,7 +179,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return int
+     * @return integer
      * @ignore
      */
     public function getTemplatesLeft()
@@ -188,7 +188,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return int
+     * @return integer
      * @ignore
      */
     public function getApiSigReqsLeft()
@@ -197,7 +197,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return int
+     * @return integer
      * @ignore
      */
     public function getDocumentsLeft()
@@ -215,7 +215,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function hasCallbackUrl()
@@ -224,13 +224,13 @@ class Account extends AbstractResource
     }
 
     /**
+     * @param  string $url
      * @return Account
      * @ignore
      */
-    public function setCallbackUrl(string $url)
+    public function setCallbackUrl($url)
     {
         $this->callback_url = $url;
-
         return $this;
     }
 
@@ -244,7 +244,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function hasRoleCode()
@@ -253,31 +253,32 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function isTeamAdmin()
     {
-        return $this->role_code == 'a';
+        return ($this->role_code == 'a');
     }
 
     /**
+     * @param  string $email
      * @return Account
      * @ignore
      */
-    public function setEmail(string $email)
+    public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
 
     /**
+     * @param  string $password
      * @return Account
      * @ignore
      * @deprecated This field will be ignored
      */
-    public function setPassword(string $password)
+    public function setPassword($password)
     {
         return $this;
     }
@@ -292,7 +293,7 @@ class Account extends AbstractResource
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function hasOAuthData()
@@ -301,10 +302,12 @@ class Account extends AbstractResource
     }
 
     /**
+     * @param  stdClass $response
+     * @param  array $options
      * @return Account
      * @ignore
      */
-    public function fromResponse(stdClass $response, array $options = [])
+    public function fromResponse($response, $options = array())
     {
         isset($response->oauth_data) && $this->setOAuthData($response->oauth_data);
 
@@ -317,11 +320,11 @@ class Account extends AbstractResource
      */
     public function toCreateParams()
     {
-        return $this->toArray([
-            'only' => [
-                'email_address',
-            ],
-        ]);
+        return $this->toArray(array(
+            'only' => array(
+                'email_address'
+            )
+        ));
     }
 
     /**
@@ -330,18 +333,19 @@ class Account extends AbstractResource
      */
     public function toUpdateParams()
     {
-        return $this->toArray([
-            'only' => [
-                'callback_url',
-            ],
-        ]);
+        return $this->toArray(array(
+            'only' => array(
+                'callback_url'
+            )
+        ));
     }
 
     /**
+     * @param  stdClass $oauth_data
      * @return Account
      * @ignore
      */
-    protected function setOAuthData(stdClass $oauth_data)
+    protected function setOAuthData($oauth_data)
     {
         $this->oauth_data = new OAuthToken($oauth_data);
 

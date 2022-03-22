@@ -52,14 +52,14 @@ class Team extends AbstractResource
      *
      * @var array
      */
-    protected $accounts = [];
+    protected $accounts = array();
 
     /**
      * A list of all Accounts belonging to this team
      *
      * @var array
      */
-    protected $invited_accounts = [];
+    protected $invited_accounts = array();
 
     /**
      * Constructor
@@ -85,14 +85,13 @@ class Team extends AbstractResource
     }
 
     /**
-     * @param string $name Name of the new Team
+     * @param  string $name Name of the new Team
      * @return Team
      * @ignore
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -120,50 +119,53 @@ class Team extends AbstractResource
      */
     public function toCreateParams()
     {
-        return $this->toArray([
-            'only' => [
-                'name',
-            ],
-        ]);
+        return $this->toArray(array(
+            'only' => array(
+                'name'
+            )
+        ));
     }
 
     /**
+     * @param  stdClass $array
+     * @param  array $options
      * @return Team
      * @ignore
      */
-    public function fromArray(stdClass $array, array $options = [])
+    public function fromArray($array, $options = array())
     {
         if (array_key_exists('accounts', $array)) {
-            $this->setAccounts($array['accounts']);
+          $this->setAccounts($array['accounts']);
         }
 
         if (array_key_exists('invited_accounts', $array)) {
-            $this->setInvitedAccounts($array['invited_accounts']);
+          $this->setInvitedAccounts($array['invited_accounts']);
         }
 
         if (!isset($options['except'])) {
-            $options['except'] = [];
+          $options['except'] = array();
         }
 
-        $options['except'] = array_merge($options['except'], [
+        $options['except'] = array_merge($options['except'], array(
             'accounts',
             'invited_accounts',
-        ]);
+        ));
 
         return parent::fromArray($array, $options);
     }
 
     /**
+     * @param  array $accounts
      * @return SignatureRequest
      * @ignore
      */
-    protected function setAccounts(array $accounts)
+    protected function setAccounts($accounts)
     {
         // reset accounts array
-        $this->accounts = [];
+        $this->accounts = array();
 
         foreach ($accounts as $account) {
-            $resource = new Account();
+            $resource = new Account;
             $resource->fromObject($account);
 
             $this->accounts[] = $resource;
@@ -173,16 +175,17 @@ class Team extends AbstractResource
     }
 
     /**
+     * @param  array $accounts
      * @return SignatureRequest
      * @ignore
      */
-    protected function setInvitedAccounts(array $accounts)
+    protected function setInvitedAccounts($accounts)
     {
         // reset accounts array
-        $this->invited_accounts = [];
+        $this->invited_accounts = array();
 
         foreach ($accounts as $account) {
-            $resource = new Account();
+            $resource = new Account;
             $resource->fromObject($account);
 
             $this->invited_accounts[] = $resource;

@@ -61,7 +61,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     /**
      * Whether this Unclaimed Draft is to be embedded or not
      *
-     * @var bool
+     * @var boolean
      */
     protected $is_for_embedded_signing = false;
 
@@ -75,55 +75,56 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     /**
      * Whether this unclaimed draft should use preexisting fields from the original document
      *
-     * @var bool
+     * @var boolean
      */
     protected $use_preexisting_fields = false;
 
     /**
      * Disables the "Me (Now)" option for the person preparing the SignatureRequest.
      *
-     * @var bool
+     * @var boolean
      */
     protected $skip_me_now = false;
 
     /**
+     * @param  boolean $is_for_embedded_signing
      * @return UnclaimedDraft
      * @ignore
      */
-    public function setIsForEmbeddedSigning(bool $is_for_embedded_signing)
+    public function setIsForEmbeddedSigning($is_for_embedded_signing)
     {
         $this->is_for_embedded_signing = $is_for_embedded_signing;
     }
 
     /**
-     * @return UnclaimedDraft
-     * @ignore
-     */
-    public function setUsePreexistingFields(bool $use_preexisting_fields)
+       * @param  boolean $use_preexisting_fields
+       * @return UnclaimedDraft
+       * @ignore
+       */
+    public function setUsePreexistingFields($use_preexisting_fields)
     {
         $this->use_preexisting_fields = $use_preexisting_fields;
-
         return $this;
     }
 
     /**
-     * @param bool $skip_me_now set to true to disable the "Me (Now)" option
-     *                          for the preparer
-     * @return UnclaimedDraft
-     * @ignore
-     */
+       * @param  boolean $skip_me_now Set to true to disable the "Me (Now)" option
+       * for the preparer.
+       * @return UnclaimedDraft
+       * @ignore
+       */
     public function enableSkipMeNow()
     {
         $this->skip_me_now = true;
-
         return $this;
     }
 
     /**
+     * @param  string $id
      * @return UnclaimedDraft
      * @ignore
      */
-    public function setClientId(string $id)
+    public function setClientId($id)
     {
         if ($id) {
             $this->type = 'request_signature';
@@ -133,13 +134,13 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     }
 
     /**
+     * @param string $type
      * @return UnclaimedDraft
      * @ignore
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
-
         return $this;
     }
 
@@ -155,7 +156,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     /**
      * Returns true if this Unclaimed Draft is to be embedded
      *
-     * @return bool true if this Unclaimed Draft is to be embedded
+     * @return boolean true if this Unclaimed Draft is to be embedded
      */
     public function isForEmbeddedSigning()
     {
@@ -177,10 +178,10 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
      */
     public function toParams()
     {
-        $except = [
+        $except = array(
             'request',
-            'claim_url',
-        ];
+            'claim_url'
+        );
 
         // Skip including files local to this object if specified on the request instead
         if (isset($this->request) && !sizeof($this->file)) {
@@ -195,7 +196,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
             $except[] = 'client_id';
         }
 
-        /*
+        /**
          * Here we union (using the + operator) the param arrays for the
          * SignatureRequest object with our self (the UnclaimedDraft
          * object) to get the final params array. The order of this union is
@@ -203,25 +204,25 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
          * operator so that its values (e.g. test_mode) take precedence over
          * our defaults.
          */
-        return $this->request->toParams([
-            'except' => [
-                'title', // title not supported for unclaimed draft endpoints
-            ],
-        ]) + $this->toArray([
-            'except' => $except,
-        ]);
+        return $this->request->toParams(array(
+            'except' => array(
+                'title' // title not supported for unclaimed draft endpoints
+            )
+        )) + $this->toArray(array(
+            'except' => $except
+        ));
     }
 
     public function toEditParams()
     {
-        $fields_to_include = [
+        $fields_to_include = array(
             'client_id',
             'test_mode',
             'requesting_redirect_url',
             'signing_redirect_url',
             'is_for_embedded_signing',
-            'requester_email_address',
-        ];
+            'requester_email_address'
+        );
 
         $params = $this->toArray();
 

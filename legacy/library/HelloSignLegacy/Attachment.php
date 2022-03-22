@@ -51,7 +51,7 @@ class Attachment extends AbstractObject
     /**
      * The index of the signer to upload this specified attachment.
      *
-     * @var int
+     * @var integer
      */
     protected $signer_index = null;
 
@@ -59,7 +59,7 @@ class Attachment extends AbstractObject
      * Whether or not the signer is required to upload the attachment.
      * Defaults to false.
      *
-     * @var bool
+     * @var boolean
      */
     protected $required = false;
 }

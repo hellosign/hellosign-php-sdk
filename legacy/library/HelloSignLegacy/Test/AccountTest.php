@@ -31,13 +31,13 @@ use HelloSignLegacy\Account;
 class AccountTest extends AbstractTest
 {
     /**
-     * @expectedException \HelloSignLegacy\Error
+     * @expectedException HelloSignLegacy\Error
      * @expectedExceptionMessage Account already exists
      * @group create
      */
     public function testCreateAccount()
     {
-        $random_email = rand(1, 10000000) . '@example.com';
+        $random_email = rand(1, 10000000) . "@example.com";
         $response = $this->client->createAccount(
             new Account($random_email)
         );
@@ -59,7 +59,7 @@ class AccountTest extends AbstractTest
     public function testUpdateAccount()
     {
         $callback_url = $_ENV['CALLBACK_URL'];
-        $account = new Account();
+        $account = new Account;
         $account->setCallbackUrl($callback_url);
         $response = $this->client->updateAccount($account);
 

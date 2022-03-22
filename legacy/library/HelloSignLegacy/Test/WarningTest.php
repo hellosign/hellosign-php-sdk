@@ -26,6 +26,8 @@
 
 namespace HelloSignLegacy\Test;
 
+use HelloSignLegacy\Account;
+
 class WarningTest extends AbstractTest
 {
     public function testWarnings()

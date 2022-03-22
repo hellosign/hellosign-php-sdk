@@ -43,8 +43,10 @@ class SignerGroup extends AbstractObject
 
     /**
      * Constructor
+     *
+     * @param  array $array
      */
-    public function __construct(array $array = [])
+    public function __construct($array = array())
     {
         $this->group = $array['name'];
     }

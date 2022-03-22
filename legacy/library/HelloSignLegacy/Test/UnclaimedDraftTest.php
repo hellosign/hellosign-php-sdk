@@ -38,7 +38,7 @@ class UnclaimedDraftTest extends AbstractTest
     {
         $account = $this->client->getAccount();
 
-        $request = new SignatureRequest();
+        $request = new SignatureRequest;
         $request->setRequesterEmail($account->getEmail());
         $request->setTitle('NDA with Acme Co.');
         $request->setSubject('The NDA we talked about');
@@ -55,6 +55,7 @@ class UnclaimedDraftTest extends AbstractTest
         $response = $this->client->createUnclaimedDraft($draft);
         $sign_url = $response->getClaimUrl();
 
+
         $this->assertInstanceOf('HelloSignLegacy\UnclaimedDraft', $response);
         $this->assertNotNull($response);
         $this->assertEquals($draft, $response);
@@ -68,13 +69,14 @@ class UnclaimedDraftTest extends AbstractTest
      */
     public function testCreateUnclaimedDraft()
     {
-        $request = new SignatureRequest();
+        $request = new SignatureRequest;
         $request->addFile(__DIR__ . '/nda.docx');
 
         $draft = new UnclaimedDraft($request);
 
         $response = $this->client->createUnclaimedDraft($draft);
         $sign_url = $response->getClaimUrl();
+
 
         $this->assertInstanceOf('HelloSignLegacy\UnclaimedDraft', $response);
         $this->assertNotNull($response);
@@ -94,10 +96,10 @@ class UnclaimedDraftTest extends AbstractTest
         $template = $templates[0];
         $templateId = $template->getId();
 
-        $baseReq = new \HelloSignLegacy\TemplateSignatureRequest();
+        $baseReq = new \HelloSign\TemplateSignatureRequest();
         $baseReq->setTemplateId($templateId);
         foreach ($template->getSignerRoles() as $i => $role) {
-            $baseReq->setSigner($role->name, 'signer' . $i . '@example.com', "signer $i");
+            $baseReq->setSigner($role->name, "signer".$i."@example.com", "signer $i");
         }
         $baseReq->setSigningRedirectUrl('http://hogwarts.edu/success');
         $baseReq->setRequestingRedirectUrl('http://hogwarts.edu');

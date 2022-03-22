@@ -27,12 +27,15 @@
 namespace HelloSignLegacy\Test;
 
 use HelloSignLegacy\Account;
+use HelloSignLegacy\Error;
 use HelloSignLegacy\Client;
+use HelloSignLegacy\SignatureRequest;
+use HelloSignLegacy\Signer;
+use HelloSignLegacy\TemplateSignatureRequest;
 
 class OAuthTest extends AbstractTest
 {
-    private function getOAuthClient($token)
-    {
+    private function getOAuthClient($token) {
         $api_url = $_ENV['API_URL'] == null ? Client::API_URL : $_ENV['API_URL'];
         $oauth_token_url = $_ENV['OAUTH_TOKEN_URL'] == null ? Client::OAUTH_TOKEN_URL : $_ENV['OAUTH_TOKEN_URL'];
         $oauth_client = new Client($token, null, $api_url, $oauth_token_url);
@@ -47,7 +50,7 @@ class OAuthTest extends AbstractTest
     public function testCreateAccount()
     {
         //fails if account has already been created
-        $random_email = rand(1, 10000000) . '@example.com';
+        $random_email = rand(1, 10000000) . "@example.com";
         $response = $this->client->createAccount(
             new Account($random_email),
             $_ENV['CLIENT_ID'],

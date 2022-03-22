@@ -50,7 +50,7 @@ class EmbeddedResponse extends AbstractResource
     /**
      * When the link expires
      *
-     * @var int
+     * @var integer
      */
     protected $expires_at = null;
 
@@ -64,7 +64,7 @@ class EmbeddedResponse extends AbstractResource
     }
 
     /**
-     * @return int
+     * @return integer
      * @ignore
      */
     public function getExpiresAt()

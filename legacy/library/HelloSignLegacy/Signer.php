@@ -51,7 +51,7 @@ class Signer extends AbstractObject
     /**
      * The order the signer is required to sign in
      *
-     * @var int
+     * @var integer
      */
     protected $order = null;
 

@@ -26,8 +26,8 @@
 
 namespace HelloSignLegacy\Test;
 
-use HelloSignLegacy\Error;
 use HelloSignLegacy\Team;
+use HelloSignLegacy\Error;
 
 class TeamTest extends AbstractTest
 {
@@ -73,7 +73,7 @@ class TeamTest extends AbstractTest
      */
     public function testCreateTeam()
     {
-        $name = 'SSS' . time();
+        $name = 'SSS'.time();
         $response = $this->client->createTeam(new Team($name));
 
         $this->assertInstanceOf('HelloSignLegacy\Team', $response);
@@ -86,7 +86,7 @@ class TeamTest extends AbstractTest
      */
     public function testUpdateTeamName()
     {
-        $name = 'SSS' . time();
+        $name = 'SSS'.time();
         $response = $this->client->updateTeamName($name);
 
         $this->assertInstanceOf('HelloSignLegacy\Team', $response);

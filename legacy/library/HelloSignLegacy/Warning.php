@@ -53,7 +53,7 @@ class Warning
      *
      * @param stdClass $warning_data
      */
-    public function __construct(stdClass $warning_data = null)
+    public function __construct($warning_data = null)
     {
         if (isset($warning_data)) {
             $this->setMessage($warning_data->warning_msg);
@@ -64,9 +64,10 @@ class Warning
     /**
      * set warning message
      *
+     * @param  String $message
      * @return static
      */
-    public function setMessage(string $message)
+    public function setMessage($message)
     {
         isset($message) && $this->message = $message;
     }
@@ -74,9 +75,10 @@ class Warning
     /**
      * set warning name
      *
+     * @param  String $name
      * @return static
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         isset($name) && $this->name = $name;
     }
@@ -84,7 +86,7 @@ class Warning
     /**
      * get warning message
      *
-     * @return string
+     * @return String
      */
     public function getMessage()
     {
@@ -94,7 +96,7 @@ class Warning
     /**
      * get warning name
      *
-     * @return string
+     * @return String
      */
     public function getName()
     {

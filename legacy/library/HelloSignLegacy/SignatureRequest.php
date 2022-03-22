@@ -32,14 +32,14 @@ namespace HelloSignLegacy;
 use stdClass;
 
 /**
- * All HelloSign API requests can be made using HelloSignLegacy\Client class. This
+ * All HelloSign API requests can be made using HelloSign\Client class. This
  * class must be initialized with your authentication details, such as an API
  * key (preferred) or website credentials.
  */
 class SignatureRequest extends AbstractSignatureRequest
 {
-    public const FILE_TYPE_PDF = 'pdf';
-    public const FILE_TYPE_ZIP = 'zip';
+    const FILE_TYPE_PDF = 'pdf';
+    const FILE_TYPE_ZIP = 'zip';
 
     /**
      * @var string
@@ -58,7 +58,7 @@ class SignatureRequest extends AbstractSignatureRequest
      * Whether or not the SignatureRequest has been fully executed by all
      * signers
      *
-     * @var bool
+     * @var boolean
      */
     protected $is_complete = false;
 
@@ -66,7 +66,7 @@ class SignatureRequest extends AbstractSignatureRequest
      * Whether or not an error occurred (either during the creation of the
      * SignatureRequest or during one of the signings)
      *
-     * @var bool
+     * @var boolean
      */
     protected $has_error = false;
 
@@ -93,13 +93,13 @@ class SignatureRequest extends AbstractSignatureRequest
     protected $details_url = null;
 
     /**
-     * Whether the sender will allow the signer to reassign the SignatureRequest
-     *
-     * Defaults to false.
-     *
-     * @var bool
-     */
-    protected $allow_reassign = false;
+    * Whether the sender will allow the signer to reassign the SignatureRequest
+    *
+    * Defaults to false.
+    *
+    * @var boolean
+    */
+   protected $allow_reassign = false;
 
     /**
      * A list of email addresses that were CCed on the SignatureRequest
@@ -109,7 +109,7 @@ class SignatureRequest extends AbstractSignatureRequest
      *
      * @var array
      */
-    protected $cc_email_addresses = [];
+    protected $cc_email_addresses = array();
 
     /**
      * A JSON array of Custom Field objects
@@ -146,17 +146,18 @@ class SignatureRequest extends AbstractSignatureRequest
      *
      * @var array
      */
-    protected $form_fields_per_document = [];
+    protected $form_fields_per_document = array();
 
     /**
      * Constructor
      *
-     * @param stdClass $response
+     * @param  stdClass $response
+     * @param  array $options
      * @ignore
      */
-    public function __construct(stdClass $response = null, array $options = [])
+    public function __construct($response = null, $options = array())
     {
-        $this->signatures = new SignatureList();
+        $this->signatures = new SignatureList;
 
         parent::__construct($response, $options);
     }
@@ -177,7 +178,6 @@ class SignatureRequest extends AbstractSignatureRequest
     public function enableAllowReassign()
     {
         $this->allow_reassign = true;
-
         return $this;
     }
 
@@ -188,18 +188,17 @@ class SignatureRequest extends AbstractSignatureRequest
     public function disableAllowReassign()
     {
         $this->allow_reassign = false;
-
         return $this;
     }
 
     /**
+     * @param  array $form_fields
      * @return SignatureRequest
      * @ignore
      */
-    public function setFormFieldsPerDocument(array $form_fields)
+    public function setFormFieldsPerDocument($form_fields)
     {
         $this->form_fields_per_document = json_encode($form_fields);
-
         return $this;
     }
 
@@ -207,53 +206,53 @@ class SignatureRequest extends AbstractSignatureRequest
      * Set the value for a custom field with the given field name
      * and optionally define a Role allowed to edit it and if the field is required to be filled
      *
-     * @param string $field_name field name to be filled in
-     * @param string $editor
-     * @param string $required
+     * @param  string $field_name field name to be filled in
+     * @param  string $value
+     * @param  string $editor
+     * @param  string $required
      * @return SignatureRequest
      */
-    public function setCustomFieldValue(string $field_name, string $value, string $editor = null, string $required = null)
+    public function setCustomFieldValue($field_name, $value, $editor = null, $required = null)
     {
-        $custom_fields = isset($this->custom_fields) ? json_decode($this->custom_fields) : [];
-        $custom_fields[] = [
-            'name' => $field_name,
-            'value' => $value,
-            'editor' => $editor,
-            'required' => $required,
-        ];
+        $custom_fields = isset($this->custom_fields) ? json_decode($this->custom_fields) : array();
+        $custom_fields[] = array(
+            'name'     => $field_name,
+            'value'    => $value,
+            'editor'   => $editor,
+            'required'   => $required
+        );
         $this->custom_fields = json_encode($custom_fields);
-
         return $this;
     }
 
     /**
+     * @param  string $email
      * @return SignatureRequest
      * @ignore
      */
-    public function addCC(string $email)
+    public function addCC($email)
     {
         $this->cc_email_addresses[] = $email;
-
         return $this;
     }
 
     /**
      * Adds an Attachment to the SignatureRequest
      *
-     * @param string $name name of the Attachment
-     * @param int $signer_index index of the signer to upload this Attachment
-     * @param string $instructions Instructions for uploading the Attachment. (optional)
-     * @param bool $required Whether or not the signer is required to upload this Attachment. (optional)
+     * @param  string $name Name of the Attachment.
+     * @param  integer $signer_index Index of the signer to upload this Attachment.
+     * @param  string $instructions Instructions for uploading the Attachment. (optional)
+     * @param  boolean $required Whether or not the signer is required to upload this Attachment. (optional)
      * @return SignatureRequest
      */
-    public function addAttachment(string $name, int $signer_index, string $instructions = null, bool $required = null)
+    public function addAttachment($name, $signer_index, $instructions = null, $required = null)
     {
-        $attachment = new Attachment([
+        $attachment = new Attachment(array(
                 'name' => $name,
                 'instructions' => $instructions,
                 'signer_index' => $signer_index,
-                'required' => $required,
-            ]);
+                'required' => $required
+            ));
 
         $this->attachments[] = $attachment;
 
@@ -261,17 +260,18 @@ class SignatureRequest extends AbstractSignatureRequest
     }
 
     /**
+     * @param  array $options
      * @return array
      * @ignore
      */
-    public function toParams(array $options = [])
+    public function toParams($options = array())
     {
         // default value
         if (!isset($options['except'])) {
-            $options['except'] = [];
+          $options['except'] = array();
         }
 
-        $options['except'] = array_merge($options['except'], [
+        $options['except'] = array_merge($options['except'], array(
             'signature_request_id',
             'is_complete',
             'has_error',
@@ -279,8 +279,8 @@ class SignatureRequest extends AbstractSignatureRequest
             'signing_url',
             'details_url',
             'response_data',
-            'signatures',
-        ]);
+            'signatures'
+        ));
 
         // requester_email_address param only accepted in unclaimed_draft/create_embedded
         if (!$this->requester_email_address) {
@@ -291,29 +291,31 @@ class SignatureRequest extends AbstractSignatureRequest
     }
 
     /**
+     * @param  array $array
+     * @param  array $options
      * @return SignatureRequest
      * @ignore
      */
-    public function fromArray(array $array, array $options = [])
+    public function fromArray($array, $options = array())
     {
         array_key_exists('signatures', $array) && $this->setSignatures($array['signatures']);
 
         if (!isset($options['except'])) {
-            $options['except'] = [];
+          $options['except'] = array();
         }
 
-        $options['except'] = array_merge($options['except'], [
+        $options['except'] = array_merge($options['except'], array(
             'signatures',
             'original_title',
-            'final_copy_uri',
-        ]);
+            'final_copy_uri'
+        ));
 
         return parent::fromArray($array, $options);
     }
 
     /**
-     * @return bool true, if all signers have signed the document, false
-     *              otherwise
+     * @return boolean true, if all signers have signed the document, false
+     * otherwise
      * @ignore
      */
     public function isComplete()
@@ -322,7 +324,7 @@ class SignatureRequest extends AbstractSignatureRequest
     }
 
     /**
-     * @return bool
+     * @return boolean
      * @ignore
      */
     public function hasError()
@@ -340,10 +342,11 @@ class SignatureRequest extends AbstractSignatureRequest
     }
 
     /**
+     * @param  array $signatures
      * @return SignatureRequest
      * @ignore
      */
-    protected function setSignatures(array $signatures)
+    protected function setSignatures($signatures)
     {
         $this->signatures->setCollection($signatures);
 
