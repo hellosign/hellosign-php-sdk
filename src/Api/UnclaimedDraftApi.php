@@ -124,7 +124,7 @@ class UnclaimedDraftApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\UnclaimedDraftCreateResponse|\HelloSignSDK\Model\ErrorResponse
+     * @return Model\UnclaimedDraftCreateResponse
      */
     public function unclaimedDraftCreate(Model\UnclaimedDraftCreateRequest $unclaimed_draft_create_request)
     {
@@ -142,7 +142,7 @@ class UnclaimedDraftApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\UnclaimedDraftCreateResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\UnclaimedDraftCreateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function unclaimedDraftCreateWithHttpInfo(Model\UnclaimedDraftCreateRequest $unclaimed_draft_create_request)
     {
@@ -183,31 +183,35 @@ class UnclaimedDraftApi
                 );
             }
 
-            switch ($statusCode) {
-                case 200:
-                    if ('\HelloSignSDK\Model\UnclaimedDraftCreateResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            $statusCode = $response->getStatusCode();
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\UnclaimedDraftCreateResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                case 400:
-                    if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\UnclaimedDraftCreateResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\UnclaimedDraftCreateResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
             }
 
             $returnType = '\HelloSignSDK\Model\UnclaimedDraftCreateResponse';
@@ -223,24 +227,27 @@ class UnclaimedDraftApi
                 $response->getHeaders(),
             ];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\UnclaimedDraftCreateResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\UnclaimedDraftCreateResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
             throw $e;
         }
     }
@@ -430,7 +437,7 @@ class UnclaimedDraftApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\UnclaimedDraftCreateResponse|\HelloSignSDK\Model\ErrorResponse
+     * @return Model\UnclaimedDraftCreateResponse
      */
     public function unclaimedDraftCreateEmbedded(Model\UnclaimedDraftCreateEmbeddedRequest $unclaimed_draft_create_embedded_request)
     {
@@ -448,7 +455,7 @@ class UnclaimedDraftApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\UnclaimedDraftCreateResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\UnclaimedDraftCreateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function unclaimedDraftCreateEmbeddedWithHttpInfo(Model\UnclaimedDraftCreateEmbeddedRequest $unclaimed_draft_create_embedded_request)
     {
@@ -489,31 +496,35 @@ class UnclaimedDraftApi
                 );
             }
 
-            switch ($statusCode) {
-                case 200:
-                    if ('\HelloSignSDK\Model\UnclaimedDraftCreateResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            $statusCode = $response->getStatusCode();
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\UnclaimedDraftCreateResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                case 400:
-                    if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\UnclaimedDraftCreateResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\UnclaimedDraftCreateResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
             }
 
             $returnType = '\HelloSignSDK\Model\UnclaimedDraftCreateResponse';
@@ -529,24 +540,27 @@ class UnclaimedDraftApi
                 $response->getHeaders(),
             ];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\UnclaimedDraftCreateResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\UnclaimedDraftCreateResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
             throw $e;
         }
     }
@@ -736,7 +750,7 @@ class UnclaimedDraftApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\UnclaimedDraftCreateResponse|\HelloSignSDK\Model\ErrorResponse
+     * @return Model\UnclaimedDraftCreateResponse
      */
     public function unclaimedDraftCreateEmbeddedWithTemplate(Model\UnclaimedDraftCreateEmbeddedWithTemplateRequest $unclaimed_draft_create_embedded_with_template_request)
     {
@@ -754,7 +768,7 @@ class UnclaimedDraftApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\UnclaimedDraftCreateResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\UnclaimedDraftCreateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function unclaimedDraftCreateEmbeddedWithTemplateWithHttpInfo(Model\UnclaimedDraftCreateEmbeddedWithTemplateRequest $unclaimed_draft_create_embedded_with_template_request)
     {
@@ -795,31 +809,35 @@ class UnclaimedDraftApi
                 );
             }
 
-            switch ($statusCode) {
-                case 200:
-                    if ('\HelloSignSDK\Model\UnclaimedDraftCreateResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            $statusCode = $response->getStatusCode();
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\UnclaimedDraftCreateResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                case 400:
-                    if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\UnclaimedDraftCreateResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\UnclaimedDraftCreateResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
             }
 
             $returnType = '\HelloSignSDK\Model\UnclaimedDraftCreateResponse';
@@ -835,24 +853,27 @@ class UnclaimedDraftApi
                 $response->getHeaders(),
             ];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\UnclaimedDraftCreateResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\UnclaimedDraftCreateResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
             throw $e;
         }
     }
@@ -1043,7 +1064,7 @@ class UnclaimedDraftApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\UnclaimedDraftCreateResponse|\HelloSignSDK\Model\ErrorResponse
+     * @return Model\UnclaimedDraftCreateResponse
      */
     public function unclaimedDraftEditAndResend(string $signature_request_id, Model\UnclaimedDraftEditAndResendRequest $unclaimed_draft_edit_and_resend_request)
     {
@@ -1062,7 +1083,7 @@ class UnclaimedDraftApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\UnclaimedDraftCreateResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\UnclaimedDraftCreateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function unclaimedDraftEditAndResendWithHttpInfo(string $signature_request_id, Model\UnclaimedDraftEditAndResendRequest $unclaimed_draft_edit_and_resend_request)
     {
@@ -1103,31 +1124,35 @@ class UnclaimedDraftApi
                 );
             }
 
-            switch ($statusCode) {
-                case 200:
-                    if ('\HelloSignSDK\Model\UnclaimedDraftCreateResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            $statusCode = $response->getStatusCode();
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\UnclaimedDraftCreateResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                case 400:
-                    if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\UnclaimedDraftCreateResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\UnclaimedDraftCreateResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
             }
 
             $returnType = '\HelloSignSDK\Model\UnclaimedDraftCreateResponse';
@@ -1143,24 +1168,27 @@ class UnclaimedDraftApi
                 $response->getHeaders(),
             ];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\UnclaimedDraftCreateResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\UnclaimedDraftCreateResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
             throw $e;
         }
     }

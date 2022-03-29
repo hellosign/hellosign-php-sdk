@@ -124,7 +124,7 @@ class ApiAppApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\ApiAppGetResponse|\HelloSignSDK\Model\ErrorResponse
+     * @return Model\ApiAppGetResponse
      */
     public function apiAppCreate(Model\ApiAppCreateRequest $api_app_create_request)
     {
@@ -142,7 +142,7 @@ class ApiAppApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\ApiAppGetResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\ApiAppGetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function apiAppCreateWithHttpInfo(Model\ApiAppCreateRequest $api_app_create_request)
     {
@@ -183,31 +183,35 @@ class ApiAppApi
                 );
             }
 
-            switch ($statusCode) {
-                case 200:
-                    if ('\HelloSignSDK\Model\ApiAppGetResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            $statusCode = $response->getStatusCode();
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ApiAppGetResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                case 400:
-                    if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\ApiAppGetResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ApiAppGetResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
             }
 
             $returnType = '\HelloSignSDK\Model\ApiAppGetResponse';
@@ -223,24 +227,27 @@ class ApiAppApi
                 $response->getHeaders(),
             ];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ApiAppGetResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ApiAppGetResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
             throw $e;
         }
     }
@@ -489,16 +496,18 @@ class ApiAppApi
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
+            $statusCode = $e->getCode();
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+
             throw $e;
         }
     }
@@ -678,7 +687,7 @@ class ApiAppApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\ApiAppGetResponse|\HelloSignSDK\Model\ErrorResponse
+     * @return Model\ApiAppGetResponse
      */
     public function apiAppGet(string $client_id)
     {
@@ -696,7 +705,7 @@ class ApiAppApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\ApiAppGetResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\ApiAppGetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function apiAppGetWithHttpInfo(string $client_id)
     {
@@ -737,31 +746,35 @@ class ApiAppApi
                 );
             }
 
-            switch ($statusCode) {
-                case 200:
-                    if ('\HelloSignSDK\Model\ApiAppGetResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            $statusCode = $response->getStatusCode();
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ApiAppGetResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                case 400:
-                    if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\ApiAppGetResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ApiAppGetResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
             }
 
             $returnType = '\HelloSignSDK\Model\ApiAppGetResponse';
@@ -777,24 +790,27 @@ class ApiAppApi
                 $response->getHeaders(),
             ];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ApiAppGetResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ApiAppGetResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
             throw $e;
         }
     }
@@ -985,7 +1001,7 @@ class ApiAppApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\ApiAppListResponse|\HelloSignSDK\Model\ErrorResponse
+     * @return Model\ApiAppListResponse
      */
     public function apiAppList(int $page = 1, int $page_size = 20)
     {
@@ -1004,7 +1020,7 @@ class ApiAppApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\ApiAppListResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\ApiAppListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function apiAppListWithHttpInfo(int $page = 1, int $page_size = 20)
     {
@@ -1045,31 +1061,35 @@ class ApiAppApi
                 );
             }
 
-            switch ($statusCode) {
-                case 200:
-                    if ('\HelloSignSDK\Model\ApiAppListResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            $statusCode = $response->getStatusCode();
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ApiAppListResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                case 400:
-                    if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\ApiAppListResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ApiAppListResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
             }
 
             $returnType = '\HelloSignSDK\Model\ApiAppListResponse';
@@ -1085,24 +1105,27 @@ class ApiAppApi
                 $response->getHeaders(),
             ];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ApiAppListResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ApiAppListResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
             throw $e;
         }
     }
@@ -1301,7 +1324,7 @@ class ApiAppApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\ApiAppGetResponse|\HelloSignSDK\Model\ErrorResponse
+     * @return Model\ApiAppGetResponse
      */
     public function apiAppUpdate(string $client_id, Model\ApiAppUpdateRequest $api_app_update_request)
     {
@@ -1320,7 +1343,7 @@ class ApiAppApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\ApiAppGetResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\ApiAppGetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function apiAppUpdateWithHttpInfo(string $client_id, Model\ApiAppUpdateRequest $api_app_update_request)
     {
@@ -1361,31 +1384,35 @@ class ApiAppApi
                 );
             }
 
-            switch ($statusCode) {
-                case 200:
-                    if ('\HelloSignSDK\Model\ApiAppGetResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            $statusCode = $response->getStatusCode();
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ApiAppGetResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
-                case 400:
-                    if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\ApiAppGetResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders(),
-                    ];
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ApiAppGetResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
             }
 
             $returnType = '\HelloSignSDK\Model\ApiAppGetResponse';
@@ -1401,24 +1428,27 @@ class ApiAppApi
                 $response->getHeaders(),
             ];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ApiAppGetResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\HelloSignSDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ApiAppGetResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+
+            $rangeCode = substr('4XX', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
             throw $e;
         }
     }

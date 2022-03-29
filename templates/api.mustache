@@ -225,31 +225,73 @@ use {{invokerPackage}}\ObjectSerializer;
                     (string) $response->getBody()
                 );
             }
+
             {{#returnType}}
+            $statusCode = $response->getStatusCode();
+
             {{#responses}}
-            {{#-first}}
-
-            switch($statusCode) {
-            {{/-first}}
             {{#dataType}}
-                {{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
-                    if ('{{{dataType}}}' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
+            {{^isWildcard}}
+            {{^isRange}}
+            if ($statusCode === {{code}}) {
+                if ('{{{dataType}}}' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '{{{dataType}}}', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            {{/dataType}}
-            {{#-last}}
+                return [
+                    ObjectSerializer::deserialize($content, '{{{dataType}}}', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders()
+                ];
             }
-            {{/-last}}
+            {{/isRange}}
+            {{/isWildcard}}
+            {{/dataType}}
             {{/responses}}
 
+            {{#responses}}
+            {{#dataType}}
+            {{#isRange}}
+            $rangeCode = substr('{{code}}', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('{{{dataType}}}' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '{{{dataType}}}', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders()
+                ];
+            }
+            {{/isRange}}
+            {{/dataType}}
+            {{/responses}}
+
+            {{#responses}}
+            {{#dataType}}
+            {{#isWildcard}}
+            $rangeCode = substr('{{code}}', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                if ('{{{dataType}}}' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '{{{dataType}}}', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders()
+                ];
+            }
+            {{/isWildcard}}
+            {{/dataType}}
+            {{/responses}}
             $returnType = '{{{returnType}}}';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
@@ -269,20 +311,57 @@ use {{invokerPackage}}\ObjectSerializer;
             {{/returnType}}
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-        {{#responses}}
+            $statusCode = $e->getCode();
+
+            {{#responses}}
             {{#dataType}}
-                {{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '{{{dataType}}}',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            {{/dataType}}
-        {{/responses}}
+            {{^isWildcard}}
+            {{^isRange}}
+            if ($statusCode === {{code}}) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '{{{dataType}}}',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
             }
+            {{/isRange}}
+            {{/isWildcard}}
+            {{/dataType}}
+            {{/responses}}
+
+            {{#responses}}
+            {{#dataType}}
+            {{#isRange}}
+            $rangeCode = substr('{{code}}', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '{{{dataType}}}',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+            {{/isRange}}
+            {{/dataType}}
+            {{/responses}}
+
+            {{#responses}}
+            {{#dataType}}
+            {{#isWildcard}}
+            $rangeCode = substr('{{code}}', 1);
+            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '{{{dataType}}}',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+            {{/isWildcard}}
+            {{/dataType}}
+            {{/responses}}
+
             throw $e;
         }
     }
