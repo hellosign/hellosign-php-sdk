@@ -7,10 +7,7 @@ $config = HelloSignSDK\Configuration::getDefaultConfiguration();
 // Configure HTTP basic authorization: api_key
 $config->setUsername("YOUR_API_KEY");
 
-$api = new HelloSignSDK\Api\ReportApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\ReportApi($config);
 
 $data = new HelloSignSDK\Model\ReportCreateRequest();
 $data->setStartDate("09/01/2020")

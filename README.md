@@ -98,10 +98,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\AccountApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\AccountApi($config);
 
 $data = new HelloSignSDK\Model\AccountCreateRequest();
 $data->setEmailAddress("newuser@hellosign.com");
@@ -126,10 +123,7 @@ require_once __DIR__ . "/vendor/autoload.php";
 $config = HelloSignSDK\Configuration::getDefaultConfiguration();
 $config->setUsername("YOUR_API_KEY");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $data = HelloSignSDK\Model\SignatureRequestSendRequest::fromArray([
     "title"   => "NDA with Acme Co.",

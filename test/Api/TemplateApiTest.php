@@ -25,8 +25,8 @@ class TemplateApiTest extends HelloTestCase
         ]);
 
         $this->api = new Api\TemplateApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
     }
 

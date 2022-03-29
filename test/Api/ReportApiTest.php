@@ -25,8 +25,8 @@ class ReportApiTest extends HelloTestCase
         ]);
 
         $this->api = new Api\ReportApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
     }
 

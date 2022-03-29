@@ -104,10 +104,7 @@ require_once __DIR__ . "/vendor/autoload.php";
 $config = HelloSignSDK\Configuration::getDefaultConfiguration();
 $config->setUsername("YOUR_API_KEY");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $data = HelloSignSDK\Model\SignatureRequestSendRequest::fromArray([
     "title"   => "NDA with Acme Co.",

@@ -37,10 +37,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\TeamApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\TeamApi($config);
 
 $data = new HelloSignSDK\Model\TeamAddMemberRequest();
 $data->setEmailAddress("george@example.com");
@@ -103,10 +100,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\TeamApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\TeamApi($config);
 
 $data = new HelloSignSDK\Model\TeamCreateRequest();
 $data->setName("New Team Name");
@@ -169,10 +163,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\TeamApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\TeamApi($config);
 
 try {
     $api->teamDelete();
@@ -229,10 +220,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\TeamApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\TeamApi($config);
 
 try {
     $result = $api->teamGet();
@@ -290,10 +278,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\TeamApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\TeamApi($config);
 
 $data = new HelloSignSDK\Model\TeamRemoveMemberRequest();
 $data->setEmailAddress("teammate@hellosign.com")
@@ -357,10 +342,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\TeamApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\TeamApi($config);
 
 $data = new HelloSignSDK\Model\TeamUpdateRequest();
 $data->setName("New Team Name");

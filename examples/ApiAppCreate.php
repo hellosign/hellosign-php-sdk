@@ -10,10 +10,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\ApiAppApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\ApiAppApi($config);
 
 $oauth = new HelloSignSDK\Model\SubOAuth();
 $oauth->setCallbackUrl("https://example.com/oauth")

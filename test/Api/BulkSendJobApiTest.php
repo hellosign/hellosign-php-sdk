@@ -25,8 +25,8 @@ class BulkSendJobApiTest extends HelloTestCase
         ]);
 
         $this->api = new Api\BulkSendJobApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
     }
 

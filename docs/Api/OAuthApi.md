@@ -26,7 +26,6 @@ Once you have retrieved the code from the user callback, you will need to exchan
 require_once __DIR__ . "/vendor/autoload.php";
 
 $api = new HelloSignSDK\Api\OAuthApi(
-    new GuzzleHttp\Client(),
     HelloSignSDK\Configuration::getDefaultConfiguration()
 );
 
@@ -87,7 +86,6 @@ Access tokens are only valid for a given period of time (typically one hour) for
 require_once __DIR__ . "/vendor/autoload.php";
 
 $api = new HelloSignSDK\Api\OAuthApi(
-    new GuzzleHttp\Client(),
     HelloSignSDK\Configuration::getDefaultConfiguration()
 );
 

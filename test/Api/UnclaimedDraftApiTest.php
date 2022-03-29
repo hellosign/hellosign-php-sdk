@@ -25,8 +25,8 @@ class UnclaimedDraftApiTest extends HelloTestCase
         ]);
 
         $this->api = new Api\UnclaimedDraftApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
     }
 

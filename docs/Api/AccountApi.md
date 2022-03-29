@@ -35,10 +35,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\AccountApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\AccountApi($config);
 
 $data = new HelloSignSDK\Model\AccountCreateRequest();
 $data->setEmailAddress("newuser@hellosign.com");
@@ -101,10 +98,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\AccountApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\AccountApi($config);
 
 try {
     $result = $api->accountGet();
@@ -162,10 +156,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\AccountApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\AccountApi($config);
 
 $data = new HelloSignSDK\Model\AccountUpdateRequest();
 $data->setCallbackUrl("https://www.example.com/callback");
@@ -228,10 +219,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\AccountApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\AccountApi($config);
 
 $data = new HelloSignSDK\Model\AccountVerifyRequest();
 $data->setEmailAddress("some_user@hellosign.com");
