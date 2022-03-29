@@ -275,20 +275,17 @@ use {{invokerPackage}}\ObjectSerializer;
             {{#responses}}
             {{#dataType}}
             {{#isWildcard}}
-            $rangeCode = substr('{{code}}', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
-                if ('{{{dataType}}}' === '\SplFileObject') {
-                    $content = $response->getBody(); //stream goes to serializer
-                } else {
-                    $content = (string) $response->getBody();
-                }
-
-                return [
-                    ObjectSerializer::deserialize($content, '{{{dataType}}}', []),
-                    $response->getStatusCode(),
-                    $response->getHeaders()
-                ];
+            if ('{{{dataType}}}' === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
             }
+
+            return [
+                ObjectSerializer::deserialize($content, '{{{dataType}}}', []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
             {{/isWildcard}}
             {{/dataType}}
             {{/responses}}
