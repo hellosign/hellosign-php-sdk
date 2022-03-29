@@ -82,7 +82,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
         'show_preview' => 'bool',
-        'signers' => '\HelloSignSDK\Model\SubUnclaimedDraftEmbeddedSigner[]',
+        'signers' => '\HelloSignSDK\Model\SubUnclaimedDraftSigner[]',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
         'signing_redirect_url' => 'string',
         'skip_me_now' => 'bool',
@@ -940,7 +940,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
     /**
      * Gets signers
      *
-     * @return SubUnclaimedDraftEmbeddedSigner[]|null
+     * @return SubUnclaimedDraftSigner[]|null
      */
     public function getSigners()
     {
@@ -950,7 +950,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
     /**
      * Sets signers
      *
-     * @param SubUnclaimedDraftEmbeddedSigner[]|null $signers add Signers to your Unclaimed Draft Signature Request
+     * @param SubUnclaimedDraftSigner[]|null $signers add Signers to your Unclaimed Draft Signature Request
      *
      * @return self
      */

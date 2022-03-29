@@ -71,7 +71,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
         'file_url' => 'string[]',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
-        'signers' => '\HelloSignSDK\Model\SubSignatureRequestEmbeddedTemplateSigner[]',
+        'signers' => '\HelloSignSDK\Model\SubSignatureRequestTemplateSigner[]',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
         'subject' => 'string',
         'test_mode' => 'bool',
@@ -536,7 +536,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     /**
      * Gets signers
      *
-     * @return SubSignatureRequestEmbeddedTemplateSigner[]|null
+     * @return SubSignatureRequestTemplateSigner[]|null
      */
     public function getSigners()
     {
@@ -546,7 +546,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     /**
      * Sets signers
      *
-     * @param SubSignatureRequestEmbeddedTemplateSigner[]|null $signers add Signers to your Templated-based Signature Request
+     * @param SubSignatureRequestTemplateSigner[]|null $signers add Signers to your Templated-based Signature Request
      *
      * @return self
      */

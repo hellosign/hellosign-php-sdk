@@ -76,7 +76,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'form_fields_per_document' => '\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
-        'signers' => '\HelloSignSDK\Model\SubSignatureRequestEmbeddedSigner[]',
+        'signers' => '\HelloSignSDK\Model\SubSignatureRequestSigner[]',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
         'subject' => 'string',
         'test_mode' => 'bool',
@@ -689,7 +689,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     /**
      * Gets signers
      *
-     * @return SubSignatureRequestEmbeddedSigner[]|null
+     * @return SubSignatureRequestSigner[]|null
      */
     public function getSigners()
     {
@@ -699,7 +699,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     /**
      * Sets signers
      *
-     * @param SubSignatureRequestEmbeddedSigner[]|null $signers add Signers to your Signature Request
+     * @param SubSignatureRequestSigner[]|null $signers add Signers to your Signature Request
      *
      * @return self
      */

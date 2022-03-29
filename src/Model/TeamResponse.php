@@ -63,7 +63,6 @@ class TeamResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'name' => 'string',
         'accounts' => '\HelloSignSDK\Model\AccountResponse[]',
         'invited_accounts' => '\HelloSignSDK\Model\AccountResponse[]',
-        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -77,7 +76,6 @@ class TeamResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'name' => null,
         'accounts' => null,
         'invited_accounts' => null,
-        'warnings' => null,
     ];
 
     /**
@@ -110,7 +108,6 @@ class TeamResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'name' => 'name',
         'accounts' => 'accounts',
         'invited_accounts' => 'invited_accounts',
-        'warnings' => 'warnings',
     ];
 
     /**
@@ -122,7 +119,6 @@ class TeamResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'name' => 'setName',
         'accounts' => 'setAccounts',
         'invited_accounts' => 'setInvitedAccounts',
-        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -134,7 +130,6 @@ class TeamResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'name' => 'getName',
         'accounts' => 'getAccounts',
         'invited_accounts' => 'getInvitedAccounts',
-        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -196,7 +191,6 @@ class TeamResponse implements ModelInterface, ArrayAccess, JsonSerializable
         $this->container['name'] = $data['name'] ?? null;
         $this->container['accounts'] = $data['accounts'] ?? null;
         $this->container['invited_accounts'] = $data['invited_accounts'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): TeamResponse
@@ -301,30 +295,6 @@ class TeamResponse implements ModelInterface, ArrayAccess, JsonSerializable
     public function setInvitedAccounts(?array $invited_accounts)
     {
         $this->container['invited_accounts'] = $invited_accounts;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return WarningResponse[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param WarningResponse[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings)
-    {
-        $this->container['warnings'] = $warnings;
 
         return $this;
     }

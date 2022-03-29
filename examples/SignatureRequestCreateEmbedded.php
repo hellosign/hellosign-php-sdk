@@ -15,12 +15,12 @@ $api = new HelloSignSDK\Api\SignatureRequestApi(
     $config
 );
 
-$signer1 = new HelloSignSDK\Model\SubSignatureRequestEmbeddedSigner();
+$signer1 = new HelloSignSDK\Model\SubSignatureRequestSigner();
 $signer1->setEmailAddress("jack@example.com")
     ->setName("Jack")
     ->setOrder(0);
 
-$signer2 = new HelloSignSDK\Model\SubSignatureRequestEmbeddedSigner();
+$signer2 = new HelloSignSDK\Model\SubSignatureRequestSigner();
 $signer2->setEmailAddress("jill@example.com")
     ->setName("Jill")
     ->setOrder(1);
