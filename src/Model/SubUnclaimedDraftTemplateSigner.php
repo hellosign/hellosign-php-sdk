@@ -1,6 +1,6 @@
 <?php
 /**
- * SubBulkSignerListSigner
+ * SubUnclaimedDraftTemplateSigner
  *
  * PHP version 7.3
  *
@@ -30,11 +30,10 @@ namespace HelloSignSDK\Model;
 
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
-use InvalidArgumentException;
 use JsonSerializable;
 
 /**
- * SubBulkSignerListSigner Class Doc Comment
+ * SubUnclaimedDraftTemplateSigner Class Doc Comment
  *
  * @category Class
  * @author   OpenAPI Generator team
@@ -43,7 +42,7 @@ use JsonSerializable;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerializable
+class SubUnclaimedDraftTemplateSigner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +51,7 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
      *
      * @var string
      */
-    protected static $openAPIModelName = 'SubBulkSignerListSigner';
+    protected static $openAPIModelName = 'SubUnclaimedDraftTemplateSigner';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -63,8 +62,6 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
         'role' => 'string',
         'name' => 'string',
         'email_address' => 'string',
-        'pin' => 'string',
-        'sms_phone_number' => 'string',
     ];
 
     /**
@@ -78,8 +75,6 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
         'role' => null,
         'name' => null,
         'email_address' => 'email',
-        'pin' => null,
-        'sms_phone_number' => null,
     ];
 
     /**
@@ -112,8 +107,6 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
         'role' => 'role',
         'name' => 'name',
         'email_address' => 'email_address',
-        'pin' => 'pin',
-        'sms_phone_number' => 'sms_phone_number',
     ];
 
     /**
@@ -125,8 +118,6 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
         'role' => 'setRole',
         'name' => 'setName',
         'email_address' => 'setEmailAddress',
-        'pin' => 'setPin',
-        'sms_phone_number' => 'setSmsPhoneNumber',
     ];
 
     /**
@@ -138,8 +129,6 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
         'role' => 'getRole',
         'name' => 'getName',
         'email_address' => 'getEmailAddress',
-        'pin' => 'getPin',
-        'sms_phone_number' => 'getSmsPhoneNumber',
     ];
 
     /**
@@ -201,16 +190,14 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
         $this->container['role'] = $data['role'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['email_address'] = $data['email_address'] ?? null;
-        $this->container['pin'] = $data['pin'] ?? null;
-        $this->container['sms_phone_number'] = $data['sms_phone_number'] ?? null;
     }
 
-    public static function fromArray(array $data): SubBulkSignerListSigner
+    public static function fromArray(array $data): SubUnclaimedDraftTemplateSigner
     {
-        /** @var SubBulkSignerListSigner $obj */
+        /** @var SubUnclaimedDraftTemplateSigner $obj */
         $obj = ObjectSerializer::deserialize(
             ObjectSerializer::instantiateFiles(static::class, $data),
-            SubBulkSignerListSigner::class,
+            SubUnclaimedDraftTemplateSigner::class,
         );
 
         return $obj;
@@ -233,13 +220,6 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
         }
         if ($this->container['email_address'] === null) {
             $invalidProperties[] = "'email_address' can't be null";
-        }
-        if (!is_null($this->container['pin']) && (mb_strlen($this->container['pin']) > 12)) {
-            $invalidProperties[] = "invalid value for 'pin', the character length must be smaller than or equal to 12.";
-        }
-
-        if (!is_null($this->container['pin']) && (mb_strlen($this->container['pin']) < 4)) {
-            $invalidProperties[] = "invalid value for 'pin', the character length must be bigger than or equal to 4.";
         }
 
         return $invalidProperties;
@@ -269,7 +249,7 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets role
      *
-     * @param string $role Must match the single existing role in chosen Template(s). Currently only templates with a single role are supported. All signers must have the same `role` value.
+     * @param string $role must match an existing role in chosen Template(s)
      *
      * @return self
      */
@@ -293,7 +273,7 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets name
      *
-     * @param string $name the name of the signer
+     * @param string $name the name of the signer filling the role of `role`
      *
      * @return self
      */
@@ -317,68 +297,13 @@ class SubBulkSignerListSigner implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets email_address
      *
-     * @param string $email_address the email address of the signer
+     * @param string $email_address the email address of the signer filling the role of `role`
      *
      * @return self
      */
     public function setEmailAddress(string $email_address)
     {
         $this->container['email_address'] = $email_address;
-
-        return $this;
-    }
-
-    /**
-     * Gets pin
-     *
-     * @return string|null
-     */
-    public function getPin()
-    {
-        return $this->container['pin'];
-    }
-
-    /**
-     * Sets pin
-     *
-     * @param string|null $pin the 4- to 12-character access code that will secure this signer's signature page
-     *
-     * @return self
-     */
-    public function setPin(?string $pin)
-    {
-        if (!is_null($pin) && (mb_strlen($pin) > 12)) {
-            throw new InvalidArgumentException('invalid length for $pin when calling SubBulkSignerListSigner., must be smaller than or equal to 12.');
-        }
-        if (!is_null($pin) && (mb_strlen($pin) < 4)) {
-            throw new InvalidArgumentException('invalid length for $pin when calling SubBulkSignerListSigner., must be bigger than or equal to 4.');
-        }
-
-        $this->container['pin'] = $pin;
-
-        return $this;
-    }
-
-    /**
-     * Gets sms_phone_number
-     *
-     * @return string|null
-     */
-    public function getSmsPhoneNumber()
-    {
-        return $this->container['sms_phone_number'];
-    }
-
-    /**
-     * Sets sms_phone_number
-     *
-     * @param string|null $sms_phone_number An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.
-     *
-     * @return self
-     */
-    public function setSmsPhoneNumber(?string $sms_phone_number)
-    {
-        $this->container['sms_phone_number'] = $sms_phone_number;
 
         return $this;
     }

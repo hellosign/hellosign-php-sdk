@@ -61,7 +61,6 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $openAPITypes = [
         'num_pages' => 'int',
-        'num_response' => 'int',
         'num_results' => 'int',
         'page' => 'int',
         'page_size' => 'int',
@@ -76,7 +75,6 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $openAPIFormats = [
         'num_pages' => null,
-        'num_response' => null,
         'num_results' => null,
         'page' => null,
         'page_size' => null,
@@ -110,7 +108,6 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $attributeMap = [
         'num_pages' => 'num_pages',
-        'num_response' => 'num_response',
         'num_results' => 'num_results',
         'page' => 'page',
         'page_size' => 'page_size',
@@ -123,7 +120,6 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $setters = [
         'num_pages' => 'setNumPages',
-        'num_response' => 'setNumResponse',
         'num_results' => 'setNumResults',
         'page' => 'setPage',
         'page_size' => 'setPageSize',
@@ -136,7 +132,6 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $getters = [
         'num_pages' => 'getNumPages',
-        'num_response' => 'getNumResponse',
         'num_results' => 'getNumResults',
         'page' => 'getPage',
         'page_size' => 'getPageSize',
@@ -199,7 +194,6 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['num_pages'] = $data['num_pages'] ?? null;
-        $this->container['num_response'] = $data['num_response'] ?? null;
         $this->container['num_results'] = $data['num_results'] ?? null;
         $this->container['page'] = $data['page'] ?? null;
         $this->container['page_size'] = $data['page_size'] ?? null;
@@ -259,30 +253,6 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNumPages(?int $num_pages)
     {
         $this->container['num_pages'] = $num_pages;
-
-        return $this;
-    }
-
-    /**
-     * Gets num_response
-     *
-     * @return int|null
-     */
-    public function getNumResponse()
-    {
-        return $this->container['num_response'];
-    }
-
-    /**
-     * Sets num_response
-     *
-     * @param int|null $num_response Total number of objects available
-     *
-     * @return self
-     */
-    public function setNumResponse(?int $num_response)
-    {
-        $this->container['num_response'] = $num_response;
 
         return $this;
     }

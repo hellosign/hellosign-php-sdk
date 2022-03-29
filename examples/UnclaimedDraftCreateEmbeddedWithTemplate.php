@@ -15,7 +15,7 @@ $api = new HelloSignSDK\Api\UnclaimedDraftApi(
     $config
 );
 
-$signer1 = new HelloSignSDK\Model\SubUnclaimedDraftEmbeddedTemplateSigner();
+$signer1 = new HelloSignSDK\Model\SubUnclaimedDraftTemplateSigner();
 $signer1->setRole("Client")
     ->setName("George")
     ->setEmailAddress("george@example.com");

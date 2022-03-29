@@ -15,7 +15,7 @@ $api = new HelloSignSDK\Api\SignatureRequestApi(
     $config
 );
 
-$signer1 = new HelloSignSDK\Model\SubSignatureRequestEmbeddedTemplateSigner();
+$signer1 = new HelloSignSDK\Model\SubSignatureRequestTemplateSigner();
 $signer1->setRole("Client")
     ->setEmailAddress("george@example.com")
     ->setName("George");

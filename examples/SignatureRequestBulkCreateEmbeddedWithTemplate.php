@@ -12,7 +12,7 @@ $api = new HelloSignSDK\Api\SignatureRequestApi(
     $config
 );
 
-$signerList1Signer = new HelloSignSDK\Model\SubBulkSignerListSigner();
+$signerList1Signer = new HelloSignSDK\Model\SubSignatureRequestTemplateSigner();
 $signerList1Signer->setRole("Client")
     ->setName("George")
     ->setEmailAddress("george@example.com")
@@ -26,7 +26,7 @@ $signerList1 = new HelloSignSDK\Model\SubBulkSignerList();
 $signerList1->setSigners([$signerList1Signer])
     ->setCustomFields([$signerList1CustomFields]);
 
-$signerList2Signer = new HelloSignSDK\Model\SubBulkSignerListSigner();
+$signerList2Signer = new HelloSignSDK\Model\SubSignatureRequestTemplateSigner();
 $signerList2Signer->setRole("Client")
     ->setName("Mary")
     ->setEmailAddress("mary@example.com")
@@ -37,7 +37,7 @@ $signerList2CustomFields->setName("company")
     ->setValue("123 LLC");
 
 $signerList2 = new HelloSignSDK\Model\SubBulkSignerList();
-$signerList2->setSigners([$signerList2Signer1])
+$signerList2->setSigners([$signerList2Signer])
     ->setCustomFields([$signerList2CustomFields]);
 
 $cc1 = new HelloSignSDK\Model\SubCC();

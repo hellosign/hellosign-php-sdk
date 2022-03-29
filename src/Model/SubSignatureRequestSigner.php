@@ -62,7 +62,6 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     protected static $openAPITypes = [
         'name' => 'string',
         'email_address' => 'string',
-        'group' => 'string',
         'order' => 'int',
         'pin' => 'string',
         'sms_phone_number' => 'string',
@@ -78,7 +77,6 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     protected static $openAPIFormats = [
         'name' => null,
         'email_address' => 'email',
-        'group' => null,
         'order' => null,
         'pin' => null,
         'sms_phone_number' => null,
@@ -113,7 +111,6 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     protected static $attributeMap = [
         'name' => 'name',
         'email_address' => 'email_address',
-        'group' => 'group',
         'order' => 'order',
         'pin' => 'pin',
         'sms_phone_number' => 'sms_phone_number',
@@ -127,7 +124,6 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     protected static $setters = [
         'name' => 'setName',
         'email_address' => 'setEmailAddress',
-        'group' => 'setGroup',
         'order' => 'setOrder',
         'pin' => 'setPin',
         'sms_phone_number' => 'setSmsPhoneNumber',
@@ -141,7 +137,6 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     protected static $getters = [
         'name' => 'getName',
         'email_address' => 'getEmailAddress',
-        'group' => 'getGroup',
         'order' => 'getOrder',
         'pin' => 'getPin',
         'sms_phone_number' => 'getSmsPhoneNumber',
@@ -205,7 +200,6 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     {
         $this->container['name'] = $data['name'] ?? null;
         $this->container['email_address'] = $data['email_address'] ?? null;
-        $this->container['group'] = $data['group'] ?? null;
         $this->container['order'] = $data['order'] ?? null;
         $this->container['pin'] = $data['pin'] ?? null;
         $this->container['sms_phone_number'] = $data['sms_phone_number'] ?? null;
@@ -308,30 +302,6 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     }
 
     /**
-     * Gets group
-     *
-     * @return string|null
-     */
-    public function getGroup()
-    {
-        return $this->container['group'];
-    }
-
-    /**
-     * Sets group
-     *
-     * @param string|null $group Name of group. Use this value across multiple signers to group them together. Any of the signers is eligible to sign for the entire group.  Grouped signers will not use the `order`, `pin`, or `sms_phone_number` fields.
-     *
-     * @return self
-     */
-    public function setGroup(?string $group)
-    {
-        $this->container['group'] = $group;
-
-        return $this;
-    }
-
-    /**
      * Gets order
      *
      * @return int|null
@@ -399,7 +369,7 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets sms_phone_number
      *
-     * @param string|null $sms_phone_number An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.
+     * @param string|null $sms_phone_number An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.
      *
      * @return self
      */

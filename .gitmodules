@@ -1,4 +1,4 @@
 [submodule "oas"]
     path = oas
-    url = git@github.com:hellosign/openapi.git
-    branch = master
+    url = git@github.com:hellosign/hellosign-openapi.git
+    branch = main

@@ -60,7 +60,7 @@ class SubBulkSignerList implements ModelInterface, ArrayAccess, JsonSerializable
      */
     protected static $openAPITypes = [
         'custom_fields' => '\HelloSignSDK\Model\SubBulkSignerListCustomField[]',
-        'signers' => '\HelloSignSDK\Model\SubBulkSignerListSigner[]',
+        'signers' => '\HelloSignSDK\Model\SubSignatureRequestTemplateSigner[]',
     ];
 
     /**
@@ -247,7 +247,7 @@ class SubBulkSignerList implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets signers
      *
-     * @return SubBulkSignerListSigner[]|null
+     * @return SubSignatureRequestTemplateSigner[]|null
      */
     public function getSigners()
     {
@@ -257,7 +257,7 @@ class SubBulkSignerList implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets signers
      *
-     * @param SubBulkSignerListSigner[]|null $signers Add Signers to your Templated-based Signature Request. Allows the requester to specify editor options when a preparing a document
+     * @param SubSignatureRequestTemplateSigner[]|null $signers Add Signers to your Templated-based Signature Request. Allows the requester to specify editor options when a preparing a document.  Currently only templates with a single role are supported. All signers must have the same `role` value.
      *
      * @return self
      */

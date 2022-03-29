@@ -79,7 +79,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'preview_only' => 'bool',
         'requesting_redirect_url' => 'string',
         'show_preview' => 'bool',
-        'signers' => '\HelloSignSDK\Model\SubUnclaimedDraftEmbeddedTemplateSigner[]',
+        'signers' => '\HelloSignSDK\Model\SubUnclaimedDraftTemplateSigner[]',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
         'signing_redirect_url' => 'string',
         'skip_me_now' => 'bool',
@@ -820,7 +820,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
     /**
      * Gets signers
      *
-     * @return SubUnclaimedDraftEmbeddedTemplateSigner[]|null
+     * @return SubUnclaimedDraftTemplateSigner[]|null
      */
     public function getSigners()
     {
@@ -830,7 +830,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
     /**
      * Sets signers
      *
-     * @param SubUnclaimedDraftEmbeddedTemplateSigner[]|null $signers add Signers to your Templated-based Signature Request
+     * @param SubUnclaimedDraftTemplateSigner[]|null $signers add Signers to your Templated-based Signature Request
      *
      * @return self
      */
