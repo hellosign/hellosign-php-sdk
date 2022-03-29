@@ -25,8 +25,8 @@ class SignatureRequestApiTest extends HelloTestCase
         ]);
 
         $this->api = new Api\SignatureRequestApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
     }
 

@@ -25,8 +25,8 @@ class TeamApiTest extends HelloTestCase
         ]);
 
         $this->api = new Api\TeamApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
     }
 

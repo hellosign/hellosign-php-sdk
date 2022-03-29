@@ -25,8 +25,8 @@ class AccountApiTest extends HelloTestCase
         ]);
 
         $this->api = new Api\AccountApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
     }
 

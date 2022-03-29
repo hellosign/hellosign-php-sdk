@@ -42,10 +42,7 @@ $config = HelloSignSDK\Configuration::getDefaultConfiguration();
 // Configure HTTP basic authorization: api_key
 $config->setUsername("YOUR_API_KEY");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signerList1Signer = new HelloSignSDK\Model\SubSignatureRequestTemplateSigner();
 $signerList1Signer->setRole("Client")
@@ -146,10 +143,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signerList1Signer = new HelloSignSDK\Model\SubSignatureRequestTemplateSigner();
 $signerList1Signer->setRole("Client")
@@ -249,10 +243,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 
@@ -313,10 +304,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signer1 = new HelloSignSDK\Model\SubSignatureRequestSigner();
 $signer1->setEmailAddress("jack@example.com")
@@ -407,10 +395,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signer1 = new HelloSignSDK\Model\SubSignatureRequestTemplateSigner();
 $signer1->setRole("Client")
@@ -491,10 +476,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
@@ -559,10 +541,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
@@ -624,10 +603,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $accountId = null;
 $page = 1;
@@ -693,10 +669,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 
@@ -758,10 +731,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $data = new HelloSignSDK\Model\SignatureRequestRemindRequest();
 $data->setEmailAddress("john@example.com");
@@ -824,10 +794,7 @@ $config = HelloSignSDK\Configuration::getDefaultConfiguration();
 // Configure HTTP basic authorization: api_key
 $config->setUsername("YOUR_API_KEY");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 
@@ -888,10 +855,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signer1 = new HelloSignSDK\Model\SubSignatureRequestSigner();
 $signer1->setEmailAddress("jack@example.com")
@@ -989,10 +953,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signer1 = new HelloSignSDK\Model\SubSignatureRequestTemplateSigner();
 $signer1->setRole("Client")
@@ -1084,10 +1045,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\SignatureRequestApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $data = new HelloSignSDK\Model\SignatureRequestUpdateRequest();
 $data->setEmailAddress("john@example.com")

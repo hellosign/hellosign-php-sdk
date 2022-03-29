@@ -36,10 +36,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\ApiAppApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\ApiAppApi($config);
 
 $oauth = new HelloSignSDK\Model\SubOAuth();
 $oauth->setCallbackUrl("https://example.com/oauth")
@@ -119,10 +116,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\ApiAppApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\ApiAppApi($config);
 
 $clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
 
@@ -183,10 +177,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\ApiAppApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\ApiAppApi($config);
 
 $clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
 
@@ -248,10 +239,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\ApiAppApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\ApiAppApi($config);
 
 $page = 1;
 $pageSize = 2;
@@ -315,10 +303,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\ApiAppApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\ApiAppApi($config);
 
 $whiteLabelingOptions = new HelloSignSDK\Model\SubWhiteLabelingOptions();
 $whiteLabelingOptions->setPrimaryButtonColor("#00b3e6")

@@ -10,10 +10,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\BulkSendJobApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\BulkSendJobApi($config);
 
 $bulkSendJobId = "6e683bc0369ba3d5b6f43c2c22a8031dbf6bd174";
 

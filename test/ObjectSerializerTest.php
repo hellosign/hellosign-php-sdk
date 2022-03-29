@@ -31,8 +31,8 @@ class ObjectSerializerTest extends HelloTestCase
         ]);
 
         $this->api = new Api\SignatureRequestApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
 
         $this->rootFilePath = Configuration::getDefaultConfiguration()

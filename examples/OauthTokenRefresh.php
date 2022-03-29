@@ -3,7 +3,6 @@
 require_once __DIR__ . "/vendor/autoload.php";
 
 $api = new HelloSignSDK\Api\OAuthApi(
-    new GuzzleHttp\Client(),
     HelloSignSDK\Configuration::getDefaultConfiguration()
 );
 

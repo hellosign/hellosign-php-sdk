@@ -25,8 +25,8 @@ class OAuthApiTest extends HelloTestCase
         ]);
 
         $this->api = new Api\OAuthApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
     }
 

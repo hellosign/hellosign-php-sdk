@@ -25,8 +25,8 @@ class EmbeddedApiTest extends HelloTestCase
         ]);
 
         $this->api = new Api\EmbeddedApi(
+            Configuration::getDefaultConfiguration(),
             $this->client,
-            Configuration::getDefaultConfiguration()
         );
     }
 

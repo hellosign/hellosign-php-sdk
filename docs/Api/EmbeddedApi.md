@@ -33,10 +33,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\EmbeddedApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\EmbeddedApi($config);
 
 $data = new HelloSignSDK\Model\EmbeddedEditUrlRequest();
 $data->setCcRoles([""])
@@ -103,10 +100,7 @@ $config->setUsername("YOUR_API_KEY");
 // or, configure Bearer (JWT) authorization: oauth2
 // $config->setAccessToken("YOUR_ACCESS_TOKEN");
 
-$api = new HelloSignSDK\Api\EmbeddedApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$api = new HelloSignSDK\Api\EmbeddedApi($config);
 
 $signatureId = "50e3542f738adfa7ddd4cbd4c00d2a8ab6e4194b";
 
