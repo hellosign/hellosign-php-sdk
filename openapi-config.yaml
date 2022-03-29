@@ -3,7 +3,7 @@ typeMappings:
   "object": "array"
 additionalProperties:
   packageName: hellosign/openapi-php-sdk
-  packageVersion: "^4.0"
+  packageVersion: "^6.0.0"
   invokerPackage: "HelloSignSDK"
   sortModelPropertiesByRequiredFlag: true
   srcBasePath: src
