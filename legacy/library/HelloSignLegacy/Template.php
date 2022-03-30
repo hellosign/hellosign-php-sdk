@@ -202,6 +202,14 @@ class Template extends AbstractResource
    protected $allow_reassign = false;
 
     /**
+     * Specifies whether or not to allow the requester to enable the editor/preview experience.
+     *
+     * Defaults to false.
+     * @var boolean
+     */
+    protected $show_preview = false;
+
+    /**
      * @return string
      * @ignore
      */
@@ -423,6 +431,16 @@ class Template extends AbstractResource
      * @return Template
      * @ignore
      */
+    public function enableShowPreview()
+    {
+        $this->show_preview = true;
+        return $this;
+    }
+
+    /**
+     * @return Template
+     * @ignore
+     */
     public function disableAllowReassign()
     {
         $this->allow_reassign = false;
@@ -510,7 +528,8 @@ class Template extends AbstractResource
             'metadata',
             'skip_me_now',
             'allow_reassign',
-            'attachments'
+            'attachments',
+            'show_preview',
         );
 
         if (isset($this->merge_fields) && count($this->merge_fields) > 0) {

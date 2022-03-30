@@ -57,6 +57,23 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
     protected $ccs = array();
 
     /**
+     * Specifies whether or not to allow the requester to enable the editor/preview experience.
+     *
+     * Defaults to false.
+     * @var boolean
+     */
+    protected $show_preview = false;
+
+    /**
+     * Specifies whether or not to allow the requester to enable the preview experience experience.
+     * Note: This parameter overwrites show_preview=1 (if set).
+     *
+     * Defaults to false.
+     * @var boolean
+     */
+    protected $preview_only = false;
+
+    /**
      * Set the template ID, along with an optional order
      * @param string $id
      * @param int null $index
@@ -100,6 +117,24 @@ class TemplateSignatureRequest extends AbstractSignatureRequest
 
         $this->ccs[$role] = $obj;
 
+        return $this;
+    }
+
+    /**
+     * @return TemplateSignatureRequest
+     */
+    public function enableShowPreview()
+    {
+        $this->show_preview = true;
+        return $this;
+    }
+
+    /**
+     * @return TemplateSignatureRequest
+     */
+    public function enablePreviewOnly()
+    {
+        $this->preview_only = true;
         return $this;
     }
 

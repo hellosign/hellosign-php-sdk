@@ -87,6 +87,14 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     protected $skip_me_now = false;
 
     /**
+     * Specifies whether or not to allow the requester to enable the editor/preview experience.
+     *
+     * Defaults to false.
+     * @var boolean
+     */
+    protected $show_preview = false;
+
+    /**
      * @param  boolean $is_for_embedded_signing
      * @return UnclaimedDraft
      * @ignore
@@ -116,6 +124,16 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
     public function enableSkipMeNow()
     {
         $this->skip_me_now = true;
+        return $this;
+    }
+
+    /**
+     * @return UnclaimedDraft
+     * @ignore
+     */
+    public function enableShowPreview()
+    {
+        $this->show_preview = true;
         return $this;
     }
 
