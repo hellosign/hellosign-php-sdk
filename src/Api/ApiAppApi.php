@@ -199,8 +199,9 @@ class ApiAppApi
                 ];
             }
 
-            $rangeCode = substr('4XX', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
                     $content = $response->getBody(); //stream goes to serializer
                 } else {
@@ -238,8 +239,9 @@ class ApiAppApi
                 $e->setResponseObject($data);
             }
 
-            $rangeCode = substr('4XX', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 $data = ObjectSerializer::deserialize(
                     $e->getResponseBody(),
                     '\HelloSignSDK\Model\ErrorResponse',
@@ -498,8 +500,9 @@ class ApiAppApi
         } catch (ApiException $e) {
             $statusCode = $e->getCode();
 
-            $rangeCode = substr('4XX', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 $data = ObjectSerializer::deserialize(
                     $e->getResponseBody(),
                     '\HelloSignSDK\Model\ErrorResponse',
@@ -762,8 +765,9 @@ class ApiAppApi
                 ];
             }
 
-            $rangeCode = substr('4XX', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
                     $content = $response->getBody(); //stream goes to serializer
                 } else {
@@ -801,8 +805,9 @@ class ApiAppApi
                 $e->setResponseObject($data);
             }
 
-            $rangeCode = substr('4XX', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 $data = ObjectSerializer::deserialize(
                     $e->getResponseBody(),
                     '\HelloSignSDK\Model\ErrorResponse',
@@ -1077,8 +1082,9 @@ class ApiAppApi
                 ];
             }
 
-            $rangeCode = substr('4XX', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
                     $content = $response->getBody(); //stream goes to serializer
                 } else {
@@ -1116,8 +1122,9 @@ class ApiAppApi
                 $e->setResponseObject($data);
             }
 
-            $rangeCode = substr('4XX', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 $data = ObjectSerializer::deserialize(
                     $e->getResponseBody(),
                     '\HelloSignSDK\Model\ErrorResponse',
@@ -1400,8 +1407,9 @@ class ApiAppApi
                 ];
             }
 
-            $rangeCode = substr('4XX', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
                     $content = $response->getBody(); //stream goes to serializer
                 } else {
@@ -1439,8 +1447,9 @@ class ApiAppApi
                 $e->setResponseObject($data);
             }
 
-            $rangeCode = substr('4XX', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 $data = ObjectSerializer::deserialize(
                     $e->getResponseBody(),
                     '\HelloSignSDK\Model\ErrorResponse',

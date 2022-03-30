@@ -254,8 +254,9 @@ use {{invokerPackage}}\ObjectSerializer;
             {{#responses}}
             {{#dataType}}
             {{#isRange}}
-            $rangeCode = substr('{{code}}', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('{{code}}', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('{{code}}', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 if ('{{{dataType}}}' === '\SplFileObject') {
                     $content = $response->getBody(); //stream goes to serializer
                 } else {
@@ -330,8 +331,9 @@ use {{invokerPackage}}\ObjectSerializer;
             {{#responses}}
             {{#dataType}}
             {{#isRange}}
-            $rangeCode = substr('{{code}}', 1);
-            if ($statusCode >= (int) "{$rangeCode}00" && $statusCode <= (int) "{$rangeCode}99") {
+            $rangeCodeLeft = (int) (substr('{{code}}', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('{{code}}', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
                 $data = ObjectSerializer::deserialize(
                     $e->getResponseBody(),
                     '{{{dataType}}}',
