@@ -11,4 +11,6 @@ perl -pi -e 's#@param \\HelloSignSDK\\#@param #g' \
   "${ROOT_DIR}/src/Api/"*.php
 perl -pi -e 's#@param \\HelloSignSDK\\Model\\#@param #g' \
   "${ROOT_DIR}/src/Model/"*.php
+perl -pi -e 's#@return Model\\(.*)\|\\HelloSignSDK\\Model\\ErrorResponse#@return Model\\$1#g' \
+  "${ROOT_DIR}/src/Api/"*.php
 printf "\n"

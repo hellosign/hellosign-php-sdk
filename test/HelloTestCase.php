@@ -39,10 +39,10 @@ abstract class HelloTestCase extends TestCase
         $this->handler = new Handler\MockHandler();
     }
 
-    protected function setExpectedResponse(array $data): void
+    protected function setExpectedResponse(array $data, int $httpCode = 200): void
     {
         $this->handler->append(
-            new Psr7\Response(200, [], json_encode($data)),
+            new Psr7\Response($httpCode, [], json_encode($data)),
         );
     }
 }

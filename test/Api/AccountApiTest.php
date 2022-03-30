@@ -6,6 +6,7 @@ namespace HelloSignSDK\Test\Api;
 
 use GuzzleHttp;
 use HelloSignSDK\Api;
+use HelloSignSDK\ApiException;
 use HelloSignSDK\Configuration;
 use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
@@ -28,6 +29,30 @@ class AccountApiTest extends HelloTestCase
             Configuration::getDefaultConfiguration(),
             $this->client,
         );
+    }
+
+    public function testHttpCodeRange()
+    {
+        $requestClass = Model\AccountVerifyRequest::class;
+        $requestData = TestUtils::getFixtureData($requestClass)['default'];
+
+        $responseClass = Model\ErrorResponse::class;
+        $responseData = TestUtils::getFixtureData($responseClass)['default'];
+
+        $this->setExpectedResponse($responseData, mt_rand(400, 499));
+
+        $obj = Model\AccountVerifyRequest::fromArray($requestData);
+
+        $error = null;
+
+        try {
+            $this->api->accountVerify($obj);
+        } catch (ApiException $e) {
+            $error = $e->getResponseObject();
+        }
+
+        $this->assertInstanceOf($responseClass, $error);
+        $this->assertEquals($responseData, TestUtils::toArray($error));
     }
 
     public function testAccountCreate()
