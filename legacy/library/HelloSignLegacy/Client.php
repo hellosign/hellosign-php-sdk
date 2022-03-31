@@ -640,7 +640,7 @@ class Client
     {
         $url = static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH;
 
-        $response = $this->rest->post($url, $request->toParams());
+        $response = $this->rest->post($url, $request->toUnclaimedDraftParams());
 
         $this->checkResponse($response);
 
