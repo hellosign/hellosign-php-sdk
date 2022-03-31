@@ -640,7 +640,7 @@ class Client
     {
         $url = static::UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_PATH;
 
-        $response = $this->rest->post($url, $request->toParams());
+        $response = $this->rest->post($url, $request->toUnclaimedDraftParams());
 
         $this->checkResponse($response);
 
@@ -996,6 +996,7 @@ class Client
             throw new Error('invalid_format', 'Response should be returned in JSON format', $status);
         } elseif ($status >= 400) {
             if (property_exists($response, 'error')) {
+                echo $response->error->error_msg;exit;
                 throw new Error($response->error->error_name, $response->error->error_msg, $status);
             } else {
                 throw new Error(null, null, $status);
