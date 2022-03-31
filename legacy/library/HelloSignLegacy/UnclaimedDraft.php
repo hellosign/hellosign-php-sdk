@@ -212,6 +212,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
 
         if (!$this->getClientId()) {
             $except[] = 'client_id';
+            $except[] = 'show_preview';
         }
 
         /**

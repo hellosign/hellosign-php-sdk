@@ -37,11 +37,74 @@ namespace HelloSignLegacy;
  */
 class EmbeddedSignatureRequest extends AbstractSignatureRequestWrapper
 {
+
+    /**
+     * Specifies whether or not to allow the requester to enable the editor/preview experience.
+     *
+     * Defaults to false.
+     * @var boolean
+     */
+    protected $show_preview = false;
+
+    /**
+     * Specifies whether or not to allow the requester to enable the preview experience experience.
+     * Note: This parameter overwrites show_preview=1 (if set).
+     *
+     * Defaults to false.
+     * @var boolean
+     */
+    protected $preview_only = false;
+
+    /**
+     * @return TemplateSignatureRequest
+     */
+    public function enableShowPreview()
+    {
+        $this->show_preview = true;
+        return $this;
+    }
+
+    /**
+     * @return TemplateSignatureRequest
+     */
+    public function enablePreviewOnly()
+    {
+        $this->preview_only = true;
+        return $this;
+    }
+
     /**
      * @return array
      * @ignore
      */
     public function toParams()
+    {
+        /**
+         * Here we combine (using the + operator) the param arrays for the
+         * SignatureRequest object with itself (the Embedded SignatureRequest
+         * object) to get the final params array. The order of this union is
+         * important! The params from $this->request must be left of the union
+         * operator so that its values (e.g. test_mode) take precedence over
+         * our defaults.
+         */
+        return $this->request->toParams(array(
+            'except' => array(
+            )
+        )) + $this->toArray(array(
+            'except' => array(
+                'request',
+                'skip_me_now',
+                'show_preview',
+                'preview_only',
+            )
+        ));
+    }
+
+    /**
+     * @return array
+     * @ignore
+     */
+    public function toUnclaimedDraftParams()
     {
         /**
          * Here we combine (using the + operator) the param arrays for the
