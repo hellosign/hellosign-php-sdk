@@ -66,7 +66,7 @@ class TemplateResponseAccount implements ModelInterface, ArrayAccess, JsonSerial
         'is_locked' => 'bool',
         'is_paid_hs' => 'bool',
         'is_paid_hf' => 'bool',
-        'quotas' => '\HelloSignSDK\Model\TemplateResponseAccountQuota[]',
+        'quotas' => '\HelloSignSDK\Model\TemplateResponseAccountQuota',
     ];
 
     /**
@@ -369,7 +369,7 @@ class TemplateResponseAccount implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Gets quotas
      *
-     * @return TemplateResponseAccountQuota[]|null
+     * @return TemplateResponseAccountQuota|null
      */
     public function getQuotas()
     {
@@ -379,11 +379,11 @@ class TemplateResponseAccount implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets quotas
      *
-     * @param TemplateResponseAccountQuota[]|null $quotas quotas
+     * @param TemplateResponseAccountQuota|null $quotas quotas
      *
      * @return self
      */
-    public function setQuotas(?array $quotas)
+    public function setQuotas(?TemplateResponseAccountQuota $quotas)
     {
         $this->container['quotas'] = $quotas;
 
