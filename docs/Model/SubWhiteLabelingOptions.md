@@ -2,7 +2,7 @@
 
 An array of elements and values serialized to a string, to be used to customize the app&#39;s signer page. (Only applies to some API plans)
 
-Take a look at our [white labeling guide](https://app.hellosign.com/api/reference#WhiteLabeling) to learn more.
+Take a look at our [white labeling guide](/api/reference/white-labeling/) to learn more.
 
 ## Properties
 

@@ -265,7 +265,7 @@ class SubFieldOptions implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets date_format
      *
-     * @param string $date_format Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))  **Note**: Only available for Premium and higher.
+     * @param string $date_format allows requester to specify the date format (see list of allowed [formats](/api/reference/constants/#date-formats))  **Note**: Only available for Premium and higher
      *
      * @return self
      */

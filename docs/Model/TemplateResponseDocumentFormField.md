@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 | `api_id` | ```string``` |  A unique id for the form field.  |  |
 | `name` | ```string``` |  The name of the form field.  |  |
-| `type` | ```string``` |  The type of this form field. See [field types](https://app.hellosign.com/api/reference#FieldTypes).  |  |
+| `type` | ```string``` |  The type of this form field. See [field types](/api/reference/constants/#field-types).  |  |
 | `x` | ```int``` |  The horizontal offset in pixels for this form field.  |  |
 | `y` | ```int``` |  The vertical offset in pixels for this form field.  |  |
 | `width` | ```int``` |  The width in pixels of this form field.  |  |

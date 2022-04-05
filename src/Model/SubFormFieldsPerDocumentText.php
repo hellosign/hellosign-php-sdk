@@ -350,7 +350,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
     /**
      * Sets auto_fill_type
      *
-     * @param string|null $auto_fill_type Auto fill type for populating fields automatically. Check out the list of [auto fill types](https://app.hellosign.com/api/reference#AutoFillTypes) to learn more about the possible values.
+     * @param string|null $auto_fill_type Auto fill type for populating fields automatically. Check out the list of [auto fill types](/api/reference/constants/#auto-fill-types) to learn more about the possible values.
      *
      * @return self
      */
@@ -374,7 +374,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
     /**
      * Sets masked
      *
-     * @param bool|null $masked Masks entered data. For more information see [Masking sensitive information](https://app.hellosign.com/api/reference#:~:text=Masking%20sensitive%20information). `true` for masking the data in a text field, otherwise `false`.
+     * @param bool|null $masked Masks entered data. For more information see [Masking sensitive information](https://faq.hellosign.com/hc/en-us/articles/360040742811-Masking-sensitive-information). `true` for masking the data in a text field, otherwise `false`.
      *
      * @return self
      */

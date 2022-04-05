@@ -658,7 +658,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
     /**
      * Sets hold_request
      *
-     * @param bool|null $hold_request The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](https://app.hellosign.com/api/reference#release_on-hold_signature_request) the request from hold when ready to send. Defaults to `false`.
+     * @param bool|null $hold_request The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.
      *
      * @return self
      */

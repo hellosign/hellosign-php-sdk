@@ -259,7 +259,7 @@ class TemplateResponseDocumentFieldGroup implements ModelInterface, ArrayAccess,
     /**
      * Sets rule
      *
-     * @param string|null $rule The rule used to validate checkboxes in the form field group. See [checkbox field grouping](https://app.hellosign.com/api/reference#CheckboxFieldGrouping).
+     * @param string|null $rule The rule used to validate checkboxes in the form field group. See [checkbox field grouping](/api/reference/constants/#checkbox-field-grouping).
      *
      * @return self
      */

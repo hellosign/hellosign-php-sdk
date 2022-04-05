@@ -367,7 +367,7 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
     /**
      * Sets type
      *
-     * @param string|null $type The type of this form field. See [field types](https://app.hellosign.com/api/reference#FieldTypes).
+     * @param string|null $type The type of this form field. See [field types](/api/reference/constants/#field-types).
      *
      * @return self
      */

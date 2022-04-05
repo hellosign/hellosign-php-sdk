@@ -297,7 +297,7 @@ class SubFormFieldGroup implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets requirement
      *
-     * @param string $requirement Examples: `require_0-1` `require_1` `require_1-ormore`  - Check out the list of [acceptable `requirement` checkbox type values](https://app.hellosign.com/api/reference#CheckboxFieldGrouping). - Check out the list of [acceptable `requirement` radio type fields](https://app.hellosign.com/api/reference#RadioFieldGrouping). - Radio groups require **at least** two fields per group.
+     * @param string $requirement Examples: `require_0-1` `require_1` `require_1-ormore`  - Check out the list of [acceptable `requirement` checkbox type values](/api/reference/constants/#checkbox-field-grouping). - Check out the list of [acceptable `requirement` radio type fields](/api/reference/constants/#radio-field-grouping). - Radio groups require **at least** two fields per group.
      *
      * @return self
      */

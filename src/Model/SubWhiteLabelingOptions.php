@@ -37,7 +37,7 @@ use JsonSerializable;
  * SubWhiteLabelingOptions Class Doc Comment
  *
  * @category Class
- * @description An array of elements and values serialized to a string, to be used to customize the app&#39;s signer page. (Only applies to some API plans)  Take a look at our [white labeling guide](https://app.hellosign.com/api/reference#WhiteLabeling) to learn more.
+ * @description An array of elements and values serialized to a string, to be used to customize the app&#39;s signer page. (Only applies to some API plans)  Take a look at our [white labeling guide](/api/reference/white-labeling/) to learn more.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
