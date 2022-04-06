@@ -275,7 +275,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **template_id** | **string**| The id of the Template to delete. | |
+| **template_id** | **string**| The id of the template files to retrieve. | |
 | **file_type** | **string**| Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional] |
 | **get_url** | **bool**| If `true`, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. | [optional] [default to false] |
 | **get_data_uri** | **bool**| If `true`, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. | [optional] [default to false] |

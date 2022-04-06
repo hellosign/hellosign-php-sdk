@@ -1021,7 +1021,7 @@ class TemplateApi
      *
      * Get Template Files
      *
-     * @param string $template_id The id of the Template to delete. (required)
+     * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
      * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
      * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
@@ -1042,7 +1042,7 @@ class TemplateApi
      *
      * Get Template Files
      *
-     * @param string $template_id The id of the Template to delete. (required)
+     * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
      * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
      * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
@@ -1166,7 +1166,7 @@ class TemplateApi
      *
      * Get Template Files
      *
-     * @param string $template_id The id of the Template to delete. (required)
+     * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
      * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
      * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
@@ -1189,7 +1189,7 @@ class TemplateApi
      *
      * Get Template Files
      *
-     * @param string $template_id The id of the Template to delete. (required)
+     * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
      * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
      * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
@@ -1238,7 +1238,7 @@ class TemplateApi
     /**
      * Create request for operation 'templateFiles'
      *
-     * @param string $template_id The id of the Template to delete. (required)
+     * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
      * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
      * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
