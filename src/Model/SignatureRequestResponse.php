@@ -79,6 +79,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'cc_email_addresses' => 'string[]',
         'signing_redirect_url' => 'string',
         'custom_fields' => '\HelloSignSDK\Model\SignatureRequestResponseCustomField[]',
+        'attachments' => '\HelloSignSDK\Model\SignatureRequestResponseAttachment[]',
         'response_data' => '\HelloSignSDK\Model\SignatureRequestResponseData[]',
         'signatures' => '\HelloSignSDK\Model\SignatureRequestResponseSignatures[]',
     ];
@@ -110,6 +111,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'cc_email_addresses' => null,
         'signing_redirect_url' => null,
         'custom_fields' => null,
+        'attachments' => null,
         'response_data' => null,
         'signatures' => null,
     ];
@@ -160,6 +162,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'cc_email_addresses' => 'cc_email_addresses',
         'signing_redirect_url' => 'signing_redirect_url',
         'custom_fields' => 'custom_fields',
+        'attachments' => 'attachments',
         'response_data' => 'response_data',
         'signatures' => 'signatures',
     ];
@@ -189,6 +192,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'cc_email_addresses' => 'setCcEmailAddresses',
         'signing_redirect_url' => 'setSigningRedirectUrl',
         'custom_fields' => 'setCustomFields',
+        'attachments' => 'setAttachments',
         'response_data' => 'setResponseData',
         'signatures' => 'setSignatures',
     ];
@@ -218,6 +222,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'cc_email_addresses' => 'getCcEmailAddresses',
         'signing_redirect_url' => 'getSigningRedirectUrl',
         'custom_fields' => 'getCustomFields',
+        'attachments' => 'getAttachments',
         'response_data' => 'getResponseData',
         'signatures' => 'getSignatures',
     ];
@@ -297,6 +302,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         $this->container['cc_email_addresses'] = $data['cc_email_addresses'] ?? null;
         $this->container['signing_redirect_url'] = $data['signing_redirect_url'] ?? null;
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
+        $this->container['attachments'] = $data['attachments'] ?? null;
         $this->container['response_data'] = $data['response_data'] ?? null;
         $this->container['signatures'] = $data['signatures'] ?? null;
     }
@@ -787,6 +793,30 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setCustomFields(?array $custom_fields)
     {
         $this->container['custom_fields'] = $custom_fields;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachments
+     *
+     * @return SignatureRequestResponseAttachment[]|null
+     */
+    public function getAttachments()
+    {
+        return $this->container['attachments'];
+    }
+
+    /**
+     * Sets attachments
+     *
+     * @param SignatureRequestResponseAttachment[]|null $attachments attachments
+     *
+     * @return self
+     */
+    public function setAttachments(?array $attachments)
+    {
+        $this->container['attachments'] = $attachments;
 
         return $this;
     }
