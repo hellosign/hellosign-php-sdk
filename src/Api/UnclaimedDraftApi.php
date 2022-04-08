@@ -388,9 +388,11 @@ class UnclaimedDraftApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $unclaimed_draft_create_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -703,9 +705,11 @@ class UnclaimedDraftApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $unclaimed_draft_create_embedded_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -1018,9 +1022,11 @@ class UnclaimedDraftApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $unclaimed_draft_create_embedded_with_template_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -1353,9 +1359,11 @@ class UnclaimedDraftApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $unclaimed_draft_edit_and_resend_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);

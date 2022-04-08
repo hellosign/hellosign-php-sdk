@@ -388,9 +388,11 @@ class ReportApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $report_create_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);

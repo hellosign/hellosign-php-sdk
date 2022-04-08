@@ -388,9 +388,11 @@ class TeamApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $team_add_member_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -703,9 +705,11 @@ class TeamApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $team_create_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -928,9 +932,7 @@ class TeamApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
-                if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
-                }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -1217,9 +1219,7 @@ class TeamApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
-                if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
-                }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -1532,9 +1532,11 @@ class TeamApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $team_remove_member_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -1847,9 +1849,11 @@ class TeamApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $team_update_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);

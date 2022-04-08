@@ -707,9 +707,13 @@ use {{invokerPackage}}\ObjectSerializer;
                         'headers'  => ['Content-Type' => 'application/json'],
                     ];
                 }
+
+                {{#bodyParam}}
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, ${{paramName}});
                 }
+                {{/bodyParam}}
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {

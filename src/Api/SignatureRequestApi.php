@@ -388,9 +388,11 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $signature_request_bulk_create_embedded_with_template_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -699,9 +701,11 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $signature_request_bulk_send_with_template_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -950,9 +954,7 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
-                if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
-                }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -1265,9 +1267,11 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $signature_request_create_embedded_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -1580,9 +1584,11 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $signature_request_create_embedded_with_template_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -1941,9 +1947,7 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
-                if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
-                }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -2256,9 +2260,7 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
-                if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
-                }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -2611,9 +2613,7 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
-                if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
-                }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -2926,9 +2926,7 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
-                if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
-                }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -3261,9 +3259,11 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $signature_request_remind_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -3512,9 +3512,7 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
-                if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
-                }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -3559,7 +3557,7 @@ class SignatureRequestApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\SignatureRequestGetResponse
+     * @return Model\SignatureRequestGetResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse
      */
     public function signatureRequestSend(Model\SignatureRequestSendRequest $signature_request_send_request)
     {
@@ -3577,7 +3575,7 @@ class SignatureRequestApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\SignatureRequestGetResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\SignatureRequestGetResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function signatureRequestSendWithHttpInfo(Model\SignatureRequestSendRequest $signature_request_send_request)
     {
@@ -3928,9 +3926,11 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $signature_request_send_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -4243,9 +4243,11 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $signature_request_send_with_template_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
@@ -4578,9 +4580,11 @@ class SignatureRequestApi
                         'headers' => ['Content-Type' => 'application/json'],
                     ];
                 }
+
                 if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents);
+                    $payloadHook('multipart', $multipartContents, $signature_request_update_request);
                 }
+
                 $httpBody = new Psr7\MultipartStream($multipartContents);
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = Utils::jsonEncode($formParams);
