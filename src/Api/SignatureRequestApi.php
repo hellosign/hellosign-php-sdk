@@ -3557,7 +3557,7 @@ class SignatureRequestApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\SignatureRequestGetResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse
+     * @return Model\SignatureRequestGetResponse
      */
     public function signatureRequestSend(Model\SignatureRequestSendRequest $signature_request_send_request)
     {
@@ -3575,7 +3575,7 @@ class SignatureRequestApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return array of Model\SignatureRequestGetResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of Model\SignatureRequestGetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function signatureRequestSendWithHttpInfo(Model\SignatureRequestSendRequest $signature_request_send_request)
     {
@@ -3631,71 +3631,6 @@ class SignatureRequestApi
                     $response->getHeaders(),
                 ];
             }
-            if ($statusCode === 400) {
-                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                    $content = $response->getBody(); //stream goes to serializer
-                } else {
-                    $content = (string) $response->getBody();
-                }
-
-                return [
-                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                ];
-            }
-            if ($statusCode === 401) {
-                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                    $content = $response->getBody(); //stream goes to serializer
-                } else {
-                    $content = (string) $response->getBody();
-                }
-
-                return [
-                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                ];
-            }
-            if ($statusCode === 402) {
-                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                    $content = $response->getBody(); //stream goes to serializer
-                } else {
-                    $content = (string) $response->getBody();
-                }
-
-                return [
-                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                ];
-            }
-            if ($statusCode === 409) {
-                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                    $content = $response->getBody(); //stream goes to serializer
-                } else {
-                    $content = (string) $response->getBody();
-                }
-
-                return [
-                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                ];
-            }
-            if ($statusCode === 429) {
-                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
-                    $content = $response->getBody(); //stream goes to serializer
-                } else {
-                    $content = (string) $response->getBody();
-                }
-
-                return [
-                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
-                    $response->getStatusCode(),
-                    $response->getHeaders(),
-                ];
-            }
 
             $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
             $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
@@ -3732,46 +3667,6 @@ class SignatureRequestApi
                 $data = ObjectSerializer::deserialize(
                     $e->getResponseBody(),
                     '\HelloSignSDK\Model\SignatureRequestGetResponse',
-                    $e->getResponseHeaders()
-                );
-                $e->setResponseObject($data);
-            }
-            if ($statusCode === 400) {
-                $data = ObjectSerializer::deserialize(
-                    $e->getResponseBody(),
-                    '\HelloSignSDK\Model\ErrorResponse',
-                    $e->getResponseHeaders()
-                );
-                $e->setResponseObject($data);
-            }
-            if ($statusCode === 401) {
-                $data = ObjectSerializer::deserialize(
-                    $e->getResponseBody(),
-                    '\HelloSignSDK\Model\ErrorResponse',
-                    $e->getResponseHeaders()
-                );
-                $e->setResponseObject($data);
-            }
-            if ($statusCode === 402) {
-                $data = ObjectSerializer::deserialize(
-                    $e->getResponseBody(),
-                    '\HelloSignSDK\Model\ErrorResponse',
-                    $e->getResponseHeaders()
-                );
-                $e->setResponseObject($data);
-            }
-            if ($statusCode === 409) {
-                $data = ObjectSerializer::deserialize(
-                    $e->getResponseBody(),
-                    '\HelloSignSDK\Model\ErrorResponse',
-                    $e->getResponseHeaders()
-                );
-                $e->setResponseObject($data);
-            }
-            if ($statusCode === 429) {
-                $data = ObjectSerializer::deserialize(
-                    $e->getResponseBody(),
-                    '\HelloSignSDK\Model\ErrorResponse',
                     $e->getResponseHeaders()
                 );
                 $e->setResponseObject($data);

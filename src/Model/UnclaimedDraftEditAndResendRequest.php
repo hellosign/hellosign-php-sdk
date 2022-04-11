@@ -64,6 +64,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
         'is_for_embedded_signing' => 'bool',
         'requester_email_address' => 'string',
         'requesting_redirect_url' => 'string',
+        'show_progress_stepper' => 'bool',
         'signing_redirect_url' => 'string',
         'test_mode' => 'bool',
     ];
@@ -81,6 +82,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
         'is_for_embedded_signing' => null,
         'requester_email_address' => 'email',
         'requesting_redirect_url' => null,
+        'show_progress_stepper' => null,
         'signing_redirect_url' => null,
         'test_mode' => null,
     ];
@@ -117,6 +119,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
         'is_for_embedded_signing' => 'is_for_embedded_signing',
         'requester_email_address' => 'requester_email_address',
         'requesting_redirect_url' => 'requesting_redirect_url',
+        'show_progress_stepper' => 'show_progress_stepper',
         'signing_redirect_url' => 'signing_redirect_url',
         'test_mode' => 'test_mode',
     ];
@@ -132,6 +135,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
         'is_for_embedded_signing' => 'setIsForEmbeddedSigning',
         'requester_email_address' => 'setRequesterEmailAddress',
         'requesting_redirect_url' => 'setRequestingRedirectUrl',
+        'show_progress_stepper' => 'setShowProgressStepper',
         'signing_redirect_url' => 'setSigningRedirectUrl',
         'test_mode' => 'setTestMode',
     ];
@@ -147,6 +151,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
         'is_for_embedded_signing' => 'getIsForEmbeddedSigning',
         'requester_email_address' => 'getRequesterEmailAddress',
         'requesting_redirect_url' => 'getRequestingRedirectUrl',
+        'show_progress_stepper' => 'getShowProgressStepper',
         'signing_redirect_url' => 'getSigningRedirectUrl',
         'test_mode' => 'getTestMode',
     ];
@@ -212,6 +217,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
         $this->container['is_for_embedded_signing'] = $data['is_for_embedded_signing'] ?? false;
         $this->container['requester_email_address'] = $data['requester_email_address'] ?? null;
         $this->container['requesting_redirect_url'] = $data['requesting_redirect_url'] ?? null;
+        $this->container['show_progress_stepper'] = $data['show_progress_stepper'] ?? true;
         $this->container['signing_redirect_url'] = $data['signing_redirect_url'] ?? null;
         $this->container['test_mode'] = $data['test_mode'] ?? false;
     }
@@ -370,6 +376,30 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
     public function setRequestingRedirectUrl(?string $requesting_redirect_url)
     {
         $this->container['requesting_redirect_url'] = $requesting_redirect_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_progress_stepper
+     *
+     * @return bool|null
+     */
+    public function getShowProgressStepper()
+    {
+        return $this->container['show_progress_stepper'];
+    }
+
+    /**
+     * Sets show_progress_stepper
+     *
+     * @param bool|null $show_progress_stepper when only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden
+     *
+     * @return self
+     */
+    public function setShowProgressStepper(?bool $show_progress_stepper)
+    {
+        $this->container['show_progress_stepper'] = $show_progress_stepper;
 
         return $this;
     }

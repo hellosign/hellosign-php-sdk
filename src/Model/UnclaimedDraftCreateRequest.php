@@ -74,6 +74,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'hide_text_tags' => 'bool',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
+        'show_progress_stepper' => 'bool',
         'signers' => '\HelloSignSDK\Model\SubUnclaimedDraftSigner[]',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
         'signing_redirect_url' => 'string',
@@ -105,6 +106,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'hide_text_tags' => null,
         'message' => null,
         'metadata' => null,
+        'show_progress_stepper' => null,
         'signers' => null,
         'signing_options' => null,
         'signing_redirect_url' => null,
@@ -155,6 +157,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'hide_text_tags' => 'hide_text_tags',
         'message' => 'message',
         'metadata' => 'metadata',
+        'show_progress_stepper' => 'show_progress_stepper',
         'signers' => 'signers',
         'signing_options' => 'signing_options',
         'signing_redirect_url' => 'signing_redirect_url',
@@ -184,6 +187,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'hide_text_tags' => 'setHideTextTags',
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
+        'show_progress_stepper' => 'setShowProgressStepper',
         'signers' => 'setSigners',
         'signing_options' => 'setSigningOptions',
         'signing_redirect_url' => 'setSigningRedirectUrl',
@@ -213,6 +217,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'hide_text_tags' => 'getHideTextTags',
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
+        'show_progress_stepper' => 'getShowProgressStepper',
         'signers' => 'getSigners',
         'signing_options' => 'getSigningOptions',
         'signing_redirect_url' => 'getSigningRedirectUrl',
@@ -308,6 +313,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         $this->container['hide_text_tags'] = $data['hide_text_tags'] ?? false;
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
+        $this->container['show_progress_stepper'] = $data['show_progress_stepper'] ?? true;
         $this->container['signers'] = $data['signers'] ?? null;
         $this->container['signing_options'] = $data['signing_options'] ?? null;
         $this->container['signing_redirect_url'] = $data['signing_redirect_url'] ?? null;
@@ -681,6 +687,30 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     public function setMetadata(?array $metadata)
     {
         $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_progress_stepper
+     *
+     * @return bool|null
+     */
+    public function getShowProgressStepper()
+    {
+        return $this->container['show_progress_stepper'];
+    }
+
+    /**
+     * Sets show_progress_stepper
+     *
+     * @param bool|null $show_progress_stepper when only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden
+     *
+     * @return self
+     */
+    public function setShowProgressStepper(?bool $show_progress_stepper)
+    {
+        $this->container['show_progress_stepper'] = $show_progress_stepper;
 
         return $this;
     }

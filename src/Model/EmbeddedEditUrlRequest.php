@@ -67,6 +67,7 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'merge_fields' => '\HelloSignSDK\Model\SubMergeField[]',
         'preview_only' => 'bool',
         'show_preview' => 'bool',
+        'show_progress_stepper' => 'bool',
         'skip_signer_roles' => 'bool',
         'skip_subject_message' => 'bool',
         'test_mode' => 'bool',
@@ -88,6 +89,7 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'merge_fields' => null,
         'preview_only' => null,
         'show_preview' => null,
+        'show_progress_stepper' => null,
         'skip_signer_roles' => null,
         'skip_subject_message' => null,
         'test_mode' => null,
@@ -128,6 +130,7 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'merge_fields' => 'merge_fields',
         'preview_only' => 'preview_only',
         'show_preview' => 'show_preview',
+        'show_progress_stepper' => 'show_progress_stepper',
         'skip_signer_roles' => 'skip_signer_roles',
         'skip_subject_message' => 'skip_subject_message',
         'test_mode' => 'test_mode',
@@ -147,6 +150,7 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'merge_fields' => 'setMergeFields',
         'preview_only' => 'setPreviewOnly',
         'show_preview' => 'setShowPreview',
+        'show_progress_stepper' => 'setShowProgressStepper',
         'skip_signer_roles' => 'setSkipSignerRoles',
         'skip_subject_message' => 'setSkipSubjectMessage',
         'test_mode' => 'setTestMode',
@@ -166,6 +170,7 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'merge_fields' => 'getMergeFields',
         'preview_only' => 'getPreviewOnly',
         'show_preview' => 'getShowPreview',
+        'show_progress_stepper' => 'getShowProgressStepper',
         'skip_signer_roles' => 'getSkipSignerRoles',
         'skip_subject_message' => 'getSkipSubjectMessage',
         'test_mode' => 'getTestMode',
@@ -235,6 +240,7 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         $this->container['merge_fields'] = $data['merge_fields'] ?? null;
         $this->container['preview_only'] = $data['preview_only'] ?? false;
         $this->container['show_preview'] = $data['show_preview'] ?? false;
+        $this->container['show_progress_stepper'] = $data['show_progress_stepper'] ?? true;
         $this->container['skip_signer_roles'] = $data['skip_signer_roles'] ?? false;
         $this->container['skip_subject_message'] = $data['skip_subject_message'] ?? false;
         $this->container['test_mode'] = $data['test_mode'] ?? false;
@@ -431,7 +437,7 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets preview_only
      *
-     * @param bool|null $preview_only This allows the requester to enable the preview experience experience.  **Note**: This parameter overwrites `show_preview=true` (if set).
+     * @param bool|null $preview_only This allows the requester to enable the preview experience (i.e. does not allow the requester's end user to add any additional fields via the editor).  **Note**: This parameter overwrites `show_preview=true` (if set).
      *
      * @return self
      */
@@ -462,6 +468,30 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setShowPreview(?bool $show_preview)
     {
         $this->container['show_preview'] = $show_preview;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_progress_stepper
+     *
+     * @return bool|null
+     */
+    public function getShowProgressStepper()
+    {
+        return $this->container['show_progress_stepper'];
+    }
+
+    /**
+     * Sets show_progress_stepper
+     *
+     * @param bool|null $show_progress_stepper when only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden
+     *
+     * @return self
+     */
+    public function setShowProgressStepper(?bool $show_progress_stepper)
+    {
+        $this->container['show_progress_stepper'] = $show_progress_stepper;
 
         return $this;
     }

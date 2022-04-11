@@ -77,6 +77,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
         'show_preview' => 'bool',
+        'show_progress_stepper' => 'bool',
         'signer_roles' => '\HelloSignSDK\Model\SubTemplateRole[]',
         'skip_me_now' => 'bool',
         'subject' => 'string',
@@ -109,6 +110,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'message' => null,
         'metadata' => null,
         'show_preview' => null,
+        'show_progress_stepper' => null,
         'signer_roles' => null,
         'skip_me_now' => null,
         'subject' => null,
@@ -160,6 +162,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'message' => 'message',
         'metadata' => 'metadata',
         'show_preview' => 'show_preview',
+        'show_progress_stepper' => 'show_progress_stepper',
         'signer_roles' => 'signer_roles',
         'skip_me_now' => 'skip_me_now',
         'subject' => 'subject',
@@ -190,6 +193,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
         'show_preview' => 'setShowPreview',
+        'show_progress_stepper' => 'setShowProgressStepper',
         'signer_roles' => 'setSignerRoles',
         'skip_me_now' => 'setSkipMeNow',
         'subject' => 'setSubject',
@@ -220,6 +224,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
         'show_preview' => 'getShowPreview',
+        'show_progress_stepper' => 'getShowProgressStepper',
         'signer_roles' => 'getSignerRoles',
         'skip_me_now' => 'getSkipMeNow',
         'subject' => 'getSubject',
@@ -300,6 +305,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
         $this->container['show_preview'] = $data['show_preview'] ?? false;
+        $this->container['show_progress_stepper'] = $data['show_progress_stepper'] ?? true;
         $this->container['signer_roles'] = $data['signer_roles'] ?? null;
         $this->container['skip_me_now'] = $data['skip_me_now'] ?? false;
         $this->container['subject'] = $data['subject'] ?? null;
@@ -737,6 +743,30 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     public function setShowPreview(?bool $show_preview)
     {
         $this->container['show_preview'] = $show_preview;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_progress_stepper
+     *
+     * @return bool|null
+     */
+    public function getShowProgressStepper()
+    {
+        return $this->container['show_progress_stepper'];
+    }
+
+    /**
+     * Sets show_progress_stepper
+     *
+     * @param bool|null $show_progress_stepper when only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden
+     *
+     * @return self
+     */
+    public function setShowProgressStepper(?bool $show_progress_stepper)
+    {
+        $this->container['show_progress_stepper'] = $show_progress_stepper;
 
         return $this;
     }

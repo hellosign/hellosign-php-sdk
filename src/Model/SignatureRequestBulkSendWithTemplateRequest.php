@@ -66,6 +66,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
         'signer_list' => '\HelloSignSDK\Model\SubBulkSignerList[]',
         'allow_decline' => 'bool',
         'ccs' => '\HelloSignSDK\Model\SubCC[]',
+        'client_id' => 'string',
         'custom_fields' => '\HelloSignSDK\Model\SubCustomField[]',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
@@ -88,6 +89,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
         'signer_list' => null,
         'allow_decline' => null,
         'ccs' => null,
+        'client_id' => null,
         'custom_fields' => null,
         'message' => null,
         'metadata' => null,
@@ -129,6 +131,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
         'signer_list' => 'signer_list',
         'allow_decline' => 'allow_decline',
         'ccs' => 'ccs',
+        'client_id' => 'client_id',
         'custom_fields' => 'custom_fields',
         'message' => 'message',
         'metadata' => 'metadata',
@@ -149,6 +152,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
         'signer_list' => 'setSignerList',
         'allow_decline' => 'setAllowDecline',
         'ccs' => 'setCcs',
+        'client_id' => 'setClientId',
         'custom_fields' => 'setCustomFields',
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
@@ -169,6 +173,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
         'signer_list' => 'getSignerList',
         'allow_decline' => 'getAllowDecline',
         'ccs' => 'getCcs',
+        'client_id' => 'getClientId',
         'custom_fields' => 'getCustomFields',
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
@@ -239,6 +244,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
         $this->container['signer_list'] = $data['signer_list'] ?? null;
         $this->container['allow_decline'] = $data['allow_decline'] ?? false;
         $this->container['ccs'] = $data['ccs'] ?? null;
+        $this->container['client_id'] = $data['client_id'] ?? null;
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
@@ -413,6 +419,30 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
     public function setCcs(?array $ccs)
     {
         $this->container['ccs'] = $ccs;
+
+        return $this;
+    }
+
+    /**
+     * Gets client_id
+     *
+     * @return string|null
+     */
+    public function getClientId()
+    {
+        return $this->container['client_id'];
+    }
+
+    /**
+     * Sets client_id
+     *
+     * @param string|null $client_id the client ID of the Api App you want to associate with this request
+     *
+     * @return self
+     */
+    public function setClientId(?string $client_id)
+    {
+        $this->container['client_id'] = $client_id;
 
         return $this;
     }

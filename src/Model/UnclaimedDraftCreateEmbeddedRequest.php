@@ -82,6 +82,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
         'show_preview' => 'bool',
+        'show_progress_stepper' => 'bool',
         'signers' => '\HelloSignSDK\Model\SubUnclaimedDraftSigner[]',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
         'signing_redirect_url' => 'string',
@@ -122,6 +123,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'message' => null,
         'metadata' => null,
         'show_preview' => null,
+        'show_progress_stepper' => null,
         'signers' => null,
         'signing_options' => null,
         'signing_redirect_url' => null,
@@ -181,6 +183,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'message' => 'message',
         'metadata' => 'metadata',
         'show_preview' => 'show_preview',
+        'show_progress_stepper' => 'show_progress_stepper',
         'signers' => 'signers',
         'signing_options' => 'signing_options',
         'signing_redirect_url' => 'signing_redirect_url',
@@ -219,6 +222,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
         'show_preview' => 'setShowPreview',
+        'show_progress_stepper' => 'setShowProgressStepper',
         'signers' => 'setSigners',
         'signing_options' => 'setSigningOptions',
         'signing_redirect_url' => 'setSigningRedirectUrl',
@@ -257,6 +261,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
         'show_preview' => 'getShowPreview',
+        'show_progress_stepper' => 'getShowProgressStepper',
         'signers' => 'getSigners',
         'signing_options' => 'getSigningOptions',
         'signing_redirect_url' => 'getSigningRedirectUrl',
@@ -361,6 +366,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
         $this->container['show_preview'] = $data['show_preview'] ?? null;
+        $this->container['show_progress_stepper'] = $data['show_progress_stepper'] ?? true;
         $this->container['signers'] = $data['signers'] ?? null;
         $this->container['signing_options'] = $data['signing_options'] ?? null;
         $this->container['signing_redirect_url'] = $data['signing_redirect_url'] ?? null;
@@ -933,6 +939,30 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
     public function setShowPreview(?bool $show_preview)
     {
         $this->container['show_preview'] = $show_preview;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_progress_stepper
+     *
+     * @return bool|null
+     */
+    public function getShowProgressStepper()
+    {
+        return $this->container['show_progress_stepper'];
+    }
+
+    /**
+     * Sets show_progress_stepper
+     *
+     * @param bool|null $show_progress_stepper when only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden
+     *
+     * @return self
+     */
+    public function setShowProgressStepper(?bool $show_progress_stepper)
+    {
+        $this->container['show_progress_stepper'] = $show_progress_stepper;
 
         return $this;
     }

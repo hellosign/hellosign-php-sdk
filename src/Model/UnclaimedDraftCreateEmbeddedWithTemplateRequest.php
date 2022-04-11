@@ -79,6 +79,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'preview_only' => 'bool',
         'requesting_redirect_url' => 'string',
         'show_preview' => 'bool',
+        'show_progress_stepper' => 'bool',
         'signers' => '\HelloSignSDK\Model\SubUnclaimedDraftTemplateSigner[]',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
         'signing_redirect_url' => 'string',
@@ -114,6 +115,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'preview_only' => null,
         'requesting_redirect_url' => null,
         'show_preview' => null,
+        'show_progress_stepper' => null,
         'signers' => null,
         'signing_options' => null,
         'signing_redirect_url' => null,
@@ -168,6 +170,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'preview_only' => 'preview_only',
         'requesting_redirect_url' => 'requesting_redirect_url',
         'show_preview' => 'show_preview',
+        'show_progress_stepper' => 'show_progress_stepper',
         'signers' => 'signers',
         'signing_options' => 'signing_options',
         'signing_redirect_url' => 'signing_redirect_url',
@@ -201,6 +204,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'preview_only' => 'setPreviewOnly',
         'requesting_redirect_url' => 'setRequestingRedirectUrl',
         'show_preview' => 'setShowPreview',
+        'show_progress_stepper' => 'setShowProgressStepper',
         'signers' => 'setSigners',
         'signing_options' => 'setSigningOptions',
         'signing_redirect_url' => 'setSigningRedirectUrl',
@@ -234,6 +238,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'preview_only' => 'getPreviewOnly',
         'requesting_redirect_url' => 'getRequestingRedirectUrl',
         'show_preview' => 'getShowPreview',
+        'show_progress_stepper' => 'getShowProgressStepper',
         'signers' => 'getSigners',
         'signing_options' => 'getSigningOptions',
         'signing_redirect_url' => 'getSigningRedirectUrl',
@@ -317,6 +322,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         $this->container['preview_only'] = $data['preview_only'] ?? false;
         $this->container['requesting_redirect_url'] = $data['requesting_redirect_url'] ?? null;
         $this->container['show_preview'] = $data['show_preview'] ?? false;
+        $this->container['show_progress_stepper'] = $data['show_progress_stepper'] ?? true;
         $this->container['signers'] = $data['signers'] ?? null;
         $this->container['signing_options'] = $data['signing_options'] ?? null;
         $this->container['signing_redirect_url'] = $data['signing_redirect_url'] ?? null;
@@ -758,7 +764,7 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
     /**
      * Sets preview_only
      *
-     * @param bool|null $preview_only This allows the requester to enable the preview experience experience.  - `preview_only=true`: Allows requesters to enable the preview only experience. - `preview_only=false`: Allows requesters to disable the preview only experience.  **Note**: This parameter overwrites `show_preview=1` (if set).
+     * @param bool|null $preview_only This allows the requester to enable the preview experience (i.e. does not allow the requester's end user to add any additional fields via the editor).  - `preview_only=true`: Allows requesters to enable the preview only experience. - `preview_only=false`: Allows requesters to disable the preview only experience.  **Note**: This parameter overwrites `show_preview=1` (if set).
      *
      * @return self
      */
@@ -813,6 +819,30 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
     public function setShowPreview(?bool $show_preview)
     {
         $this->container['show_preview'] = $show_preview;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_progress_stepper
+     *
+     * @return bool|null
+     */
+    public function getShowProgressStepper()
+    {
+        return $this->container['show_progress_stepper'];
+    }
+
+    /**
+     * Sets show_progress_stepper
+     *
+     * @param bool|null $show_progress_stepper when only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden
+     *
+     * @return self
+     */
+    public function setShowProgressStepper(?bool $show_progress_stepper)
+    {
+        $this->container['show_progress_stepper'] = $show_progress_stepper;
 
         return $this;
     }
