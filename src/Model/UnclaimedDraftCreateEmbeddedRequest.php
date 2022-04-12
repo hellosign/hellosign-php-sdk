@@ -73,6 +73,8 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'custom_fields' => '\HelloSignSDK\Model\SubCustomField[]',
         'editor_options' => '\HelloSignSDK\Model\SubEditorOptions',
         'field_options' => '\HelloSignSDK\Model\SubFieldOptions',
+        'force_signer_page' => 'bool',
+        'force_subject_message' => 'bool',
         'form_field_groups' => '\HelloSignSDK\Model\SubFormFieldGroup[]',
         'form_field_rules' => '\HelloSignSDK\Model\SubFormFieldRule[]',
         'form_fields_per_document' => '\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]',
@@ -115,6 +117,8 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'custom_fields' => null,
         'editor_options' => null,
         'field_options' => null,
+        'force_signer_page' => null,
+        'force_subject_message' => null,
         'form_field_groups' => null,
         'form_field_rules' => null,
         'form_fields_per_document' => null,
@@ -176,6 +180,8 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'custom_fields' => 'custom_fields',
         'editor_options' => 'editor_options',
         'field_options' => 'field_options',
+        'force_signer_page' => 'force_signer_page',
+        'force_subject_message' => 'force_subject_message',
         'form_field_groups' => 'form_field_groups',
         'form_field_rules' => 'form_field_rules',
         'form_fields_per_document' => 'form_fields_per_document',
@@ -216,6 +222,8 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'custom_fields' => 'setCustomFields',
         'editor_options' => 'setEditorOptions',
         'field_options' => 'setFieldOptions',
+        'force_signer_page' => 'setForceSignerPage',
+        'force_subject_message' => 'setForceSubjectMessage',
         'form_field_groups' => 'setFormFieldGroups',
         'form_field_rules' => 'setFormFieldRules',
         'form_fields_per_document' => 'setFormFieldsPerDocument',
@@ -256,6 +264,8 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'custom_fields' => 'getCustomFields',
         'editor_options' => 'getEditorOptions',
         'field_options' => 'getFieldOptions',
+        'force_signer_page' => 'getForceSignerPage',
+        'force_subject_message' => 'getForceSubjectMessage',
         'form_field_groups' => 'getFormFieldGroups',
         'form_field_rules' => 'getFormFieldRules',
         'form_fields_per_document' => 'getFormFieldsPerDocument',
@@ -362,6 +372,8 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
         $this->container['editor_options'] = $data['editor_options'] ?? null;
         $this->container['field_options'] = $data['field_options'] ?? null;
+        $this->container['force_signer_page'] = $data['force_signer_page'] ?? false;
+        $this->container['force_subject_message'] = $data['force_subject_message'] ?? false;
         $this->container['form_field_groups'] = $data['form_field_groups'] ?? null;
         $this->container['form_field_rules'] = $data['form_field_rules'] ?? null;
         $this->container['form_fields_per_document'] = $data['form_fields_per_document'] ?? null;
@@ -725,6 +737,54 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
     public function setFieldOptions(?SubFieldOptions $field_options)
     {
         $this->container['field_options'] = $field_options;
+
+        return $this;
+    }
+
+    /**
+     * Gets force_signer_page
+     *
+     * @return bool|null
+     */
+    public function getForceSignerPage()
+    {
+        return $this->container['force_signer_page'];
+    }
+
+    /**
+     * Sets force_signer_page
+     *
+     * @param bool|null $force_signer_page provide users the ability to review/edit the signers
+     *
+     * @return self
+     */
+    public function setForceSignerPage(?bool $force_signer_page)
+    {
+        $this->container['force_signer_page'] = $force_signer_page;
+
+        return $this;
+    }
+
+    /**
+     * Gets force_subject_message
+     *
+     * @return bool|null
+     */
+    public function getForceSubjectMessage()
+    {
+        return $this->container['force_subject_message'];
+    }
+
+    /**
+     * Sets force_subject_message
+     *
+     * @param bool|null $force_subject_message provide users the ability to review/edit the subject and message
+     *
+     * @return self
+     */
+    public function setForceSubjectMessage(?bool $force_subject_message)
+    {
+        $this->container['force_subject_message'] = $force_subject_message;
 
         return $this;
     }
