@@ -81,6 +81,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'is_for_embedded_signing' => 'bool',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
+        'requesting_redirect_url' => 'string',
         'show_preview' => 'bool',
         'show_progress_stepper' => 'bool',
         'signers' => '\HelloSignSDK\Model\SubUnclaimedDraftSigner[]',
@@ -122,6 +123,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'is_for_embedded_signing' => null,
         'message' => null,
         'metadata' => null,
+        'requesting_redirect_url' => null,
         'show_preview' => null,
         'show_progress_stepper' => null,
         'signers' => null,
@@ -182,6 +184,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'is_for_embedded_signing' => 'is_for_embedded_signing',
         'message' => 'message',
         'metadata' => 'metadata',
+        'requesting_redirect_url' => 'requesting_redirect_url',
         'show_preview' => 'show_preview',
         'show_progress_stepper' => 'show_progress_stepper',
         'signers' => 'signers',
@@ -221,6 +224,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'is_for_embedded_signing' => 'setIsForEmbeddedSigning',
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
+        'requesting_redirect_url' => 'setRequestingRedirectUrl',
         'show_preview' => 'setShowPreview',
         'show_progress_stepper' => 'setShowProgressStepper',
         'signers' => 'setSigners',
@@ -260,6 +264,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'is_for_embedded_signing' => 'getIsForEmbeddedSigning',
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
+        'requesting_redirect_url' => 'getRequestingRedirectUrl',
         'show_preview' => 'getShowPreview',
         'show_progress_stepper' => 'getShowProgressStepper',
         'signers' => 'getSigners',
@@ -365,6 +370,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         $this->container['is_for_embedded_signing'] = $data['is_for_embedded_signing'] ?? false;
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
+        $this->container['requesting_redirect_url'] = $data['requesting_redirect_url'] ?? null;
         $this->container['show_preview'] = $data['show_preview'] ?? null;
         $this->container['show_progress_stepper'] = $data['show_progress_stepper'] ?? true;
         $this->container['signers'] = $data['signers'] ?? null;
@@ -915,6 +921,30 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
     public function setMetadata(?array $metadata)
     {
         $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Gets requesting_redirect_url
+     *
+     * @return string|null
+     */
+    public function getRequestingRedirectUrl()
+    {
+        return $this->container['requesting_redirect_url'];
+    }
+
+    /**
+     * Sets requesting_redirect_url
+     *
+     * @param string|null $requesting_redirect_url the URL you want signers redirected to after they successfully request a signature
+     *
+     * @return self
+     */
+    public function setRequestingRedirectUrl(?string $requesting_redirect_url)
+    {
+        $this->container['requesting_redirect_url'] = $requesting_redirect_url;
 
         return $this;
     }

@@ -72,6 +72,8 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'field_options' => '\HelloSignSDK\Model\SubFieldOptions',
         'file' => '\SplFileObject[]',
         'file_url' => 'string[]',
+        'force_signer_roles' => 'bool',
+        'force_subject_message' => 'bool',
         'hold_request' => 'bool',
         'is_for_embedded_signing' => 'bool',
         'message' => 'string',
@@ -108,6 +110,8 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'field_options' => null,
         'file' => 'binary',
         'file_url' => null,
+        'force_signer_roles' => null,
+        'force_subject_message' => null,
         'hold_request' => null,
         'is_for_embedded_signing' => null,
         'message' => null,
@@ -163,6 +167,8 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'field_options' => 'field_options',
         'file' => 'file',
         'file_url' => 'file_url',
+        'force_signer_roles' => 'force_signer_roles',
+        'force_subject_message' => 'force_subject_message',
         'hold_request' => 'hold_request',
         'is_for_embedded_signing' => 'is_for_embedded_signing',
         'message' => 'message',
@@ -197,6 +203,8 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'field_options' => 'setFieldOptions',
         'file' => 'setFile',
         'file_url' => 'setFileUrl',
+        'force_signer_roles' => 'setForceSignerRoles',
+        'force_subject_message' => 'setForceSubjectMessage',
         'hold_request' => 'setHoldRequest',
         'is_for_embedded_signing' => 'setIsForEmbeddedSigning',
         'message' => 'setMessage',
@@ -231,6 +239,8 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'field_options' => 'getFieldOptions',
         'file' => 'getFile',
         'file_url' => 'getFileUrl',
+        'force_signer_roles' => 'getForceSignerRoles',
+        'force_subject_message' => 'getForceSubjectMessage',
         'hold_request' => 'getHoldRequest',
         'is_for_embedded_signing' => 'getIsForEmbeddedSigning',
         'message' => 'getMessage',
@@ -315,6 +325,8 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         $this->container['field_options'] = $data['field_options'] ?? null;
         $this->container['file'] = $data['file'] ?? null;
         $this->container['file_url'] = $data['file_url'] ?? null;
+        $this->container['force_signer_roles'] = $data['force_signer_roles'] ?? false;
+        $this->container['force_subject_message'] = $data['force_subject_message'] ?? false;
         $this->container['hold_request'] = $data['hold_request'] ?? false;
         $this->container['is_for_embedded_signing'] = $data['is_for_embedded_signing'] ?? false;
         $this->container['message'] = $data['message'] ?? null;
@@ -647,6 +659,54 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
     public function setFileUrl(?array $file_url)
     {
         $this->container['file_url'] = $file_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets force_signer_roles
+     *
+     * @return bool|null
+     */
+    public function getForceSignerRoles()
+    {
+        return $this->container['force_signer_roles'];
+    }
+
+    /**
+     * Sets force_signer_roles
+     *
+     * @param bool|null $force_signer_roles provide users the ability to review/edit the template signer roles
+     *
+     * @return self
+     */
+    public function setForceSignerRoles(?bool $force_signer_roles)
+    {
+        $this->container['force_signer_roles'] = $force_signer_roles;
+
+        return $this;
+    }
+
+    /**
+     * Gets force_subject_message
+     *
+     * @return bool|null
+     */
+    public function getForceSubjectMessage()
+    {
+        return $this->container['force_subject_message'];
+    }
+
+    /**
+     * Sets force_subject_message
+     *
+     * @param bool|null $force_subject_message provide users the ability to review/edit the template subject and message
+     *
+     * @return self
+     */
+    public function setForceSubjectMessage(?bool $force_subject_message)
+    {
+        $this->container['force_subject_message'] = $force_subject_message;
 
         return $this;
     }

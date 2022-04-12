@@ -70,6 +70,8 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'cc_roles' => 'string[]',
         'editor_options' => '\HelloSignSDK\Model\SubEditorOptions',
         'field_options' => '\HelloSignSDK\Model\SubFieldOptions',
+        'force_signer_roles' => 'bool',
+        'force_subject_message' => 'bool',
         'form_field_groups' => '\HelloSignSDK\Model\SubFormFieldGroup[]',
         'form_field_rules' => '\HelloSignSDK\Model\SubFormFieldRule[]',
         'form_fields_per_document' => '\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]',
@@ -103,6 +105,8 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'cc_roles' => null,
         'editor_options' => null,
         'field_options' => null,
+        'force_signer_roles' => null,
+        'force_subject_message' => null,
         'form_field_groups' => null,
         'form_field_rules' => null,
         'form_fields_per_document' => null,
@@ -155,6 +159,8 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'cc_roles' => 'cc_roles',
         'editor_options' => 'editor_options',
         'field_options' => 'field_options',
+        'force_signer_roles' => 'force_signer_roles',
+        'force_subject_message' => 'force_subject_message',
         'form_field_groups' => 'form_field_groups',
         'form_field_rules' => 'form_field_rules',
         'form_fields_per_document' => 'form_fields_per_document',
@@ -186,6 +192,8 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'cc_roles' => 'setCcRoles',
         'editor_options' => 'setEditorOptions',
         'field_options' => 'setFieldOptions',
+        'force_signer_roles' => 'setForceSignerRoles',
+        'force_subject_message' => 'setForceSubjectMessage',
         'form_field_groups' => 'setFormFieldGroups',
         'form_field_rules' => 'setFormFieldRules',
         'form_fields_per_document' => 'setFormFieldsPerDocument',
@@ -217,6 +225,8 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         'cc_roles' => 'getCcRoles',
         'editor_options' => 'getEditorOptions',
         'field_options' => 'getFieldOptions',
+        'force_signer_roles' => 'getForceSignerRoles',
+        'force_subject_message' => 'getForceSubjectMessage',
         'form_field_groups' => 'getFormFieldGroups',
         'form_field_rules' => 'getFormFieldRules',
         'form_fields_per_document' => 'getFormFieldsPerDocument',
@@ -298,6 +308,8 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         $this->container['cc_roles'] = $data['cc_roles'] ?? null;
         $this->container['editor_options'] = $data['editor_options'] ?? null;
         $this->container['field_options'] = $data['field_options'] ?? null;
+        $this->container['force_signer_roles'] = $data['force_signer_roles'] ?? false;
+        $this->container['force_subject_message'] = $data['force_subject_message'] ?? false;
         $this->container['form_field_groups'] = $data['form_field_groups'] ?? null;
         $this->container['form_field_rules'] = $data['form_field_rules'] ?? null;
         $this->container['form_fields_per_document'] = $data['form_fields_per_document'] ?? null;
@@ -571,6 +583,54 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     public function setFieldOptions(?SubFieldOptions $field_options)
     {
         $this->container['field_options'] = $field_options;
+
+        return $this;
+    }
+
+    /**
+     * Gets force_signer_roles
+     *
+     * @return bool|null
+     */
+    public function getForceSignerRoles()
+    {
+        return $this->container['force_signer_roles'];
+    }
+
+    /**
+     * Sets force_signer_roles
+     *
+     * @param bool|null $force_signer_roles provide users the ability to review/edit the template signer roles
+     *
+     * @return self
+     */
+    public function setForceSignerRoles(?bool $force_signer_roles)
+    {
+        $this->container['force_signer_roles'] = $force_signer_roles;
+
+        return $this;
+    }
+
+    /**
+     * Gets force_subject_message
+     *
+     * @return bool|null
+     */
+    public function getForceSubjectMessage()
+    {
+        return $this->container['force_subject_message'];
+    }
+
+    /**
+     * Sets force_subject_message
+     *
+     * @param bool|null $force_subject_message provide users the ability to review/edit the template subject and message
+     *
+     * @return self
+     */
+    public function setForceSubjectMessage(?bool $force_subject_message)
+    {
+        $this->container['force_subject_message'] = $force_subject_message;
 
         return $this;
     }
