@@ -214,7 +214,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
     {
         $this->container['client_id'] = $data['client_id'] ?? null;
         $this->container['editor_options'] = $data['editor_options'] ?? null;
-        $this->container['is_for_embedded_signing'] = $data['is_for_embedded_signing'] ?? false;
+        $this->container['is_for_embedded_signing'] = $data['is_for_embedded_signing'] ?? null;
         $this->container['requester_email_address'] = $data['requester_email_address'] ?? null;
         $this->container['requesting_redirect_url'] = $data['requesting_redirect_url'] ?? null;
         $this->container['show_progress_stepper'] = $data['show_progress_stepper'] ?? true;
@@ -321,7 +321,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets is_for_embedded_signing
      *
-     * @param bool|null $is_for_embedded_signing The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`.
+     * @param bool|null $is_for_embedded_signing the request created from this draft will also be signable in embedded mode if set to `true`
      *
      * @return self
      */
