@@ -299,7 +299,7 @@ class ObjectSerializer
         }
 
         if (strcasecmp(substr($class, -2), '[]') === 0) {
-            $data = is_string($data) ? json_decode($data) : $data;
+            $data = is_string($data) ? json_decode($data, true) : $data;
 
             if (!is_array($data)) {
                 throw new InvalidArgumentException("Invalid array '$class'");
@@ -315,7 +315,7 @@ class ObjectSerializer
         }
 
         if (preg_match('/^(array<|map\[)/', $class)) { // for associative array e.g. array<string,int>
-            $data = is_string($data) ? json_decode($data) : $data;
+            $data = is_string($data) ? json_decode($data, true) : $data;
             settype($data, 'array');
             $inner = substr($class, 4, -1);
             $deserialized = [];
