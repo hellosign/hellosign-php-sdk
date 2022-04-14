@@ -62,11 +62,11 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $openAPITypes = [
         'signature_request_id' => 'string',
         'claim_url' => 'string',
+        'one_click_url' => 'string',
         'signing_redirect_url' => 'string',
         'requesting_redirect_url' => 'string',
         'expires_at' => 'int',
         'test_mode' => 'bool',
-        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -79,11 +79,11 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $openAPIFormats = [
         'signature_request_id' => null,
         'claim_url' => null,
+        'one_click_url' => null,
         'signing_redirect_url' => null,
         'requesting_redirect_url' => null,
         'expires_at' => null,
         'test_mode' => null,
-        'warnings' => null,
     ];
 
     /**
@@ -115,11 +115,11 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $attributeMap = [
         'signature_request_id' => 'signature_request_id',
         'claim_url' => 'claim_url',
+        'one_click_url' => 'one_click_url',
         'signing_redirect_url' => 'signing_redirect_url',
         'requesting_redirect_url' => 'requesting_redirect_url',
         'expires_at' => 'expires_at',
         'test_mode' => 'test_mode',
-        'warnings' => 'warnings',
     ];
 
     /**
@@ -130,11 +130,11 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $setters = [
         'signature_request_id' => 'setSignatureRequestId',
         'claim_url' => 'setClaimUrl',
+        'one_click_url' => 'setOneClickUrl',
         'signing_redirect_url' => 'setSigningRedirectUrl',
         'requesting_redirect_url' => 'setRequestingRedirectUrl',
         'expires_at' => 'setExpiresAt',
         'test_mode' => 'setTestMode',
-        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -145,11 +145,11 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $getters = [
         'signature_request_id' => 'getSignatureRequestId',
         'claim_url' => 'getClaimUrl',
+        'one_click_url' => 'getOneClickUrl',
         'signing_redirect_url' => 'getSigningRedirectUrl',
         'requesting_redirect_url' => 'getRequestingRedirectUrl',
         'expires_at' => 'getExpiresAt',
         'test_mode' => 'getTestMode',
-        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -210,11 +210,11 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     {
         $this->container['signature_request_id'] = $data['signature_request_id'] ?? null;
         $this->container['claim_url'] = $data['claim_url'] ?? null;
+        $this->container['one_click_url'] = $data['one_click_url'] ?? null;
         $this->container['signing_redirect_url'] = $data['signing_redirect_url'] ?? null;
         $this->container['requesting_redirect_url'] = $data['requesting_redirect_url'] ?? null;
         $this->container['expires_at'] = $data['expires_at'] ?? null;
         $this->container['test_mode'] = $data['test_mode'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): UnclaimedDraftResponse
@@ -295,6 +295,30 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     public function setClaimUrl(?string $claim_url)
     {
         $this->container['claim_url'] = $claim_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets one_click_url
+     *
+     * @return string|null
+     */
+    public function getOneClickUrl()
+    {
+        return $this->container['one_click_url'];
+    }
+
+    /**
+     * Sets one_click_url
+     *
+     * @param string|null $one_click_url One-Click Login URL
+     *
+     * @return self
+     */
+    public function setOneClickUrl(?string $one_click_url)
+    {
+        $this->container['one_click_url'] = $one_click_url;
 
         return $this;
     }
@@ -391,30 +415,6 @@ class UnclaimedDraftResponse implements ModelInterface, ArrayAccess, JsonSeriali
     public function setTestMode(?bool $test_mode)
     {
         $this->container['test_mode'] = $test_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return WarningResponse[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param WarningResponse[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings)
-    {
-        $this->container['warnings'] = $warnings;
 
         return $this;
     }
