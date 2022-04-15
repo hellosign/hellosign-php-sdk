@@ -56,7 +56,7 @@ class ApiException extends Exception
     /**
      * The deserialized response object
      *
-     * @var stdClass|string|null
+     * @var Model\ErrorResponse|string|null
      */
     protected $responseObject;
 
@@ -110,7 +110,7 @@ class ApiException extends Exception
     /**
      * Gets the deserialized response object (during deserialization)
      *
-     * @return mixed the deserialized response object
+     * @return Model\ErrorResponse the deserialized response object
      */
     public function getResponseObject()
     {
