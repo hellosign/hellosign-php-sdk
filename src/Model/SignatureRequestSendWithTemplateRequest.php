@@ -433,7 +433,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
     /**
      * Sets client_id
      *
-     * @param string|null $client_id the client ID of the ApiApp you want to associate with this request
+     * @param string|null $client_id Client id of the app to associate with the signature request. Used to apply the branding and callback url defined for the app.
      *
      * @return self
      */

@@ -133,7 +133,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **client_id** | **string**| The client id of the ApiApp to delete. | |
+| **client_id** | **string**| The client id of the Api App to delete. | |
 
 ### Return type
 
@@ -195,7 +195,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **client_id** | **string**| The client ID of the ApiApp to retrieve. | |
+| **client_id** | **string**| The client id of the Api App to retrieve. | |
 
 ### Return type
 
@@ -258,7 +258,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | **int**| Which page number of the ApiApp List to return. Defaults to `1`. | [optional] [default to 1] |
+| **page** | **int**| Which page number of the Api App List to return. Defaults to `1`. | [optional] [default to 1] |
 | **page_size** | **int**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
 
 ### Return type
@@ -333,7 +333,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **client_id** | **string**| The client ID of the ApiApp to update. | |
+| **client_id** | **string**| The client id of the Api App to update. | |
 | **api_app_update_request** | [**\HelloSignSDK\Model\ApiAppUpdateRequest**](../Model/ApiAppUpdateRequest.md)|  | |
 
 ### Return type

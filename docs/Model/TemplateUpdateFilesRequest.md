@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `client_id` | ```string``` |  Client ID of the app you&#39;re using to create this template.  |  |
+| `client_id` | ```string``` |  Client id of the app you&#39;re using to update this template.  |  |
 | `file` | ```\SplFileObject[]``` |  **file** or **file_url** is required, but not both.<br><br>Use `file[]` to indicate the uploaded file(s) to use for the template<br><br>Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.  |  |
 | `file_url` | ```string[]``` |  **file_url** or **file** is required, but not both.<br><br>Use `file_url[]` to have HelloSign download the file(s) to use for the template.<br><br>Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.  |  |
 | `message` | ```string``` |  The new default template email message.  |  |

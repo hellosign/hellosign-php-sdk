@@ -60,6 +60,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      */
     protected static $openAPITypes = [
         'callback_url' => 'string',
+        'locale' => 'string',
     ];
 
     /**
@@ -71,6 +72,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      */
     protected static $openAPIFormats = [
         'callback_url' => null,
+        'locale' => null,
     ];
 
     /**
@@ -101,6 +103,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      */
     protected static $attributeMap = [
         'callback_url' => 'callback_url',
+        'locale' => 'locale',
     ];
 
     /**
@@ -110,6 +113,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      */
     protected static $setters = [
         'callback_url' => 'setCallbackUrl',
+        'locale' => 'setLocale',
     ];
 
     /**
@@ -119,6 +123,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      */
     protected static $getters = [
         'callback_url' => 'getCallbackUrl',
+        'locale' => 'getLocale',
     ];
 
     /**
@@ -178,6 +183,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     public function __construct(array $data = null)
     {
         $this->container['callback_url'] = $data['callback_url'] ?? null;
+        $this->container['locale'] = $data['locale'] ?? null;
     }
 
     public static function fromArray(array $data): AccountUpdateRequest
@@ -234,6 +240,30 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     public function setCallbackUrl(?string $callback_url)
     {
         $this->container['callback_url'] = $callback_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets locale
+     *
+     * @return string|null
+     */
+    public function getLocale()
+    {
+        return $this->container['locale'];
+    }
+
+    /**
+     * Sets locale
+     *
+     * @param string|null $locale the locale used in this Account
+     *
+     * @return self
+     */
+    public function setLocale(?string $locale)
+    {
+        $this->container['locale'] = $locale;
 
         return $this;
     }

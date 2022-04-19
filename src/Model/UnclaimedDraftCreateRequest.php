@@ -66,6 +66,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'allow_decline' => 'bool',
         'attachments' => '\HelloSignSDK\Model\SubAttachment[]',
         'cc_email_addresses' => 'string[]',
+        'client_id' => 'string',
         'custom_fields' => '\HelloSignSDK\Model\SubCustomField[]',
         'field_options' => '\HelloSignSDK\Model\SubFieldOptions',
         'form_field_groups' => '\HelloSignSDK\Model\SubFormFieldGroup[]',
@@ -98,6 +99,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'allow_decline' => null,
         'attachments' => null,
         'cc_email_addresses' => 'email',
+        'client_id' => null,
         'custom_fields' => null,
         'field_options' => null,
         'form_field_groups' => null,
@@ -149,6 +151,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'allow_decline' => 'allow_decline',
         'attachments' => 'attachments',
         'cc_email_addresses' => 'cc_email_addresses',
+        'client_id' => 'client_id',
         'custom_fields' => 'custom_fields',
         'field_options' => 'field_options',
         'form_field_groups' => 'form_field_groups',
@@ -179,6 +182,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'allow_decline' => 'setAllowDecline',
         'attachments' => 'setAttachments',
         'cc_email_addresses' => 'setCcEmailAddresses',
+        'client_id' => 'setClientId',
         'custom_fields' => 'setCustomFields',
         'field_options' => 'setFieldOptions',
         'form_field_groups' => 'setFormFieldGroups',
@@ -209,6 +213,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'allow_decline' => 'getAllowDecline',
         'attachments' => 'getAttachments',
         'cc_email_addresses' => 'getCcEmailAddresses',
+        'client_id' => 'getClientId',
         'custom_fields' => 'getCustomFields',
         'field_options' => 'getFieldOptions',
         'form_field_groups' => 'getFormFieldGroups',
@@ -305,6 +310,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         $this->container['allow_decline'] = $data['allow_decline'] ?? false;
         $this->container['attachments'] = $data['attachments'] ?? null;
         $this->container['cc_email_addresses'] = $data['cc_email_addresses'] ?? null;
+        $this->container['client_id'] = $data['client_id'] ?? null;
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
         $this->container['field_options'] = $data['field_options'] ?? null;
         $this->container['form_field_groups'] = $data['form_field_groups'] ?? null;
@@ -491,6 +497,30 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     public function setCcEmailAddresses(?array $cc_email_addresses)
     {
         $this->container['cc_email_addresses'] = $cc_email_addresses;
+
+        return $this;
+    }
+
+    /**
+     * Gets client_id
+     *
+     * @return string|null
+     */
+    public function getClientId()
+    {
+        return $this->container['client_id'];
+    }
+
+    /**
+     * Sets client_id
+     *
+     * @param string|null $client_id Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
+     *
+     * @return self
+     */
+    public function setClientId(?string $client_id)
+    {
+        $this->container['client_id'] = $client_id;
 
         return $this;
     }

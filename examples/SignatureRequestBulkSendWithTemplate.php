@@ -45,8 +45,7 @@ $cc1->setRole("Accounting")
     ->setEmailAddress("accounting@example.com");
 
 $data = new HelloSignSDK\Model\SignatureRequestBulkSendWithTemplateRequest();
-$data->setClientId("ec64a202072370a737edf4a0eb7f4437")
-    ->setTemplateIds(["c26b8a16784a872da37ea946b9ddec7c1e11dff6"])
+$data->setTemplateIds(["c26b8a16784a872da37ea946b9ddec7c1e11dff6"])
     ->setSubject("Purchase Order")
     ->setMessage("Glad we could come to an agreement.")
     ->setSignerList([$signerList1, $signerList2])

@@ -267,7 +267,7 @@ class TemplateUpdateFilesRequest implements ModelInterface, ArrayAccess, JsonSer
     /**
      * Sets client_id
      *
-     * @param string|null $client_id client ID of the app you're using to create this template
+     * @param string|null $client_id client id of the app you're using to update this template
      *
      * @return self
      */

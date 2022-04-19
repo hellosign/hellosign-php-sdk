@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 | `signers`<sup>*_required_</sup> | [```\HelloSignSDK\Model\SubSignatureRequestTemplateSigner[]```](SubSignatureRequestTemplateSigner.md) |  Add Signers to your Templated-based Signature Request.  |  |
 | `allow_decline` | ```bool``` |  Allows signers to decline to sign a document if `true`. Defaults to `false`.  |  [default to false] |
 | `ccs` | [```\HelloSignSDK\Model\SubCC[]```](SubCC.md) |  Add CC email recipients. Required when a CC role exists for the Template.  |  |
-| `client_id` | ```string``` |  The client ID of the ApiApp you want to associate with this request.  |  |
+| `client_id` | ```string``` |  Client id of the app to associate with the signature request. Used to apply the branding and callback url defined for the app.  |  |
 | `custom_fields` | [```\HelloSignSDK\Model\SubCustomField[]```](SubCustomField.md) |  An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.  |  |
 | `file` | ```\SplFileObject[]``` |  **file** or **file_url** is required, but not both.<br><br>Use `file[]` to indicate the uploaded file(s) to send for signature.<br><br>Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.  |  |
 | `file_url` | ```string[]``` |  **file_url** or **file** is required, but not both.<br><br>Use `file_url[]` to have HelloSign download the file(s) to send for signature.<br><br>Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.  |  |

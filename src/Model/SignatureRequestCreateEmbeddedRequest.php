@@ -359,7 +359,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     /**
      * Sets client_id
      *
-     * @param string $client_id Client id of the app you're using to create this embedded signature request. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+     * @param string $client_id Client id of the app you're using to create this embedded signature request. Used for security purposes.
      *
      * @return self
      */

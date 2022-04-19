@@ -384,7 +384,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets client_id
      *
-     * @param string $client_id client id of the app you're using to create this draft
+     * @param string $client_id Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app.
      *
      * @return self
      */

@@ -267,7 +267,7 @@ class OAuthTokenGenerateRequest implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets client_id
      *
-     * @param string $client_id the client id of your app
+     * @param string $client_id the client id of the app requesting authorization
      *
      * @return self
      */

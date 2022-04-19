@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `callback_url` | ```string``` |  The URL at which the ApiApp should receive event callbacks.  |  |
+| `callback_url` | ```string``` |  The URL at which the Api App should receive event callbacks.  |  |
 | `custom_logo_file` | ```\SplFileObject``` |  An image file to use as a custom logo in embedded contexts. (Only applies to some API plans)  |  |
 | `domains` | ```string[]``` |  The domain names the ApiApp will be associated with.  |  |
 | `name` | ```string``` |  The name you want to assign to the ApiApp.  |  |

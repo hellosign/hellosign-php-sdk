@@ -312,7 +312,7 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets client_id
      *
-     * @param string|null $client_id The app's client ID
+     * @param string|null $client_id The app's client id
      *
      * @return self
      */

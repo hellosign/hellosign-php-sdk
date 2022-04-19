@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `client_id`<sup>*_required_</sup> | ```string``` |  Client id of the app you&#39;re using to create this draft.  |  |
+| `client_id`<sup>*_required_</sup> | ```string``` |  Client id of the app you&#39;re using to create this draft. Used to apply the branding and callback url defined for the app.  |  |
 | `file` | ```\SplFileObject[]``` |  **file** or **file_url** is required, but not both.<br><br>Use `file[]` to indicate the uploaded file(s) to use for the template<br><br>Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.  |  |
 | `file_url` | ```string[]``` |  **file_url** or **file** is required, but not both.<br><br>Use `file_url[]` to have HelloSign download the file(s) to use for the template.<br><br>Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.  |  |
 | `allow_ccs` | ```bool``` |  This allows the requester to specify whether the user is allowed to provide email addresses to CC when creating a template.  |  [default to false] |

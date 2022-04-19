@@ -436,7 +436,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
     /**
      * Sets client_id
      *
-     * @param string|null $client_id the client ID of the Api App you want to associate with this request
+     * @param string|null $client_id The client id of the Api App you want to associate with this request. Used to apply the branding and callback url defined for the app.
      *
      * @return self
      */

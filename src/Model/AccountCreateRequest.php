@@ -62,6 +62,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
         'email_address' => 'string',
         'client_id' => 'string',
         'client_secret' => 'string',
+        'locale' => 'string',
     ];
 
     /**
@@ -75,6 +76,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
         'email_address' => 'email',
         'client_id' => null,
         'client_secret' => null,
+        'locale' => null,
     ];
 
     /**
@@ -107,6 +109,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
         'email_address' => 'email_address',
         'client_id' => 'client_id',
         'client_secret' => 'client_secret',
+        'locale' => 'locale',
     ];
 
     /**
@@ -118,6 +121,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
         'email_address' => 'setEmailAddress',
         'client_id' => 'setClientId',
         'client_secret' => 'setClientSecret',
+        'locale' => 'setLocale',
     ];
 
     /**
@@ -129,6 +133,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
         'email_address' => 'getEmailAddress',
         'client_id' => 'getClientId',
         'client_secret' => 'getClientSecret',
+        'locale' => 'getLocale',
     ];
 
     /**
@@ -190,6 +195,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
         $this->container['email_address'] = $data['email_address'] ?? null;
         $this->container['client_id'] = $data['client_id'] ?? null;
         $this->container['client_secret'] = $data['client_secret'] ?? null;
+        $this->container['locale'] = $data['locale'] ?? null;
     }
 
     public static function fromArray(array $data): AccountCreateRequest
@@ -298,6 +304,30 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     public function setClientSecret(?string $client_secret)
     {
         $this->container['client_secret'] = $client_secret;
+
+        return $this;
+    }
+
+    /**
+     * Gets locale
+     *
+     * @return string|null
+     */
+    public function getLocale()
+    {
+        return $this->container['locale'];
+    }
+
+    /**
+     * Sets locale
+     *
+     * @param string|null $locale the locale used in this Account
+     *
+     * @return self
+     */
+    public function setLocale(?string $locale)
+    {
+        $this->container['locale'] = $locale;
 
         return $this;
     }

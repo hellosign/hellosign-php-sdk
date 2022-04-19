@@ -273,7 +273,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets client_id
      *
-     * @param string $client_id Client id of the app you're using to create this draft. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+     * @param string $client_id Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
      *
      * @return self
      */

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 | `allow_decline` | ```bool``` |  Allows signers to decline to sign a document if `true`. Defaults to `false`.  |  [default to false] |
 | `attachments` | [```\HelloSignSDK\Model\SubAttachment[]```](SubAttachment.md) |    |  |
 | `cc_email_addresses` | ```string[]``` |  The email addresses that should be CCed.  |  |
+| `client_id` | ```string``` |  Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.  |  |
 | `custom_fields` | [```\HelloSignSDK\Model\SubCustomField[]```](SubCustomField.md) |  An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).  |  |
 | `field_options` | [```\HelloSignSDK\Model\SubFieldOptions```](SubFieldOptions.md) |    |  |
 | `form_field_groups` | [```\HelloSignSDK\Model\SubFormFieldGroup[]```](SubFormFieldGroup.md) |  Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.  |  |
