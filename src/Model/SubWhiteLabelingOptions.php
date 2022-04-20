@@ -75,6 +75,7 @@ class SubWhiteLabelingOptions implements ModelInterface, ArrayAccess, JsonSerial
         'secondary_button_text_color_hover' => 'string',
         'text_color1' => 'string',
         'text_color2' => 'string',
+        'reset_to_default' => 'bool',
     ];
 
     /**
@@ -99,6 +100,7 @@ class SubWhiteLabelingOptions implements ModelInterface, ArrayAccess, JsonSerial
         'secondary_button_text_color_hover' => null,
         'text_color1' => null,
         'text_color2' => null,
+        'reset_to_default' => null,
     ];
 
     /**
@@ -142,6 +144,7 @@ class SubWhiteLabelingOptions implements ModelInterface, ArrayAccess, JsonSerial
         'secondary_button_text_color_hover' => 'secondary_button_text_color_hover',
         'text_color1' => 'text_color1',
         'text_color2' => 'text_color2',
+        'reset_to_default' => 'reset_to_default',
     ];
 
     /**
@@ -164,6 +167,7 @@ class SubWhiteLabelingOptions implements ModelInterface, ArrayAccess, JsonSerial
         'secondary_button_text_color_hover' => 'setSecondaryButtonTextColorHover',
         'text_color1' => 'setTextColor1',
         'text_color2' => 'setTextColor2',
+        'reset_to_default' => 'setResetToDefault',
     ];
 
     /**
@@ -186,6 +190,7 @@ class SubWhiteLabelingOptions implements ModelInterface, ArrayAccess, JsonSerial
         'secondary_button_text_color_hover' => 'getSecondaryButtonTextColorHover',
         'text_color1' => 'getTextColor1',
         'text_color2' => 'getTextColor2',
+        'reset_to_default' => 'getResetToDefault',
     ];
 
     /**
@@ -274,6 +279,7 @@ class SubWhiteLabelingOptions implements ModelInterface, ArrayAccess, JsonSerial
         $this->container['secondary_button_text_color_hover'] = $data['secondary_button_text_color_hover'] ?? '#00B3E6';
         $this->container['text_color1'] = $data['text_color1'] ?? '#808080';
         $this->container['text_color2'] = $data['text_color2'] ?? '#FFFFFF';
+        $this->container['reset_to_default'] = $data['reset_to_default'] ?? null;
     }
 
     public static function fromArray(array $data): SubWhiteLabelingOptions
@@ -661,6 +667,30 @@ class SubWhiteLabelingOptions implements ModelInterface, ArrayAccess, JsonSerial
     public function setTextColor2(?string $text_color2)
     {
         $this->container['text_color2'] = $text_color2;
+
+        return $this;
+    }
+
+    /**
+     * Gets reset_to_default
+     *
+     * @return bool|null
+     */
+    public function getResetToDefault()
+    {
+        return $this->container['reset_to_default'];
+    }
+
+    /**
+     * Sets reset_to_default
+     *
+     * @param bool|null $reset_to_default Resets white labeling options to defaults. Only useful when updating an API App.
+     *
+     * @return self
+     */
+    public function setResetToDefault(?bool $reset_to_default)
+    {
+        $this->container['reset_to_default'] = $reset_to_default;
 
         return $this;
     }

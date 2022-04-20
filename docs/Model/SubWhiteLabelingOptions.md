@@ -22,5 +22,6 @@ Name | Type | Description | Notes
 | `secondary_button_text_color_hover` | ```string``` |    |  [default to '#00B3E6'] |
 | `text_color1` | ```string``` |    |  [default to '#808080'] |
 | `text_color2` | ```string``` |    |  [default to '#FFFFFF'] |
+| `reset_to_default` | ```bool``` |  Resets white labeling options to defaults. Only useful when updating an API App.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
