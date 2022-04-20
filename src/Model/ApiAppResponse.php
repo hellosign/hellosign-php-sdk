@@ -63,7 +63,7 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'callback_url' => 'string',
         'client_id' => 'string',
         'created_at' => 'int',
-        'domain' => 'string',
+        'domains' => 'string[]',
         'name' => 'string',
         'is_approved' => 'bool',
         'oauth' => '\HelloSignSDK\Model\ApiAppResponseOAuth',
@@ -84,7 +84,7 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'callback_url' => null,
         'client_id' => null,
         'created_at' => null,
-        'domain' => null,
+        'domains' => null,
         'name' => null,
         'is_approved' => null,
         'oauth' => null,
@@ -124,7 +124,7 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'callback_url' => 'callback_url',
         'client_id' => 'client_id',
         'created_at' => 'created_at',
-        'domain' => 'domain',
+        'domains' => 'domains',
         'name' => 'name',
         'is_approved' => 'is_approved',
         'oauth' => 'oauth',
@@ -143,7 +143,7 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'callback_url' => 'setCallbackUrl',
         'client_id' => 'setClientId',
         'created_at' => 'setCreatedAt',
-        'domain' => 'setDomain',
+        'domains' => 'setDomains',
         'name' => 'setName',
         'is_approved' => 'setIsApproved',
         'oauth' => 'setOauth',
@@ -162,7 +162,7 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'callback_url' => 'getCallbackUrl',
         'client_id' => 'getClientId',
         'created_at' => 'getCreatedAt',
-        'domain' => 'getDomain',
+        'domains' => 'getDomains',
         'name' => 'getName',
         'is_approved' => 'getIsApproved',
         'oauth' => 'getOauth',
@@ -231,7 +231,7 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         $this->container['callback_url'] = $data['callback_url'] ?? null;
         $this->container['client_id'] = $data['client_id'] ?? null;
         $this->container['created_at'] = $data['created_at'] ?? null;
-        $this->container['domain'] = $data['domain'] ?? null;
+        $this->container['domains'] = $data['domains'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['is_approved'] = $data['is_approved'] ?? null;
         $this->container['oauth'] = $data['oauth'] ?? null;
@@ -348,25 +348,25 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets domain
+     * Gets domains
      *
-     * @return string|null
+     * @return string[]|null
      */
-    public function getDomain()
+    public function getDomains()
     {
-        return $this->container['domain'];
+        return $this->container['domains'];
     }
 
     /**
-     * Sets domain
+     * Sets domains
      *
-     * @param string|null $domain The domain name associated with the app
+     * @param string[]|null $domains The domain name(s) associated with the app
      *
      * @return self
      */
-    public function setDomain(?string $domain)
+    public function setDomains(?array $domains)
     {
-        $this->container['domain'] = $domain;
+        $this->container['domains'] = $domains;
 
         return $this;
     }

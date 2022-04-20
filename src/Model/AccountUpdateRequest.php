@@ -257,7 +257,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets locale
      *
-     * @param string|null $locale the locale used in this Account
+     * @param string|null $locale The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
      *
      * @return self
      */
