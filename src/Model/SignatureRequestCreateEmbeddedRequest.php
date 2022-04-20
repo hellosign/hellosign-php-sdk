@@ -74,6 +74,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'form_field_groups' => '\HelloSignSDK\Model\SubFormFieldGroup[]',
         'form_field_rules' => '\HelloSignSDK\Model\SubFormFieldRule[]',
         'form_fields_per_document' => '\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]',
+        'hide_text_tags' => 'bool',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
         'signers' => '\HelloSignSDK\Model\SubSignatureRequestSigner[]',
@@ -104,6 +105,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'form_field_groups' => null,
         'form_field_rules' => null,
         'form_fields_per_document' => null,
+        'hide_text_tags' => null,
         'message' => null,
         'metadata' => null,
         'signers' => null,
@@ -153,6 +155,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'form_field_groups' => 'form_field_groups',
         'form_field_rules' => 'form_field_rules',
         'form_fields_per_document' => 'form_fields_per_document',
+        'hide_text_tags' => 'hide_text_tags',
         'message' => 'message',
         'metadata' => 'metadata',
         'signers' => 'signers',
@@ -181,6 +184,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'form_field_groups' => 'setFormFieldGroups',
         'form_field_rules' => 'setFormFieldRules',
         'form_fields_per_document' => 'setFormFieldsPerDocument',
+        'hide_text_tags' => 'setHideTextTags',
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
         'signers' => 'setSigners',
@@ -209,6 +213,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'form_field_groups' => 'getFormFieldGroups',
         'form_field_rules' => 'getFormFieldRules',
         'form_fields_per_document' => 'getFormFieldsPerDocument',
+        'hide_text_tags' => 'getHideTextTags',
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
         'signers' => 'getSigners',
@@ -287,6 +292,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         $this->container['form_field_groups'] = $data['form_field_groups'] ?? null;
         $this->container['form_field_rules'] = $data['form_field_rules'] ?? null;
         $this->container['form_fields_per_document'] = $data['form_fields_per_document'] ?? null;
+        $this->container['hide_text_tags'] = $data['hide_text_tags'] ?? false;
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
         $this->container['signers'] = $data['signers'] ?? null;
@@ -630,6 +636,30 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     public function setFormFieldsPerDocument(?array $form_fields_per_document)
     {
         $this->container['form_fields_per_document'] = $form_fields_per_document;
+
+        return $this;
+    }
+
+    /**
+     * Gets hide_text_tags
+     *
+     * @return bool|null
+     */
+    public function getHideTextTags()
+    {
+        return $this->container['hide_text_tags'];
+    }
+
+    /**
+     * Sets hide_text_tags
+     *
+     * @param bool|null $hide_text_tags Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to disabled, or `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.
+     *
+     * @return self
+     */
+    public function setHideTextTags(?bool $hide_text_tags)
+    {
+        $this->container['hide_text_tags'] = $hide_text_tags;
 
         return $this;
     }
