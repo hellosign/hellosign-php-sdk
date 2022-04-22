@@ -177,7 +177,7 @@
         {{#discriminator}}
 
         // Initialize discriminator property with the model name.
-        $this->container['{{discriminatorName}}'] = static::$openAPIModelName;
+        $this->container['{{discriminatorName}}'] = $data['{{discriminatorName}}'] ?? static::$openAPIModelName;
         {{/discriminator}}
     }
 

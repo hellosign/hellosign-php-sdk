@@ -1,6 +1,6 @@
 <?php
 /**
- * SignatureRequestResponseCustomField
+ * SignatureRequestResponseCustomFieldBase
  *
  * PHP version 7.3
  *
@@ -30,14 +30,13 @@ namespace HelloSignSDK\Model;
 
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
-use InvalidArgumentException;
 use JsonSerializable;
 
 /**
- * SignatureRequestResponseCustomField Class Doc Comment
+ * SignatureRequestResponseCustomFieldBase Class Doc Comment
  *
  * @category Class
- * @description An array of Custom Field objects containing the name and type of each custom field.
+ * @description An array of Custom Field objects containing the name and type of each custom field.  * Text Field uses &#x60;SignatureRequestResponseCustomFieldText&#x60; * Checkbox Field uses &#x60;SignatureRequestResponseCustomFieldCheckbox&#x60;
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -45,16 +44,16 @@ use JsonSerializable;
  * @template TValue mixed|null
  * @internal This class should not be instantiated directly
  */
-class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess, JsonSerializable
+abstract class SignatureRequestResponseCustomFieldBase implements ModelInterface, ArrayAccess, JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = 'type';
 
     /**
      * The original name of the model.
      *
      * @var string
      */
-    protected static $openAPIModelName = 'SignatureRequestResponseCustomField';
+    protected static $openAPIModelName = 'SignatureRequestResponseCustomFieldBase';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -63,8 +62,6 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
      */
     protected static $openAPITypes = [
         'name' => 'string',
-        'type' => 'string',
-        'value' => 'string',
         'required' => 'bool',
         'api_id' => 'string',
         'editor' => 'string',
@@ -79,8 +76,6 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
      */
     protected static $openAPIFormats = [
         'name' => null,
-        'type' => null,
-        'value' => null,
         'required' => null,
         'api_id' => null,
         'editor' => null,
@@ -114,8 +109,6 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'name' => 'name',
-        'type' => 'type',
-        'value' => 'value',
         'required' => 'required',
         'api_id' => 'api_id',
         'editor' => 'editor',
@@ -128,8 +121,6 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'name' => 'setName',
-        'type' => 'setType',
-        'value' => 'setValue',
         'required' => 'setRequired',
         'api_id' => 'setApiId',
         'editor' => 'setEditor',
@@ -142,8 +133,6 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'name' => 'getName',
-        'type' => 'getType',
-        'value' => 'getValue',
         'required' => 'getRequired',
         'api_id' => 'getApiId',
         'editor' => 'getEditor',
@@ -190,22 +179,6 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    public const TYPE_TEXT = 'text';
-    public const TYPE_CHECKBOX = 'checkbox';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_TEXT,
-            self::TYPE_CHECKBOX,
-        ];
-    }
-
     /**
      * Associative array for storing property values
      *
@@ -222,22 +195,28 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['name'] = $data['name'] ?? null;
-        $this->container['type'] = $data['type'] ?? null;
-        $this->container['value'] = $data['value'] ?? null;
         $this->container['required'] = $data['required'] ?? null;
         $this->container['api_id'] = $data['api_id'] ?? null;
         $this->container['editor'] = $data['editor'] ?? null;
+
+        // Initialize discriminator property with the model name.
+        $this->container['type'] = $data['type'] ?? static::$openAPIModelName;
     }
 
-    public static function fromArray(array $data): SignatureRequestResponseCustomField
+    public static function discriminatorClassName(array $data): ?string
     {
-        /** @var SignatureRequestResponseCustomField $obj */
-        $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
-            SignatureRequestResponseCustomField::class,
-        );
+        if (!array_key_exists('type', $data)) {
+            return null;
+        }
 
-        return $obj;
+        if ($data['type'] === 'checkbox') {
+            return SignatureRequestResponseCustomFieldCheckbox::class;
+        }
+        if ($data['type'] === 'text') {
+            return SignatureRequestResponseCustomFieldText::class;
+        }
+
+        return null;
     }
 
     /**
@@ -249,13 +228,8 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
 
         return $invalidProperties;
@@ -275,7 +249,7 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
     /**
      * Gets name
      *
-     * @return string|null
+     * @return string
      */
     public function getName()
     {
@@ -285,71 +259,13 @@ class SignatureRequestResponseCustomField implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string|null $name the name of the Custom Field
+     * @param string $name the name of the Custom Field
      *
      * @return self
      */
-    public function setName(?string $name)
+    public function setName(string $name)
     {
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type The type of this Custom Field. Only 'text' and 'checkbox' are currently supported.
-     *
-     * @return self
-     */
-    public function setType(?string $type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value A text string for text fields or true/false for checkbox fields
-     *
-     * @return self
-     */
-    public function setValue(?string $value)
-    {
-        $this->container['value'] = $value;
 
         return $this;
     }

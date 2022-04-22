@@ -79,7 +79,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'cc_email_addresses' => 'string[]',
         'signing_redirect_url' => 'string',
         'template_ids' => 'string[]',
-        'custom_fields' => '\HelloSignSDK\Model\SignatureRequestResponseCustomField[]',
+        'custom_fields' => '\HelloSignSDK\Model\SignatureRequestResponseCustomFieldBase[]',
         'attachments' => '\HelloSignSDK\Model\SignatureRequestResponseAttachment[]',
         'response_data' => '\HelloSignSDK\Model\SignatureRequestResponseData[]',
         'signatures' => '\HelloSignSDK\Model\SignatureRequestResponseSignatures[]',
@@ -806,7 +806,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets custom_fields
      *
-     * @return SignatureRequestResponseCustomField[]|null
+     * @return SignatureRequestResponseCustomFieldBase[]|null
      */
     public function getCustomFields()
     {
@@ -816,7 +816,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets custom_fields
      *
-     * @param SignatureRequestResponseCustomField[]|null $custom_fields custom_fields
+     * @param SignatureRequestResponseCustomFieldBase[]|null $custom_fields An array of Custom Field objects containing the name and type of each custom field.  * Text Field uses `SignatureRequestResponseCustomFieldText` * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`
      *
      * @return self
      */

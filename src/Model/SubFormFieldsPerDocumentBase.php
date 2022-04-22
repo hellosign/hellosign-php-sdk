@@ -236,7 +236,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
         $this->container['required'] = $data['required'] ?? null;
 
         // Initialize discriminator property with the model name.
-        $this->container['type'] = static::$openAPIModelName;
+        $this->container['type'] = $data['type'] ?? static::$openAPIModelName;
     }
 
     public static function discriminatorClassName(array $data): ?string
