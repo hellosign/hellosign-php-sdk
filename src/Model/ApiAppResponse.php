@@ -70,7 +70,6 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'options' => '\HelloSignSDK\Model\ApiAppResponseOptions',
         'owner_account' => '\HelloSignSDK\Model\ApiAppResponseOwnerAccount',
         'white_labeling_options' => '\HelloSignSDK\Model\ApiAppResponseWhiteLabelingOptions',
-        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -91,7 +90,6 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'options' => null,
         'owner_account' => null,
         'white_labeling_options' => null,
-        'warnings' => null,
     ];
 
     /**
@@ -131,7 +129,6 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'options' => 'options',
         'owner_account' => 'owner_account',
         'white_labeling_options' => 'white_labeling_options',
-        'warnings' => 'warnings',
     ];
 
     /**
@@ -150,7 +147,6 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'options' => 'setOptions',
         'owner_account' => 'setOwnerAccount',
         'white_labeling_options' => 'setWhiteLabelingOptions',
-        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -169,7 +165,6 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'options' => 'getOptions',
         'owner_account' => 'getOwnerAccount',
         'white_labeling_options' => 'getWhiteLabelingOptions',
-        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -238,7 +233,6 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
         $this->container['options'] = $data['options'] ?? null;
         $this->container['owner_account'] = $data['owner_account'] ?? null;
         $this->container['white_labeling_options'] = $data['white_labeling_options'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): ApiAppResponse
@@ -511,30 +505,6 @@ class ApiAppResponse implements ModelInterface, ArrayAccess, JsonSerializable
     public function setWhiteLabelingOptions(?ApiAppResponseWhiteLabelingOptions $white_labeling_options)
     {
         $this->container['white_labeling_options'] = $white_labeling_options;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return WarningResponse[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param WarningResponse[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings)
-    {
-        $this->container['warnings'] = $warnings;
 
         return $this;
     }

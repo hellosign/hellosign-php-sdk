@@ -64,7 +64,6 @@ class BulkSendJobResponse implements ModelInterface, ArrayAccess, JsonSerializab
         'total' => 'int',
         'is_creator' => 'bool',
         'created_at' => 'int',
-        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -79,7 +78,6 @@ class BulkSendJobResponse implements ModelInterface, ArrayAccess, JsonSerializab
         'total' => null,
         'is_creator' => null,
         'created_at' => null,
-        'warnings' => null,
     ];
 
     /**
@@ -113,7 +111,6 @@ class BulkSendJobResponse implements ModelInterface, ArrayAccess, JsonSerializab
         'total' => 'total',
         'is_creator' => 'is_creator',
         'created_at' => 'created_at',
-        'warnings' => 'warnings',
     ];
 
     /**
@@ -126,7 +123,6 @@ class BulkSendJobResponse implements ModelInterface, ArrayAccess, JsonSerializab
         'total' => 'setTotal',
         'is_creator' => 'setIsCreator',
         'created_at' => 'setCreatedAt',
-        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -139,7 +135,6 @@ class BulkSendJobResponse implements ModelInterface, ArrayAccess, JsonSerializab
         'total' => 'getTotal',
         'is_creator' => 'getIsCreator',
         'created_at' => 'getCreatedAt',
-        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -202,7 +197,6 @@ class BulkSendJobResponse implements ModelInterface, ArrayAccess, JsonSerializab
         $this->container['total'] = $data['total'] ?? null;
         $this->container['is_creator'] = $data['is_creator'] ?? null;
         $this->container['created_at'] = $data['created_at'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): BulkSendJobResponse
@@ -331,30 +325,6 @@ class BulkSendJobResponse implements ModelInterface, ArrayAccess, JsonSerializab
     public function setCreatedAt(?int $created_at)
     {
         $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return WarningResponse[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param WarningResponse[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings)
-    {
-        $this->container['warnings'] = $warnings;
 
         return $this;
     }

@@ -65,7 +65,6 @@ class ReportResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'start_date' => 'string',
         'end_date' => 'string',
         'report_type' => 'string[]',
-        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -80,7 +79,6 @@ class ReportResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'start_date' => null,
         'end_date' => null,
         'report_type' => null,
-        'warnings' => null,
     ];
 
     /**
@@ -114,7 +112,6 @@ class ReportResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'start_date' => 'start_date',
         'end_date' => 'end_date',
         'report_type' => 'report_type',
-        'warnings' => 'warnings',
     ];
 
     /**
@@ -127,7 +124,6 @@ class ReportResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'start_date' => 'setStartDate',
         'end_date' => 'setEndDate',
         'report_type' => 'setReportType',
-        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -140,7 +136,6 @@ class ReportResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'start_date' => 'getStartDate',
         'end_date' => 'getEndDate',
         'report_type' => 'getReportType',
-        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -219,7 +214,6 @@ class ReportResponse implements ModelInterface, ArrayAccess, JsonSerializable
         $this->container['start_date'] = $data['start_date'] ?? null;
         $this->container['end_date'] = $data['end_date'] ?? null;
         $this->container['report_type'] = $data['report_type'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): ReportResponse
@@ -357,30 +351,6 @@ class ReportResponse implements ModelInterface, ArrayAccess, JsonSerializable
             );
         }
         $this->container['report_type'] = $report_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return WarningResponse[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param WarningResponse[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings)
-    {
-        $this->container['warnings'] = $warnings;
 
         return $this;
     }

@@ -61,6 +61,7 @@ class TemplateCreateEmbeddedDraftResponse implements ModelInterface, ArrayAccess
      */
     protected static $openAPITypes = [
         'template' => '\HelloSignSDK\Model\TemplateCreateEmbeddedDraftResponseTemplate',
+        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -72,6 +73,7 @@ class TemplateCreateEmbeddedDraftResponse implements ModelInterface, ArrayAccess
      */
     protected static $openAPIFormats = [
         'template' => null,
+        'warnings' => null,
     ];
 
     /**
@@ -102,6 +104,7 @@ class TemplateCreateEmbeddedDraftResponse implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'template' => 'template',
+        'warnings' => 'warnings',
     ];
 
     /**
@@ -111,6 +114,7 @@ class TemplateCreateEmbeddedDraftResponse implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'template' => 'setTemplate',
+        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -120,6 +124,7 @@ class TemplateCreateEmbeddedDraftResponse implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'template' => 'getTemplate',
+        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -179,6 +184,7 @@ class TemplateCreateEmbeddedDraftResponse implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['template'] = $data['template'] ?? null;
+        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): TemplateCreateEmbeddedDraftResponse
@@ -235,6 +241,30 @@ class TemplateCreateEmbeddedDraftResponse implements ModelInterface, ArrayAccess
     public function setTemplate(?TemplateCreateEmbeddedDraftResponseTemplate $template)
     {
         $this->container['template'] = $template;
+
+        return $this;
+    }
+
+    /**
+     * Gets warnings
+     *
+     * @return WarningResponse[]|null
+     */
+    public function getWarnings()
+    {
+        return $this->container['warnings'];
+    }
+
+    /**
+     * Sets warnings
+     *
+     * @param WarningResponse[]|null $warnings warnings
+     *
+     * @return self
+     */
+    public function setWarnings(?array $warnings)
+    {
+        $this->container['warnings'] = $warnings;
 
         return $this;
     }

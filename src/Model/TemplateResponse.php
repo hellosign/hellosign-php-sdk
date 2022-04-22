@@ -74,7 +74,6 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'documents' => '\HelloSignSDK\Model\TemplateResponseDocument[]',
         'custom_fields' => '\HelloSignSDK\Model\TemplateResponseCustomField[]',
         'accounts' => '\HelloSignSDK\Model\TemplateResponseAccount[]',
-        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -99,7 +98,6 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'documents' => null,
         'custom_fields' => null,
         'accounts' => null,
-        'warnings' => null,
     ];
 
     /**
@@ -143,7 +141,6 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'documents' => 'documents',
         'custom_fields' => 'custom_fields',
         'accounts' => 'accounts',
-        'warnings' => 'warnings',
     ];
 
     /**
@@ -166,7 +163,6 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'documents' => 'setDocuments',
         'custom_fields' => 'setCustomFields',
         'accounts' => 'setAccounts',
-        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -189,7 +185,6 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'documents' => 'getDocuments',
         'custom_fields' => 'getCustomFields',
         'accounts' => 'getAccounts',
-        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -262,7 +257,6 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         $this->container['documents'] = $data['documents'] ?? null;
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
         $this->container['accounts'] = $data['accounts'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): TemplateResponse
@@ -631,30 +625,6 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     public function setAccounts(?array $accounts)
     {
         $this->container['accounts'] = $accounts;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return WarningResponse[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param WarningResponse[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings)
-    {
-        $this->container['warnings'] = $warnings;
 
         return $this;
     }

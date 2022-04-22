@@ -62,7 +62,6 @@ class EmbeddedEditUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     protected static $openAPITypes = [
         'edit_url' => 'string',
         'expires_at' => 'int',
-        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -75,7 +74,6 @@ class EmbeddedEditUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     protected static $openAPIFormats = [
         'edit_url' => null,
         'expires_at' => null,
-        'warnings' => null,
     ];
 
     /**
@@ -107,7 +105,6 @@ class EmbeddedEditUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     protected static $attributeMap = [
         'edit_url' => 'edit_url',
         'expires_at' => 'expires_at',
-        'warnings' => 'warnings',
     ];
 
     /**
@@ -118,7 +115,6 @@ class EmbeddedEditUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     protected static $setters = [
         'edit_url' => 'setEditUrl',
         'expires_at' => 'setExpiresAt',
-        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -129,7 +125,6 @@ class EmbeddedEditUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     protected static $getters = [
         'edit_url' => 'getEditUrl',
         'expires_at' => 'getExpiresAt',
-        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -190,7 +185,6 @@ class EmbeddedEditUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     {
         $this->container['edit_url'] = $data['edit_url'] ?? null;
         $this->container['expires_at'] = $data['expires_at'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     public static function fromArray(array $data): EmbeddedEditUrlResponseEmbedded
@@ -271,30 +265,6 @@ class EmbeddedEditUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     public function setExpiresAt(?int $expires_at)
     {
         $this->container['expires_at'] = $expires_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return WarningResponse[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param WarningResponse[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings)
-    {
-        $this->container['warnings'] = $warnings;
 
         return $this;
     }

@@ -20,6 +20,5 @@ Name | Type | Description | Notes
 | `documents` | [```\HelloSignSDK\Model\TemplateResponseDocument[]```](TemplateResponseDocument.md) |    |  |
 | `custom_fields` | [```\HelloSignSDK\Model\TemplateResponseCustomField[]```](TemplateResponseCustomField.md) |    |  |
 | `accounts` | [```\HelloSignSDK\Model\TemplateResponseAccount[]```](TemplateResponseAccount.md) |    |  |
-| `warnings` | [```\HelloSignSDK\Model\WarningResponse[]```](WarningResponse.md) |    |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
