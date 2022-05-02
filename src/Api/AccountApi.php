@@ -657,13 +657,15 @@ class AccountApi
         $formParams = [];
         $multipart = false;
 
-        // path params
+        // query params
         if ($account_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'account_id' . '}',
-                ObjectSerializer::toPathValue($account_id),
-                $resourcePath
-            );
+            if ('form' === 'form' && is_array($account_id)) {
+                foreach ($account_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['account_id'] = $account_id;
+            }
         }
 
         if ($multipart) {
