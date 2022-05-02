@@ -59,6 +59,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      * @var string[]
      */
     protected static $openAPITypes = [
+        'account_id' => 'string',
         'callback_url' => 'string',
         'locale' => 'string',
     ];
@@ -71,6 +72,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'account_id' => null,
         'callback_url' => null,
         'locale' => null,
     ];
@@ -102,6 +104,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
+        'account_id' => 'account_id',
         'callback_url' => 'callback_url',
         'locale' => 'locale',
     ];
@@ -112,6 +115,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      * @var string[]
      */
     protected static $setters = [
+        'account_id' => 'setAccountId',
         'callback_url' => 'setCallbackUrl',
         'locale' => 'setLocale',
     ];
@@ -122,6 +126,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      * @var string[]
      */
     protected static $getters = [
+        'account_id' => 'getAccountId',
         'callback_url' => 'getCallbackUrl',
         'locale' => 'getLocale',
     ];
@@ -182,6 +187,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      */
     public function __construct(array $data = null)
     {
+        $this->container['account_id'] = $data['account_id'] ?? null;
         $this->container['callback_url'] = $data['callback_url'] ?? null;
         $this->container['locale'] = $data['locale'] ?? null;
     }
@@ -218,6 +224,30 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     public function valid()
     {
         return count($this->listInvalidProperties()) === 0;
+    }
+
+    /**
+     * Gets account_id
+     *
+     * @return string|null
+     */
+    public function getAccountId()
+    {
+        return $this->container['account_id'];
+    }
+
+    /**
+     * Sets account_id
+     *
+     * @param string|null $account_id account ID
+     *
+     * @return self
+     */
+    public function setAccountId(?string $account_id)
+    {
+        $this->container['account_id'] = $account_id;
+
+        return $this;
     }
 
     /**
