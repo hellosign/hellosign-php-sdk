@@ -61,6 +61,7 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $openAPITypes = [
         'account_id' => 'string',
         'email_address' => 'string',
+        'skip_notification' => 'bool',
     ];
 
     /**
@@ -73,6 +74,7 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $openAPIFormats = [
         'account_id' => null,
         'email_address' => 'email',
+        'skip_notification' => null,
     ];
 
     /**
@@ -104,6 +106,7 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $attributeMap = [
         'account_id' => 'account_id',
         'email_address' => 'email_address',
+        'skip_notification' => 'skip_notification',
     ];
 
     /**
@@ -114,6 +117,7 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $setters = [
         'account_id' => 'setAccountId',
         'email_address' => 'setEmailAddress',
+        'skip_notification' => 'setSkipNotification',
     ];
 
     /**
@@ -124,6 +128,7 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     protected static $getters = [
         'account_id' => 'getAccountId',
         'email_address' => 'getEmailAddress',
+        'skip_notification' => 'getSkipNotification',
     ];
 
     /**
@@ -184,6 +189,7 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     {
         $this->container['account_id'] = $data['account_id'] ?? null;
         $this->container['email_address'] = $data['email_address'] ?? null;
+        $this->container['skip_notification'] = $data['skip_notification'] ?? false;
     }
 
     public static function fromArray(array $data): TemplateAddUserRequest
@@ -264,6 +270,30 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setEmailAddress(?string $email_address)
     {
         $this->container['email_address'] = $email_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets skip_notification
+     *
+     * @return bool|null
+     */
+    public function getSkipNotification()
+    {
+        return $this->container['skip_notification'];
+    }
+
+    /**
+     * Sets skip_notification
+     *
+     * @param bool|null $skip_notification If set to `true`, the user does not receive an email notification when a template has been shared with them. Defaults to `false`.
+     *
+     * @return self
+     */
+    public function setSkipNotification(?bool $skip_notification)
+    {
+        $this->container['skip_notification'] = $skip_notification;
 
         return $this;
     }

@@ -28,7 +28,7 @@ signatureRequestBulkCreateEmbeddedWithTemplate($signature_request_bulk_create_em
 
 Embedded Bulk Send with Template
 
-Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Gold plan and higher.
+Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
 
 ### Example
 
@@ -126,7 +126,7 @@ signatureRequestBulkSendWithTemplate($signature_request_bulk_send_with_template_
 
 Bulk Send with Template
 
-Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter.  **NOTE**: Only available for Gold plan and higher.
+Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter.  **NOTE**: Only available for Standard plan and higher.
 
 ### Example
 

@@ -364,7 +364,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         $this->container['requester_email_address'] = $data['requester_email_address'] ?? null;
         $this->container['file'] = $data['file'] ?? null;
         $this->container['file_url'] = $data['file_url'] ?? null;
-        $this->container['allow_ccs'] = $data['allow_ccs'] ?? false;
+        $this->container['allow_ccs'] = $data['allow_ccs'] ?? true;
         $this->container['allow_decline'] = $data['allow_decline'] ?? false;
         $this->container['allow_reassign'] = $data['allow_reassign'] ?? false;
         $this->container['attachments'] = $data['attachments'] ?? null;
@@ -610,7 +610,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
     /**
      * Sets allow_reassign
      *
-     * @param bool|null $allow_reassign Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Gold plan and higher.
+     * @param bool|null $allow_reassign Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Premium plan and higher.
      *
      * @return self
      */

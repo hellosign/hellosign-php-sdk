@@ -1,6 +1,6 @@
 <?php
 /**
- * SubMergeField
+ * SignatureRequestResponseCustomFieldCheckbox
  *
  * PHP version 7.3
  *
@@ -28,22 +28,20 @@
 
 namespace HelloSignSDK\Model;
 
-use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
-use InvalidArgumentException;
-use JsonSerializable;
 
 /**
- * SubMergeField Class Doc Comment
+ * SignatureRequestResponseCustomFieldCheckbox Class Doc Comment
  *
  * @category Class
+ * @description This class extends &#x60;SignatureRequestResponseCustomFieldBase&#x60;.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
+class SignatureRequestResponseCustomFieldCheckbox extends SignatureRequestResponseCustomFieldBase
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +50,7 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'SubMergeField';
+    protected static $openAPIModelName = 'SignatureRequestResponseCustomFieldCheckbox';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +58,8 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'name' => 'string',
         'type' => 'string',
+        'value' => 'bool',
     ];
 
     /**
@@ -72,8 +70,8 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'name' => null,
         'type' => null,
+        'value' => null,
     ];
 
     /**
@@ -83,7 +81,7 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -93,7 +91,7 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -103,8 +101,8 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
         'type' => 'type',
+        'value' => 'value',
     ];
 
     /**
@@ -113,8 +111,8 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
         'type' => 'setType',
+        'value' => 'setValue',
     ];
 
     /**
@@ -123,8 +121,8 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
         'type' => 'getType',
+        'value' => 'getValue',
     ];
 
     /**
@@ -135,7 +133,7 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -145,7 +143,7 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -155,7 +153,7 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -168,29 +166,6 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_TEXT = 'text';
-    public const TYPE_CHECKBOX = 'checkbox';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_TEXT,
-            self::TYPE_CHECKBOX,
-        ];
-    }
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var array
-     */
-    protected $container = [];
-
     /**
      * Constructor
      *
@@ -199,16 +174,18 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['type'] = $data['type'] ?? null;
+        parent::__construct($data);
+
+        $this->container['type'] = $data['type'] ?? 'checkbox';
+        $this->container['value'] = $data['value'] ?? null;
     }
 
-    public static function fromArray(array $data): SubMergeField
+    public static function fromArray(array $data): SignatureRequestResponseCustomFieldCheckbox
     {
-        /** @var SubMergeField $obj */
+        /** @var SignatureRequestResponseCustomFieldCheckbox $obj */
         $obj = ObjectSerializer::deserialize(
             ObjectSerializer::instantiateFiles(static::class, $data),
-            SubMergeField::class,
+            SignatureRequestResponseCustomFieldCheckbox::class,
         );
 
         return $obj;
@@ -221,21 +198,10 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
         }
 
         return $invalidProperties;
@@ -253,30 +219,6 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
     }
 
     /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name The name of the merge field. Must be unique.
-     *
-     * @return self
-     */
-    public function setName(string $name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
      * Gets type
      *
      * @return string
@@ -289,23 +231,37 @@ class SubMergeField implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type the type of merge field
+     * @param string $type The type of this Custom Field. Only 'text' and 'checkbox' are currently supported.
      *
      * @return self
      */
     public function setType(string $type)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return bool|null
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param bool|null $value A true/false for checkbox fields
+     *
+     * @return self
+     */
+    public function setValue(?bool $value)
+    {
+        $this->container['value'] = $value;
 
         return $this;
     }

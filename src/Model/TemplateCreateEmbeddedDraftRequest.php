@@ -302,7 +302,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
         $this->container['client_id'] = $data['client_id'] ?? null;
         $this->container['file'] = $data['file'] ?? null;
         $this->container['file_url'] = $data['file_url'] ?? null;
-        $this->container['allow_ccs'] = $data['allow_ccs'] ?? false;
+        $this->container['allow_ccs'] = $data['allow_ccs'] ?? true;
         $this->container['allow_reassign'] = $data['allow_reassign'] ?? false;
         $this->container['attachments'] = $data['attachments'] ?? null;
         $this->container['cc_roles'] = $data['cc_roles'] ?? null;
@@ -480,7 +480,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets allow_reassign
      *
-     * @param bool|null $allow_reassign Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Gold plan and higher.
+     * @param bool|null $allow_reassign Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Premium plan and higher.
      *
      * @return self
      */
@@ -720,7 +720,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets merge_fields
      *
-     * @param SubMergeField[]|null $merge_fields merge_fields
+     * @param SubMergeField[]|null $merge_fields Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.   If the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.
      *
      * @return self
      */

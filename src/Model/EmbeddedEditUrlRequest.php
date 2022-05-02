@@ -413,7 +413,7 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets merge_fields
      *
-     * @param SubMergeField[]|null $merge_fields merge_fields
+     * @param SubMergeField[]|null $merge_fields Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.      Remove all merge fields on the template by passing an empty array `[]`.
      *
      * @return self
      */

@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 | `cc_email_addresses` | ```string[]``` |  A list of email addresses that were CCed on the SignatureRequest. They will receive a copy of the final PDF once all the signers have signed.  |  |
 | `signing_redirect_url` | ```string``` |  The URL you want the signer redirected to after they successfully sign.  |  |
 | `template_ids` | ```string[]``` |  Templates IDs used in this SignatureRequest (if any).  |  |
-| `custom_fields` | [```\HelloSignSDK\Model\SignatureRequestResponseCustomField[]```](SignatureRequestResponseCustomField.md) |    |  |
+| `custom_fields` | [```\HelloSignSDK\Model\SignatureRequestResponseCustomFieldBase[]```](SignatureRequestResponseCustomFieldBase.md) |  An array of Custom Field objects containing the name and type of each custom field.<br><br>* Text Field uses `SignatureRequestResponseCustomFieldText`<br>* Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`  |  |
 | `attachments` | [```\HelloSignSDK\Model\SignatureRequestResponseAttachment[]```](SignatureRequestResponseAttachment.md) |    |  |
 | `response_data` | [```\HelloSignSDK\Model\SignatureRequestResponseData[]```](SignatureRequestResponseData.md) |    |  |
 | `signatures` | [```\HelloSignSDK\Model\SignatureRequestResponseSignatures[]```](SignatureRequestResponseSignatures.md) |    |  |
