@@ -76,7 +76,7 @@ try {
 ## `accountGet()`
 
 ```php
-accountGet(): \HelloSignSDK\Model\AccountGetResponse
+accountGet($account_id): \HelloSignSDK\Model\AccountGetResponse
 ```
 
 Get Account
@@ -112,7 +112,9 @@ try {
 
 ### Parameters
 
-|This endpoint does not need any parameter. |
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **account_id** | **string**| Account ID | [optional] |
 
 ### Return type
 

@@ -67,6 +67,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => 'bool',
         'quotas' => '\HelloSignSDK\Model\AccountResponseQuotas',
         'callback_url' => 'string',
+        'should_send_outbound_conf_emails' => 'bool',
         'role_code' => 'string',
     ];
 
@@ -85,6 +86,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => null,
         'quotas' => null,
         'callback_url' => null,
+        'should_send_outbound_conf_emails' => null,
         'role_code' => null,
     ];
 
@@ -122,6 +124,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => 'is_paid_hf',
         'quotas' => 'quotas',
         'callback_url' => 'callback_url',
+        'should_send_outbound_conf_emails' => 'should_send_outbound_conf_emails',
         'role_code' => 'role_code',
     ];
 
@@ -138,6 +141,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => 'setIsPaidHf',
         'quotas' => 'setQuotas',
         'callback_url' => 'setCallbackUrl',
+        'should_send_outbound_conf_emails' => 'setShouldSendOutboundConfEmails',
         'role_code' => 'setRoleCode',
     ];
 
@@ -154,6 +158,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => 'getIsPaidHf',
         'quotas' => 'getQuotas',
         'callback_url' => 'getCallbackUrl',
+        'should_send_outbound_conf_emails' => 'getShouldSendOutboundConfEmails',
         'role_code' => 'getRoleCode',
     ];
 
@@ -220,6 +225,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         $this->container['is_paid_hf'] = $data['is_paid_hf'] ?? null;
         $this->container['quotas'] = $data['quotas'] ?? null;
         $this->container['callback_url'] = $data['callback_url'] ?? null;
+        $this->container['should_send_outbound_conf_emails'] = $data['should_send_outbound_conf_emails'] ?? null;
         $this->container['role_code'] = $data['role_code'] ?? null;
     }
 
@@ -421,6 +427,30 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCallbackUrl(?string $callback_url)
     {
         $this->container['callback_url'] = $callback_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets should_send_outbound_conf_emails
+     *
+     * @return bool|null
+     */
+    public function getShouldSendOutboundConfEmails()
+    {
+        return $this->container['should_send_outbound_conf_emails'];
+    }
+
+    /**
+     * Sets should_send_outbound_conf_emails
+     *
+     * @param bool|null $should_send_outbound_conf_emails should_send_outbound_conf_emails
+     *
+     * @return self
+     */
+    public function setShouldSendOutboundConfEmails(?bool $should_send_outbound_conf_emails)
+    {
+        $this->container['should_send_outbound_conf_emails'] = $should_send_outbound_conf_emails;
 
         return $this;
     }

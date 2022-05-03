@@ -437,13 +437,15 @@ class AccountApi
      *
      * Get Account
      *
+     * @param string $account_id Account ID (optional)
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      * @return Model\AccountGetResponse
      */
-    public function accountGet()
+    public function accountGet(string $account_id = null)
     {
-        list($response) = $this->accountGetWithHttpInfo();
+        list($response) = $this->accountGetWithHttpInfo($account_id);
 
         return $response;
     }
@@ -453,13 +455,15 @@ class AccountApi
      *
      * Get Account
      *
+     * @param string $account_id Account ID (optional)
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      * @return array of Model\AccountGetResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function accountGetWithHttpInfo()
+    public function accountGetWithHttpInfo(string $account_id = null)
     {
-        $request = $this->accountGetRequest();
+        $request = $this->accountGetRequest($account_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -572,12 +576,14 @@ class AccountApi
      *
      * Get Account
      *
+     * @param string $account_id Account ID (optional)
+     *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function accountGetAsync()
+    public function accountGetAsync(string $account_id = null)
     {
-        return $this->accountGetAsyncWithHttpInfo()
+        return $this->accountGetAsyncWithHttpInfo($account_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -590,13 +596,15 @@ class AccountApi
      *
      * Get Account
      *
+     * @param string $account_id Account ID (optional)
+     *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function accountGetAsyncWithHttpInfo()
+    public function accountGetAsyncWithHttpInfo(string $account_id = null)
     {
         $returnType = '\HelloSignSDK\Model\AccountGetResponse';
-        $request = $this->accountGetRequest();
+        $request = $this->accountGetRequest($account_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -634,10 +642,12 @@ class AccountApi
     /**
      * Create request for operation 'accountGet'
      *
+     * @param string $account_id Account ID (optional)
+     *
      * @throws InvalidArgumentException
      * @return Psr7\Request
      */
-    public function accountGetRequest()
+    public function accountGetRequest(string $account_id = null)
     {
         $resourcePath = '/account';
         $queryParams = [];
@@ -646,6 +656,17 @@ class AccountApi
 
         $formParams = [];
         $multipart = false;
+
+        // query params
+        if ($account_id !== null) {
+            if ('form' === 'form' && is_array($account_id)) {
+                foreach ($account_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['account_id'] = $account_id;
+            }
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
