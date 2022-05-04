@@ -60,8 +60,6 @@ class EventCallbackApiAppRequestPayload implements ModelInterface, ArrayAccess, 
      */
     protected static $openAPITypes = [
         'event' => '\HelloSignSDK\Model\EventCallbackRequestEvent',
-        'account_guid' => 'string',
-        'client_id' => 'string',
         'account' => '\HelloSignSDK\Model\AccountResponse',
         'signature_request' => '\HelloSignSDK\Model\SignatureRequestResponse',
         'template' => '\HelloSignSDK\Model\TemplateResponse',
@@ -76,8 +74,6 @@ class EventCallbackApiAppRequestPayload implements ModelInterface, ArrayAccess, 
      */
     protected static $openAPIFormats = [
         'event' => null,
-        'account_guid' => null,
-        'client_id' => null,
         'account' => null,
         'signature_request' => null,
         'template' => null,
@@ -111,8 +107,6 @@ class EventCallbackApiAppRequestPayload implements ModelInterface, ArrayAccess, 
      */
     protected static $attributeMap = [
         'event' => 'event',
-        'account_guid' => 'account_guid',
-        'client_id' => 'client_id',
         'account' => 'account',
         'signature_request' => 'signature_request',
         'template' => 'template',
@@ -125,8 +119,6 @@ class EventCallbackApiAppRequestPayload implements ModelInterface, ArrayAccess, 
      */
     protected static $setters = [
         'event' => 'setEvent',
-        'account_guid' => 'setAccountGuid',
-        'client_id' => 'setClientId',
         'account' => 'setAccount',
         'signature_request' => 'setSignatureRequest',
         'template' => 'setTemplate',
@@ -139,8 +131,6 @@ class EventCallbackApiAppRequestPayload implements ModelInterface, ArrayAccess, 
      */
     protected static $getters = [
         'event' => 'getEvent',
-        'account_guid' => 'getAccountGuid',
-        'client_id' => 'getClientId',
         'account' => 'getAccount',
         'signature_request' => 'getSignatureRequest',
         'template' => 'getTemplate',
@@ -203,8 +193,6 @@ class EventCallbackApiAppRequestPayload implements ModelInterface, ArrayAccess, 
     public function __construct(array $data = null)
     {
         $this->container['event'] = $data['event'] ?? null;
-        $this->container['account_guid'] = $data['account_guid'] ?? null;
-        $this->container['client_id'] = $data['client_id'] ?? null;
         $this->container['account'] = $data['account'] ?? null;
         $this->container['signature_request'] = $data['signature_request'] ?? null;
         $this->container['template'] = $data['template'] ?? null;
@@ -268,58 +256,6 @@ class EventCallbackApiAppRequestPayload implements ModelInterface, ArrayAccess, 
     public function setEvent(EventCallbackRequestEvent $event)
     {
         $this->container['event'] = $event;
-
-        return $this;
-    }
-
-    /**
-     * Gets account_guid
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getAccountGuid()
-    {
-        return $this->container['account_guid'];
-    }
-
-    /**
-     * Sets account_guid
-     *
-     * @param string|null $account_guid account_guid
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setAccountGuid(?string $account_guid)
-    {
-        $this->container['account_guid'] = $account_guid;
-
-        return $this;
-    }
-
-    /**
-     * Gets client_id
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getClientId()
-    {
-        return $this->container['client_id'];
-    }
-
-    /**
-     * Sets client_id
-     *
-     * @param string|null $client_id client_id
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setClientId(?string $client_id)
-    {
-        $this->container['client_id'] = $client_id;
 
         return $this;
     }

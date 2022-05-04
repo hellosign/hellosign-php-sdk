@@ -239,7 +239,7 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets account_id
      *
-     * @param string|null $account_id The ID or email address of the Account to remove from your Team. The account ID prevails if both are provided.
+     * @param string|null $account_id **account_id** or **email_address** is required. If both are provided, the account id prevails.   Account id to remove from your Team.
      *
      * @return self
      */
@@ -263,7 +263,7 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets email_address
      *
-     * @param string|null $email_address The ID or email address of the Account to remove from your Team. The account ID prevails if both are provided.
+     * @param string|null $email_address **account_id** or **email_address** is required. If both are provided, the account id prevails.   Email address of the Account to remove from your Team.
      *
      * @return self
      */

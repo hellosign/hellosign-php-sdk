@@ -60,8 +60,6 @@ class EventCallbackAccountRequestPayload implements ModelInterface, ArrayAccess,
      */
     protected static $openAPITypes = [
         'event' => '\HelloSignSDK\Model\EventCallbackRequestEvent',
-        'account_guid' => 'string',
-        'client_id' => 'string',
         'signature_request' => '\HelloSignSDK\Model\SignatureRequestResponse',
         'template' => '\HelloSignSDK\Model\TemplateResponse',
     ];
@@ -75,8 +73,6 @@ class EventCallbackAccountRequestPayload implements ModelInterface, ArrayAccess,
      */
     protected static $openAPIFormats = [
         'event' => null,
-        'account_guid' => null,
-        'client_id' => null,
         'signature_request' => null,
         'template' => null,
     ];
@@ -109,8 +105,6 @@ class EventCallbackAccountRequestPayload implements ModelInterface, ArrayAccess,
      */
     protected static $attributeMap = [
         'event' => 'event',
-        'account_guid' => 'account_guid',
-        'client_id' => 'client_id',
         'signature_request' => 'signature_request',
         'template' => 'template',
     ];
@@ -122,8 +116,6 @@ class EventCallbackAccountRequestPayload implements ModelInterface, ArrayAccess,
      */
     protected static $setters = [
         'event' => 'setEvent',
-        'account_guid' => 'setAccountGuid',
-        'client_id' => 'setClientId',
         'signature_request' => 'setSignatureRequest',
         'template' => 'setTemplate',
     ];
@@ -135,8 +127,6 @@ class EventCallbackAccountRequestPayload implements ModelInterface, ArrayAccess,
      */
     protected static $getters = [
         'event' => 'getEvent',
-        'account_guid' => 'getAccountGuid',
-        'client_id' => 'getClientId',
         'signature_request' => 'getSignatureRequest',
         'template' => 'getTemplate',
     ];
@@ -198,8 +188,6 @@ class EventCallbackAccountRequestPayload implements ModelInterface, ArrayAccess,
     public function __construct(array $data = null)
     {
         $this->container['event'] = $data['event'] ?? null;
-        $this->container['account_guid'] = $data['account_guid'] ?? null;
-        $this->container['client_id'] = $data['client_id'] ?? null;
         $this->container['signature_request'] = $data['signature_request'] ?? null;
         $this->container['template'] = $data['template'] ?? null;
     }
@@ -262,58 +250,6 @@ class EventCallbackAccountRequestPayload implements ModelInterface, ArrayAccess,
     public function setEvent(EventCallbackRequestEvent $event)
     {
         $this->container['event'] = $event;
-
-        return $this;
-    }
-
-    /**
-     * Gets account_guid
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getAccountGuid()
-    {
-        return $this->container['account_guid'];
-    }
-
-    /**
-     * Sets account_guid
-     *
-     * @param string|null $account_guid account_guid
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setAccountGuid(?string $account_guid)
-    {
-        $this->container['account_guid'] = $account_guid;
-
-        return $this;
-    }
-
-    /**
-     * Gets client_id
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getClientId()
-    {
-        return $this->container['client_id'];
-    }
-
-    /**
-     * Sets client_id
-     *
-     * @param string|null $client_id client_id
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setClientId(?string $client_id)
-    {
-        $this->container['client_id'] = $client_id;
 
         return $this;
     }

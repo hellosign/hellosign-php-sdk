@@ -168,19 +168,13 @@ class SubOAuth implements ModelInterface, ArrayAccess, JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const SCOPES_ACCESS_DOCS = 'access_docs';
-    public const SCOPES_ACCESS_REUSABLE_FORMS = 'access_reusable_forms';
-    public const SCOPES_MANAGE_DOCS = 'manage_docs';
     public const SCOPES_REQUEST_SIGNATURE = 'request_signature';
-    public const SCOPES_SEND_DOCS = 'send_docs';
     public const SCOPES_BASIC_ACCOUNT_INFO = 'basic_account_info';
-    public const SCOPES_SIGNATURES = 'signatures';
     public const SCOPES_ACCOUNT_ACCESS = 'account_access';
     public const SCOPES_SIGNATURE_REQUEST_ACCESS = 'signature_request_access';
     public const SCOPES_TEMPLATE_ACCESS = 'template_access';
     public const SCOPES_TEAM_ACCESS = 'team_access';
     public const SCOPES_API_APP_ACCESS = 'api_app_access';
-    public const SCOPES_UNIVERSAL_SIGNATURE_REQUEST_ACCESS = 'universal_signature_request_access';
     public const SCOPES_EMPTY = '';
 
     /**
@@ -191,19 +185,13 @@ class SubOAuth implements ModelInterface, ArrayAccess, JsonSerializable
     public function getScopesAllowableValues()
     {
         return [
-            self::SCOPES_ACCESS_DOCS,
-            self::SCOPES_ACCESS_REUSABLE_FORMS,
-            self::SCOPES_MANAGE_DOCS,
             self::SCOPES_REQUEST_SIGNATURE,
-            self::SCOPES_SEND_DOCS,
             self::SCOPES_BASIC_ACCOUNT_INFO,
-            self::SCOPES_SIGNATURES,
             self::SCOPES_ACCOUNT_ACCESS,
             self::SCOPES_SIGNATURE_REQUEST_ACCESS,
             self::SCOPES_TEMPLATE_ACCESS,
             self::SCOPES_TEAM_ACCESS,
             self::SCOPES_API_APP_ACCESS,
-            self::SCOPES_UNIVERSAL_SIGNATURE_REQUEST_ACCESS,
             self::SCOPES_EMPTY,
         ];
     }
@@ -298,7 +286,7 @@ class SubOAuth implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets scopes
      *
-     * @param string[]|null $scopes A list of OAuth scopes to be granted to the app. (Required if `oauth[callback_url]` is provided).
+     * @param string[]|null $scopes A list of [OAuth scopes](/api/reference/tag/OAuth) to be granted to the app. (Required if `oauth[callback_url]` is provided).
      *
      * @return self
      */

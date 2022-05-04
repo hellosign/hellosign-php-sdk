@@ -36,6 +36,7 @@ use JsonSerializable;
  * EventCallbackRequestEventMetadata Class Doc Comment
  *
  * @category Class
+ * @description Specific metadata about the event.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -245,7 +246,7 @@ class EventCallbackRequestEventMetadata implements ModelInterface, ArrayAccess, 
     /**
      * Sets related_signature_id
      *
-     * @param string|null $related_signature_id related_signature_id
+     * @param string|null $related_signature_id Signature ID for a specific signer. Applicable to `signature_request_signed` and `signature_request_viewed` events.
      *
      * @return self
      */
@@ -269,7 +270,7 @@ class EventCallbackRequestEventMetadata implements ModelInterface, ArrayAccess, 
     /**
      * Sets reported_for_account_id
      *
-     * @param string|null $reported_for_account_id reported_for_account_id
+     * @param string|null $reported_for_account_id account ID the event was reported for
      *
      * @return self
      */
@@ -293,7 +294,7 @@ class EventCallbackRequestEventMetadata implements ModelInterface, ArrayAccess, 
     /**
      * Sets reported_for_app_id
      *
-     * @param string|null $reported_for_app_id reported_for_app_id
+     * @param string|null $reported_for_app_id app ID the event was reported for
      *
      * @return self
      */
@@ -317,7 +318,7 @@ class EventCallbackRequestEventMetadata implements ModelInterface, ArrayAccess, 
     /**
      * Sets event_message
      *
-     * @param string|null $event_message event_message
+     * @param string|null $event_message message about a declined or failed (due to error) signature flow
      *
      * @return self
      */

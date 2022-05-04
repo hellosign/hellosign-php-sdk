@@ -37,6 +37,7 @@ use JsonSerializable;
  * EventCallbackRequestEvent Class Doc Comment
  *
  * @category Class
+ * @description Basic information about the event that occurred.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -320,7 +321,7 @@ class EventCallbackRequestEvent implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets event_time
      *
-     * @param string $event_time event_time
+     * @param string $event_time time the event was created (using Unix time)
      *
      * @return self
      */
@@ -344,7 +345,7 @@ class EventCallbackRequestEvent implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets event_type
      *
-     * @param string $event_type event_type
+     * @param string $event_type type of callback event that was triggered
      *
      * @return self
      */
@@ -378,7 +379,7 @@ class EventCallbackRequestEvent implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets event_hash
      *
-     * @param string $event_hash event_hash
+     * @param string $event_hash generated hash used to verify source of event data
      *
      * @return self
      */
