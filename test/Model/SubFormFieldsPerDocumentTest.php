@@ -18,12 +18,12 @@ class SubFormFieldsPerDocumentTest extends HelloTestCase
         array $form_field
     ) {
         $data = [
-            'form_fields_per_document' => [[$form_field]],
+            'form_fields_per_document' => [$form_field],
         ];
 
         $obj = SignatureRequestSendRequest::fromArray($data);
 
-        $field = $obj->getFormFieldsPerDocument()[0][0];
+        $field = $obj->getFormFieldsPerDocument()[0];
 
         $this->assertInstanceOf("\\HelloSignSDK\\Model\\{$type}", $field);
         $this->assertEquals(

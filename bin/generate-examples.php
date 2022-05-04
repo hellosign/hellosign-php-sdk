@@ -263,10 +263,6 @@ $generate = new GenerateExamples(
     ['PHP'],
     [__DIR__ . '/../docs/Api', __DIR__ . '/../docs/Model'],
     [__DIR__ . '/../README.md'],
-    [
-        '```\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]```'
-            => '[```\HelloSignSDK\Model\SubFormFieldsPerDocumentBase[][]```](SubFormFieldsPerDocumentBase.md)',
-    ]
 );
 $generate->setUseSnakeCase(false);
 
