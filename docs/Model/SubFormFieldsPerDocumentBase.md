@@ -1,6 +1,6 @@
 # # SubFormFieldsPerDocumentBase
 
-The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.
+The fields that should appear on the document, expressed as an array of objects.
 
 **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.
 
@@ -19,6 +19,7 @@ The fields that should appear on the document, expressed as a 2-dimensional JSON
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+| `document_index`<sup>*_required_</sup> | ```int``` |  Represents the integer index of the `file` or `file_url` document the field should be attached to.  |  |
 | `height`<sup>*_required_</sup> | ```int``` |  Size of the field in pixels.  |  |
 | `signer`<sup>*_required_</sup> | ```string``` |  Signer index identified by the offset `%i%` in the `signers[%i%]` parameter, indicating which signer should fill out the field. If your type is `text-merge` you can set this to `sender`, so the field is non-editable by any signer.  |  |
 | `type`<sup>*_required_</sup> | ```string``` |    |  |

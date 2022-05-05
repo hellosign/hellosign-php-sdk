@@ -161,7 +161,7 @@ class ObjectSerializerTest extends HelloTestCase
     {
         $oauth = new Model\SubOAuth();
         $oauth->setCallbackUrl('https://oauth-callback.test')
-            ->setScopes([Model\SubOAuth::SCOPES_ACCESS_REUSABLE_FORMS]);
+            ->setScopes([Model\SubOAuth::SCOPES_TEMPLATE_ACCESS]);
 
         $customLogoFile = new SplFileObject("{$this->rootFilePath}/pdf-sample.pdf");
 
