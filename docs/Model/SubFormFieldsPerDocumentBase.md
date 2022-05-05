@@ -19,7 +19,7 @@ The fields that should appear on the document, expressed as an array of objects.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `document`<sup>*_required_</sup> | ```int``` |  Represents the integer index of the `file` or `file_url` document the field should be attached to.  |  |
+| `document_index`<sup>*_required_</sup> | ```int``` |  Represents the integer index of the `file` or `file_url` document the field should be attached to.  |  |
 | `height`<sup>*_required_</sup> | ```int``` |  Size of the field in pixels.  |  |
 | `signer`<sup>*_required_</sup> | ```string``` |  Signer index identified by the offset `%i%` in the `signers[%i%]` parameter, indicating which signer should fill out the field. If your type is `text-merge` you can set this to `sender`, so the field is non-editable by any signer.  |  |
 | `type`<sup>*_required_</sup> | ```string``` |    |  |

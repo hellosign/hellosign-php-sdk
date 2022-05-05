@@ -61,7 +61,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $openAPITypes = [
-        'document' => 'int',
+        'document_index' => 'int',
         'height' => 'int',
         'signer' => 'string',
         'type' => 'string',
@@ -82,7 +82,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'document' => null,
+        'document_index' => null,
         'height' => null,
         'signer' => null,
         'type' => null,
@@ -122,7 +122,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $attributeMap = [
-        'document' => 'document',
+        'document_index' => 'document_index',
         'height' => 'height',
         'signer' => 'signer',
         'type' => 'type',
@@ -141,7 +141,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $setters = [
-        'document' => 'setDocument',
+        'document_index' => 'setDocumentIndex',
         'height' => 'setHeight',
         'signer' => 'setSigner',
         'type' => 'setType',
@@ -160,7 +160,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $getters = [
-        'document' => 'getDocument',
+        'document_index' => 'getDocumentIndex',
         'height' => 'getHeight',
         'signer' => 'getSigner',
         'type' => 'getType',
@@ -229,7 +229,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      */
     public function __construct(array $data = null)
     {
-        $this->container['document'] = $data['document'] ?? null;
+        $this->container['document_index'] = $data['document_index'] ?? null;
         $this->container['height'] = $data['height'] ?? null;
         $this->container['signer'] = $data['signer'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
@@ -294,8 +294,8 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     {
         $invalidProperties = [];
 
-        if ($this->container['document'] === null) {
-            $invalidProperties[] = "'document' can't be null";
+        if ($this->container['document_index'] === null) {
+            $invalidProperties[] = "'document_index' can't be null";
         }
         if ($this->container['height'] === null) {
             $invalidProperties[] = "'height' can't be null";
@@ -331,25 +331,25 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     }
 
     /**
-     * Gets document
+     * Gets document_index
      *
      * @return int
      */
-    public function getDocument()
+    public function getDocumentIndex()
     {
-        return $this->container['document'];
+        return $this->container['document_index'];
     }
 
     /**
-     * Sets document
+     * Sets document_index
      *
-     * @param int $document represents the integer index of the `file` or `file_url` document the field should be attached to
+     * @param int $document_index represents the integer index of the `file` or `file_url` document the field should be attached to
      *
      * @return self
      */
-    public function setDocument(int $document)
+    public function setDocumentIndex(int $document_index)
     {
-        $this->container['document'] = $document;
+        $this->container['document_index'] = $document_index;
 
         return $this;
     }
