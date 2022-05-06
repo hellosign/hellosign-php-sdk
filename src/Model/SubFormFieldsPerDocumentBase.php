@@ -36,7 +36,7 @@ use JsonSerializable;
  * SubFormFieldsPerDocumentBase Class Doc Comment
  *
  * @category Class
- * @description The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the &#x60;file[]&#x60; parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
+ * @description The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -61,6 +61,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $openAPITypes = [
+        'document_index' => 'int',
         'height' => 'int',
         'signer' => 'string',
         'type' => 'string',
@@ -81,6 +82,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'document_index' => null,
         'height' => null,
         'signer' => null,
         'type' => null,
@@ -120,6 +122,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $attributeMap = [
+        'document_index' => 'document_index',
         'height' => 'height',
         'signer' => 'signer',
         'type' => 'type',
@@ -138,6 +141,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $setters = [
+        'document_index' => 'setDocumentIndex',
         'height' => 'setHeight',
         'signer' => 'setSigner',
         'type' => 'setType',
@@ -156,6 +160,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $getters = [
+        'document_index' => 'getDocumentIndex',
         'height' => 'getHeight',
         'signer' => 'getSigner',
         'type' => 'getType',
@@ -224,6 +229,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      */
     public function __construct(array $data = null)
     {
+        $this->container['document_index'] = $data['document_index'] ?? null;
         $this->container['height'] = $data['height'] ?? null;
         $this->container['signer'] = $data['signer'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
@@ -288,6 +294,9 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     {
         $invalidProperties = [];
 
+        if ($this->container['document_index'] === null) {
+            $invalidProperties[] = "'document_index' can't be null";
+        }
         if ($this->container['height'] === null) {
             $invalidProperties[] = "'height' can't be null";
         }
@@ -319,6 +328,30 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     public function valid()
     {
         return count($this->listInvalidProperties()) === 0;
+    }
+
+    /**
+     * Gets document_index
+     *
+     * @return int
+     */
+    public function getDocumentIndex()
+    {
+        return $this->container['document_index'];
+    }
+
+    /**
+     * Sets document_index
+     *
+     * @param int $document_index represents the integer index of the `file` or `file_url` document the field should be attached to
+     *
+     * @return self
+     */
+    public function setDocumentIndex(int $document_index)
+    {
+        $this->container['document_index'] = $document_index;
+
+        return $this;
     }
 
     /**

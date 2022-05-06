@@ -439,10 +439,13 @@ class ObjectSerializer
                     "{$class}::discriminatorClassName",
                     (array) $data,
                 );
-                if ($subclass) {
-                    $class = $subclass;
-                    $discrimnatorSubclassFound = true;
+
+                if (empty($subclass)) {
+                    return null;
                 }
+
+                $class = $subclass;
+                $discrimnatorSubclassFound = true;
             }
 
             /** @var ModelInterface $instance */
