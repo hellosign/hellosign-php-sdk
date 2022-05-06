@@ -61,6 +61,7 @@ abstract class SignatureRequestResponseCustomFieldBase implements ModelInterface
      * @var string[]
      */
     protected static $openAPITypes = [
+        'type' => 'string',
         'name' => 'string',
         'required' => 'bool',
         'api_id' => 'string',
@@ -75,6 +76,7 @@ abstract class SignatureRequestResponseCustomFieldBase implements ModelInterface
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'type' => null,
         'name' => null,
         'required' => null,
         'api_id' => null,
@@ -108,6 +110,7 @@ abstract class SignatureRequestResponseCustomFieldBase implements ModelInterface
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
         'name' => 'name',
         'required' => 'required',
         'api_id' => 'api_id',
@@ -120,6 +123,7 @@ abstract class SignatureRequestResponseCustomFieldBase implements ModelInterface
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
         'name' => 'setName',
         'required' => 'setRequired',
         'api_id' => 'setApiId',
@@ -132,6 +136,7 @@ abstract class SignatureRequestResponseCustomFieldBase implements ModelInterface
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
         'name' => 'getName',
         'required' => 'getRequired',
         'api_id' => 'getApiId',
@@ -194,6 +199,7 @@ abstract class SignatureRequestResponseCustomFieldBase implements ModelInterface
      */
     public function __construct(array $data = null)
     {
+        $this->container['type'] = $data['type'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['required'] = $data['required'] ?? null;
         $this->container['api_id'] = $data['api_id'] ?? null;
@@ -228,6 +234,9 @@ abstract class SignatureRequestResponseCustomFieldBase implements ModelInterface
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
@@ -244,6 +253,30 @@ abstract class SignatureRequestResponseCustomFieldBase implements ModelInterface
     public function valid()
     {
         return count($this->listInvalidProperties()) === 0;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type The type of this Custom Field. Only 'text' and 'checkbox' are currently supported.
+     *
+     * @return self
+     */
+    public function setType(string $type)
+    {
+        $this->container['type'] = $type;
+
+        return $this;
     }
 
     /**
