@@ -88,9 +88,10 @@ $data->setClientId("1a659d9ad95bccd307ecad78d72192f8")
 try {
     $result = $api->signatureRequestBulkCreateEmbeddedWithTemplate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -188,9 +189,10 @@ $data->setTemplateIds(["c26b8a16784a872da37ea946b9ddec7c1e11dff6"])
 try {
     $result = $api->signatureRequestBulkSendWithTemplate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -226,7 +228,7 @@ signatureRequestCancel($signature_request_id)
 
 Cancel Incomplete Signature Request
 
-Cancels an incomplete signature request. This action is **not reversible**.  The request will be canceled and signers will no longer be able to sign. If they try to access the signature request they will receive a HTTP 410 status code indicating that the resource has been deleted. Cancelation is asynchronous and a successful call to this endpoint will return an empty 200 OK response if the signature request is eligible to be canceled and has been successfully queued.  This 200 OK response does not indicate a successful cancelation of the signature request itself. The cancelation is confirmed via the `signature_request_canceled` event. It is recommended that a  [callback handler](https://app.hellosign.com/api/eventsAndCallbacksWalkthrough) be implemented to listen for the `signature_request_canceled` event. This callback will be sent only when the cancelation has completed successfully. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the [API Dashboard](https://app.hellosign.com/apidashboard) and retry the cancelation if necessary.  To be eligible for cancelation, a signature request must have been sent successfully, must not yet have been signed by all signers, and you must either be the sender or own the API app under which it was sent. A partially signed signature request can be canceled.  **NOTE**: To remove your access to a completed signature request, use the endpoint: `POST /signature_request/remove/[:signature_request_id]`.
+Cancels an incomplete signature request. This action is **not reversible**.  The request will be canceled and signers will no longer be able to sign. If they try to access the signature request they will receive a HTTP 410 status code indicating that the resource has been deleted. Cancelation is asynchronous and a successful call to this endpoint will return an empty 200 OK response if the signature request is eligible to be canceled and has been successfully queued.  This 200 OK response does not indicate a successful cancelation of the signature request itself. The cancelation is confirmed via the `signature_request_canceled` event. It is recommended that a  [callback handler](/api/reference/tag/Callbacks-and-Events) be implemented to listen for the `signature_request_canceled` event. This callback will be sent only when the cancelation has completed successfully. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the [API Dashboard](https://app.hellosign.com/apidashboard) and retry the cancelation if necessary.  To be eligible for cancelation, a signature request must have been sent successfully, must not yet have been signed by all signers, and you must either be the sender or own the API app under which it was sent. A partially signed signature request can be canceled.  **NOTE**: To remove your access to a completed signature request, use the endpoint: `POST /signature_request/remove/[:signature_request_id]`.
 
 ### Example
 
@@ -249,9 +251,10 @@ $signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 
 try {
     $api->signatureRequestCancel($signatureRequestId);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -340,9 +343,10 @@ $data->setClientId("ec64a202072370a737edf4a0eb7f4437")
 try {
     $result = $api->signatureRequestCreateEmbedded($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -421,9 +425,10 @@ $data->setClientId("ec64a202072370a737edf4a0eb7f4437")
 try {
     $result = $api->signatureRequestCreateEmbeddedWithTemplate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -483,9 +488,10 @@ $signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 try {
     $result = $api->signatureRequestFiles($signatureRequestId);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -548,9 +554,10 @@ $signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 try {
     $result = $api->signatureRequestGet($signatureRequestId);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -611,9 +618,10 @@ $page = 1;
 try {
     $result = $api->signatureRequestList($accountId, $page);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -676,9 +684,10 @@ $signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 try {
     $result = $api->signatureRequestReleaseHold($signatureRequestId);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -741,9 +750,10 @@ $signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 try {
     $result = $api->signatureRequestRemind($signatureRequestId, $data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -800,9 +810,10 @@ $signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 
 try {
     $api->signatureRequestRemove($signatureRequestId);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -898,9 +909,10 @@ $data->setTitle("NDA with Acme Co.")
 try {
     $result = $api->signatureRequestSend($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -990,9 +1002,10 @@ $data->setTemplateIds(["c26b8a16784a872da37ea946b9ddec7c1e11dff6"])
 try {
     $result = $api->signatureRequestSendWithTemplate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -1056,9 +1069,10 @@ $signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 try {
     $result = $api->signatureRequestUpdate($signatureRequestId, $data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```

@@ -436,7 +436,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
     /**
      * Sets client_id
      *
-     * @param string|null $client_id The client id of the Api App you want to associate with this request. Used to apply the branding and callback url defined for the app.
+     * @param string|null $client_id The client id of the API App you want to associate with this request. Used to apply the branding and callback url defined for the app.
      *
      * @return self
      */
@@ -460,7 +460,7 @@ class SignatureRequestBulkSendWithTemplateRequest implements ModelInterface, Arr
     /**
      * Sets custom_fields
      *
-     * @param SubCustomField[]|null $custom_fields An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+     * @param SubCustomField[]|null $custom_fields When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
      *
      * @return self
      */

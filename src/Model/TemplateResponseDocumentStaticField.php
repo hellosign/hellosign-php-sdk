@@ -1,6 +1,6 @@
 <?php
 /**
- * TemplateResponseDocumentCustomFieldAvgTextLength
+ * TemplateResponseDocumentStaticField
  *
  * PHP version 7.3
  *
@@ -33,10 +33,9 @@ use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
 
 /**
- * TemplateResponseDocumentCustomFieldAvgTextLength Class Doc Comment
+ * TemplateResponseDocumentStaticField Class Doc Comment
  *
  * @category Class
- * @description Average text length in custom field.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -44,7 +43,7 @@ use JsonSerializable;
  * @template TValue mixed|null
  * @internal This class should not be instantiated directly
  */
-class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface, ArrayAccess, JsonSerializable
+class TemplateResponseDocumentStaticField implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +52,7 @@ class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface
      *
      * @var string
      */
-    protected static $openAPIModelName = 'TemplateResponseDocumentCustomFieldAvgTextLength';
+    protected static $openAPIModelName = 'TemplateResponseDocumentStaticField';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,8 +60,16 @@ class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface
      * @var string[]
      */
     protected static $openAPITypes = [
-        'num_lines' => 'int',
-        'num_chars_per_line' => 'int',
+        'name' => 'string',
+        'type' => 'string',
+        'signer' => 'string',
+        'x' => 'int',
+        'y' => 'int',
+        'width' => 'int',
+        'height' => 'int',
+        'required' => 'bool',
+        'api_id' => 'string',
+        'group' => 'string',
     ];
 
     /**
@@ -73,8 +80,16 @@ class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'num_lines' => null,
-        'num_chars_per_line' => null,
+        'name' => null,
+        'type' => null,
+        'signer' => null,
+        'x' => null,
+        'y' => null,
+        'width' => null,
+        'height' => null,
+        'required' => null,
+        'api_id' => null,
+        'group' => null,
     ];
 
     /**
@@ -104,8 +119,16 @@ class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface
      * @var string[]
      */
     protected static $attributeMap = [
-        'num_lines' => 'num_lines',
-        'num_chars_per_line' => 'num_chars_per_line',
+        'name' => 'name',
+        'type' => 'type',
+        'signer' => 'signer',
+        'x' => 'x',
+        'y' => 'y',
+        'width' => 'width',
+        'height' => 'height',
+        'required' => 'required',
+        'api_id' => 'api_id',
+        'group' => 'group',
     ];
 
     /**
@@ -114,8 +137,16 @@ class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface
      * @var string[]
      */
     protected static $setters = [
-        'num_lines' => 'setNumLines',
-        'num_chars_per_line' => 'setNumCharsPerLine',
+        'name' => 'setName',
+        'type' => 'setType',
+        'signer' => 'setSigner',
+        'x' => 'setX',
+        'y' => 'setY',
+        'width' => 'setWidth',
+        'height' => 'setHeight',
+        'required' => 'setRequired',
+        'api_id' => 'setApiId',
+        'group' => 'setGroup',
     ];
 
     /**
@@ -124,8 +155,16 @@ class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface
      * @var string[]
      */
     protected static $getters = [
-        'num_lines' => 'getNumLines',
-        'num_chars_per_line' => 'getNumCharsPerLine',
+        'name' => 'getName',
+        'type' => 'getType',
+        'signer' => 'getSigner',
+        'x' => 'getX',
+        'y' => 'getY',
+        'width' => 'getWidth',
+        'height' => 'getHeight',
+        'required' => 'getRequired',
+        'api_id' => 'getApiId',
+        'group' => 'getGroup',
     ];
 
     /**
@@ -184,16 +223,24 @@ class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface
      */
     public function __construct(array $data = null)
     {
-        $this->container['num_lines'] = $data['num_lines'] ?? null;
-        $this->container['num_chars_per_line'] = $data['num_chars_per_line'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['signer'] = $data['signer'] ?? null;
+        $this->container['x'] = $data['x'] ?? null;
+        $this->container['y'] = $data['y'] ?? null;
+        $this->container['width'] = $data['width'] ?? null;
+        $this->container['height'] = $data['height'] ?? null;
+        $this->container['required'] = $data['required'] ?? null;
+        $this->container['api_id'] = $data['api_id'] ?? null;
+        $this->container['group'] = $data['group'] ?? null;
     }
 
-    public static function fromArray(array $data): TemplateResponseDocumentCustomFieldAvgTextLength
+    public static function fromArray(array $data): TemplateResponseDocumentStaticField
     {
-        /** @var TemplateResponseDocumentCustomFieldAvgTextLength $obj */
+        /** @var TemplateResponseDocumentStaticField $obj */
         $obj = ObjectSerializer::deserialize(
             ObjectSerializer::instantiateFiles(static::class, $data),
-            TemplateResponseDocumentCustomFieldAvgTextLength::class,
+            TemplateResponseDocumentStaticField::class,
         );
 
         return $obj;
@@ -223,49 +270,241 @@ class TemplateResponseDocumentCustomFieldAvgTextLength implements ModelInterface
     }
 
     /**
-     * Gets num_lines
+     * Gets name
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getNumLines()
+    public function getName()
     {
-        return $this->container['num_lines'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets num_lines
+     * Sets name
      *
-     * @param int|null $num_lines number of lines
+     * @param string|null $name the name of the static field
      *
      * @return self
      */
-    public function setNumLines(?int $num_lines)
+    public function setName(?string $name)
     {
-        $this->container['num_lines'] = $num_lines;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets num_chars_per_line
+     * Gets type
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getNumCharsPerLine()
+    public function getType()
     {
-        return $this->container['num_chars_per_line'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets num_chars_per_line
+     * Sets type
      *
-     * @param int|null $num_chars_per_line number of character per line
+     * @param string|null $type The type of this static field. See [field types](/api/reference/constants/#field-types).
      *
      * @return self
      */
-    public function setNumCharsPerLine(?int $num_chars_per_line)
+    public function setType(?string $type)
     {
-        $this->container['num_chars_per_line'] = $num_chars_per_line;
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets signer
+     *
+     * @return string|null
+     */
+    public function getSigner()
+    {
+        return $this->container['signer'];
+    }
+
+    /**
+     * Sets signer
+     *
+     * @param string|null $signer the signer of the Static Field
+     *
+     * @return self
+     */
+    public function setSigner(?string $signer)
+    {
+        $this->container['signer'] = $signer;
+
+        return $this;
+    }
+
+    /**
+     * Gets x
+     *
+     * @return int|null
+     */
+    public function getX()
+    {
+        return $this->container['x'];
+    }
+
+    /**
+     * Sets x
+     *
+     * @param int|null $x the horizontal offset in pixels for this static field
+     *
+     * @return self
+     */
+    public function setX(?int $x)
+    {
+        $this->container['x'] = $x;
+
+        return $this;
+    }
+
+    /**
+     * Gets y
+     *
+     * @return int|null
+     */
+    public function getY()
+    {
+        return $this->container['y'];
+    }
+
+    /**
+     * Sets y
+     *
+     * @param int|null $y the vertical offset in pixels for this static field
+     *
+     * @return self
+     */
+    public function setY(?int $y)
+    {
+        $this->container['y'] = $y;
+
+        return $this;
+    }
+
+    /**
+     * Gets width
+     *
+     * @return int|null
+     */
+    public function getWidth()
+    {
+        return $this->container['width'];
+    }
+
+    /**
+     * Sets width
+     *
+     * @param int|null $width the width in pixels of this static field
+     *
+     * @return self
+     */
+    public function setWidth(?int $width)
+    {
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets height
+     *
+     * @return int|null
+     */
+    public function getHeight()
+    {
+        return $this->container['height'];
+    }
+
+    /**
+     * Sets height
+     *
+     * @param int|null $height the height in pixels of this static field
+     *
+     * @return self
+     */
+    public function setHeight(?int $height)
+    {
+        $this->container['height'] = $height;
+
+        return $this;
+    }
+
+    /**
+     * Gets required
+     *
+     * @return bool|null
+     */
+    public function getRequired()
+    {
+        return $this->container['required'];
+    }
+
+    /**
+     * Sets required
+     *
+     * @param bool|null $required boolean showing whether or not this field is required
+     *
+     * @return self
+     */
+    public function setRequired(?bool $required)
+    {
+        $this->container['required'] = $required;
+
+        return $this;
+    }
+
+    /**
+     * Gets api_id
+     *
+     * @return string|null
+     */
+    public function getApiId()
+    {
+        return $this->container['api_id'];
+    }
+
+    /**
+     * Sets api_id
+     *
+     * @param string|null $api_id a unique id for the static field
+     *
+     * @return self
+     */
+    public function setApiId(?string $api_id)
+    {
+        $this->container['api_id'] = $api_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets group
+     *
+     * @return string|null
+     */
+    public function getGroup()
+    {
+        return $this->container['group'];
+    }
+
+    /**
+     * Sets group
+     *
+     * @param string|null $group The name of the group this field is in. If this field is not a group, this defaults to `null`.
+     *
+     * @return self
+     */
+    public function setGroup(?string $group)
+    {
+        $this->container['group'] = $group;
 
         return $this;
     }

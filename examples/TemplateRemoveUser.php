@@ -20,7 +20,8 @@ $templateId = "21f920ec2b7f4b6bb64d3ed79f26303843046536";
 try {
     $result = $api->templateRemoveUser($templateId, $data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }

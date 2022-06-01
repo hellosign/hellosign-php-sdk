@@ -36,6 +36,7 @@ use JsonSerializable;
  * BulkSendJobResponse Class Doc Comment
  *
  * @category Class
+ * @description Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -270,7 +271,7 @@ class BulkSendJobResponse implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets total
      *
-     * @param int|null $total the total amount of SignatureRequests queued for sending
+     * @param int|null $total the total amount of Signature Requests queued for sending
      *
      * @return self
      */

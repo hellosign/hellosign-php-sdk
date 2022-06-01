@@ -47,7 +47,8 @@ $data->setTemplateIds(["c26b8a16784a872da37ea946b9ddec7c1e11dff6"])
 try {
     $result = $api->signatureRequestSendWithTemplate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }

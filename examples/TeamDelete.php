@@ -14,7 +14,8 @@ $api = new HelloSignSDK\Api\TeamApi($config);
 
 try {
     $api->teamDelete();
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }

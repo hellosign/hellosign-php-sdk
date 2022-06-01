@@ -258,7 +258,7 @@ class EmbeddedEditUrlResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

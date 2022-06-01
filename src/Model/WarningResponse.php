@@ -36,6 +36,7 @@ use JsonSerializable;
  * WarningResponse Class Doc Comment
  *
  * @category Class
+ * @description A list of warnings.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -240,7 +241,7 @@ class WarningResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets warning_msg
      *
-     * @param string $warning_msg warning_msg
+     * @param string $warning_msg Warning message
      *
      * @return self
      */
@@ -264,7 +265,7 @@ class WarningResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets warning_name
      *
-     * @param string $warning_name warning_name
+     * @param string $warning_name Warning name
      *
      * @return self
      */

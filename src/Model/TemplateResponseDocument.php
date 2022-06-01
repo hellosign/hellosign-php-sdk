@@ -36,7 +36,6 @@ use JsonSerializable;
  * TemplateResponseDocument Class Doc Comment
  *
  * @category Class
- * @description An array describing each document associated with this Template. Includes form field data for each document.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -66,6 +65,7 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
         'field_groups' => '\HelloSignSDK\Model\TemplateResponseDocumentFieldGroup[]',
         'form_fields' => '\HelloSignSDK\Model\TemplateResponseDocumentFormField[]',
         'custom_fields' => '\HelloSignSDK\Model\TemplateResponseDocumentCustomField[]',
+        'static_fields' => '\HelloSignSDK\Model\TemplateResponseDocumentStaticField[]',
     ];
 
     /**
@@ -81,6 +81,7 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
         'field_groups' => null,
         'form_fields' => null,
         'custom_fields' => null,
+        'static_fields' => null,
     ];
 
     /**
@@ -115,6 +116,7 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
         'field_groups' => 'field_groups',
         'form_fields' => 'form_fields',
         'custom_fields' => 'custom_fields',
+        'static_fields' => 'static_fields',
     ];
 
     /**
@@ -128,6 +130,7 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
         'field_groups' => 'setFieldGroups',
         'form_fields' => 'setFormFields',
         'custom_fields' => 'setCustomFields',
+        'static_fields' => 'setStaticFields',
     ];
 
     /**
@@ -141,6 +144,7 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
         'field_groups' => 'getFieldGroups',
         'form_fields' => 'getFormFields',
         'custom_fields' => 'getCustomFields',
+        'static_fields' => 'getStaticFields',
     ];
 
     /**
@@ -204,6 +208,7 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
         $this->container['field_groups'] = $data['field_groups'] ?? null;
         $this->container['form_fields'] = $data['form_fields'] ?? null;
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
+        $this->container['static_fields'] = $data['static_fields'] ?? null;
     }
 
     public static function fromArray(array $data): TemplateResponseDocument
@@ -277,7 +282,7 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets index
      *
-     * @param int|null $index document ordering, the lowest index is displayed first and the highest last
+     * @param int|null $index document ordering, the lowest index is displayed first and the highest last (0-based indexing)
      *
      * @return self
      */
@@ -301,7 +306,7 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets field_groups
      *
-     * @param TemplateResponseDocumentFieldGroup[]|null $field_groups field_groups
+     * @param TemplateResponseDocumentFieldGroup[]|null $field_groups an array of Form Field Group objects
      *
      * @return self
      */
@@ -325,7 +330,7 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets form_fields
      *
-     * @param TemplateResponseDocumentFormField[]|null $form_fields form_fields
+     * @param TemplateResponseDocumentFormField[]|null $form_fields an array of Form Field objects containing the name and type of each named textbox and checkmark field
      *
      * @return self
      */
@@ -349,13 +354,37 @@ class TemplateResponseDocument implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets custom_fields
      *
-     * @param TemplateResponseDocumentCustomField[]|null $custom_fields custom_fields
+     * @param TemplateResponseDocumentCustomField[]|null $custom_fields an array of Document Custom Field objects
      *
      * @return self
      */
     public function setCustomFields(?array $custom_fields)
     {
         $this->container['custom_fields'] = $custom_fields;
+
+        return $this;
+    }
+
+    /**
+     * Gets static_fields
+     *
+     * @return TemplateResponseDocumentStaticField[]|null
+     */
+    public function getStaticFields()
+    {
+        return $this->container['static_fields'];
+    }
+
+    /**
+     * Sets static_fields
+     *
+     * @param TemplateResponseDocumentStaticField[]|null $static_fields An array describing static overlay fields. <b>Note</b> only available for certain subscriptions.
+     *
+     * @return self
+     */
+    public function setStaticFields(?array $static_fields)
+    {
+        $this->container['static_fields'] = $static_fields;
 
         return $this;
     }

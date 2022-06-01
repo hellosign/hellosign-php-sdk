@@ -35,7 +35,8 @@ $data->setName("My Production App")
 try {
     $result = $api->apiAppCreate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }

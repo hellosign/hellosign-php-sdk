@@ -37,7 +37,6 @@ use JsonSerializable;
  * TemplateResponseDocumentFormField Class Doc Comment
  *
  * @category Class
- * @description An array of Form Field objects containing the name and type of each named textbox and checkmark field.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -65,12 +64,17 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
         'api_id' => 'string',
         'name' => 'string',
         'type' => 'string',
+        'signer' => 'string',
         'x' => 'int',
         'y' => 'int',
         'width' => 'int',
         'height' => 'int',
         'required' => 'bool',
         'group' => 'string',
+        'avg_text_length' => '\HelloSignSDK\Model\TemplateResponseFieldAvgTextLength',
+        'is_multiline' => 'bool',
+        'original_font_size' => 'int',
+        'font_family' => 'string',
     ];
 
     /**
@@ -84,12 +88,17 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
         'api_id' => null,
         'name' => null,
         'type' => null,
+        'signer' => null,
         'x' => null,
         'y' => null,
         'width' => null,
         'height' => null,
         'required' => null,
         'group' => null,
+        'avg_text_length' => null,
+        'is_multiline' => null,
+        'original_font_size' => null,
+        'font_family' => null,
     ];
 
     /**
@@ -122,12 +131,17 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
         'api_id' => 'api_id',
         'name' => 'name',
         'type' => 'type',
+        'signer' => 'signer',
         'x' => 'x',
         'y' => 'y',
         'width' => 'width',
         'height' => 'height',
         'required' => 'required',
         'group' => 'group',
+        'avg_text_length' => 'avg_text_length',
+        'is_multiline' => 'isMultiline',
+        'original_font_size' => 'originalFontSize',
+        'font_family' => 'fontFamily',
     ];
 
     /**
@@ -139,12 +153,17 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
         'api_id' => 'setApiId',
         'name' => 'setName',
         'type' => 'setType',
+        'signer' => 'setSigner',
         'x' => 'setX',
         'y' => 'setY',
         'width' => 'setWidth',
         'height' => 'setHeight',
         'required' => 'setRequired',
         'group' => 'setGroup',
+        'avg_text_length' => 'setAvgTextLength',
+        'is_multiline' => 'setIsMultiline',
+        'original_font_size' => 'setOriginalFontSize',
+        'font_family' => 'setFontFamily',
     ];
 
     /**
@@ -156,12 +175,17 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
         'api_id' => 'getApiId',
         'name' => 'getName',
         'type' => 'getType',
+        'signer' => 'getSigner',
         'x' => 'getX',
         'y' => 'getY',
         'width' => 'getWidth',
         'height' => 'getHeight',
         'required' => 'getRequired',
         'group' => 'getGroup',
+        'avg_text_length' => 'getAvgTextLength',
+        'is_multiline' => 'getIsMultiline',
+        'original_font_size' => 'getOriginalFontSize',
+        'font_family' => 'getFontFamily',
     ];
 
     /**
@@ -255,12 +279,17 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
         $this->container['api_id'] = $data['api_id'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
+        $this->container['signer'] = $data['signer'] ?? null;
         $this->container['x'] = $data['x'] ?? null;
         $this->container['y'] = $data['y'] ?? null;
         $this->container['width'] = $data['width'] ?? null;
         $this->container['height'] = $data['height'] ?? null;
         $this->container['required'] = $data['required'] ?? null;
         $this->container['group'] = $data['group'] ?? null;
+        $this->container['avg_text_length'] = $data['avg_text_length'] ?? null;
+        $this->container['is_multiline'] = $data['is_multiline'] ?? null;
+        $this->container['original_font_size'] = $data['original_font_size'] ?? null;
+        $this->container['font_family'] = $data['font_family'] ?? null;
     }
 
     public static function fromArray(array $data): TemplateResponseDocumentFormField
@@ -384,6 +413,30 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets signer
+     *
+     * @return string|null
+     */
+    public function getSigner()
+    {
+        return $this->container['signer'];
+    }
+
+    /**
+     * Sets signer
+     *
+     * @param string|null $signer the signer of the Form Field
+     *
+     * @return self
+     */
+    public function setSigner(?string $signer)
+    {
+        $this->container['signer'] = $signer;
 
         return $this;
     }
@@ -528,6 +581,102 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
     public function setGroup(?string $group)
     {
         $this->container['group'] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Gets avg_text_length
+     *
+     * @return TemplateResponseFieldAvgTextLength|null
+     */
+    public function getAvgTextLength()
+    {
+        return $this->container['avg_text_length'];
+    }
+
+    /**
+     * Sets avg_text_length
+     *
+     * @param TemplateResponseFieldAvgTextLength|null $avg_text_length avg_text_length
+     *
+     * @return self
+     */
+    public function setAvgTextLength(?TemplateResponseFieldAvgTextLength $avg_text_length)
+    {
+        $this->container['avg_text_length'] = $avg_text_length;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_multiline
+     *
+     * @return bool|null
+     */
+    public function getIsMultiline()
+    {
+        return $this->container['is_multiline'];
+    }
+
+    /**
+     * Sets is_multiline
+     *
+     * @param bool|null $is_multiline whether this form field is multiline text
+     *
+     * @return self
+     */
+    public function setIsMultiline(?bool $is_multiline)
+    {
+        $this->container['is_multiline'] = $is_multiline;
+
+        return $this;
+    }
+
+    /**
+     * Gets original_font_size
+     *
+     * @return int|null
+     */
+    public function getOriginalFontSize()
+    {
+        return $this->container['original_font_size'];
+    }
+
+    /**
+     * Sets original_font_size
+     *
+     * @param int|null $original_font_size original font size used in this form field's text
+     *
+     * @return self
+     */
+    public function setOriginalFontSize(?int $original_font_size)
+    {
+        $this->container['original_font_size'] = $original_font_size;
+
+        return $this;
+    }
+
+    /**
+     * Gets font_family
+     *
+     * @return string|null
+     */
+    public function getFontFamily()
+    {
+        return $this->container['font_family'];
+    }
+
+    /**
+     * Sets font_family
+     *
+     * @param string|null $font_family font family used in this form field's text
+     *
+     * @return self
+     */
+    public function setFontFamily(?string $font_family)
+    {
+        $this->container['font_family'] = $font_family;
 
         return $this;
     }

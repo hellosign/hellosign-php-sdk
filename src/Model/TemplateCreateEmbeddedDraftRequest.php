@@ -408,7 +408,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets file
      *
-     * @param SplFileObject[]|null $file **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to use for the template  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+     * @param SplFileObject[]|null $file Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -432,7 +432,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets file_url
      *
-     * @param string[]|null $file_url **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to use for the template.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+     * @param string[]|null $file_url Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -504,7 +504,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets attachments
      *
-     * @param SubAttachment[]|null $attachments attachments
+     * @param SubAttachment[]|null $attachments A list describing the attachments
      *
      * @return self
      */
@@ -844,7 +844,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets signer_roles
      *
-     * @param SubTemplateRole[]|null $signer_roles signer_roles
+     * @param SubTemplateRole[]|null $signer_roles an array of the designated signer roles that must be specified when sending a SignatureRequest using this Template
      *
      * @return self
      */

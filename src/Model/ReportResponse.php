@@ -37,6 +37,7 @@ use JsonSerializable;
  * ReportResponse Class Doc Comment
  *
  * @category Class
+ * @description Contains information about the report request.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>

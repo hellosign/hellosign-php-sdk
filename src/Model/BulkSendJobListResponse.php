@@ -240,7 +240,7 @@ class BulkSendJobListResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets bulk_send_jobs
      *
-     * @param BulkSendJobResponse[]|null $bulk_send_jobs bulk_send_jobs
+     * @param BulkSendJobResponse[]|null $bulk_send_jobs contains a list of BulkSendJobs that the API caller has access to
      *
      * @return self
      */
@@ -288,7 +288,7 @@ class BulkSendJobListResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

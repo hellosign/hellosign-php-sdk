@@ -1,6 +1,6 @@
 <?php
 /**
- * TemplateResponseAccountQuota
+ * TemplateResponseFieldAvgTextLength
  *
  * PHP version 7.3
  *
@@ -33,10 +33,10 @@ use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
 
 /**
- * TemplateResponseAccountQuota Class Doc Comment
+ * TemplateResponseFieldAvgTextLength Class Doc Comment
  *
  * @category Class
- * @description An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
+ * @description Average text length in this field.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -44,7 +44,7 @@ use JsonSerializable;
  * @template TValue mixed|null
  * @internal This class should not be instantiated directly
  */
-class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonSerializable
+class TemplateResponseFieldAvgTextLength implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonS
      *
      * @var string
      */
-    protected static $openAPIModelName = 'TemplateResponseAccountQuota';
+    protected static $openAPIModelName = 'TemplateResponseFieldAvgTextLength';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -61,10 +61,8 @@ class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonS
      * @var string[]
      */
     protected static $openAPITypes = [
-        'templates_left' => 'int',
-        'api_signature_requests_left' => 'int',
-        'documents_left' => 'int',
-        'sms_verifications_left' => 'int',
+        'num_lines' => 'int',
+        'num_chars_per_line' => 'int',
     ];
 
     /**
@@ -75,10 +73,8 @@ class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonS
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'templates_left' => null,
-        'api_signature_requests_left' => null,
-        'documents_left' => null,
-        'sms_verifications_left' => null,
+        'num_lines' => null,
+        'num_chars_per_line' => null,
     ];
 
     /**
@@ -108,10 +104,8 @@ class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'templates_left' => 'templates_left',
-        'api_signature_requests_left' => 'api_signature_requests_left',
-        'documents_left' => 'documents_left',
-        'sms_verifications_left' => 'sms_verifications_left',
+        'num_lines' => 'num_lines',
+        'num_chars_per_line' => 'num_chars_per_line',
     ];
 
     /**
@@ -120,10 +114,8 @@ class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonS
      * @var string[]
      */
     protected static $setters = [
-        'templates_left' => 'setTemplatesLeft',
-        'api_signature_requests_left' => 'setApiSignatureRequestsLeft',
-        'documents_left' => 'setDocumentsLeft',
-        'sms_verifications_left' => 'setSmsVerificationsLeft',
+        'num_lines' => 'setNumLines',
+        'num_chars_per_line' => 'setNumCharsPerLine',
     ];
 
     /**
@@ -132,10 +124,8 @@ class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonS
      * @var string[]
      */
     protected static $getters = [
-        'templates_left' => 'getTemplatesLeft',
-        'api_signature_requests_left' => 'getApiSignatureRequestsLeft',
-        'documents_left' => 'getDocumentsLeft',
-        'sms_verifications_left' => 'getSmsVerificationsLeft',
+        'num_lines' => 'getNumLines',
+        'num_chars_per_line' => 'getNumCharsPerLine',
     ];
 
     /**
@@ -194,18 +184,16 @@ class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->container['templates_left'] = $data['templates_left'] ?? null;
-        $this->container['api_signature_requests_left'] = $data['api_signature_requests_left'] ?? null;
-        $this->container['documents_left'] = $data['documents_left'] ?? null;
-        $this->container['sms_verifications_left'] = $data['sms_verifications_left'] ?? null;
+        $this->container['num_lines'] = $data['num_lines'] ?? null;
+        $this->container['num_chars_per_line'] = $data['num_chars_per_line'] ?? null;
     }
 
-    public static function fromArray(array $data): TemplateResponseAccountQuota
+    public static function fromArray(array $data): TemplateResponseFieldAvgTextLength
     {
-        /** @var TemplateResponseAccountQuota $obj */
+        /** @var TemplateResponseFieldAvgTextLength $obj */
         $obj = ObjectSerializer::deserialize(
             ObjectSerializer::instantiateFiles(static::class, $data),
-            TemplateResponseAccountQuota::class,
+            TemplateResponseFieldAvgTextLength::class,
         );
 
         return $obj;
@@ -235,97 +223,49 @@ class TemplateResponseAccountQuota implements ModelInterface, ArrayAccess, JsonS
     }
 
     /**
-     * Gets templates_left
+     * Gets num_lines
      *
      * @return int|null
      */
-    public function getTemplatesLeft()
+    public function getNumLines()
     {
-        return $this->container['templates_left'];
+        return $this->container['num_lines'];
     }
 
     /**
-     * Sets templates_left
+     * Sets num_lines
      *
-     * @param int|null $templates_left API templates remaining
+     * @param int|null $num_lines number of lines
      *
      * @return self
      */
-    public function setTemplatesLeft(?int $templates_left)
+    public function setNumLines(?int $num_lines)
     {
-        $this->container['templates_left'] = $templates_left;
+        $this->container['num_lines'] = $num_lines;
 
         return $this;
     }
 
     /**
-     * Gets api_signature_requests_left
+     * Gets num_chars_per_line
      *
      * @return int|null
      */
-    public function getApiSignatureRequestsLeft()
+    public function getNumCharsPerLine()
     {
-        return $this->container['api_signature_requests_left'];
+        return $this->container['num_chars_per_line'];
     }
 
     /**
-     * Sets api_signature_requests_left
+     * Sets num_chars_per_line
      *
-     * @param int|null $api_signature_requests_left API signature requests remaining
+     * @param int|null $num_chars_per_line number of character per line
      *
      * @return self
      */
-    public function setApiSignatureRequestsLeft(?int $api_signature_requests_left)
+    public function setNumCharsPerLine(?int $num_chars_per_line)
     {
-        $this->container['api_signature_requests_left'] = $api_signature_requests_left;
-
-        return $this;
-    }
-
-    /**
-     * Gets documents_left
-     *
-     * @return int|null
-     */
-    public function getDocumentsLeft()
-    {
-        return $this->container['documents_left'];
-    }
-
-    /**
-     * Sets documents_left
-     *
-     * @param int|null $documents_left signature requests remaining
-     *
-     * @return self
-     */
-    public function setDocumentsLeft(?int $documents_left)
-    {
-        $this->container['documents_left'] = $documents_left;
-
-        return $this;
-    }
-
-    /**
-     * Gets sms_verifications_left
-     *
-     * @return int|null
-     */
-    public function getSmsVerificationsLeft()
-    {
-        return $this->container['sms_verifications_left'];
-    }
-
-    /**
-     * Sets sms_verifications_left
-     *
-     * @param int|null $sms_verifications_left SMS verifications remaining
-     *
-     * @return self
-     */
-    public function setSmsVerificationsLeft(?int $sms_verifications_left)
-    {
-        $this->container['sms_verifications_left'] = $sms_verifications_left;
+        $this->container['num_chars_per_line'] = $num_chars_per_line;
 
         return $this;
     }

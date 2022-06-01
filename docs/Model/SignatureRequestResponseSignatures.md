@@ -1,6 +1,6 @@
 # # SignatureRequestResponseSignatures
 
-An array of signature obects, 1 for each signer.
+An array of signature objects, 1 for each signer.
 
 ## Properties
 

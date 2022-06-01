@@ -32,7 +32,8 @@ $data->setClientId("ec64a202072370a737edf4a0eb7f4437")
 try {
     $result = $api->unclaimedDraftCreateEmbeddedWithTemplate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }

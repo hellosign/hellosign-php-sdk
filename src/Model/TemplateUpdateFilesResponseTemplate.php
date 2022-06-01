@@ -36,6 +36,7 @@ use JsonSerializable;
  * TemplateUpdateFilesResponseTemplate Class Doc Comment
  *
  * @category Class
+ * @description Contains template id
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -258,7 +259,7 @@ class TemplateUpdateFilesResponseTemplate implements ModelInterface, ArrayAccess
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

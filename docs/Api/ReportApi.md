@@ -42,9 +42,10 @@ $data->setStartDate("09/01/2020")
 try {
     $result = $api->reportCreate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```

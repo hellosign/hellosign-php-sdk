@@ -225,7 +225,7 @@ class SubFormFieldsPerDocumentTextMerge extends SubFormFieldsPerDocumentBase
     /**
      * Sets type
      *
-     * @param string $type A text field that has default text set by the api. Use the `SubFormFieldsPerDocumentTextMerge` class.
+     * @param string $type A text field that has default text set using pre-filled data. Use the `SubFormFieldsPerDocumentTextMerge` class.
      *
      * @return self
      */

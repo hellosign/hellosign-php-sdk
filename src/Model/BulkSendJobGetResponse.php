@@ -294,7 +294,7 @@ class BulkSendJobGetResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets signature_requests
      *
-     * @param BulkSendJobGetResponseSignatureRequests[]|null $signature_requests signature_requests
+     * @param BulkSendJobGetResponseSignatureRequests[]|null $signature_requests contains information about the Signature Requests sent in bulk
      *
      * @return self
      */
@@ -318,7 +318,7 @@ class BulkSendJobGetResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

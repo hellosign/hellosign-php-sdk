@@ -40,9 +40,10 @@ $bulkSendJobId = "6e683bc0369ba3d5b6f43c2c22a8031dbf6bd174";
 try {
     $result = $api->bulkSendJobGet($bulkSendJobId);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -103,9 +104,10 @@ $pageSize = 20;
 try {
     $result = $api->bulkSendJobList($page, $pageSize);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```

@@ -36,6 +36,7 @@ use JsonSerializable;
  * ListInfoResponse Class Doc Comment
  *
  * @category Class
+ * @description Contains pagination information about the data returned.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -246,7 +247,7 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets num_pages
      *
-     * @param int|null $num_pages Total number of pages available
+     * @param int|null $num_pages total number of pages available
      *
      * @return self
      */
@@ -270,7 +271,7 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets num_results
      *
-     * @param int|null $num_results Total number of objects available
+     * @param int|null $num_results total number of objects available
      *
      * @return self
      */
@@ -294,7 +295,7 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets page
      *
-     * @param int|null $page Number of the page being returned
+     * @param int|null $page number of the page being returned
      *
      * @return self
      */
@@ -318,7 +319,7 @@ class ListInfoResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets page_size
      *
-     * @param int|null $page_size Objects returned per page
+     * @param int|null $page_size objects returned per page
      *
      * @return self
      */

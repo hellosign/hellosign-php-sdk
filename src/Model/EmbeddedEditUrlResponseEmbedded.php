@@ -36,6 +36,7 @@ use JsonSerializable;
  * EmbeddedEditUrlResponseEmbedded Class Doc Comment
  *
  * @category Class
+ * @description An embedded template object.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -234,7 +235,7 @@ class EmbeddedEditUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     /**
      * Sets edit_url
      *
-     * @param string|null $edit_url edit_url
+     * @param string|null $edit_url a template url that can be opened in an iFrame
      *
      * @return self
      */
@@ -258,7 +259,7 @@ class EmbeddedEditUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     /**
      * Sets expires_at
      *
-     * @param int|null $expires_at expires_at
+     * @param int|null $expires_at the specific time that the the `edit_url` link expires, in epoch
      *
      * @return self
      */

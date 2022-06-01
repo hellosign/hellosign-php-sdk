@@ -36,6 +36,7 @@ use JsonSerializable;
  * SignatureRequestResponse Class Doc Comment
  *
  * @category Class
+ * @description Contains information about a signature request.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -72,7 +73,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'is_complete' => 'bool',
         'is_declined' => 'bool',
         'has_error' => 'bool',
-        'final_copy_uri' => 'string',
         'files_url' => 'string',
         'signing_url' => 'string',
         'details_url' => 'string',
@@ -105,7 +105,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'is_complete' => null,
         'is_declined' => null,
         'has_error' => null,
-        'final_copy_uri' => null,
         'files_url' => null,
         'signing_url' => null,
         'details_url' => null,
@@ -157,7 +156,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'is_complete' => 'is_complete',
         'is_declined' => 'is_declined',
         'has_error' => 'has_error',
-        'final_copy_uri' => 'final_copy_uri',
         'files_url' => 'files_url',
         'signing_url' => 'signing_url',
         'details_url' => 'details_url',
@@ -188,7 +186,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'is_complete' => 'setIsComplete',
         'is_declined' => 'setIsDeclined',
         'has_error' => 'setHasError',
-        'final_copy_uri' => 'setFinalCopyUri',
         'files_url' => 'setFilesUrl',
         'signing_url' => 'setSigningUrl',
         'details_url' => 'setDetailsUrl',
@@ -219,7 +216,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'is_complete' => 'getIsComplete',
         'is_declined' => 'getIsDeclined',
         'has_error' => 'getHasError',
-        'final_copy_uri' => 'getFinalCopyUri',
         'files_url' => 'getFilesUrl',
         'signing_url' => 'getSigningUrl',
         'details_url' => 'getDetailsUrl',
@@ -300,7 +296,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         $this->container['is_complete'] = $data['is_complete'] ?? null;
         $this->container['is_declined'] = $data['is_declined'] ?? null;
         $this->container['has_error'] = $data['has_error'] ?? null;
-        $this->container['final_copy_uri'] = $data['final_copy_uri'] ?? null;
         $this->container['files_url'] = $data['files_url'] ?? null;
         $this->container['signing_url'] = $data['signing_url'] ?? null;
         $this->container['details_url'] = $data['details_url'] ?? null;
@@ -636,30 +631,6 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     }
 
     /**
-     * Gets final_copy_uri
-     *
-     * @return string|null
-     */
-    public function getFinalCopyUri()
-    {
-        return $this->container['final_copy_uri'];
-    }
-
-    /**
-     * Sets final_copy_uri
-     *
-     * @param string|null $final_copy_uri (Deprecated) The relative URI where the PDF copy of the finalized documents can be downloaded. Only present when `is_complete = true`. This will be removed at some point; use the files_url instead.
-     *
-     * @return self
-     */
-    public function setFinalCopyUri(?string $final_copy_uri)
-    {
-        $this->container['final_copy_uri'] = $final_copy_uri;
-
-        return $this;
-    }
-
-    /**
      * Gets files_url
      *
      * @return string|null
@@ -840,7 +811,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets attachments
      *
-     * @param SignatureRequestResponseAttachment[]|null $attachments attachments
+     * @param SignatureRequestResponseAttachment[]|null $attachments signer attachments
      *
      * @return self
      */
@@ -864,7 +835,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets response_data
      *
-     * @param SignatureRequestResponseData[]|null $response_data response_data
+     * @param SignatureRequestResponseData[]|null $response_data an array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers
      *
      * @return self
      */
@@ -888,7 +859,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets signatures
      *
-     * @param SignatureRequestResponseSignatures[]|null $signatures signatures
+     * @param SignatureRequestResponseSignatures[]|null $signatures an array of signature objects, 1 for each signer
      *
      * @return self
      */

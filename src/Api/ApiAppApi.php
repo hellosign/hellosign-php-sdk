@@ -437,7 +437,7 @@ class ApiAppApi
      *
      * Delete API App
      *
-     * @param string $client_id The client id of the Api App to delete. (required)
+     * @param string $client_id The client id of the API App to delete. (required)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -453,7 +453,7 @@ class ApiAppApi
      *
      * Delete API App
      *
-     * @param string $client_id The client id of the Api App to delete. (required)
+     * @param string $client_id The client id of the API App to delete. (required)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -522,7 +522,7 @@ class ApiAppApi
      *
      * Delete API App
      *
-     * @param string $client_id The client id of the Api App to delete. (required)
+     * @param string $client_id The client id of the API App to delete. (required)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -542,7 +542,7 @@ class ApiAppApi
      *
      * Delete API App
      *
-     * @param string $client_id The client id of the Api App to delete. (required)
+     * @param string $client_id The client id of the API App to delete. (required)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -578,7 +578,7 @@ class ApiAppApi
     /**
      * Create request for operation 'apiAppDelete'
      *
-     * @param string $client_id The client id of the Api App to delete. (required)
+     * @param string $client_id The client id of the API App to delete. (required)
      *
      * @throws InvalidArgumentException
      * @return Psr7\Request
@@ -686,7 +686,7 @@ class ApiAppApi
      *
      * Get API App
      *
-     * @param string $client_id The client id of the Api App to retrieve. (required)
+     * @param string $client_id The client id of the API App to retrieve. (required)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -704,7 +704,7 @@ class ApiAppApi
      *
      * Get API App
      *
-     * @param string $client_id The client id of the Api App to retrieve. (required)
+     * @param string $client_id The client id of the API App to retrieve. (required)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -825,7 +825,7 @@ class ApiAppApi
      *
      * Get API App
      *
-     * @param string $client_id The client id of the Api App to retrieve. (required)
+     * @param string $client_id The client id of the API App to retrieve. (required)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -845,7 +845,7 @@ class ApiAppApi
      *
      * Get API App
      *
-     * @param string $client_id The client id of the Api App to retrieve. (required)
+     * @param string $client_id The client id of the API App to retrieve. (required)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -891,7 +891,7 @@ class ApiAppApi
     /**
      * Create request for operation 'apiAppGet'
      *
-     * @param string $client_id The client id of the Api App to retrieve. (required)
+     * @param string $client_id The client id of the API App to retrieve. (required)
      *
      * @throws InvalidArgumentException
      * @return Psr7\Request
@@ -999,7 +999,7 @@ class ApiAppApi
      *
      * List API Apps
      *
-     * @param int $page Which page number of the Api App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page Which page number of the API App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      *
      * @throws ApiException on non-2xx response
@@ -1018,7 +1018,7 @@ class ApiAppApi
      *
      * List API Apps
      *
-     * @param int $page Which page number of the Api App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page Which page number of the API App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      *
      * @throws ApiException on non-2xx response
@@ -1140,7 +1140,7 @@ class ApiAppApi
      *
      * List API Apps
      *
-     * @param int $page Which page number of the Api App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page Which page number of the API App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      *
      * @throws InvalidArgumentException
@@ -1161,7 +1161,7 @@ class ApiAppApi
      *
      * List API Apps
      *
-     * @param int $page Which page number of the Api App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page Which page number of the API App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      *
      * @throws InvalidArgumentException
@@ -1208,7 +1208,7 @@ class ApiAppApi
     /**
      * Create request for operation 'apiAppList'
      *
-     * @param int $page Which page number of the Api App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page Which page number of the API App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
      * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      *
      * @throws InvalidArgumentException
@@ -1322,7 +1322,7 @@ class ApiAppApi
      *
      * Update API App
      *
-     * @param string $client_id The client id of the Api App to update. (required)
+     * @param string $client_id The client id of the API App to update. (required)
      * @param Model\ApiAppUpdateRequest $api_app_update_request api_app_update_request (required)
      *
      * @throws ApiException on non-2xx response
@@ -1341,7 +1341,7 @@ class ApiAppApi
      *
      * Update API App
      *
-     * @param string $client_id The client id of the Api App to update. (required)
+     * @param string $client_id The client id of the API App to update. (required)
      * @param Model\ApiAppUpdateRequest $api_app_update_request (required)
      *
      * @throws ApiException on non-2xx response
@@ -1463,7 +1463,7 @@ class ApiAppApi
      *
      * Update API App
      *
-     * @param string $client_id The client id of the Api App to update. (required)
+     * @param string $client_id The client id of the API App to update. (required)
      * @param Model\ApiAppUpdateRequest $api_app_update_request (required)
      *
      * @throws InvalidArgumentException
@@ -1484,7 +1484,7 @@ class ApiAppApi
      *
      * Update API App
      *
-     * @param string $client_id The client id of the Api App to update. (required)
+     * @param string $client_id The client id of the API App to update. (required)
      * @param Model\ApiAppUpdateRequest $api_app_update_request (required)
      *
      * @throws InvalidArgumentException
@@ -1531,7 +1531,7 @@ class ApiAppApi
     /**
      * Create request for operation 'apiAppUpdate'
      *
-     * @param string $client_id The client id of the Api App to update. (required)
+     * @param string $client_id The client id of the API App to update. (required)
      * @param Model\ApiAppUpdateRequest $api_app_update_request (required)
      *
      * @throws InvalidArgumentException

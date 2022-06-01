@@ -1,6 +1,6 @@
 # # SignatureRequestResponse
 
-
+Contains information about a signature request.
 
 ## Properties
 
@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 | `is_complete` | ```bool``` |  Whether or not the SignatureRequest has been fully executed by all signers.  |  |
 | `is_declined` | ```bool``` |  Whether or not the SignatureRequest has been declined by a signer.  |  |
 | `has_error` | ```bool``` |  Whether or not an error occurred (either during the creation of the SignatureRequest or during one of the signings).  |  |
-| `final_copy_uri` | ```string``` |  (Deprecated) The relative URI where the PDF copy of the finalized documents can be downloaded. Only present when `is_complete &#x3D; true`. This will be removed at some point; use the files_url instead.  |  |
 | `files_url` | ```string``` |  The URL where a copy of the request&#39;s documents can be downloaded.  |  |
 | `signing_url` | ```string``` |  The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing HelloSign accounts as they will be required to log in before signing.  |  |
 | `details_url` | ```string``` |  The URL where the requester and the signers can view the current status of the SignatureRequest.  |  |
@@ -26,8 +25,8 @@ Name | Type | Description | Notes
 | `signing_redirect_url` | ```string``` |  The URL you want the signer redirected to after they successfully sign.  |  |
 | `template_ids` | ```string[]``` |  Templates IDs used in this SignatureRequest (if any).  |  |
 | `custom_fields` | [```\HelloSignSDK\Model\SignatureRequestResponseCustomFieldBase[]```](SignatureRequestResponseCustomFieldBase.md) |  An array of Custom Field objects containing the name and type of each custom field.<br><br>* Text Field uses `SignatureRequestResponseCustomFieldText`<br>* Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`  |  |
-| `attachments` | [```\HelloSignSDK\Model\SignatureRequestResponseAttachment[]```](SignatureRequestResponseAttachment.md) |    |  |
-| `response_data` | [```\HelloSignSDK\Model\SignatureRequestResponseData[]```](SignatureRequestResponseData.md) |    |  |
-| `signatures` | [```\HelloSignSDK\Model\SignatureRequestResponseSignatures[]```](SignatureRequestResponseSignatures.md) |    |  |
+| `attachments` | [```\HelloSignSDK\Model\SignatureRequestResponseAttachment[]```](SignatureRequestResponseAttachment.md) |  Signer attachments.  |  |
+| `response_data` | [```\HelloSignSDK\Model\SignatureRequestResponseData[]```](SignatureRequestResponseData.md) |  An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.  |  |
+| `signatures` | [```\HelloSignSDK\Model\SignatureRequestResponseSignatures[]```](SignatureRequestResponseSignatures.md) |  An array of signature objects, 1 for each signer.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

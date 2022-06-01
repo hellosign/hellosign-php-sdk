@@ -18,7 +18,8 @@ $pageSize = 20;
 try {
     $result = $api->bulkSendJobList($page, $pageSize);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }

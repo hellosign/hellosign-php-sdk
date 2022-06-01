@@ -258,7 +258,7 @@ class TemplateCreateEmbeddedDraftResponse implements ModelInterface, ArrayAccess
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

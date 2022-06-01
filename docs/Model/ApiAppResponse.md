@@ -1,6 +1,6 @@
 # # ApiAppResponse
 
-
+Contains information about an API App.
 
 ## Properties
 

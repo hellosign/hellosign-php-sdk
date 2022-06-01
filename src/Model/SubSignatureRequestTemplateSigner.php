@@ -269,7 +269,7 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
     /**
      * Sets role
      *
-     * @param string $role must match an existing role in chosen Template(s)
+     * @param string $role Must match an existing role in chosen Template(s). It's case-sensitive.
      *
      * @return self
      */

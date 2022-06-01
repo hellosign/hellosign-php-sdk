@@ -62,16 +62,16 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      */
     protected static $openAPITypes = [
         'document_index' => 'int',
+        'api_id' => 'string',
         'height' => 'int',
+        'page' => 'int',
+        'required' => 'bool',
         'signer' => 'string',
         'type' => 'string',
         'width' => 'int',
         'x' => 'int',
         'y' => 'int',
-        'api_id' => 'string',
         'name' => 'string',
-        'page' => 'int',
-        'required' => 'bool',
     ];
 
     /**
@@ -83,16 +83,16 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      */
     protected static $openAPIFormats = [
         'document_index' => null,
+        'api_id' => null,
         'height' => null,
+        'page' => null,
+        'required' => null,
         'signer' => null,
         'type' => null,
         'width' => null,
         'x' => null,
         'y' => null,
-        'api_id' => null,
         'name' => null,
-        'page' => null,
-        'required' => null,
     ];
 
     /**
@@ -123,16 +123,16 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      */
     protected static $attributeMap = [
         'document_index' => 'document_index',
+        'api_id' => 'api_id',
         'height' => 'height',
+        'page' => 'page',
+        'required' => 'required',
         'signer' => 'signer',
         'type' => 'type',
         'width' => 'width',
         'x' => 'x',
         'y' => 'y',
-        'api_id' => 'api_id',
         'name' => 'name',
-        'page' => 'page',
-        'required' => 'required',
     ];
 
     /**
@@ -142,16 +142,16 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      */
     protected static $setters = [
         'document_index' => 'setDocumentIndex',
+        'api_id' => 'setApiId',
         'height' => 'setHeight',
+        'page' => 'setPage',
+        'required' => 'setRequired',
         'signer' => 'setSigner',
         'type' => 'setType',
         'width' => 'setWidth',
         'x' => 'setX',
         'y' => 'setY',
-        'api_id' => 'setApiId',
         'name' => 'setName',
-        'page' => 'setPage',
-        'required' => 'setRequired',
     ];
 
     /**
@@ -161,16 +161,16 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
      */
     protected static $getters = [
         'document_index' => 'getDocumentIndex',
+        'api_id' => 'getApiId',
         'height' => 'getHeight',
+        'page' => 'getPage',
+        'required' => 'getRequired',
         'signer' => 'getSigner',
         'type' => 'getType',
         'width' => 'getWidth',
         'x' => 'getX',
         'y' => 'getY',
-        'api_id' => 'getApiId',
         'name' => 'getName',
-        'page' => 'getPage',
-        'required' => 'getRequired',
     ];
 
     /**
@@ -230,16 +230,16 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     public function __construct(array $data = null)
     {
         $this->container['document_index'] = $data['document_index'] ?? null;
+        $this->container['api_id'] = $data['api_id'] ?? null;
         $this->container['height'] = $data['height'] ?? null;
+        $this->container['page'] = $data['page'] ?? null;
+        $this->container['required'] = $data['required'] ?? null;
         $this->container['signer'] = $data['signer'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
         $this->container['width'] = $data['width'] ?? null;
         $this->container['x'] = $data['x'] ?? null;
         $this->container['y'] = $data['y'] ?? null;
-        $this->container['api_id'] = $data['api_id'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
-        $this->container['page'] = $data['page'] ?? null;
-        $this->container['required'] = $data['required'] ?? null;
 
         // Initialize discriminator property with the model name.
         $this->container['type'] = static::$openAPIModelName;
@@ -297,8 +297,17 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
         if ($this->container['document_index'] === null) {
             $invalidProperties[] = "'document_index' can't be null";
         }
+        if ($this->container['api_id'] === null) {
+            $invalidProperties[] = "'api_id' can't be null";
+        }
         if ($this->container['height'] === null) {
             $invalidProperties[] = "'height' can't be null";
+        }
+        if ($this->container['page'] === null) {
+            $invalidProperties[] = "'page' can't be null";
+        }
+        if ($this->container['required'] === null) {
+            $invalidProperties[] = "'required' can't be null";
         }
         if ($this->container['signer'] === null) {
             $invalidProperties[] = "'signer' can't be null";
@@ -355,6 +364,30 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     }
 
     /**
+     * Gets api_id
+     *
+     * @return string
+     */
+    public function getApiId()
+    {
+        return $this->container['api_id'];
+    }
+
+    /**
+     * Sets api_id
+     *
+     * @param string $api_id an identifier for the field that is unique across all documents in the request
+     *
+     * @return self
+     */
+    public function setApiId(string $api_id)
+    {
+        $this->container['api_id'] = $api_id;
+
+        return $this;
+    }
+
+    /**
      * Gets height
      *
      * @return int
@@ -379,6 +412,54 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     }
 
     /**
+     * Gets page
+     *
+     * @return int
+     */
+    public function getPage()
+    {
+        return $this->container['page'];
+    }
+
+    /**
+     * Sets page
+     *
+     * @param int $page Page in the document where the field should be placed (requires documents be PDF files).  - When the page number parameter is supplied, the API will use the new coordinate system. - Check out the differences between both [coordinate systems](https://faq.hellosign.com/hc/en-us/articles/217115577) and how to use them.
+     *
+     * @return self
+     */
+    public function setPage(int $page)
+    {
+        $this->container['page'] = $page;
+
+        return $this;
+    }
+
+    /**
+     * Gets required
+     *
+     * @return bool
+     */
+    public function getRequired()
+    {
+        return $this->container['required'];
+    }
+
+    /**
+     * Sets required
+     *
+     * @param bool $required whether this field is required
+     *
+     * @return self
+     */
+    public function setRequired(bool $required)
+    {
+        $this->container['required'] = $required;
+
+        return $this;
+    }
+
+    /**
      * Gets signer
      *
      * @return string
@@ -391,7 +472,7 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     /**
      * Sets signer
      *
-     * @param string $signer Signer index identified by the offset `%i%` in the `signers[%i%]` parameter, indicating which signer should fill out the field. If your type is `text-merge` you can set this to `sender`, so the field is non-editable by any signer.
+     * @param string $signer Signer index identified by the offset in the signers parameter (0-based indexing), indicating which signer should fill out the field.  **NOTE**: If type is `text-merge` or `checkbox-merge`, you must set this to sender in order to use pre-filled data.
      *
      * @return self
      */
@@ -499,30 +580,6 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     }
 
     /**
-     * Gets api_id
-     *
-     * @return string|null
-     */
-    public function getApiId()
-    {
-        return $this->container['api_id'];
-    }
-
-    /**
-     * Sets api_id
-     *
-     * @param string|null $api_id an identifier for the field that is unique across all documents in the request
-     *
-     * @return self
-     */
-    public function setApiId(?string $api_id)
-    {
-        $this->container['api_id'] = $api_id;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string|null
@@ -542,54 +599,6 @@ abstract class SubFormFieldsPerDocumentBase implements ModelInterface, ArrayAcce
     public function setName(?string $name)
     {
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets page
-     *
-     * @return int|null
-     */
-    public function getPage()
-    {
-        return $this->container['page'];
-    }
-
-    /**
-     * Sets page
-     *
-     * @param int|null $page Page in the document where the field should be placed (requires documents be PDF files).  - When the page number parameter is supplied, the API will use the new coordinate system. - Check out the differences between both [coordinate systems](https://faq.hellosign.com/hc/en-us/articles/217115577) and how to use them.
-     *
-     * @return self
-     */
-    public function setPage(?int $page)
-    {
-        $this->container['page'] = $page;
-
-        return $this;
-    }
-
-    /**
-     * Gets required
-     *
-     * @return bool|null
-     */
-    public function getRequired()
-    {
-        return $this->container['required'];
-    }
-
-    /**
-     * Sets required
-     *
-     * @param bool|null $required whether this field is required
-     *
-     * @return self
-     */
-    public function setRequired(?bool $required)
-    {
-        $this->container['required'] = $required;
 
         return $this;
     }

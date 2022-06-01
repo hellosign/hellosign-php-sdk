@@ -36,6 +36,7 @@ use JsonSerializable;
  * TemplateResponse Class Doc Comment
  *
  * @category Class
+ * @description Contains information about the templates you and your team have created.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -73,6 +74,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'cc_roles' => '\HelloSignSDK\Model\TemplateResponseCCRole[]',
         'documents' => '\HelloSignSDK\Model\TemplateResponseDocument[]',
         'custom_fields' => '\HelloSignSDK\Model\TemplateResponseCustomField[]',
+        'named_form_fields' => '\HelloSignSDK\Model\TemplateResponseNamedFormField[]',
         'accounts' => '\HelloSignSDK\Model\TemplateResponseAccount[]',
     ];
 
@@ -97,6 +99,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'cc_roles' => null,
         'documents' => null,
         'custom_fields' => null,
+        'named_form_fields' => null,
         'accounts' => null,
     ];
 
@@ -140,6 +143,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'cc_roles' => 'cc_roles',
         'documents' => 'documents',
         'custom_fields' => 'custom_fields',
+        'named_form_fields' => 'named_form_fields',
         'accounts' => 'accounts',
     ];
 
@@ -162,6 +166,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'cc_roles' => 'setCcRoles',
         'documents' => 'setDocuments',
         'custom_fields' => 'setCustomFields',
+        'named_form_fields' => 'setNamedFormFields',
         'accounts' => 'setAccounts',
     ];
 
@@ -184,6 +189,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'cc_roles' => 'getCcRoles',
         'documents' => 'getDocuments',
         'custom_fields' => 'getCustomFields',
+        'named_form_fields' => 'getNamedFormFields',
         'accounts' => 'getAccounts',
     ];
 
@@ -256,6 +262,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
         $this->container['cc_roles'] = $data['cc_roles'] ?? null;
         $this->container['documents'] = $data['documents'] ?? null;
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
+        $this->container['named_form_fields'] = $data['named_form_fields'] ?? null;
         $this->container['accounts'] = $data['accounts'] ?? null;
     }
 
@@ -474,7 +481,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets is_locked
      *
-     * @param bool|null $is_locked `true` if you exceed Template quota; these can only be used in test mode. `false` if the template is included with the Template quota; these can be used at any time.
+     * @param bool|null $is_locked Indicates whether the template is locked.  If `true`, then the template was created outside your quota and can only be used in `test_mode`.  If `false`, then the template is within your quota and can be used to create signature requests.
      *
      * @return self
      */
@@ -522,7 +529,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets signer_roles
      *
-     * @param TemplateResponseSignerRole[]|null $signer_roles signer_roles
+     * @param TemplateResponseSignerRole[]|null $signer_roles an array of the designated signer roles that must be specified when sending a SignatureRequest using this Template
      *
      * @return self
      */
@@ -546,7 +553,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets cc_roles
      *
-     * @param TemplateResponseCCRole[]|null $cc_roles cc_roles
+     * @param TemplateResponseCCRole[]|null $cc_roles an array of the designated CC roles that must be specified when sending a SignatureRequest using this Template
      *
      * @return self
      */
@@ -570,7 +577,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets documents
      *
-     * @param TemplateResponseDocument[]|null $documents documents
+     * @param TemplateResponseDocument[]|null $documents An array describing each document associated with this Template. Includes form field data for each document.
      *
      * @return self
      */
@@ -594,13 +601,39 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets custom_fields
      *
-     * @param TemplateResponseCustomField[]|null $custom_fields custom_fields
+     * @param TemplateResponseCustomField[]|null $custom_fields an array of Custom Field objects
      *
      * @return self
      */
     public function setCustomFields(?array $custom_fields)
     {
         $this->container['custom_fields'] = $custom_fields;
+
+        return $this;
+    }
+
+    /**
+     * Gets named_form_fields
+     *
+     * @return TemplateResponseNamedFormField[]|null
+     * @deprecated
+     */
+    public function getNamedFormFields()
+    {
+        return $this->container['named_form_fields'];
+    }
+
+    /**
+     * Sets named_form_fields
+     *
+     * @param TemplateResponseNamedFormField[]|null $named_form_fields use \"form_fields\" under the \"documents\" array instead
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setNamedFormFields(?array $named_form_fields)
+    {
+        $this->container['named_form_fields'] = $named_form_fields;
 
         return $this;
     }
@@ -618,7 +651,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets accounts
      *
-     * @param TemplateResponseAccount[]|null $accounts accounts
+     * @param TemplateResponseAccount[]|null $accounts an array of the Accounts that can use this Template
      *
      * @return self
      */

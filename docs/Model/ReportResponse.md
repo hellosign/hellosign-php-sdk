@@ -1,6 +1,6 @@
 # # ReportResponse
 
-
+Contains information about the report request.
 
 ## Properties
 

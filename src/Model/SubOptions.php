@@ -36,6 +36,7 @@ use JsonSerializable;
  * SubOptions Class Doc Comment
  *
  * @category Class
+ * @description Additional options supported by API App.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>

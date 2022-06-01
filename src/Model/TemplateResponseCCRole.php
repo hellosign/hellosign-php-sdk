@@ -36,7 +36,6 @@ use JsonSerializable;
  * TemplateResponseCCRole Class Doc Comment
  *
  * @category Class
- * @description An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>

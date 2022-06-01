@@ -36,6 +36,7 @@ use JsonSerializable;
  * EmbeddedSignUrlResponseEmbedded Class Doc Comment
  *
  * @category Class
+ * @description An object that contains necessary information to set up embedded signing.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -234,7 +235,7 @@ class EmbeddedSignUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     /**
      * Sets sign_url
      *
-     * @param string|null $sign_url sign_url
+     * @param string|null $sign_url a signature url that can be opened in an iFrame
      *
      * @return self
      */
@@ -258,7 +259,7 @@ class EmbeddedSignUrlResponseEmbedded implements ModelInterface, ArrayAccess, Js
     /**
      * Sets expires_at
      *
-     * @param int|null $expires_at expires_at
+     * @param int|null $expires_at the specific time that the the `sign_url` link expires, in epoch
      *
      * @return self
      */

@@ -240,7 +240,7 @@ class ApiAppListResponse implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets api_apps
      *
-     * @param ApiAppResponse[]|null $api_apps api_apps
+     * @param ApiAppResponse[]|null $api_apps contains information about API Apps
      *
      * @return self
      */
@@ -288,7 +288,7 @@ class ApiAppListResponse implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

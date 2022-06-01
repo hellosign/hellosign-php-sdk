@@ -1,6 +1,6 @@
-# # TemplateResponseDocumentCustomFieldAvgTextLength
+# # TemplateResponseFieldAvgTextLength
 
-Average text length in custom field.
+Average text length in this field.
 
 ## Properties
 

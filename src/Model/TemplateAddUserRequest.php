@@ -239,7 +239,7 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets account_id
      *
-     * @param string|null $account_id The id or email address of the Account to give access to the Template. The account id prevails if both are provided.
+     * @param string|null $account_id The id of the Account to give access to the Template. <b>Note</b> The account id prevails if email address is also provided.
      *
      * @return self
      */
@@ -263,7 +263,7 @@ class TemplateAddUserRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets email_address
      *
-     * @param string|null $email_address The id or email address of the Account to give access to the Template. The account id prevails if both are provided.
+     * @param string|null $email_address The email address of the Account to give access to the Template. <b>Note</b> The account id prevails if it is also provided.
      *
      * @return self
      */

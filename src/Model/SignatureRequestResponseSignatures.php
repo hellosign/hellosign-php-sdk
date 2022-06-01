@@ -36,7 +36,7 @@ use JsonSerializable;
  * SignatureRequestResponseSignatures Class Doc Comment
  *
  * @category Class
- * @description An array of signature obects, 1 for each signer.
+ * @description An array of signature objects, 1 for each signer.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>

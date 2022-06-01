@@ -1,6 +1,6 @@
 # # SubOAuth
 
-
+OAuth related parameters.
 
 ## Properties
 

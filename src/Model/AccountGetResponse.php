@@ -258,7 +258,7 @@ class AccountGetResponse implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

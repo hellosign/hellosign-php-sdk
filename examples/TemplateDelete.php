@@ -16,7 +16,8 @@ $templateId = "5de8179668f2033afac48da1868d0093bf133266";
 
 try {
     $api->templateDelete($templateId);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }

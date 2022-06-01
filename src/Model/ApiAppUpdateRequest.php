@@ -269,7 +269,7 @@ class ApiAppUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets callback_url
      *
-     * @param string|null $callback_url the URL at which the Api App should receive event callbacks
+     * @param string|null $callback_url the URL at which the API App should receive event callbacks
      *
      * @return self
      */

@@ -36,7 +36,6 @@ use JsonSerializable;
  * TemplateResponseDocumentFieldGroup Class Doc Comment
  *
  * @category Class
- * @description An array of Form Field Group objects.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>

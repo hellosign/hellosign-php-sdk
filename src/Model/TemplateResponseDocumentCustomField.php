@@ -37,7 +37,6 @@ use JsonSerializable;
  * TemplateResponseDocumentCustomField Class Doc Comment
  *
  * @category Class
- * @description An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -64,13 +63,18 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'name' => 'string',
         'type' => 'string',
+        'signer' => 'string',
         'x' => 'int',
         'y' => 'int',
         'width' => 'int',
         'height' => 'int',
         'required' => 'bool',
+        'api_id' => 'string',
         'group' => 'string',
-        'avg_text_length' => '\HelloSignSDK\Model\TemplateResponseDocumentCustomFieldAvgTextLength',
+        'avg_text_length' => '\HelloSignSDK\Model\TemplateResponseFieldAvgTextLength',
+        'is_multiline' => 'string',
+        'original_font_size' => 'int',
+        'font_family' => 'int',
         'named_form_fields' => 'array',
         'reusable_form_id' => 'string',
     ];
@@ -85,13 +89,18 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'name' => null,
         'type' => null,
+        'signer' => null,
         'x' => null,
         'y' => null,
         'width' => null,
         'height' => null,
         'required' => null,
+        'api_id' => null,
         'group' => null,
         'avg_text_length' => null,
+        'is_multiline' => null,
+        'original_font_size' => null,
+        'font_family' => null,
         'named_form_fields' => null,
         'reusable_form_id' => null,
     ];
@@ -125,13 +134,18 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'name' => 'name',
         'type' => 'type',
+        'signer' => 'signer',
         'x' => 'x',
         'y' => 'y',
         'width' => 'width',
         'height' => 'height',
         'required' => 'required',
+        'api_id' => 'api_id',
         'group' => 'group',
         'avg_text_length' => 'avg_text_length',
+        'is_multiline' => 'isMultiline',
+        'original_font_size' => 'originalFontSize',
+        'font_family' => 'fontFamily',
         'named_form_fields' => 'named_form_fields',
         'reusable_form_id' => 'reusable_form_id',
     ];
@@ -144,13 +158,18 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     protected static $setters = [
         'name' => 'setName',
         'type' => 'setType',
+        'signer' => 'setSigner',
         'x' => 'setX',
         'y' => 'setY',
         'width' => 'setWidth',
         'height' => 'setHeight',
         'required' => 'setRequired',
+        'api_id' => 'setApiId',
         'group' => 'setGroup',
         'avg_text_length' => 'setAvgTextLength',
+        'is_multiline' => 'setIsMultiline',
+        'original_font_size' => 'setOriginalFontSize',
+        'font_family' => 'setFontFamily',
         'named_form_fields' => 'setNamedFormFields',
         'reusable_form_id' => 'setReusableFormId',
     ];
@@ -163,13 +182,18 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     protected static $getters = [
         'name' => 'getName',
         'type' => 'getType',
+        'signer' => 'getSigner',
         'x' => 'getX',
         'y' => 'getY',
         'width' => 'getWidth',
         'height' => 'getHeight',
         'required' => 'getRequired',
+        'api_id' => 'getApiId',
         'group' => 'getGroup',
         'avg_text_length' => 'getAvgTextLength',
+        'is_multiline' => 'getIsMultiline',
+        'original_font_size' => 'getOriginalFontSize',
+        'font_family' => 'getFontFamily',
         'named_form_fields' => 'getNamedFormFields',
         'reusable_form_id' => 'getReusableFormId',
     ];
@@ -248,13 +272,18 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     {
         $this->container['name'] = $data['name'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
+        $this->container['signer'] = $data['signer'] ?? null;
         $this->container['x'] = $data['x'] ?? null;
         $this->container['y'] = $data['y'] ?? null;
         $this->container['width'] = $data['width'] ?? null;
         $this->container['height'] = $data['height'] ?? null;
         $this->container['required'] = $data['required'] ?? null;
+        $this->container['api_id'] = $data['api_id'] ?? null;
         $this->container['group'] = $data['group'] ?? null;
         $this->container['avg_text_length'] = $data['avg_text_length'] ?? null;
+        $this->container['is_multiline'] = $data['is_multiline'] ?? null;
+        $this->container['original_font_size'] = $data['original_font_size'] ?? null;
+        $this->container['font_family'] = $data['font_family'] ?? null;
         $this->container['named_form_fields'] = $data['named_form_fields'] ?? null;
         $this->container['reusable_form_id'] = $data['reusable_form_id'] ?? null;
     }
@@ -356,6 +385,30 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets signer
+     *
+     * @return string|null
+     */
+    public function getSigner()
+    {
+        return $this->container['signer'];
+    }
+
+    /**
+     * Sets signer
+     *
+     * @param string|null $signer the signer of the Custom Field
+     *
+     * @return self
+     */
+    public function setSigner(?string $signer)
+    {
+        $this->container['signer'] = $signer;
 
         return $this;
     }
@@ -481,6 +534,30 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets api_id
+     *
+     * @return string|null
+     */
+    public function getApiId()
+    {
+        return $this->container['api_id'];
+    }
+
+    /**
+     * Sets api_id
+     *
+     * @param string|null $api_id the unique ID for this field
+     *
+     * @return self
+     */
+    public function setApiId(?string $api_id)
+    {
+        $this->container['api_id'] = $api_id;
+
+        return $this;
+    }
+
+    /**
      * Gets group
      *
      * @return string|null
@@ -507,7 +584,7 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     /**
      * Gets avg_text_length
      *
-     * @return TemplateResponseDocumentCustomFieldAvgTextLength|null
+     * @return TemplateResponseFieldAvgTextLength|null
      */
     public function getAvgTextLength()
     {
@@ -517,13 +594,85 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     /**
      * Sets avg_text_length
      *
-     * @param TemplateResponseDocumentCustomFieldAvgTextLength|null $avg_text_length avg_text_length
+     * @param TemplateResponseFieldAvgTextLength|null $avg_text_length avg_text_length
      *
      * @return self
      */
-    public function setAvgTextLength(?TemplateResponseDocumentCustomFieldAvgTextLength $avg_text_length)
+    public function setAvgTextLength(?TemplateResponseFieldAvgTextLength $avg_text_length)
     {
         $this->container['avg_text_length'] = $avg_text_length;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_multiline
+     *
+     * @return string|null
+     */
+    public function getIsMultiline()
+    {
+        return $this->container['is_multiline'];
+    }
+
+    /**
+     * Sets is_multiline
+     *
+     * @param string|null $is_multiline whether this form field is multiline text
+     *
+     * @return self
+     */
+    public function setIsMultiline(?string $is_multiline)
+    {
+        $this->container['is_multiline'] = $is_multiline;
+
+        return $this;
+    }
+
+    /**
+     * Gets original_font_size
+     *
+     * @return int|null
+     */
+    public function getOriginalFontSize()
+    {
+        return $this->container['original_font_size'];
+    }
+
+    /**
+     * Sets original_font_size
+     *
+     * @param int|null $original_font_size original font size used in this form field's text
+     *
+     * @return self
+     */
+    public function setOriginalFontSize(?int $original_font_size)
+    {
+        $this->container['original_font_size'] = $original_font_size;
+
+        return $this;
+    }
+
+    /**
+     * Gets font_family
+     *
+     * @return int|null
+     */
+    public function getFontFamily()
+    {
+        return $this->container['font_family'];
+    }
+
+    /**
+     * Sets font_family
+     *
+     * @param int|null $font_family font family used in this form field's text
+     *
+     * @return self
+     */
+    public function setFontFamily(?int $font_family)
+    {
+        $this->container['font_family'] = $font_family;
 
         return $this;
     }
@@ -542,7 +691,7 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     /**
      * Sets named_form_fields
      *
-     * @param array|null $named_form_fields use `form_fields` under the `documents` array instead
+     * @param array|null $named_form_fields _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS
      *
      * @return self
      * @deprecated

@@ -258,7 +258,7 @@ class TemplateGetResponse implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

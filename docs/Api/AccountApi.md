@@ -43,9 +43,10 @@ $data->setEmailAddress("newuser@hellosign.com");
 try {
     $result = $api->accountCreate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiHelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -103,9 +104,10 @@ $api = new HelloSignSDK\Api\AccountApi($config);
 try {
     $result = $api->accountGet();
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -114,7 +116,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| Account ID | [optional] |
+| **account_id** | **string**| The ID of the Account | [optional] |
 
 ### Return type
 
@@ -141,7 +143,7 @@ accountUpdate($account_update_request): \HelloSignSDK\Model\AccountGetResponse
 
 Update Account
 
-Updates the properties and settings of your Account.
+Updates the properties and settings of your Account. Currently only allows for updates to the [Callback URL](/api/reference/tag/Callbacks-and-Events) and locale.
 
 ### Example
 
@@ -166,9 +168,10 @@ $data->setCallbackUrl("https://www.example.com/callback");
 try {
     $result = $api->accountUpdate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -204,7 +207,7 @@ accountVerify($account_verify_request): \HelloSignSDK\Model\AccountVerifyRespons
 
 Verify Account
 
-Verifies whether an HelloSign Account exists for the given email address.  **NOTE** This method is restricted to paid API users.
+Verifies whether an HelloSign Account exists for the given email address.
 
 ### Example
 
@@ -229,9 +232,10 @@ $data->setEmailAddress("some_user@hellosign.com");
 try {
     $result = $api->accountVerify($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```

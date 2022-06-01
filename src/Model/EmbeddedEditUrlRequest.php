@@ -68,8 +68,6 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'preview_only' => 'bool',
         'show_preview' => 'bool',
         'show_progress_stepper' => 'bool',
-        'skip_signer_roles' => 'bool',
-        'skip_subject_message' => 'bool',
         'test_mode' => 'bool',
     ];
 
@@ -90,8 +88,6 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'preview_only' => null,
         'show_preview' => null,
         'show_progress_stepper' => null,
-        'skip_signer_roles' => null,
-        'skip_subject_message' => null,
         'test_mode' => null,
     ];
 
@@ -131,8 +127,6 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'preview_only' => 'preview_only',
         'show_preview' => 'show_preview',
         'show_progress_stepper' => 'show_progress_stepper',
-        'skip_signer_roles' => 'skip_signer_roles',
-        'skip_subject_message' => 'skip_subject_message',
         'test_mode' => 'test_mode',
     ];
 
@@ -151,8 +145,6 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'preview_only' => 'setPreviewOnly',
         'show_preview' => 'setShowPreview',
         'show_progress_stepper' => 'setShowProgressStepper',
-        'skip_signer_roles' => 'setSkipSignerRoles',
-        'skip_subject_message' => 'setSkipSubjectMessage',
         'test_mode' => 'setTestMode',
     ];
 
@@ -171,8 +163,6 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         'preview_only' => 'getPreviewOnly',
         'show_preview' => 'getShowPreview',
         'show_progress_stepper' => 'getShowProgressStepper',
-        'skip_signer_roles' => 'getSkipSignerRoles',
-        'skip_subject_message' => 'getSkipSubjectMessage',
         'test_mode' => 'getTestMode',
     ];
 
@@ -241,8 +231,6 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
         $this->container['preview_only'] = $data['preview_only'] ?? false;
         $this->container['show_preview'] = $data['show_preview'] ?? false;
         $this->container['show_progress_stepper'] = $data['show_progress_stepper'] ?? true;
-        $this->container['skip_signer_roles'] = $data['skip_signer_roles'] ?? false;
-        $this->container['skip_subject_message'] = $data['skip_subject_message'] ?? false;
         $this->container['test_mode'] = $data['test_mode'] ?? false;
     }
 
@@ -492,54 +480,6 @@ class EmbeddedEditUrlRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setShowProgressStepper(?bool $show_progress_stepper)
     {
         $this->container['show_progress_stepper'] = $show_progress_stepper;
-
-        return $this;
-    }
-
-    /**
-     * Gets skip_signer_roles
-     *
-     * @return bool|null
-     */
-    public function getSkipSignerRoles()
-    {
-        return $this->container['skip_signer_roles'];
-    }
-
-    /**
-     * Sets skip_signer_roles
-     *
-     * @param bool|null $skip_signer_roles If signer roles are already provided, the user will not be prompted to edit them.  **Note**: this parameter will be deprecated in May 2020 and skipping the signer roles screen will become the default behavior. To enforce showing the signer roles screen, use the `force_signer_roles` parameter.
-     *
-     * @return self
-     */
-    public function setSkipSignerRoles(?bool $skip_signer_roles)
-    {
-        $this->container['skip_signer_roles'] = $skip_signer_roles;
-
-        return $this;
-    }
-
-    /**
-     * Gets skip_subject_message
-     *
-     * @return bool|null
-     */
-    public function getSkipSubjectMessage()
-    {
-        return $this->container['skip_subject_message'];
-    }
-
-    /**
-     * Sets skip_subject_message
-     *
-     * @param bool|null $skip_subject_message If the subject and message has already been provided, the user will not be prompted to edit them.  **Note**: this parameter will be deprecated in May 2020 and skipping the subject message screen will become the default behavior. To enforce showing the subject message screen, use the `force_subject_message` parameter.
-     *
-     * @return self
-     */
-    public function setSkipSubjectMessage(?bool $skip_subject_message)
-    {
-        $this->container['skip_subject_message'] = $skip_subject_message;
 
         return $this;
     }

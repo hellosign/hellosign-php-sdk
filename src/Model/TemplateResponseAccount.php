@@ -36,7 +36,6 @@ use JsonSerializable;
  * TemplateResponseAccount Class Doc Comment
  *
  * @category Class
- * @description An array of the Accounts that can use this Template.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -307,7 +306,7 @@ class TemplateResponseAccount implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets is_locked
      *
-     * @param bool|null $is_locked returns true if the user has been locked out of their account by a team admin
+     * @param bool|null $is_locked returns `true` if the user has been locked out of their account by a team admin
      *
      * @return self
      */
@@ -331,7 +330,7 @@ class TemplateResponseAccount implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets is_paid_hs
      *
-     * @param bool|null $is_paid_hs returns true if the user has a paid HelloSign account
+     * @param bool|null $is_paid_hs returns `true` if the user has a paid HelloSign account
      *
      * @return self
      */
@@ -355,7 +354,7 @@ class TemplateResponseAccount implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets is_paid_hf
      *
-     * @param bool|null $is_paid_hf returns true if the user has a paid HelloFax account
+     * @param bool|null $is_paid_hf returns `true` if the user has a paid HelloFax account
      *
      * @return self
      */

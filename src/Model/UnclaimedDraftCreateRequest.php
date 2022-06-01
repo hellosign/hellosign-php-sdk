@@ -61,6 +61,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
      * @var string[]
      */
     protected static $openAPITypes = [
+        'type' => 'string',
         'file' => '\SplFileObject[]',
         'file_url' => 'string[]',
         'allow_decline' => 'bool',
@@ -81,7 +82,6 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'signing_redirect_url' => 'string',
         'subject' => 'string',
         'test_mode' => 'bool',
-        'type' => 'string',
         'use_preexisting_fields' => 'bool',
         'use_text_tags' => 'bool',
     ];
@@ -94,6 +94,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'type' => null,
         'file' => 'binary',
         'file_url' => null,
         'allow_decline' => null,
@@ -114,7 +115,6 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'signing_redirect_url' => null,
         'subject' => null,
         'test_mode' => null,
-        'type' => null,
         'use_preexisting_fields' => null,
         'use_text_tags' => null,
     ];
@@ -146,6 +146,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
         'file' => 'file',
         'file_url' => 'file_url',
         'allow_decline' => 'allow_decline',
@@ -166,7 +167,6 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'signing_redirect_url' => 'signing_redirect_url',
         'subject' => 'subject',
         'test_mode' => 'test_mode',
-        'type' => 'type',
         'use_preexisting_fields' => 'use_preexisting_fields',
         'use_text_tags' => 'use_text_tags',
     ];
@@ -177,6 +177,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
         'file' => 'setFile',
         'file_url' => 'setFileUrl',
         'allow_decline' => 'setAllowDecline',
@@ -197,7 +198,6 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'signing_redirect_url' => 'setSigningRedirectUrl',
         'subject' => 'setSubject',
         'test_mode' => 'setTestMode',
-        'type' => 'setType',
         'use_preexisting_fields' => 'setUsePreexistingFields',
         'use_text_tags' => 'setUseTextTags',
     ];
@@ -208,6 +208,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
         'file' => 'getFile',
         'file_url' => 'getFileUrl',
         'allow_decline' => 'getAllowDecline',
@@ -228,7 +229,6 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'signing_redirect_url' => 'getSigningRedirectUrl',
         'subject' => 'getSubject',
         'test_mode' => 'getTestMode',
-        'type' => 'getType',
         'use_preexisting_fields' => 'getUsePreexistingFields',
         'use_text_tags' => 'getUseTextTags',
     ];
@@ -305,6 +305,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
      */
     public function __construct(array $data = null)
     {
+        $this->container['type'] = $data['type'] ?? null;
         $this->container['file'] = $data['file'] ?? null;
         $this->container['file_url'] = $data['file_url'] ?? null;
         $this->container['allow_decline'] = $data['allow_decline'] ?? false;
@@ -325,7 +326,6 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         $this->container['signing_redirect_url'] = $data['signing_redirect_url'] ?? null;
         $this->container['subject'] = $data['subject'] ?? null;
         $this->container['test_mode'] = $data['test_mode'] ?? false;
-        $this->container['type'] = $data['type'] ?? null;
         $this->container['use_preexisting_fields'] = $data['use_preexisting_fields'] ?? false;
         $this->container['use_text_tags'] = $data['use_text_tags'] ?? false;
     }
@@ -350,14 +350,9 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 5000)) {
-            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 5000.";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-
-        if (!is_null($this->container['subject']) && (mb_strlen($this->container['subject']) > 200)) {
-            $invalidProperties[] = "invalid value for 'subject', the character length must be smaller than or equal to 200.";
-        }
-
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -365,6 +360,14 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
                 $this->container['type'],
                 implode("', '", $allowedValues)
             );
+        }
+
+        if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 5000)) {
+            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 5000.";
+        }
+
+        if (!is_null($this->container['subject']) && (mb_strlen($this->container['subject']) > 200)) {
+            $invalidProperties[] = "invalid value for 'subject', the character length must be smaller than or equal to 200.";
         }
 
         return $invalidProperties;
@@ -382,6 +385,40 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     }
 
     /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type The type of unclaimed draft to create. Use `send_document` to create a claimable file, and `request_signature` for a claimable signature request. If the type is `request_signature` then signers name and email_address are not optional.
+     *
+     * @return self
+     */
+    public function setType(string $type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
      * Gets file
      *
      * @return SplFileObject[]|null
@@ -394,7 +431,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets file
      *
-     * @param SplFileObject[]|null $file **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+     * @param SplFileObject[]|null $file Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -418,7 +455,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets file_url
      *
-     * @param string[]|null $file_url **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+     * @param string[]|null $file_url Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -466,7 +503,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets attachments
      *
-     * @param SubAttachment[]|null $attachments attachments
+     * @param SubAttachment[]|null $attachments A list describing the attachments
      *
      * @return self
      */
@@ -538,7 +575,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets custom_fields
      *
-     * @param SubCustomField[]|null $custom_fields An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+     * @param SubCustomField[]|null $custom_fields When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
      *
      * @return self
      */
@@ -865,40 +902,6 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     public function setTestMode(?bool $test_mode)
     {
         $this->container['test_mode'] = $test_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type The type of unclaimed draft to create. Use `send_document` to create a claimable file, and `request_signature` for a claimable signature request. If the type is `request_signature` then signers name and email_address are not optional.
-     *
-     * @return self
-     */
-    public function setType(?string $type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
 
         return $this;
     }

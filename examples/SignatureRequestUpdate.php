@@ -21,7 +21,8 @@ $signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 try {
     $result = $api->signatureRequestUpdate($signatureRequestId, $data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }

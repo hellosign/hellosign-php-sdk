@@ -36,6 +36,7 @@ use JsonSerializable;
  * ApiAppResponse Class Doc Comment
  *
  * @category Class
+ * @description Contains information about an API App.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>

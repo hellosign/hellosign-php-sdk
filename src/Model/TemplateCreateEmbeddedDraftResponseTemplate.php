@@ -36,6 +36,7 @@ use JsonSerializable;
  * TemplateCreateEmbeddedDraftResponseTemplate Class Doc Comment
  *
  * @category Class
+ * @description Template object with parameters: &#x60;template_id&#x60;, &#x60;edit_url&#x60;, &#x60;expires_at&#x60;.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -270,7 +271,7 @@ class TemplateCreateEmbeddedDraftResponseTemplate implements ModelInterface, Arr
     /**
      * Sets edit_url
      *
-     * @param string|null $edit_url edit_url
+     * @param string|null $edit_url link to edit the template
      *
      * @return self
      */
@@ -294,7 +295,7 @@ class TemplateCreateEmbeddedDraftResponseTemplate implements ModelInterface, Arr
     /**
      * Sets expires_at
      *
-     * @param int|null $expires_at expires_at
+     * @param int|null $expires_at when the link expires
      *
      * @return self
      */
@@ -318,7 +319,7 @@ class TemplateCreateEmbeddedDraftResponseTemplate implements ModelInterface, Arr
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

@@ -234,7 +234,7 @@ class FileResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets file_url
      *
-     * @param string|null $file_url file_url
+     * @param string|null $file_url URL to the file
      *
      * @return self
      */
@@ -258,7 +258,7 @@ class FileResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets expires_at
      *
-     * @param int|null $expires_at expires_at
+     * @param int|null $expires_at when the link expires
      *
      * @return self
      */

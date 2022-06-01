@@ -239,7 +239,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets account_id
      *
-     * @param string|null $account_id account ID
+     * @param string|null $account_id The ID of the Account
      *
      * @return self
      */

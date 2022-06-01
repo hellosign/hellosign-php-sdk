@@ -1697,7 +1697,7 @@ class TemplateApi
      *
      * @param string $account_id Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the Template List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
-     * @param int $page_size &#x60;Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      * @param string $query String that includes search terms and/or fields to be used to filter the Template objects. (optional)
      *
      * @throws ApiException on non-2xx response
@@ -1718,7 +1718,7 @@ class TemplateApi
      *
      * @param string $account_id Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the Template List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
-     * @param int $page_size &#x60;Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      * @param string $query String that includes search terms and/or fields to be used to filter the Template objects. (optional)
      *
      * @throws ApiException on non-2xx response
@@ -1842,7 +1842,7 @@ class TemplateApi
      *
      * @param string $account_id Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the Template List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
-     * @param int $page_size &#x60;Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      * @param string $query String that includes search terms and/or fields to be used to filter the Template objects. (optional)
      *
      * @throws InvalidArgumentException
@@ -1865,7 +1865,7 @@ class TemplateApi
      *
      * @param string $account_id Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the Template List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
-     * @param int $page_size &#x60;Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      * @param string $query String that includes search terms and/or fields to be used to filter the Template objects. (optional)
      *
      * @throws InvalidArgumentException
@@ -1914,7 +1914,7 @@ class TemplateApi
      *
      * @param string $account_id Which account to return Templates for. Must be a team member. Use &#x60;all&#x60; to indicate all team members. Defaults to your account. (optional)
      * @param int $page Which page number of the Template List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
-     * @param int $page_size &#x60;Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
      * @param string $query String that includes search terms and/or fields to be used to filter the Template objects. (optional)
      *
      * @throws InvalidArgumentException

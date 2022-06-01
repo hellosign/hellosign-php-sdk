@@ -258,7 +258,7 @@ class ReportCreateResponse implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

@@ -437,7 +437,7 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id Account ID (optional)
+     * @param string $account_id The ID of the Account (optional)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -455,7 +455,7 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id Account ID (optional)
+     * @param string $account_id The ID of the Account (optional)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -576,7 +576,7 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id Account ID (optional)
+     * @param string $account_id The ID of the Account (optional)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -596,7 +596,7 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id Account ID (optional)
+     * @param string $account_id The ID of the Account (optional)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -642,7 +642,7 @@ class AccountApi
     /**
      * Create request for operation 'accountGet'
      *
-     * @param string $account_id Account ID (optional)
+     * @param string $account_id The ID of the Account (optional)
      *
      * @throws InvalidArgumentException
      * @return Psr7\Request

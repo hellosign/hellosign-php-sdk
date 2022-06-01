@@ -45,9 +45,10 @@ $data->setEmailAddress("george@example.com");
 try {
     $result = $api->teamAddMember($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -108,9 +109,10 @@ $data->setName("New Team Name");
 try {
     $result = $api->teamCreate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -167,9 +169,10 @@ $api = new HelloSignSDK\Api\TeamApi($config);
 
 try {
     $api->teamDelete();
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -225,9 +228,10 @@ $api = new HelloSignSDK\Api\TeamApi($config);
 try {
     $result = $api->teamGet();
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -287,9 +291,10 @@ $data->setEmailAddress("teammate@hellosign.com")
 try {
     $result = $api->teamRemoveMember($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -350,9 +355,10 @@ $data->setName("New Team Name");
 try {
     $result = $api->teamUpdate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```

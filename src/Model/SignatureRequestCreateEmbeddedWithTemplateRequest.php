@@ -64,6 +64,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     protected static $openAPITypes = [
         'template_ids' => 'string[]',
         'client_id' => 'string',
+        'signers' => '\HelloSignSDK\Model\SubSignatureRequestTemplateSigner[]',
         'allow_decline' => 'bool',
         'ccs' => '\HelloSignSDK\Model\SubCC[]',
         'custom_fields' => '\HelloSignSDK\Model\SubCustomField[]',
@@ -71,7 +72,6 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
         'file_url' => 'string[]',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
-        'signers' => '\HelloSignSDK\Model\SubSignatureRequestTemplateSigner[]',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
         'subject' => 'string',
         'test_mode' => 'bool',
@@ -88,6 +88,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     protected static $openAPIFormats = [
         'template_ids' => null,
         'client_id' => null,
+        'signers' => null,
         'allow_decline' => null,
         'ccs' => null,
         'custom_fields' => null,
@@ -95,7 +96,6 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
         'file_url' => null,
         'message' => null,
         'metadata' => null,
-        'signers' => null,
         'signing_options' => null,
         'subject' => null,
         'test_mode' => null,
@@ -131,6 +131,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     protected static $attributeMap = [
         'template_ids' => 'template_ids',
         'client_id' => 'client_id',
+        'signers' => 'signers',
         'allow_decline' => 'allow_decline',
         'ccs' => 'ccs',
         'custom_fields' => 'custom_fields',
@@ -138,7 +139,6 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
         'file_url' => 'file_url',
         'message' => 'message',
         'metadata' => 'metadata',
-        'signers' => 'signers',
         'signing_options' => 'signing_options',
         'subject' => 'subject',
         'test_mode' => 'test_mode',
@@ -153,6 +153,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     protected static $setters = [
         'template_ids' => 'setTemplateIds',
         'client_id' => 'setClientId',
+        'signers' => 'setSigners',
         'allow_decline' => 'setAllowDecline',
         'ccs' => 'setCcs',
         'custom_fields' => 'setCustomFields',
@@ -160,7 +161,6 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
         'file_url' => 'setFileUrl',
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
-        'signers' => 'setSigners',
         'signing_options' => 'setSigningOptions',
         'subject' => 'setSubject',
         'test_mode' => 'setTestMode',
@@ -175,6 +175,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     protected static $getters = [
         'template_ids' => 'getTemplateIds',
         'client_id' => 'getClientId',
+        'signers' => 'getSigners',
         'allow_decline' => 'getAllowDecline',
         'ccs' => 'getCcs',
         'custom_fields' => 'getCustomFields',
@@ -182,7 +183,6 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
         'file_url' => 'getFileUrl',
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
-        'signers' => 'getSigners',
         'signing_options' => 'getSigningOptions',
         'subject' => 'getSubject',
         'test_mode' => 'getTestMode',
@@ -247,6 +247,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     {
         $this->container['template_ids'] = $data['template_ids'] ?? null;
         $this->container['client_id'] = $data['client_id'] ?? null;
+        $this->container['signers'] = $data['signers'] ?? null;
         $this->container['allow_decline'] = $data['allow_decline'] ?? false;
         $this->container['ccs'] = $data['ccs'] ?? null;
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
@@ -254,7 +255,6 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
         $this->container['file_url'] = $data['file_url'] ?? null;
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
-        $this->container['signers'] = $data['signers'] ?? null;
         $this->container['signing_options'] = $data['signing_options'] ?? null;
         $this->container['subject'] = $data['subject'] ?? null;
         $this->container['test_mode'] = $data['test_mode'] ?? false;
@@ -286,6 +286,9 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
         }
         if ($this->container['client_id'] === null) {
             $invalidProperties[] = "'client_id' can't be null";
+        }
+        if ($this->container['signers'] === null) {
+            $invalidProperties[] = "'signers' can't be null";
         }
         if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 5000)) {
             $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 5000.";
@@ -362,6 +365,30 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     }
 
     /**
+     * Gets signers
+     *
+     * @return SubSignatureRequestTemplateSigner[]
+     */
+    public function getSigners()
+    {
+        return $this->container['signers'];
+    }
+
+    /**
+     * Sets signers
+     *
+     * @param SubSignatureRequestTemplateSigner[] $signers add Signers to your Templated-based Signature Request
+     *
+     * @return self
+     */
+    public function setSigners(array $signers)
+    {
+        $this->container['signers'] = $signers;
+
+        return $this;
+    }
+
+    /**
      * Gets allow_decline
      *
      * @return bool|null
@@ -422,7 +449,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     /**
      * Sets custom_fields
      *
-     * @param SubCustomField[]|null $custom_fields An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.
+     * @param SubCustomField[]|null $custom_fields An array defining values and options for custom fields. Required when a custom field exists in the Template.
      *
      * @return self
      */
@@ -446,7 +473,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     /**
      * Sets file
      *
-     * @param SplFileObject[]|null $file **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+     * @param SplFileObject[]|null $file Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -470,7 +497,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     /**
      * Sets file_url
      *
-     * @param string[]|null $file_url **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+     * @param string[]|null $file_url Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -529,30 +556,6 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     public function setMetadata(?array $metadata)
     {
         $this->container['metadata'] = $metadata;
-
-        return $this;
-    }
-
-    /**
-     * Gets signers
-     *
-     * @return SubSignatureRequestTemplateSigner[]|null
-     */
-    public function getSigners()
-    {
-        return $this->container['signers'];
-    }
-
-    /**
-     * Sets signers
-     *
-     * @param SubSignatureRequestTemplateSigner[]|null $signers add Signers to your Templated-based Signature Request
-     *
-     * @return self
-     */
-    public function setSigners(?array $signers)
-    {
-        $this->container['signers'] = $signers;
 
         return $this;
     }

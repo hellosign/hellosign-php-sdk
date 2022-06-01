@@ -17,7 +17,8 @@ $clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
 try {
     $result = $api->apiAppGet($clientId);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * TemplateResponseCustomField
+ * TemplateResponseNamedFormField
  *
  * PHP version 7.3
  *
@@ -30,11 +30,10 @@ namespace HelloSignSDK\Model;
 
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
-use InvalidArgumentException;
 use JsonSerializable;
 
 /**
- * TemplateResponseCustomField Class Doc Comment
+ * TemplateResponseNamedFormField Class Doc Comment
  *
  * @category Class
  * @author   OpenAPI Generator team
@@ -44,7 +43,7 @@ use JsonSerializable;
  * @template TValue mixed|null
  * @internal This class should not be instantiated directly
  */
-class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSerializable
+class TemplateResponseNamedFormField implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +52,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
      *
      * @var string
      */
-    protected static $openAPIModelName = 'TemplateResponseCustomField';
+    protected static $openAPIModelName = 'TemplateResponseNamedFormField';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -63,6 +62,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     protected static $openAPITypes = [
         'name' => 'string',
         'type' => 'string',
+        'signer' => 'string',
         'x' => 'int',
         'y' => 'int',
         'width' => 'int',
@@ -71,9 +71,9 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
         'api_id' => 'string',
         'group' => 'string',
         'avg_text_length' => '\HelloSignSDK\Model\TemplateResponseFieldAvgTextLength',
-        'is_multiline' => 'string',
+        'is_multiline' => 'bool',
         'original_font_size' => 'int',
-        'font_family' => 'int',
+        'font_family' => 'string',
     ];
 
     /**
@@ -86,6 +86,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     protected static $openAPIFormats = [
         'name' => null,
         'type' => null,
+        'signer' => null,
         'x' => null,
         'y' => null,
         'width' => null,
@@ -128,6 +129,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     protected static $attributeMap = [
         'name' => 'name',
         'type' => 'type',
+        'signer' => 'signer',
         'x' => 'x',
         'y' => 'y',
         'width' => 'width',
@@ -149,6 +151,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     protected static $setters = [
         'name' => 'setName',
         'type' => 'setType',
+        'signer' => 'setSigner',
         'x' => 'setX',
         'y' => 'setY',
         'width' => 'setWidth',
@@ -170,6 +173,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     protected static $getters = [
         'name' => 'getName',
         'type' => 'getType',
+        'signer' => 'getSigner',
         'x' => 'getX',
         'y' => 'getY',
         'width' => 'getWidth',
@@ -224,22 +228,6 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
         return self::$openAPIModelName;
     }
 
-    public const TYPE_TEXT = 'text';
-    public const TYPE_CHECKBOX = 'checkbox';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_TEXT,
-            self::TYPE_CHECKBOX,
-        ];
-    }
-
     /**
      * Associative array for storing property values
      *
@@ -257,6 +245,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     {
         $this->container['name'] = $data['name'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
+        $this->container['signer'] = $data['signer'] ?? null;
         $this->container['x'] = $data['x'] ?? null;
         $this->container['y'] = $data['y'] ?? null;
         $this->container['width'] = $data['width'] ?? null;
@@ -270,12 +259,12 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
         $this->container['font_family'] = $data['font_family'] ?? null;
     }
 
-    public static function fromArray(array $data): TemplateResponseCustomField
+    public static function fromArray(array $data): TemplateResponseNamedFormField
     {
-        /** @var TemplateResponseCustomField $obj */
+        /** @var TemplateResponseNamedFormField $obj */
         $obj = ObjectSerializer::deserialize(
             ObjectSerializer::instantiateFiles(static::class, $data),
-            TemplateResponseCustomField::class,
+            TemplateResponseNamedFormField::class,
         );
 
         return $obj;
@@ -289,15 +278,6 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
 
         return $invalidProperties;
     }
@@ -326,7 +306,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets name
      *
-     * @param string|null $name the name of the Custom Field
+     * @param string|null $name the name of the Named Form Field
      *
      * @return self
      */
@@ -350,23 +330,37 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets type
      *
-     * @param string|null $type The type of this Custom Field. Only `text` and `checkbox` are currently supported.
+     * @param string|null $type The type of this Named Form Field. Only `text` and `checkbox` are currently supported.
      *
      * @return self
      */
     public function setType(?string $type)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets signer
+     *
+     * @return string|null
+     */
+    public function getSigner()
+    {
+        return $this->container['signer'];
+    }
+
+    /**
+     * Sets signer
+     *
+     * @param string|null $signer the signer of the Named Form Field
+     *
+     * @return self
+     */
+    public function setSigner(?string $signer)
+    {
+        $this->container['signer'] = $signer;
 
         return $this;
     }
@@ -566,7 +560,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Gets is_multiline
      *
-     * @return string|null
+     * @return bool|null
      */
     public function getIsMultiline()
     {
@@ -576,11 +570,11 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets is_multiline
      *
-     * @param string|null $is_multiline whether this form field is multiline text
+     * @param bool|null $is_multiline whether this form field is multiline text
      *
      * @return self
      */
-    public function setIsMultiline(?string $is_multiline)
+    public function setIsMultiline(?bool $is_multiline)
     {
         $this->container['is_multiline'] = $is_multiline;
 
@@ -614,7 +608,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Gets font_family
      *
-     * @return int|null
+     * @return string|null
      */
     public function getFontFamily()
     {
@@ -624,11 +618,11 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets font_family
      *
-     * @param int|null $font_family font family used in this form field's text
+     * @param string|null $font_family font family used in this form field's text
      *
      * @return self
      */
-    public function setFontFamily(?int $font_family)
+    public function setFontFamily(?string $font_family)
     {
         $this->container['font_family'] = $font_family;
 

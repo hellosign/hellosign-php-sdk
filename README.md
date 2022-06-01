@@ -106,9 +106,10 @@ $data->setEmailAddress("newuser@hellosign.com");
 try {
     $result = $api->accountCreate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiHelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -326,9 +327,11 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [TemplateResponseCustomField](docs/Model/TemplateResponseCustomField.md)
 - [TemplateResponseDocument](docs/Model/TemplateResponseDocument.md)
 - [TemplateResponseDocumentCustomField](docs/Model/TemplateResponseDocumentCustomField.md)
-- [TemplateResponseDocumentCustomFieldAvgTextLength](docs/Model/TemplateResponseDocumentCustomFieldAvgTextLength.md)
 - [TemplateResponseDocumentFieldGroup](docs/Model/TemplateResponseDocumentFieldGroup.md)
 - [TemplateResponseDocumentFormField](docs/Model/TemplateResponseDocumentFormField.md)
+- [TemplateResponseDocumentStaticField](docs/Model/TemplateResponseDocumentStaticField.md)
+- [TemplateResponseFieldAvgTextLength](docs/Model/TemplateResponseFieldAvgTextLength.md)
+- [TemplateResponseNamedFormField](docs/Model/TemplateResponseNamedFormField.md)
 - [TemplateResponseSignerRole](docs/Model/TemplateResponseSignerRole.md)
 - [TemplateUpdateFilesRequest](docs/Model/TemplateUpdateFilesRequest.md)
 - [TemplateUpdateFilesResponse](docs/Model/TemplateUpdateFilesResponse.md)

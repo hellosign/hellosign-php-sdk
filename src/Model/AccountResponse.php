@@ -67,8 +67,8 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => 'bool',
         'quotas' => '\HelloSignSDK\Model\AccountResponseQuotas',
         'callback_url' => 'string',
-        'should_send_outbound_conf_emails' => 'bool',
         'role_code' => 'string',
+        'locale' => 'string',
     ];
 
     /**
@@ -86,8 +86,8 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => null,
         'quotas' => null,
         'callback_url' => null,
-        'should_send_outbound_conf_emails' => null,
         'role_code' => null,
+        'locale' => null,
     ];
 
     /**
@@ -124,8 +124,8 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => 'is_paid_hf',
         'quotas' => 'quotas',
         'callback_url' => 'callback_url',
-        'should_send_outbound_conf_emails' => 'should_send_outbound_conf_emails',
         'role_code' => 'role_code',
+        'locale' => 'locale',
     ];
 
     /**
@@ -141,8 +141,8 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => 'setIsPaidHf',
         'quotas' => 'setQuotas',
         'callback_url' => 'setCallbackUrl',
-        'should_send_outbound_conf_emails' => 'setShouldSendOutboundConfEmails',
         'role_code' => 'setRoleCode',
+        'locale' => 'setLocale',
     ];
 
     /**
@@ -158,8 +158,8 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'is_paid_hf' => 'getIsPaidHf',
         'quotas' => 'getQuotas',
         'callback_url' => 'getCallbackUrl',
-        'should_send_outbound_conf_emails' => 'getShouldSendOutboundConfEmails',
         'role_code' => 'getRoleCode',
+        'locale' => 'getLocale',
     ];
 
     /**
@@ -225,8 +225,8 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         $this->container['is_paid_hf'] = $data['is_paid_hf'] ?? null;
         $this->container['quotas'] = $data['quotas'] ?? null;
         $this->container['callback_url'] = $data['callback_url'] ?? null;
-        $this->container['should_send_outbound_conf_emails'] = $data['should_send_outbound_conf_emails'] ?? null;
         $this->container['role_code'] = $data['role_code'] ?? null;
+        $this->container['locale'] = $data['locale'] ?? null;
     }
 
     public static function fromArray(array $data): AccountResponse
@@ -276,7 +276,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets account_id
      *
-     * @param string|null $account_id account_id
+     * @param string|null $account_id The ID of the Account
      *
      * @return self
      */
@@ -300,7 +300,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets email_address
      *
-     * @param string|null $email_address email_address
+     * @param string|null $email_address the email address associated with the Account
      *
      * @return self
      */
@@ -324,7 +324,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets is_locked
      *
-     * @param bool|null $is_locked is_locked
+     * @param bool|null $is_locked returns `true` if the user has been locked out of their account by a team admin
      *
      * @return self
      */
@@ -348,7 +348,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets is_paid_hs
      *
-     * @param bool|null $is_paid_hs is_paid_hs
+     * @param bool|null $is_paid_hs returns `true` if the user has a paid HelloSign account
      *
      * @return self
      */
@@ -372,7 +372,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets is_paid_hf
      *
-     * @param bool|null $is_paid_hf is_paid_hf
+     * @param bool|null $is_paid_hf returns `true` if the user has a paid HelloFax account
      *
      * @return self
      */
@@ -420,37 +420,13 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets callback_url
      *
-     * @param string|null $callback_url callback_url
+     * @param string|null $callback_url the URL that HelloSign events will `POST` to
      *
      * @return self
      */
     public function setCallbackUrl(?string $callback_url)
     {
         $this->container['callback_url'] = $callback_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets should_send_outbound_conf_emails
-     *
-     * @return bool|null
-     */
-    public function getShouldSendOutboundConfEmails()
-    {
-        return $this->container['should_send_outbound_conf_emails'];
-    }
-
-    /**
-     * Sets should_send_outbound_conf_emails
-     *
-     * @param bool|null $should_send_outbound_conf_emails should_send_outbound_conf_emails
-     *
-     * @return self
-     */
-    public function setShouldSendOutboundConfEmails(?bool $should_send_outbound_conf_emails)
-    {
-        $this->container['should_send_outbound_conf_emails'] = $should_send_outbound_conf_emails;
 
         return $this;
     }
@@ -468,13 +444,37 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets role_code
      *
-     * @param string|null $role_code role_code
+     * @param string|null $role_code the membership role for the team
      *
      * @return self
      */
     public function setRoleCode(?string $role_code)
     {
         $this->container['role_code'] = $role_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets locale
+     *
+     * @return string|null
+     */
+    public function getLocale()
+    {
+        return $this->container['locale'];
+    }
+
+    /**
+     * Sets locale
+     *
+     * @param string|null $locale The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+     *
+     * @return self
+     */
+    public function setLocale(?string $locale)
+    {
+        $this->container['locale'] = $locale;
 
         return $this;
     }

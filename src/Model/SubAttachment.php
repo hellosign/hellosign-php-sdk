@@ -276,7 +276,7 @@ class SubAttachment implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets signer_index
      *
-     * @param int $signer_index The signer's unique number, see `signers[%i%][name]` for more details.  **NOTE**: Only one signer can be assigned per attachment.
+     * @param int $signer_index The signer's index in the `signers` parameter (0-based indexing).  **NOTE**: Only one signer can be assigned per attachment.
      *
      * @return self
      */

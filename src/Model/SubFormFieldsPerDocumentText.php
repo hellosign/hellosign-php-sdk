@@ -62,6 +62,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
         'type' => 'string',
         'placeholder' => 'string',
         'auto_fill_type' => 'string',
+        'link_id' => 'string',
         'masked' => 'bool',
         'validation_type' => 'string',
         'validation_custom_regex' => 'string',
@@ -79,6 +80,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
         'type' => null,
         'placeholder' => null,
         'auto_fill_type' => null,
+        'link_id' => null,
         'masked' => null,
         'validation_type' => null,
         'validation_custom_regex' => null,
@@ -115,6 +117,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
         'type' => 'type',
         'placeholder' => 'placeholder',
         'auto_fill_type' => 'auto_fill_type',
+        'link_id' => 'link_id',
         'masked' => 'masked',
         'validation_type' => 'validation_type',
         'validation_custom_regex' => 'validation_custom_regex',
@@ -130,6 +133,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
         'type' => 'setType',
         'placeholder' => 'setPlaceholder',
         'auto_fill_type' => 'setAutoFillType',
+        'link_id' => 'setLinkId',
         'masked' => 'setMasked',
         'validation_type' => 'setValidationType',
         'validation_custom_regex' => 'setValidationCustomRegex',
@@ -145,6 +149,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
         'type' => 'getType',
         'placeholder' => 'getPlaceholder',
         'auto_fill_type' => 'getAutoFillType',
+        'link_id' => 'getLinkId',
         'masked' => 'getMasked',
         'validation_type' => 'getValidationType',
         'validation_custom_regex' => 'getValidationCustomRegex',
@@ -237,6 +242,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
         $this->container['type'] = $data['type'] ?? 'text';
         $this->container['placeholder'] = $data['placeholder'] ?? null;
         $this->container['auto_fill_type'] = $data['auto_fill_type'] ?? null;
+        $this->container['link_id'] = $data['link_id'] ?? null;
         $this->container['masked'] = $data['masked'] ?? null;
         $this->container['validation_type'] = $data['validation_type'] ?? null;
         $this->container['validation_custom_regex'] = $data['validation_custom_regex'] ?? null;
@@ -357,6 +363,30 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
     public function setAutoFillType(?string $auto_fill_type)
     {
         $this->container['auto_fill_type'] = $auto_fill_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets link_id
+     *
+     * @return string|null
+     */
+    public function getLinkId()
+    {
+        return $this->container['link_id'];
+    }
+
+    /**
+     * Sets link_id
+     *
+     * @param string|null $link_id Link two or more text fields. Enter data into one linked text field, which automatically fill all other linked text fields.
+     *
+     * @return self
+     */
+    public function setLinkId(?string $link_id)
+    {
+        $this->container['link_id'] = $link_id;
 
         return $this;
     }

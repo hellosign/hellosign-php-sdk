@@ -36,6 +36,7 @@ use JsonSerializable;
  * ErrorResponseError Class Doc Comment
  *
  * @category Class
+ * @description Contains information about an error that occurred.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -246,7 +247,7 @@ class ErrorResponseError implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets error_msg
      *
-     * @param string $error_msg error_msg
+     * @param string $error_msg message describing an error
      *
      * @return self
      */
@@ -270,7 +271,7 @@ class ErrorResponseError implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets error_name
      *
-     * @param string $error_name error_name
+     * @param string $error_name name of the error
      *
      * @return self
      */
@@ -294,7 +295,7 @@ class ErrorResponseError implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets error_path
      *
-     * @param string|null $error_path error_path
+     * @param string|null $error_path path at which an error occurred
      *
      * @return self
      */

@@ -249,7 +249,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets email_address
      *
-     * @param string $email_address the email address to create a new Account for
+     * @param string $email_address the email address which will be associated with the new Account
      *
      * @return self
      */
@@ -273,7 +273,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets client_id
      *
-     * @param string|null $client_id Used when creating a new account and requesting OAuth authorization.  See [OAuth 2.0 Authorization](https://app.hellosign.com/api/oauthWalkthrough#OAuthAuthorization)
+     * @param string|null $client_id Used when creating a new account with OAuth authorization.  See [OAuth 2.0 Authorization](https://app.hellosign.com/api/oauthWalkthrough#OAuthAuthorization)
      *
      * @return self
      */
@@ -297,7 +297,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets client_secret
      *
-     * @param string|null $client_secret Used when creating a new account and requesting OAuth authorization.  See [OAuth 2.0 Authorization](https://app.hellosign.com/api/oauthWalkthrough#OAuthAuthorization)
+     * @param string|null $client_secret Used when creating a new account with OAuth authorization.  See [OAuth 2.0 Authorization](https://app.hellosign.com/api/oauthWalkthrough#OAuthAuthorization)
      *
      * @return self
      */

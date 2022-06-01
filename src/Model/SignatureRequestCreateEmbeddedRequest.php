@@ -63,6 +63,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
      */
     protected static $openAPITypes = [
         'client_id' => 'string',
+        'signers' => '\HelloSignSDK\Model\SubSignatureRequestSigner[]',
         'file' => '\SplFileObject[]',
         'file_url' => 'string[]',
         'allow_decline' => 'bool',
@@ -77,7 +78,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'hide_text_tags' => 'bool',
         'message' => 'string',
         'metadata' => 'array<string,mixed>',
-        'signers' => '\HelloSignSDK\Model\SubSignatureRequestSigner[]',
         'signing_options' => '\HelloSignSDK\Model\SubSigningOptions',
         'subject' => 'string',
         'test_mode' => 'bool',
@@ -94,6 +94,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
      */
     protected static $openAPIFormats = [
         'client_id' => null,
+        'signers' => null,
         'file' => 'binary',
         'file_url' => null,
         'allow_decline' => null,
@@ -108,7 +109,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'hide_text_tags' => null,
         'message' => null,
         'metadata' => null,
-        'signers' => null,
         'signing_options' => null,
         'subject' => null,
         'test_mode' => null,
@@ -144,6 +144,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
      */
     protected static $attributeMap = [
         'client_id' => 'client_id',
+        'signers' => 'signers',
         'file' => 'file',
         'file_url' => 'file_url',
         'allow_decline' => 'allow_decline',
@@ -158,7 +159,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'hide_text_tags' => 'hide_text_tags',
         'message' => 'message',
         'metadata' => 'metadata',
-        'signers' => 'signers',
         'signing_options' => 'signing_options',
         'subject' => 'subject',
         'test_mode' => 'test_mode',
@@ -173,6 +173,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
      */
     protected static $setters = [
         'client_id' => 'setClientId',
+        'signers' => 'setSigners',
         'file' => 'setFile',
         'file_url' => 'setFileUrl',
         'allow_decline' => 'setAllowDecline',
@@ -187,7 +188,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'hide_text_tags' => 'setHideTextTags',
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
-        'signers' => 'setSigners',
         'signing_options' => 'setSigningOptions',
         'subject' => 'setSubject',
         'test_mode' => 'setTestMode',
@@ -202,6 +202,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
      */
     protected static $getters = [
         'client_id' => 'getClientId',
+        'signers' => 'getSigners',
         'file' => 'getFile',
         'file_url' => 'getFileUrl',
         'allow_decline' => 'getAllowDecline',
@@ -216,7 +217,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'hide_text_tags' => 'getHideTextTags',
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
-        'signers' => 'getSigners',
         'signing_options' => 'getSigningOptions',
         'subject' => 'getSubject',
         'test_mode' => 'getTestMode',
@@ -281,6 +281,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     public function __construct(array $data = null)
     {
         $this->container['client_id'] = $data['client_id'] ?? null;
+        $this->container['signers'] = $data['signers'] ?? null;
         $this->container['file'] = $data['file'] ?? null;
         $this->container['file_url'] = $data['file_url'] ?? null;
         $this->container['allow_decline'] = $data['allow_decline'] ?? false;
@@ -295,7 +296,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         $this->container['hide_text_tags'] = $data['hide_text_tags'] ?? false;
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
-        $this->container['signers'] = $data['signers'] ?? null;
         $this->container['signing_options'] = $data['signing_options'] ?? null;
         $this->container['subject'] = $data['subject'] ?? null;
         $this->container['test_mode'] = $data['test_mode'] ?? false;
@@ -325,6 +325,9 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
 
         if ($this->container['client_id'] === null) {
             $invalidProperties[] = "'client_id' can't be null";
+        }
+        if ($this->container['signers'] === null) {
+            $invalidProperties[] = "'signers' can't be null";
         }
         if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 5000)) {
             $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 5000.";
@@ -377,6 +380,30 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     }
 
     /**
+     * Gets signers
+     *
+     * @return SubSignatureRequestSigner[]
+     */
+    public function getSigners()
+    {
+        return $this->container['signers'];
+    }
+
+    /**
+     * Sets signers
+     *
+     * @param SubSignatureRequestSigner[] $signers add Signers to your Signature Request
+     *
+     * @return self
+     */
+    public function setSigners(array $signers)
+    {
+        $this->container['signers'] = $signers;
+
+        return $this;
+    }
+
+    /**
      * Gets file
      *
      * @return SplFileObject[]|null
@@ -389,7 +416,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     /**
      * Sets file
      *
-     * @param SplFileObject[]|null $file **file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+     * @param SplFileObject[]|null $file Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -413,7 +440,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     /**
      * Sets file_url
      *
-     * @param string[]|null $file_url **file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.
+     * @param string[]|null $file_url Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -485,7 +512,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     /**
      * Sets attachments
      *
-     * @param SubAttachment[]|null $attachments attachments
+     * @param SubAttachment[]|null $attachments A list describing the attachments
      *
      * @return self
      */
@@ -533,7 +560,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     /**
      * Sets custom_fields
      *
-     * @param SubCustomField[]|null $custom_fields An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+     * @param SubCustomField[]|null $custom_fields When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
      *
      * @return self
      */
@@ -653,7 +680,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     /**
      * Sets hide_text_tags
      *
-     * @param bool|null $hide_text_tags Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to disabled, or `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.
+     * @param bool|null $hide_text_tags Enables automatic Text Tag removal when set to true.  **NOTE**: Removing text tags this way can cause unwanted clipping. We recommend leaving this setting on `false` and instead hiding your text tags using white text or a similar approach. See the [Text Tags Walkthrough](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) for more information.
      *
      * @return self
      */
@@ -712,30 +739,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     public function setMetadata(?array $metadata)
     {
         $this->container['metadata'] = $metadata;
-
-        return $this;
-    }
-
-    /**
-     * Gets signers
-     *
-     * @return SubSignatureRequestSigner[]|null
-     */
-    public function getSigners()
-    {
-        return $this->container['signers'];
-    }
-
-    /**
-     * Sets signers
-     *
-     * @param SubSignatureRequestSigner[]|null $signers add Signers to your Signature Request
-     *
-     * @return self
-     */
-    public function setSigners(?array $signers)
-    {
-        $this->container['signers'] = $signers;
 
         return $this;
     }

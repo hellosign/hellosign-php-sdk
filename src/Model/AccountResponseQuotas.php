@@ -36,6 +36,7 @@ use JsonSerializable;
  * AccountResponseQuotas Class Doc Comment
  *
  * @category Class
+ * @description Details concerning remaining monthly quotas.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -63,6 +64,7 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
         'api_signature_requests_left' => 'int',
         'documents_left' => 'int',
         'templates_left' => 'int',
+        'sms_verifications_left' => 'int',
     ];
 
     /**
@@ -76,6 +78,7 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
         'api_signature_requests_left' => null,
         'documents_left' => null,
         'templates_left' => null,
+        'sms_verifications_left' => null,
     ];
 
     /**
@@ -108,6 +111,7 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
         'api_signature_requests_left' => 'api_signature_requests_left',
         'documents_left' => 'documents_left',
         'templates_left' => 'templates_left',
+        'sms_verifications_left' => 'sms_verifications_left',
     ];
 
     /**
@@ -119,6 +123,7 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
         'api_signature_requests_left' => 'setApiSignatureRequestsLeft',
         'documents_left' => 'setDocumentsLeft',
         'templates_left' => 'setTemplatesLeft',
+        'sms_verifications_left' => 'setSmsVerificationsLeft',
     ];
 
     /**
@@ -130,6 +135,7 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
         'api_signature_requests_left' => 'getApiSignatureRequestsLeft',
         'documents_left' => 'getDocumentsLeft',
         'templates_left' => 'getTemplatesLeft',
+        'sms_verifications_left' => 'getSmsVerificationsLeft',
     ];
 
     /**
@@ -191,6 +197,7 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
         $this->container['api_signature_requests_left'] = $data['api_signature_requests_left'] ?? null;
         $this->container['documents_left'] = $data['documents_left'] ?? null;
         $this->container['templates_left'] = $data['templates_left'] ?? null;
+        $this->container['sms_verifications_left'] = $data['sms_verifications_left'] ?? null;
     }
 
     public static function fromArray(array $data): AccountResponseQuotas
@@ -240,7 +247,7 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets api_signature_requests_left
      *
-     * @param int|null $api_signature_requests_left api_signature_requests_left
+     * @param int|null $api_signature_requests_left API signature requests remaining
      *
      * @return self
      */
@@ -264,7 +271,7 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets documents_left
      *
-     * @param int|null $documents_left documents_left
+     * @param int|null $documents_left signature requests remaining
      *
      * @return self
      */
@@ -288,13 +295,37 @@ class AccountResponseQuotas implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets templates_left
      *
-     * @param int|null $templates_left templates_left
+     * @param int|null $templates_left API templates remaining
      *
      * @return self
      */
     public function setTemplatesLeft(?int $templates_left)
     {
         $this->container['templates_left'] = $templates_left;
+
+        return $this;
+    }
+
+    /**
+     * Gets sms_verifications_left
+     *
+     * @return int|null
+     */
+    public function getSmsVerificationsLeft()
+    {
+        return $this->container['sms_verifications_left'];
+    }
+
+    /**
+     * Sets sms_verifications_left
+     *
+     * @param int|null $sms_verifications_left SMS verifications  remaining
+     *
+     * @return self
+     */
+    public function setSmsVerificationsLeft(?int $sms_verifications_left)
+    {
+        $this->container['sms_verifications_left'] = $sms_verifications_left;
 
         return $this;
     }

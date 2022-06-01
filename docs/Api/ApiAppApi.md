@@ -61,9 +61,10 @@ $data->setName("My Production App")
 try {
     $result = $api->apiAppCreate($data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -122,9 +123,10 @@ $clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
 
 try {
     $api->apiAppDelete($clientId);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -133,7 +135,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **client_id** | **string**| The client id of the Api App to delete. | |
+| **client_id** | **string**| The client id of the API App to delete. | |
 
 ### Return type
 
@@ -184,9 +186,10 @@ $clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
 try {
     $result = $api->apiAppGet($clientId);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -195,7 +198,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **client_id** | **string**| The client id of the Api App to retrieve. | |
+| **client_id** | **string**| The client id of the API App to retrieve. | |
 
 ### Return type
 
@@ -247,9 +250,10 @@ $pageSize = 2;
 try {
     $result = $api->apiAppList($page, $pageSize);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -258,7 +262,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **page** | **int**| Which page number of the Api App List to return. Defaults to `1`. | [optional] [default to 1] |
+| **page** | **int**| Which page number of the API App List to return. Defaults to `1`. | [optional] [default to 1] |
 | **page_size** | **int**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
 
 ### Return type
@@ -322,9 +326,10 @@ $clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
 try {
     $result = $api->apiAppUpdate($clientId, $data);
     print_r($result);
-} catch (Exception $e) {
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
-        . $e->getMessage() . PHP_EOL;
+        . print_r($error->getError());
 }
 
 ```
@@ -333,7 +338,7 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **client_id** | **string**| The client id of the Api App to update. | |
+| **client_id** | **string**| The client id of the API App to update. | |
 | **api_app_update_request** | [**\HelloSignSDK\Model\ApiAppUpdateRequest**](../Model/ApiAppUpdateRequest.md)|  | |
 
 ### Return type

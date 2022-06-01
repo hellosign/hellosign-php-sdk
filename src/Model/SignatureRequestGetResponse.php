@@ -258,7 +258,7 @@ class SignatureRequestGetResponse implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

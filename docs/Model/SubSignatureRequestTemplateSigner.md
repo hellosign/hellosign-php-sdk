@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `role`<sup>*_required_</sup> | ```string``` |  Must match an existing role in chosen Template(s).  |  |
+| `role`<sup>*_required_</sup> | ```string``` |  Must match an existing role in chosen Template(s). It&#39;s case-sensitive.  |  |
 | `name`<sup>*_required_</sup> | ```string``` |  The name of the signer.  |  |
 | `email_address`<sup>*_required_</sup> | ```string``` |  The email address of the signer.  |  |
 | `pin` | ```string``` |  The 4- to 12-character access code that will secure this signer&#39;s signature page.  |  |

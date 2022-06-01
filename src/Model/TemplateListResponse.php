@@ -240,7 +240,7 @@ class TemplateListResponse implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets templates
      *
-     * @param TemplateResponse[]|null $templates templates
+     * @param TemplateResponse[]|null $templates list of templates that the API caller has access to
      *
      * @return self
      */
@@ -288,7 +288,7 @@ class TemplateListResponse implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets warnings
      *
-     * @param WarningResponse[]|null $warnings warnings
+     * @param WarningResponse[]|null $warnings a list of warnings
      *
      * @return self
      */

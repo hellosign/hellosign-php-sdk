@@ -37,6 +37,7 @@ use JsonSerializable;
  * SubOAuth Class Doc Comment
  *
  * @category Class
+ * @description OAuth related parameters.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
