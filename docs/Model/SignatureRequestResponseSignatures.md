@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 | `last_reminded_at` | ```int``` |  The time the last reminder email was sent to the signer or null.  |  |
 | `has_pin` | ```bool``` |  Boolean to indicate whether this signature requires a PIN to access.  |  |
 | `has_sms_auth` | ```bool``` |  Boolean to indicate whether this signature has SMS authentication enabled.  |  |
+| `has_sms_delivery` | ```bool``` |  Boolean to indicate whether this signature has SMS delivery enabled.  |  |
+| `sms_phone_number` | ```string``` |  The SMS phone number used for authentication or signature request delivery.  |  |
 | `reassigned_by` | ```string``` |  Email address of original signer who reassigned to this signer.  |  |
 | `reassignment_reason` | ```string``` |  Reason provided by original signer who reassigned to this signer.  |  |
 | `error` | ```string``` |  Error message pertaining to this signer, or null.  |  |

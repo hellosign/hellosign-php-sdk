@@ -73,6 +73,8 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'last_reminded_at' => 'int',
         'has_pin' => 'bool',
         'has_sms_auth' => 'bool',
+        'has_sms_delivery' => 'bool',
+        'sms_phone_number' => 'string',
         'reassigned_by' => 'string',
         'reassignment_reason' => 'string',
         'error' => 'string',
@@ -98,6 +100,8 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'last_reminded_at' => null,
         'has_pin' => null,
         'has_sms_auth' => null,
+        'has_sms_delivery' => null,
+        'sms_phone_number' => null,
         'reassigned_by' => null,
         'reassignment_reason' => null,
         'error' => null,
@@ -142,6 +146,8 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'last_reminded_at' => 'last_reminded_at',
         'has_pin' => 'has_pin',
         'has_sms_auth' => 'has_sms_auth',
+        'has_sms_delivery' => 'has_sms_delivery',
+        'sms_phone_number' => 'sms_phone_number',
         'reassigned_by' => 'reassigned_by',
         'reassignment_reason' => 'reassignment_reason',
         'error' => 'error',
@@ -165,6 +171,8 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'last_reminded_at' => 'setLastRemindedAt',
         'has_pin' => 'setHasPin',
         'has_sms_auth' => 'setHasSmsAuth',
+        'has_sms_delivery' => 'setHasSmsDelivery',
+        'sms_phone_number' => 'setSmsPhoneNumber',
         'reassigned_by' => 'setReassignedBy',
         'reassignment_reason' => 'setReassignmentReason',
         'error' => 'setError',
@@ -188,6 +196,8 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'last_reminded_at' => 'getLastRemindedAt',
         'has_pin' => 'getHasPin',
         'has_sms_auth' => 'getHasSmsAuth',
+        'has_sms_delivery' => 'getHasSmsDelivery',
+        'sms_phone_number' => 'getSmsPhoneNumber',
         'reassigned_by' => 'getReassignedBy',
         'reassignment_reason' => 'getReassignmentReason',
         'error' => 'getError',
@@ -261,6 +271,8 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         $this->container['last_reminded_at'] = $data['last_reminded_at'] ?? null;
         $this->container['has_pin'] = $data['has_pin'] ?? null;
         $this->container['has_sms_auth'] = $data['has_sms_auth'] ?? null;
+        $this->container['has_sms_delivery'] = $data['has_sms_delivery'] ?? null;
+        $this->container['sms_phone_number'] = $data['sms_phone_number'] ?? null;
         $this->container['reassigned_by'] = $data['reassigned_by'] ?? null;
         $this->container['reassignment_reason'] = $data['reassignment_reason'] ?? null;
         $this->container['error'] = $data['error'] ?? null;
@@ -584,6 +596,54 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
     public function setHasSmsAuth(?bool $has_sms_auth)
     {
         $this->container['has_sms_auth'] = $has_sms_auth;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_sms_delivery
+     *
+     * @return bool|null
+     */
+    public function getHasSmsDelivery()
+    {
+        return $this->container['has_sms_delivery'];
+    }
+
+    /**
+     * Sets has_sms_delivery
+     *
+     * @param bool|null $has_sms_delivery boolean to indicate whether this signature has SMS delivery enabled
+     *
+     * @return self
+     */
+    public function setHasSmsDelivery(?bool $has_sms_delivery)
+    {
+        $this->container['has_sms_delivery'] = $has_sms_delivery;
+
+        return $this;
+    }
+
+    /**
+     * Gets sms_phone_number
+     *
+     * @return string|null
+     */
+    public function getSmsPhoneNumber()
+    {
+        return $this->container['sms_phone_number'];
+    }
+
+    /**
+     * Sets sms_phone_number
+     *
+     * @param string|null $sms_phone_number the SMS phone number used for authentication or signature request delivery
+     *
+     * @return self
+     */
+    public function setSmsPhoneNumber(?string $sms_phone_number)
+    {
+        $this->container['sms_phone_number'] = $sms_phone_number;
 
         return $this;
     }

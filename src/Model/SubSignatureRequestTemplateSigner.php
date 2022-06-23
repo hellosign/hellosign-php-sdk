@@ -65,6 +65,7 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
         'email_address' => 'string',
         'pin' => 'string',
         'sms_phone_number' => 'string',
+        'sms_phone_number_type' => 'string',
     ];
 
     /**
@@ -80,6 +81,7 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
         'email_address' => 'email',
         'pin' => null,
         'sms_phone_number' => null,
+        'sms_phone_number_type' => null,
     ];
 
     /**
@@ -114,6 +116,7 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
         'email_address' => 'email_address',
         'pin' => 'pin',
         'sms_phone_number' => 'sms_phone_number',
+        'sms_phone_number_type' => 'sms_phone_number_type',
     ];
 
     /**
@@ -127,6 +130,7 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
         'email_address' => 'setEmailAddress',
         'pin' => 'setPin',
         'sms_phone_number' => 'setSmsPhoneNumber',
+        'sms_phone_number_type' => 'setSmsPhoneNumberType',
     ];
 
     /**
@@ -140,6 +144,7 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
         'email_address' => 'getEmailAddress',
         'pin' => 'getPin',
         'sms_phone_number' => 'getSmsPhoneNumber',
+        'sms_phone_number_type' => 'getSmsPhoneNumberType',
     ];
 
     /**
@@ -183,6 +188,22 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
         return self::$openAPIModelName;
     }
 
+    public const SMS_PHONE_NUMBER_TYPE_AUTHENTICATION = 'authentication';
+    public const SMS_PHONE_NUMBER_TYPE_DELIVERY = 'delivery';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getSmsPhoneNumberTypeAllowableValues()
+    {
+        return [
+            self::SMS_PHONE_NUMBER_TYPE_AUTHENTICATION,
+            self::SMS_PHONE_NUMBER_TYPE_DELIVERY,
+        ];
+    }
+
     /**
      * Associative array for storing property values
      *
@@ -203,6 +224,7 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
         $this->container['email_address'] = $data['email_address'] ?? null;
         $this->container['pin'] = $data['pin'] ?? null;
         $this->container['sms_phone_number'] = $data['sms_phone_number'] ?? null;
+        $this->container['sms_phone_number_type'] = $data['sms_phone_number_type'] ?? null;
     }
 
     public static function fromArray(array $data): SubSignatureRequestTemplateSigner
@@ -240,6 +262,15 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
 
         if (!is_null($this->container['pin']) && (mb_strlen($this->container['pin']) < 4)) {
             $invalidProperties[] = "invalid value for 'pin', the character length must be bigger than or equal to 4.";
+        }
+
+        $allowedValues = $this->getSmsPhoneNumberTypeAllowableValues();
+        if (!is_null($this->container['sms_phone_number_type']) && !in_array($this->container['sms_phone_number_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'sms_phone_number_type', must be one of '%s'",
+                $this->container['sms_phone_number_type'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -372,13 +403,47 @@ class SubSignatureRequestTemplateSigner implements ModelInterface, ArrayAccess, 
     /**
      * Sets sms_phone_number
      *
-     * @param string|null $sms_phone_number An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.
+     * @param string|null $sms_phone_number An E.164 formatted phone number.  **Note**: Not available in test mode and requires a Standard plan or higher.
      *
      * @return self
      */
     public function setSmsPhoneNumber(?string $sms_phone_number)
     {
         $this->container['sms_phone_number'] = $sms_phone_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets sms_phone_number_type
+     *
+     * @return string|null
+     */
+    public function getSmsPhoneNumberType()
+    {
+        return $this->container['sms_phone_number_type'];
+    }
+
+    /**
+     * Sets sms_phone_number_type
+     *
+     * @param string|null $sms_phone_number_type **Note**: This only works in non embedded endpoints.  If set, the value must be either `authentication` or `delivery`. Default `authentication`.   If `authentication` is set, `sms_phone_number` will receive a code via SMS to access this signer's signature page.  If `delivery` is set, signature request will be delivered to both email and `sms_phone_number`.
+     *
+     * @return self
+     */
+    public function setSmsPhoneNumberType(?string $sms_phone_number_type)
+    {
+        $allowedValues = $this->getSmsPhoneNumberTypeAllowableValues();
+        if (!is_null($sms_phone_number_type) && !in_array($sms_phone_number_type, $allowedValues, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'sms_phone_number_type', must be one of '%s'",
+                    $sms_phone_number_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['sms_phone_number_type'] = $sms_phone_number_type;
 
         return $this;
     }
