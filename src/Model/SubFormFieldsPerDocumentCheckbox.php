@@ -59,7 +59,7 @@ class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBase
      */
     protected static $openAPITypes = [
         'type' => 'string',
-        'checked' => 'bool',
+        'is_checked' => 'bool',
         'group' => 'string',
     ];
 
@@ -72,7 +72,7 @@ class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBase
      */
     protected static $openAPIFormats = [
         'type' => null,
-        'checked' => null,
+        'is_checked' => null,
         'group' => null,
     ];
 
@@ -104,7 +104,7 @@ class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBase
      */
     protected static $attributeMap = [
         'type' => 'type',
-        'checked' => 'checked',
+        'is_checked' => 'is_checked',
         'group' => 'group',
     ];
 
@@ -115,7 +115,7 @@ class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBase
      */
     protected static $setters = [
         'type' => 'setType',
-        'checked' => 'setChecked',
+        'is_checked' => 'setIsChecked',
         'group' => 'setGroup',
     ];
 
@@ -126,7 +126,7 @@ class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBase
      */
     protected static $getters = [
         'type' => 'getType',
-        'checked' => 'getChecked',
+        'is_checked' => 'getIsChecked',
         'group' => 'getGroup',
     ];
 
@@ -182,7 +182,7 @@ class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBase
         parent::__construct($data);
 
         $this->container['type'] = $data['type'] ?? 'checkbox';
-        $this->container['checked'] = $data['checked'] ?? null;
+        $this->container['is_checked'] = $data['is_checked'] ?? null;
         $this->container['group'] = $data['group'] ?? null;
     }
 
@@ -209,8 +209,8 @@ class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBase
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['checked'] === null) {
-            $invalidProperties[] = "'checked' can't be null";
+        if ($this->container['is_checked'] === null) {
+            $invalidProperties[] = "'is_checked' can't be null";
         }
 
         return $invalidProperties;
@@ -252,25 +252,25 @@ class SubFormFieldsPerDocumentCheckbox extends SubFormFieldsPerDocumentBase
     }
 
     /**
-     * Gets checked
+     * Gets is_checked
      *
      * @return bool
      */
-    public function getChecked()
+    public function getIsChecked()
     {
-        return $this->container['checked'];
+        return $this->container['is_checked'];
     }
 
     /**
-     * Sets checked
+     * Sets is_checked
      *
-     * @param bool $checked `true` for checking the checkbox field by default, otherwise `false`
+     * @param bool $is_checked `true` for checking the checkbox field by default, otherwise `false`
      *
      * @return self
      */
-    public function setChecked(bool $checked)
+    public function setIsChecked(bool $is_checked)
     {
-        $this->container['checked'] = $checked;
+        $this->container['is_checked'] = $is_checked;
 
         return $this;
     }

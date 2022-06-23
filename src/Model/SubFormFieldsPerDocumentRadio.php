@@ -60,7 +60,7 @@ class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase
     protected static $openAPITypes = [
         'type' => 'string',
         'group' => 'string',
-        'checked' => 'bool',
+        'is_checked' => 'bool',
     ];
 
     /**
@@ -73,7 +73,7 @@ class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase
     protected static $openAPIFormats = [
         'type' => null,
         'group' => null,
-        'checked' => null,
+        'is_checked' => null,
     ];
 
     /**
@@ -105,7 +105,7 @@ class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase
     protected static $attributeMap = [
         'type' => 'type',
         'group' => 'group',
-        'checked' => 'checked',
+        'is_checked' => 'is_checked',
     ];
 
     /**
@@ -116,7 +116,7 @@ class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase
     protected static $setters = [
         'type' => 'setType',
         'group' => 'setGroup',
-        'checked' => 'setChecked',
+        'is_checked' => 'setIsChecked',
     ];
 
     /**
@@ -127,7 +127,7 @@ class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase
     protected static $getters = [
         'type' => 'getType',
         'group' => 'getGroup',
-        'checked' => 'getChecked',
+        'is_checked' => 'getIsChecked',
     ];
 
     /**
@@ -183,7 +183,7 @@ class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase
 
         $this->container['type'] = $data['type'] ?? 'radio';
         $this->container['group'] = $data['group'] ?? null;
-        $this->container['checked'] = $data['checked'] ?? null;
+        $this->container['is_checked'] = $data['is_checked'] ?? null;
     }
 
     public static function fromArray(array $data): SubFormFieldsPerDocumentRadio
@@ -212,8 +212,8 @@ class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase
         if ($this->container['group'] === null) {
             $invalidProperties[] = "'group' can't be null";
         }
-        if ($this->container['checked'] === null) {
-            $invalidProperties[] = "'checked' can't be null";
+        if ($this->container['is_checked'] === null) {
+            $invalidProperties[] = "'is_checked' can't be null";
         }
 
         return $invalidProperties;
@@ -279,25 +279,25 @@ class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase
     }
 
     /**
-     * Gets checked
+     * Gets is_checked
      *
      * @return bool
      */
-    public function getChecked()
+    public function getIsChecked()
     {
-        return $this->container['checked'];
+        return $this->container['is_checked'];
     }
 
     /**
-     * Sets checked
+     * Sets is_checked
      *
-     * @param bool $checked `true` for checking the radio field by default, otherwise `false`. Only one radio field per group can be `true`.
+     * @param bool $is_checked `true` for checking the radio field by default, otherwise `false`. Only one radio field per group can be `true`.
      *
      * @return self
      */
-    public function setChecked(bool $checked)
+    public function setIsChecked(bool $is_checked)
     {
-        $this->container['checked'] = $checked;
+        $this->container['is_checked'] = $is_checked;
 
         return $this;
     }
