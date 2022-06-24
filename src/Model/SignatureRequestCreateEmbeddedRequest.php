@@ -83,7 +83,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'test_mode' => 'bool',
         'title' => 'string',
         'use_text_tags' => 'bool',
-        'populate_auto_fill_fields' => 'bool',
     ];
 
     /**
@@ -115,7 +114,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'test_mode' => null,
         'title' => null,
         'use_text_tags' => null,
-        'populate_auto_fill_fields' => null,
     ];
 
     /**
@@ -166,7 +164,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'test_mode' => 'test_mode',
         'title' => 'title',
         'use_text_tags' => 'use_text_tags',
-        'populate_auto_fill_fields' => 'populate_auto_fill_fields',
     ];
 
     /**
@@ -196,7 +193,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'test_mode' => 'setTestMode',
         'title' => 'setTitle',
         'use_text_tags' => 'setUseTextTags',
-        'populate_auto_fill_fields' => 'setPopulateAutoFillFields',
     ];
 
     /**
@@ -226,7 +222,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'test_mode' => 'getTestMode',
         'title' => 'getTitle',
         'use_text_tags' => 'getUseTextTags',
-        'populate_auto_fill_fields' => 'getPopulateAutoFillFields',
     ];
 
     /**
@@ -306,7 +301,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         $this->container['test_mode'] = $data['test_mode'] ?? false;
         $this->container['title'] = $data['title'] ?? null;
         $this->container['use_text_tags'] = $data['use_text_tags'] ?? false;
-        $this->container['populate_auto_fill_fields'] = $data['populate_auto_fill_fields'] ?? false;
     }
 
     public static function fromArray(array $data): SignatureRequestCreateEmbeddedRequest
@@ -873,30 +867,6 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     public function setUseTextTags(?bool $use_text_tags)
     {
         $this->container['use_text_tags'] = $use_text_tags;
-
-        return $this;
-    }
-
-    /**
-     * Gets populate_auto_fill_fields
-     *
-     * @return bool|null
-     */
-    public function getPopulateAutoFillFields()
-    {
-        return $this->container['populate_auto_fill_fields'];
-    }
-
-    /**
-     * Sets populate_auto_fill_fields
-     *
-     * @param bool|null $populate_auto_fill_fields Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.    ⚠️ **Note** ⚠️: Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
-     *
-     * @return self
-     */
-    public function setPopulateAutoFillFields(?bool $populate_auto_fill_fields)
-    {
-        $this->container['populate_auto_fill_fields'] = $populate_auto_fill_fields;
 
         return $this;
     }

@@ -89,7 +89,6 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'subject' => 'string',
         'test_mode' => 'bool',
         'title' => 'string',
-        'populate_auto_fill_fields' => 'bool',
     ];
 
     /**
@@ -128,7 +127,6 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'subject' => null,
         'test_mode' => null,
         'title' => null,
-        'populate_auto_fill_fields' => null,
     ];
 
     /**
@@ -186,7 +184,6 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'subject' => 'subject',
         'test_mode' => 'test_mode',
         'title' => 'title',
-        'populate_auto_fill_fields' => 'populate_auto_fill_fields',
     ];
 
     /**
@@ -223,7 +220,6 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'subject' => 'setSubject',
         'test_mode' => 'setTestMode',
         'title' => 'setTitle',
-        'populate_auto_fill_fields' => 'setPopulateAutoFillFields',
     ];
 
     /**
@@ -260,7 +256,6 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         'subject' => 'getSubject',
         'test_mode' => 'getTestMode',
         'title' => 'getTitle',
-        'populate_auto_fill_fields' => 'getPopulateAutoFillFields',
     ];
 
     /**
@@ -347,7 +342,6 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         $this->container['subject'] = $data['subject'] ?? null;
         $this->container['test_mode'] = $data['test_mode'] ?? false;
         $this->container['title'] = $data['title'] ?? null;
-        $this->container['populate_auto_fill_fields'] = $data['populate_auto_fill_fields'] ?? false;
     }
 
     public static function fromArray(array $data): UnclaimedDraftCreateEmbeddedWithTemplateRequest
@@ -1085,30 +1079,6 @@ class UnclaimedDraftCreateEmbeddedWithTemplateRequest implements ModelInterface,
         }
 
         $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets populate_auto_fill_fields
-     *
-     * @return bool|null
-     */
-    public function getPopulateAutoFillFields()
-    {
-        return $this->container['populate_auto_fill_fields'];
-    }
-
-    /**
-     * Sets populate_auto_fill_fields
-     *
-     * @param bool|null $populate_auto_fill_fields Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.    ⚠️ **Note** ⚠️: Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
-     *
-     * @return self
-     */
-    public function setPopulateAutoFillFields(?bool $populate_auto_fill_fields)
-    {
-        $this->container['populate_auto_fill_fields'] = $populate_auto_fill_fields;
 
         return $this;
     }
