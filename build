@@ -45,4 +45,5 @@ printf "Running unit tests ...\n"
 bash "${PWD}/bin/php" ./vendor/bin/phpunit
 printf "\n\n"
 
+
 exit 1
