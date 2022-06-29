@@ -1,5 +1,12 @@
 name: github-actions
-on: [push]
+on:
+  push:
+    branches:
+      - openapi
+  pull_request:
+    branches:
+      - openapi
+
 jobs:
   run-build:
     runs-on: ubuntu-latest
