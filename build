@@ -30,13 +30,13 @@ printf "Running php-cs-fixer ...\n"
 bash "${PWD}/bin/php" ./vendor/bin/php-cs-fixer fix --verbose
 
 printf "Replacing strings ...\n"
-docker run -it --rm \
+docker run --rm \
   -v "${PWD}:${WORKINGDIR}" \
   -w "${WORKINGDIR}" \
   perl bash ./bin/replace
 
 printf "Scanning for prohibited keywords ...\n"
-docker run -it --rm \
+docker run --rm \
   -v "${PWD}:${WORKINGDIR}" \
   -w "${WORKINGDIR}" \
   perl bash ./bin/scan_for
