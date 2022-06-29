@@ -45,4 +45,4 @@ printf "Running unit tests ...\n"
 bash "${PWD}/bin/php" ./vendor/bin/phpunit
 printf "\n\n"
 
-printf "Success!\n"
+exit 1
