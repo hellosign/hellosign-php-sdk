@@ -1,0 +1,8 @@
+name: github-actions
+on: [push]
+jobs:
+  run-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: ./build
