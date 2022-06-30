@@ -1,9 +1,8 @@
 name: github-actions
 on:
   push:
-    branches:
-      - openapi
   pull_request:
+  workflow_dispatch:
     branches:
       - openapi
 
