@@ -30,6 +30,7 @@ namespace HelloSignSDK\Model;
 
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
+use InvalidArgumentException;
 use JsonSerializable;
 
 /**
@@ -62,6 +63,8 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
         'account_id' => 'string',
         'email_address' => 'string',
         'new_owner_email_address' => 'string',
+        'new_team_id' => 'string',
+        'new_role' => 'string',
     ];
 
     /**
@@ -75,6 +78,8 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
         'account_id' => null,
         'email_address' => 'email',
         'new_owner_email_address' => 'email',
+        'new_team_id' => null,
+        'new_role' => null,
     ];
 
     /**
@@ -107,6 +112,8 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
         'account_id' => 'account_id',
         'email_address' => 'email_address',
         'new_owner_email_address' => 'new_owner_email_address',
+        'new_team_id' => 'new_team_id',
+        'new_role' => 'new_role',
     ];
 
     /**
@@ -118,6 +125,8 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
         'account_id' => 'setAccountId',
         'email_address' => 'setEmailAddress',
         'new_owner_email_address' => 'setNewOwnerEmailAddress',
+        'new_team_id' => 'setNewTeamId',
+        'new_role' => 'setNewRole',
     ];
 
     /**
@@ -129,6 +138,8 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
         'account_id' => 'getAccountId',
         'email_address' => 'getEmailAddress',
         'new_owner_email_address' => 'getNewOwnerEmailAddress',
+        'new_team_id' => 'getNewTeamId',
+        'new_role' => 'getNewRole',
     ];
 
     /**
@@ -172,6 +183,26 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
         return self::$openAPIModelName;
     }
 
+    public const NEW_ROLE_MEMBER = 'Member';
+    public const NEW_ROLE_DEVELOPER = 'Developer';
+    public const NEW_ROLE_TEAM_MANAGER = 'Team Manager';
+    public const NEW_ROLE_ADMIN = 'Admin';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getNewRoleAllowableValues()
+    {
+        return [
+            self::NEW_ROLE_MEMBER,
+            self::NEW_ROLE_DEVELOPER,
+            self::NEW_ROLE_TEAM_MANAGER,
+            self::NEW_ROLE_ADMIN,
+        ];
+    }
+
     /**
      * Associative array for storing property values
      *
@@ -190,6 +221,8 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
         $this->container['account_id'] = $data['account_id'] ?? null;
         $this->container['email_address'] = $data['email_address'] ?? null;
         $this->container['new_owner_email_address'] = $data['new_owner_email_address'] ?? null;
+        $this->container['new_team_id'] = $data['new_team_id'] ?? null;
+        $this->container['new_role'] = $data['new_role'] ?? null;
     }
 
     public static function fromArray(array $data): TeamRemoveMemberRequest
@@ -211,6 +244,15 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getNewRoleAllowableValues();
+        if (!is_null($this->container['new_role']) && !in_array($this->container['new_role'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'new_role', must be one of '%s'",
+                $this->container['new_role'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -294,6 +336,64 @@ class TeamRemoveMemberRequest implements ModelInterface, ArrayAccess, JsonSerial
     public function setNewOwnerEmailAddress(?string $new_owner_email_address)
     {
         $this->container['new_owner_email_address'] = $new_owner_email_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets new_team_id
+     *
+     * @return string|null
+     */
+    public function getNewTeamId()
+    {
+        return $this->container['new_team_id'];
+    }
+
+    /**
+     * Sets new_team_id
+     *
+     * @param string|null $new_team_id id of the new Team
+     *
+     * @return self
+     */
+    public function setNewTeamId(?string $new_team_id)
+    {
+        $this->container['new_team_id'] = $new_team_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets new_role
+     *
+     * @return string|null
+     */
+    public function getNewRole()
+    {
+        return $this->container['new_role'];
+    }
+
+    /**
+     * Sets new_role
+     *
+     * @param string|null $new_role A new role member will take in a new Team.  **Note**: This parameter is used only if `new_team_id` is provided.
+     *
+     * @return self
+     */
+    public function setNewRole(?string $new_role)
+    {
+        $allowedValues = $this->getNewRoleAllowableValues();
+        if (!is_null($new_role) && !in_array($new_role, $allowedValues, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'new_role', must be one of '%s'",
+                    $new_role,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['new_role'] = $new_role;
 
         return $this;
     }

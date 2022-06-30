@@ -72,9 +72,9 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
         'api_id' => 'string',
         'group' => 'string',
         'avg_text_length' => '\HelloSignSDK\Model\TemplateResponseFieldAvgTextLength',
-        'is_multiline' => 'string',
+        'is_multiline' => 'bool',
         'original_font_size' => 'int',
-        'font_family' => 'int',
+        'font_family' => 'string',
         'named_form_fields' => 'array',
         'reusable_form_id' => 'string',
     ];
@@ -608,7 +608,7 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     /**
      * Gets is_multiline
      *
-     * @return string|null
+     * @return bool|null
      */
     public function getIsMultiline()
     {
@@ -618,11 +618,11 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     /**
      * Sets is_multiline
      *
-     * @param string|null $is_multiline whether this form field is multiline text
+     * @param bool|null $is_multiline whether this form field is multiline text
      *
      * @return self
      */
-    public function setIsMultiline(?string $is_multiline)
+    public function setIsMultiline(?bool $is_multiline)
     {
         $this->container['is_multiline'] = $is_multiline;
 
@@ -656,7 +656,7 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     /**
      * Gets font_family
      *
-     * @return int|null
+     * @return string|null
      */
     public function getFontFamily()
     {
@@ -666,11 +666,11 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     /**
      * Sets font_family
      *
-     * @param int|null $font_family font family used in this form field's text
+     * @param string|null $font_family font family used in this form field's text
      *
      * @return self
      */
-    public function setFontFamily(?int $font_family)
+    public function setFontFamily(?string $font_family)
     {
         $this->container['font_family'] = $font_family;
 

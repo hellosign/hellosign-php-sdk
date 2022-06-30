@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 | `api_id` | ```string``` |  The unique ID for this field.  |  |
 | `group` | ```string``` |  The name of the group this field is in. If this field is not a group, this defaults to `null`.  |  |
 | `avg_text_length` | [```\HelloSignSDK\Model\TemplateResponseFieldAvgTextLength```](TemplateResponseFieldAvgTextLength.md) |    |  |
-| `is_multiline` | ```string``` |  Whether this form field is multiline text.  |  |
+| `is_multiline` | ```bool``` |  Whether this form field is multiline text.  |  |
 | `original_font_size` | ```int``` |  Original font size used in this form field&#39;s text.  |  |
-| `font_family` | ```int``` |  Font family used in this form field&#39;s text.  |  |
+| `font_family` | ```string``` |  Font family used in this form field&#39;s text.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
