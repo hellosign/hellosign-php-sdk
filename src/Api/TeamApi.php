@@ -121,14 +121,15 @@ class TeamApi
      * Add User to Team
      *
      * @param Model\TeamAddMemberRequest $team_add_member_request team_add_member_request (required)
+     * @param string $team_id The id of the team. (optional)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      * @return Model\TeamGetResponse
      */
-    public function teamAddMember(Model\TeamAddMemberRequest $team_add_member_request)
+    public function teamAddMember(Model\TeamAddMemberRequest $team_add_member_request, string $team_id = null)
     {
-        list($response) = $this->teamAddMemberWithHttpInfo($team_add_member_request);
+        list($response) = $this->teamAddMemberWithHttpInfo($team_add_member_request, $team_id);
 
         return $response;
     }
@@ -139,14 +140,15 @@ class TeamApi
      * Add User to Team
      *
      * @param Model\TeamAddMemberRequest $team_add_member_request (required)
+     * @param string $team_id The id of the team. (optional)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      * @return array of Model\TeamGetResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function teamAddMemberWithHttpInfo(Model\TeamAddMemberRequest $team_add_member_request)
+    public function teamAddMemberWithHttpInfo(Model\TeamAddMemberRequest $team_add_member_request, string $team_id = null)
     {
-        $request = $this->teamAddMemberRequest($team_add_member_request);
+        $request = $this->teamAddMemberRequest($team_add_member_request, $team_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -260,13 +262,14 @@ class TeamApi
      * Add User to Team
      *
      * @param Model\TeamAddMemberRequest $team_add_member_request (required)
+     * @param string $team_id The id of the team. (optional)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function teamAddMemberAsync(Model\TeamAddMemberRequest $team_add_member_request)
+    public function teamAddMemberAsync(Model\TeamAddMemberRequest $team_add_member_request, string $team_id = null)
     {
-        return $this->teamAddMemberAsyncWithHttpInfo($team_add_member_request)
+        return $this->teamAddMemberAsyncWithHttpInfo($team_add_member_request, $team_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -280,14 +283,15 @@ class TeamApi
      * Add User to Team
      *
      * @param Model\TeamAddMemberRequest $team_add_member_request (required)
+     * @param string $team_id The id of the team. (optional)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function teamAddMemberAsyncWithHttpInfo(Model\TeamAddMemberRequest $team_add_member_request)
+    public function teamAddMemberAsyncWithHttpInfo(Model\TeamAddMemberRequest $team_add_member_request, string $team_id = null)
     {
         $returnType = '\HelloSignSDK\Model\TeamGetResponse';
-        $request = $this->teamAddMemberRequest($team_add_member_request);
+        $request = $this->teamAddMemberRequest($team_add_member_request, $team_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -326,11 +330,12 @@ class TeamApi
      * Create request for operation 'teamAddMember'
      *
      * @param Model\TeamAddMemberRequest $team_add_member_request (required)
+     * @param string $team_id The id of the team. (optional)
      *
      * @throws InvalidArgumentException
      * @return Psr7\Request
      */
-    public function teamAddMemberRequest(Model\TeamAddMemberRequest $team_add_member_request)
+    public function teamAddMemberRequest(Model\TeamAddMemberRequest $team_add_member_request, string $team_id = null)
     {
         // verify the required parameter 'team_add_member_request' is set
         if ($team_add_member_request === null || (is_array($team_add_member_request) && count($team_add_member_request) === 0)) {
@@ -349,6 +354,17 @@ class TeamApi
         );
 
         $multipart = !empty($formParams);
+
+        // query params
+        if ($team_id !== null) {
+            if ('form' === 'form' && is_array($team_id)) {
+                foreach ($team_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['team_id'] = $team_id;
+            }
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(

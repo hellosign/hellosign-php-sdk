@@ -15,7 +15,7 @@ All URIs are relative to https://api.hellosign.com/v3.
 ## `teamAddMember()`
 
 ```php
-teamAddMember($team_add_member_request): \HelloSignSDK\Model\TeamGetResponse
+teamAddMember($team_add_member_request, $team_id): \HelloSignSDK\Model\TeamGetResponse
 ```
 
 Add User to Team
@@ -58,6 +58,7 @@ try {
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **team_add_member_request** | [**\HelloSignSDK\Model\TeamAddMemberRequest**](../Model/TeamAddMemberRequest.md)|  | |
+| **team_id** | **string**| The id of the team. | [optional] |
 
 ### Return type
 
