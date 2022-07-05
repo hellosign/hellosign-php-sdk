@@ -21,7 +21,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: change submodules
         run: |
-          git submodule set-url oas git@github.com:fenghao-chen/hellosign-openapi.git
           git submodule set-branch --branch ${{ inputs.branch_name }} oas
           cd oas && git fetch origin && git checkout ${{ inputs.branch_name }}
           cd ..
