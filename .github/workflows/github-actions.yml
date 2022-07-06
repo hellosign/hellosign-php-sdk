@@ -19,8 +19,10 @@ jobs:
       - name: echo branch name
         run: echo running on OAS branch ${{ inputs.branch_name }}
       - uses: actions/checkout@v3
-      - run: git submodule set-branch --branch test_trigger oas
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - run: ./build
+      - run: |
+          cd oas
+          git submodule set-branch --branch test_trigger oas
+          git submodule update --init --recursive --remote
+          git fetch origin && git checkout test_trigger
+          ../
+          ./build
