@@ -1,7 +1,5 @@
 name: github-actions
 on:
-  push:
-  pull_request:
   workflow_dispatch:
     branches:
       - openapi
@@ -23,7 +21,7 @@ jobs:
           submodules: recursive
           fetch-depth: '0'
       - run: |
-          git submodule set-branch --branch test_trigger oas
+          git submodule set-branch --branch ${{ inputs.branch_name }} oas
           git submodule update --init --recursive --remote
-          cd oas && git fetch origin && git checkout test_trigger
+          cd oas && git fetch origin && git checkout ${{ inputs.branch_name }}
           ../build
