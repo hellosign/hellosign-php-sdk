@@ -24,4 +24,5 @@ jobs:
           git submodule set-branch --branch ${{ inputs.branch_name }} oas
           git submodule update --init --recursive --remote
           cd oas && git fetch origin && git checkout ${{ inputs.branch_name }}
-          ../build
+          ../
+          ./build
