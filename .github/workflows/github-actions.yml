@@ -1,4 +1,4 @@
-name: triggered-by-upstream
+name: github-actions
 on:
   workflow_dispatch:
     branches:
