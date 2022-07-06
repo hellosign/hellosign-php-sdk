@@ -1,4 +1,4 @@
-name: github-actions
+name: triggered-by-upstream
 on:
   workflow_dispatch:
     branches:
@@ -8,7 +8,6 @@ on:
         description: 'OAS branch name'
         required: true
         type: string
-        default: 'oas-release'
 
 jobs:
   run-build:
