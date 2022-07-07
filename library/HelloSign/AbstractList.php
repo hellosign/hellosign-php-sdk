@@ -29,12 +29,10 @@
 
 namespace HelloSign;
 
-use ReturnTypeWillChange;
-
 /**
  * This class has basic functions to use an object as an array
  */
-abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
+abstract class AbstractList implements \Iterator, \ArrayAccess, \Countable
 {
     /**
      * Class name of resource
@@ -79,8 +77,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    #[ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->collection[$offset];
     }
@@ -116,8 +113,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    #[ReturnTypeWillChange]
-    public function current()
+    public function current(): mixed
     {
         return $this->collection[$this->position];
     }
@@ -125,8 +121,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    #[ReturnTypeWillChange]
-    public function key()
+    public function key(): int
     {
         return $this->position;
     }
