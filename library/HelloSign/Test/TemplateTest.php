@@ -83,8 +83,6 @@ class TemplateTest extends AbstractTest
         $response = $this->client->addTemplateUser($template->getId(), $this->team_member_2);
 
         $this->assertInstanceOf('HelloSign\Error', $response);
-
-        return array($template, $team_member_email);
     }
 
     /**

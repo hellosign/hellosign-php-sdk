@@ -691,10 +691,6 @@ class Client
             $this->http_client_config
         );
 
-        if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
-            $this->disableCertificateCheck($rest);
-        }
-
         $response = $rest->post('', $request->toParams());
 
         $this->checkResponse($response);
@@ -729,10 +725,6 @@ class Client
             ),
             $this->http_client_config
         );
-
-        if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
-            $this->disableCertificateCheck($rest);
-        }
 
         $response = $rest->post('', $token->toParams());
 

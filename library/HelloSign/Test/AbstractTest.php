@@ -32,6 +32,8 @@ use PHPUnit\Framework\TestCase;
 abstract class AbstractTest extends TestCase
 {
     protected $client;
+    protected $team_member_2;
+    protected $team_member_1;
 
     protected function setUp(): void
     {
