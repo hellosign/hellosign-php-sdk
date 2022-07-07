@@ -29,6 +29,8 @@
 
 namespace HelloSign;
 
+use ReturnTypeWillChange;
+
 /**
  * This class has basic functions to use an object as an array
  */
@@ -69,7 +71,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->collection[$offset]);
     }
@@ -77,6 +79,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->collection[$offset];
@@ -85,7 +88,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->collection[] = $value;
@@ -97,7 +100,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->collection[$offset]);
     }
@@ -105,7 +108,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->position = 0;
     }
@@ -113,6 +116,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
+    #[ReturnTypeWillChange]
     public function current()
     {
         return $this->collection[$this->position];
@@ -121,6 +125,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
+    #[ReturnTypeWillChange]
     public function key()
     {
         return $this->position;
@@ -129,7 +134,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    public function next()
+    public function next(): void
     {
         ++$this->position;
     }
@@ -137,7 +142,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->collection[$this->position]);
     }
@@ -145,7 +150,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
     /**
      * @ignore
      */
-    public function count()
+    public function count(): int
     {
         return count($this->collection);
     }
@@ -156,7 +161,7 @@ abstract class AbstractList implements \Iterator, \arrayaccess, \Countable
      * @param  array $array
      * @return static
      */
-    public function setCollection($array)
+    public function setCollection($array): static
     {
         foreach ($array as $key => $object) {
             $class_name = "HelloSign\\{$this->resource_class}";
