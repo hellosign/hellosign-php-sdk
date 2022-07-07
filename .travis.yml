@@ -1,9 +1,6 @@
 language: php
 jobs:
   include:
-    - stage: php74
-      php: 7.4
-      script: ./vendor/bin/phpunit
     - stage: php80
       php: 8.0
       script: ./vendor/bin/phpunit
