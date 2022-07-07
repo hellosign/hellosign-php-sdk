@@ -27,16 +27,17 @@
 namespace HelloSign\Test;
 
 use HelloSign\Account;
+use HelloSign\Error;
 
 class AccountTest extends AbstractTest
 {
     /**
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Account already exists
      * @group create
      */
     public function testCreateAccount()
     {
+        $this->expectException(Error::class);
+        $this->expectExceptionMessage("Account already exists");
         $random_email = rand(1, 10000000) . "@example.com";
         $response = $this->client->createAccount(
             new Account($random_email)

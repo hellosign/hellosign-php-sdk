@@ -41,7 +41,7 @@ use Comvi\REST;
 class Client
 {
 
-    const VERSION = '3.7.0';
+    const VERSION = '3.8.0';
 
     const API_URL = "https://api.hellosign.com/v3/";
 
@@ -691,10 +691,6 @@ class Client
             $this->http_client_config
         );
 
-        if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
-            $this->disableCertificateCheck($rest);
-        }
-
         $response = $rest->post('', $request->toParams());
 
         $this->checkResponse($response);
@@ -729,10 +725,6 @@ class Client
             ),
             $this->http_client_config
         );
-
-        if ($this->oauth_token_url != self::OAUTH_TOKEN_URL) {
-            $this->disableCertificateCheck($rest);
-        }
 
         $response = $rest->post('', $token->toParams());
 

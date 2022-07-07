@@ -1,22 +1,11 @@
 language: php
 jobs:
   include:
-    - stage: php71-lowest
-      php: 7.1
-      env: dependencies=lowest
+    - stage: php80
+      php: 8.0
       script: ./vendor/bin/phpunit
-    - stage: php72-lowest
-      php: 7.2
-      env: dependencies=lowest
-      script: ./vendor/bin/phpunit
-    - stage: php72
-      php: 7.2
-      script: ./vendor/bin/phpunit
-    - stage: php73
-      php: 7.3
-      script: ./vendor/bin/phpunit
-    - stage: php74
-      php: 7.4
+    - stage: php81
+      php: 8.1
       script: ./vendor/bin/phpunit
 
 before_script:

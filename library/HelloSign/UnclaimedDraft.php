@@ -88,7 +88,7 @@ class UnclaimedDraft extends AbstractSignatureRequestWrapper
 
     /**
      * @param  boolean $is_for_embedded_signing
-     * @return UnclaimedDraft
+     * @return void
      * @ignore
      */
     public function setIsForEmbeddedSigning($is_for_embedded_signing)

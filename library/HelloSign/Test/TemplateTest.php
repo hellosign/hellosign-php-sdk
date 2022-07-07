@@ -26,6 +26,9 @@
 
 namespace HelloSign\Test;
 
+use HelloSign\Error;
+use HelloSign\Template;
+
 /**
  *
  * You must have created a template manually prior to running this test suite
@@ -36,11 +39,11 @@ class TemplateTest extends AbstractTest
 {
     /**
      * @group read
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Page not found
      */
     public function testGetTemplatesWithPageNotFound()
     {
+        $this->expectException(Error::class);
+        $this->expectExceptionMessage("Page not found");
         $templates = $this->client->getTemplates(9999, 1);
     }
 
@@ -69,29 +72,27 @@ class TemplateTest extends AbstractTest
     }
 
     /**
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Account does not belong to your team
      * @depends testGetTemplates
      * @group update
      */
     public function testAddTemplateUser($template)
     {
+        $this->expectException(Error::class);
+        $this->expectExceptionMessage("Account does not belong to your team");
         $invite = $this->client->inviteTeamMember($this->team_member_2);
         $response = $this->client->addTemplateUser($template->getId(), $this->team_member_2);
 
         $this->assertInstanceOf('HelloSign\Error', $response);
-
-        return array($template, $team_member_email);
     }
 
     /**
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Account does not belong to your team
      * @depends testGetTemplates
      * @group update
      */
     public function testRemoveTemplateUser($template)
     {
+        $this->expectException(Error::class);
+        $this->expectExceptionMessage("Account does not belong to your team");
         $response = $this->client->removeTemplateUser($template->getId(), $this->team_member_2);
 
         $this->assertInstanceOf('HelloSign\Error', $response);
@@ -104,7 +105,7 @@ class TemplateTest extends AbstractTest
     {
         $client_id = $_ENV['CLIENT_ID'];
 
-        $request = new \HelloSign\Template();
+        $request = new Template();
         $request->setClientId($client_id);
         $request->addFile(__DIR__ . '/nda.docx');
         $request->setTitle('Test Title');
@@ -130,11 +131,11 @@ class TemplateTest extends AbstractTest
 
     /**
      * @group embedded
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Template not found
      */
     public function testGetEmbeddedEditUrl()
     {
+        $this->expectException(Error::class);
+        $this->expectExceptionMessage("Template not found");
         # Similar to the delete_template function, we can't actually test this for success without human interaction.
         # Instead, we'll be checking for a 404 - Template not found status code, which means our parameters are correct
 
@@ -145,11 +146,11 @@ class TemplateTest extends AbstractTest
 
     /**
      * @group embedded
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Template not found
      */
     public function testDeleteTemplate()
     {
+        $this->expectException(Error::class);
+        $this->expectExceptionMessage("Template not found");
         # Note that we won't be actually deleting a template,
         # but rather checking to make sure we get a 404 - Template not found error
 
@@ -188,7 +189,7 @@ class TemplateTest extends AbstractTest
         $template_id = $templates[0]->getId();
         $client_id = $_ENV['CLIENT_ID'];
 
-        $request = new \HelloSign\Template();
+        $request = new Template();
         $request->setClientId($client_id);
         $request->addFile(__DIR__ . '/nda.docx');
         $request->setMessage('PHP SDK Test Update File Message');

@@ -13,3 +13,4 @@ test.php
 .idea
 *.swp
 vendor
+.phpunit.result.cache

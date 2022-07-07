@@ -7,7 +7,8 @@ This is the official PHP SDK for HelloSign's API.  [View API Documentation and E
 
 ### Requirements
 
-The latest version of the SDK requires PHP version 7.1 or higher.
+The latest version of the SDK requires PHP version 8.0 or higher. 
+For PHP 7.x use SDK version 3.7.*
 
 You can import this SDK into your library two ways, either through including the base HelloSign.php file into your
 project or using [Composer](https://getcomposer.org/doc/00-intro.md).

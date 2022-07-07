@@ -26,7 +26,9 @@
 
 namespace HelloSign\Test;
 
+use HelloSign\EmbeddedSignatureRequest;
 use HelloSign\SignatureRequest;
+use HelloSign\TemplateSignatureRequest;
 use HelloSign\UnclaimedDraft;
 
 class UnclaimedDraftTest extends AbstractTest
@@ -96,7 +98,7 @@ class UnclaimedDraftTest extends AbstractTest
         $template = $templates[0];
         $templateId = $template->getId();
 
-        $baseReq = new \HelloSign\TemplateSignatureRequest();
+        $baseReq = new TemplateSignatureRequest();
         $baseReq->setTemplateId($templateId);
         foreach ($template->getSignerRoles() as $i => $role) {
             $baseReq->setSigner($role->name, "signer".$i."@example.com", "signer $i");
@@ -106,7 +108,7 @@ class UnclaimedDraftTest extends AbstractTest
         $baseReq->setRequesterEmailAddress('herman@hogwarts.com');
         $baseReq->addMetadata('House', 'Griffyndor');
 
-        $request = new \HelloSign\EmbeddedSignatureRequest($baseReq);
+        $request = new EmbeddedSignatureRequest($baseReq);
         $request->setClientId($client_id);
         $request->setEmbeddedSigning();
 

@@ -27,11 +27,7 @@
 namespace HelloSign\Test;
 
 use HelloSign\Account;
-use HelloSign\Error;
 use HelloSign\Client;
-use HelloSign\SignatureRequest;
-use HelloSign\Signer;
-use HelloSign\TemplateSignatureRequest;
 
 class OAuthTest extends AbstractTest
 {

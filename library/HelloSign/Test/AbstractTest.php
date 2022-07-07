@@ -27,12 +27,15 @@
 namespace HelloSign\Test;
 
 use HelloSign\Client;
+use PHPUnit\Framework\TestCase;
 
-abstract class AbstractTest extends \PHPUnit\Framework\TestCase
+abstract class AbstractTest extends TestCase
 {
     protected $client;
+    protected $team_member_2;
+    protected $team_member_1;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $keys = array(
             'API_KEY',
