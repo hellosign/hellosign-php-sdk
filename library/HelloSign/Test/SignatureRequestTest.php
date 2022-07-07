@@ -26,20 +26,19 @@
 
 namespace HelloSign\Test;
 
-use HelloSign\SignatureRequest;
-use HelloSign\SignerGroup;
-use HelloSign\Signer;
 use HelloSign\Error;
+use HelloSign\SignatureRequest;
+use HelloSign\Signer;
 
 class SignatureRequestTest extends AbstractTest
 {
     /**
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage File does not exist
      * @group create
      */
     public function testSendSignatureRequestWithInvalidFile()
     {
+        $this->expectException(Error::class);
+        $this->expectExceptionMessage("File does not exist");
         $request = new SignatureRequest;
         $request->addFile(__DIR__ . '/file_does_not_exist.docx');
     }

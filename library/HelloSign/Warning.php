@@ -70,6 +70,7 @@ class Warning
     public function setMessage($message)
     {
         isset($message) && $this->message = $message;
+        return $this;
     }
 
     /**
@@ -81,6 +82,7 @@ class Warning
     public function setName($name)
     {
         isset($name) && $this->name = $name;
+        return $this;
     }
 
     /**

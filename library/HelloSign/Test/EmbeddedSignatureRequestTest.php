@@ -29,7 +29,6 @@ namespace HelloSign\Test;
 use HelloSign\UnclaimedDraft;
 
 use HelloSign\SignatureRequest;
-use HelloSign\Template;
 use HelloSign\TemplateSignatureRequest;
 use HelloSign\EmbeddedSignatureRequest;
 
@@ -61,7 +60,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         $signatures = $response->getSignatures();
         return $signatures[0]->getId();
     }
-    
+
     /**
      * @group create
      */
@@ -83,7 +82,7 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         $this->assertInstanceOf('HelloSign\UnclaimedDraft', $response);
         $this->assertNotNull($response->getClaimUrl());
     }
-    
+
 /**
      * @group create
      */
@@ -105,17 +104,17 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         $this->assertInstanceOf('HelloSign\UnclaimedDraft', $response);
         $this->assertNotNull($response->getClaimUrl());
     }
-    
+
     /**
      * @group create
      */
     public function testCreateEmbeddedSignatureRequestWithTemplate()
     {
         // Get a template
-        
+
         $templates = $this->client->getTemplates();
         $template = $templates[0];
-        
+
         // Create the signature request
 
         $request = new TemplateSignatureRequest;
@@ -132,11 +131,11 @@ class EmbeddedSignatureRequestTest extends AbstractTest
         foreach ($template->getCustomFields() as $i => $field) {
             $request->setCustomFieldValue($field->name, 'My String');
         }
-        
+
         // Turn it into an embedded request
         $client_id = $_ENV['CLIENT_ID'];
         $embedded_request = new EmbeddedSignatureRequest($request, $client_id);
-        
+
         // Send it to HelloSign
         $response = $this->client->createEmbeddedSignatureRequest($embedded_request);
 

@@ -27,6 +27,7 @@
 namespace HelloSign\Test;
 
 use HelloSign\ApiApp;
+use HelloSign\Error;
 
 class ApiAppTest extends AbstractTest
 {
@@ -37,12 +38,12 @@ class ApiAppTest extends AbstractTest
     }
 
     /**
-    * @expectedException HelloSign\Error
-    * @expectedExceptionMessage An app with the same name already exists
-    * @group create
+     * @group create
     */
     public function testCreateApiApp()
     {
+        $this->expectException(Error::class);
+        $this->expectExceptionMessage("An app with the same name already exists");
         $wl = array('primary_button_color' => '#626567', 'primary_button_text_color' => '#ffffff');
         $wl = json_encode($wl);
 
@@ -159,11 +160,11 @@ class ApiAppTest extends AbstractTest
 
     /**
      * @group delete
-     * @expectedException HelloSign\Error
-     * @expectedExceptionMessage Not found
      */
     public function testDeleteApiApp()
     {
+        $this->expectException(Error::class);
+        $this->expectExceptionMessage("Not found");
         # Note that we won't be actually deleting an API app,
         # but rather checking to make sure we get a Not found error
 

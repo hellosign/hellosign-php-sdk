@@ -26,7 +26,6 @@
 
 namespace HelloSign\Test;
 
-use HelloSign\Template;
 use HelloSign\BulkSendJob;
 use HelloSign\EmbeddedBulkSendJob;
 
@@ -233,5 +232,3 @@ class BulkSendTest extends AbstractTest
    $this->assertNotNull($bulk_send_job->getSignatureRequests());
   }
 }
-
-?>
