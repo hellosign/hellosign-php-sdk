@@ -8,7 +8,10 @@ All URIs are relative to https://api.hellosign.com/v3.
 | [**teamCreate()**](TeamApi.md#teamCreate) | **POST** /team/create | Create Team |
 | [**teamDelete()**](TeamApi.md#teamDelete) | **DELETE** /team/destroy | Delete Team |
 | [**teamGet()**](TeamApi.md#teamGet) | **GET** /team | Get Team |
+| [**teamInfo()**](TeamApi.md#teamInfo) | **GET** /team/info | Get Team Info |
+| [**teamMembers()**](TeamApi.md#teamMembers) | **GET** /team/members/{team_id} | List Team Members |
 | [**teamRemoveMember()**](TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Remove User from Team |
+| [**teamSubTeams()**](TeamApi.md#teamSubTeams) | **GET** /team/sub_teams/{team_id} | List Sub Teams |
 | [**teamUpdate()**](TeamApi.md#teamUpdate) | **PUT** /team | Update Team |
 
 
@@ -258,6 +261,132 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `teamInfo()`
+
+```php
+teamInfo($team_id): \HelloSignSDK\Model\TeamGetInfoResponse
+```
+
+Get Team Info
+
+Provides information about a team.
+
+### Example
+
+```php
+<?php
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$config = HelloSignSDK\Configuration::getDefaultConfiguration();
+
+// Configure HTTP basic authorization: api_key
+$config->setUsername("YOUR_API_KEY");
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+$api = new HelloSignSDK\Api\TeamApi($config);
+
+try {
+    $result = $api->teamInfo();
+    print_r($result);
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
+    echo "Exception when calling HelloSign API: "
+        . print_r($error->getError());
+}
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **team_id** | **string**| The id of the team. | [optional] |
+
+### Return type
+
+[**\HelloSignSDK\Model\TeamGetInfoResponse**](../Model/TeamGetInfoResponse.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `teamMembers()`
+
+```php
+teamMembers($team_id, $page, $page_size): \HelloSignSDK\Model\TeamMembersResponse
+```
+
+List Team Members
+
+Provides a paginated list of members (and their roles) that belong to a given team.
+
+### Example
+
+```php
+<?php
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$config = HelloSignSDK\Configuration::getDefaultConfiguration();
+
+// Configure HTTP basic authorization: api_key
+$config->setUsername("YOUR_API_KEY");
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+$api = new HelloSignSDK\Api\TeamApi($config);
+
+$teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
+
+try {
+    $result = $api->teamMembers($teamId);
+    print_r($result);
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
+    echo "Exception when calling HelloSign API: "
+        . print_r($error->getError());
+}
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **team_id** | **string**| The id of the team that a member list is being requested from. | |
+| **page** | **int**| Which page number of the team member list to return. Defaults to `1`. | [optional] [default to 1] |
+| **page_size** | **int**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
+
+### Return type
+
+[**\HelloSignSDK\Model\TeamMembersResponse**](../Model/TeamMembersResponse.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `teamRemoveMember()`
 
 ```php
@@ -317,6 +446,71 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `teamSubTeams()`
+
+```php
+teamSubTeams($team_id, $page, $page_size): \HelloSignSDK\Model\TeamSubTeamsResponse
+```
+
+List Sub Teams
+
+Provides a paginated list of sub teams that belong to a given team.
+
+### Example
+
+```php
+<?php
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$config = HelloSignSDK\Configuration::getDefaultConfiguration();
+
+// Configure HTTP basic authorization: api_key
+$config->setUsername("YOUR_API_KEY");
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+$api = new HelloSignSDK\Api\TeamApi($config);
+
+$teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
+
+try {
+    $result = $api->teamSubTeams($teamId);
+    print_r($result);
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
+    echo "Exception when calling HelloSign API: "
+        . print_r($error->getError());
+}
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **team_id** | **string**| The id of the parent Team. | |
+| **page** | **int**| Which page number of the SubTeam List to return. Defaults to `1`. | [optional] [default to 1] |
+| **page_size** | **int**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
+
+### Return type
+
+[**\HelloSignSDK\Model\TeamSubTeamsResponse**](../Model/TeamSubTeamsResponse.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
