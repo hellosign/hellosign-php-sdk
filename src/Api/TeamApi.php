@@ -1276,6 +1276,664 @@ class TeamApi
     }
 
     /**
+     * Operation teamInfo
+     *
+     * Get Team Info
+     *
+     * @param string $team_id The id of the team. (optional)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return Model\TeamGetInfoResponse
+     */
+    public function teamInfo(string $team_id = null)
+    {
+        list($response) = $this->teamInfoWithHttpInfo($team_id);
+
+        return $response;
+    }
+
+    /**
+     * Operation teamInfoWithHttpInfo
+     *
+     * Get Team Info
+     *
+     * @param string $team_id The id of the team. (optional)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return array of Model\TeamGetInfoResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function teamInfoWithHttpInfo(string $team_id = null)
+    {
+        $request = $this->teamInfoRequest($team_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\TeamGetInfoResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\TeamGetInfoResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $returnType = '\HelloSignSDK\Model\TeamGetInfoResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+            ];
+        } catch (ApiException $e) {
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\TeamGetInfoResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation teamInfoAsync
+     *
+     * Get Team Info
+     *
+     * @param string $team_id The id of the team. (optional)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function teamInfoAsync(string $team_id = null)
+    {
+        return $this->teamInfoAsyncWithHttpInfo($team_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation teamInfoAsyncWithHttpInfo
+     *
+     * Get Team Info
+     *
+     * @param string $team_id The id of the team. (optional)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function teamInfoAsyncWithHttpInfo(string $team_id = null)
+    {
+        $returnType = '\HelloSignSDK\Model\TeamGetInfoResponse';
+        $request = $this->teamInfoRequest($team_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders(),
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'teamInfo'
+     *
+     * @param string $team_id The id of the team. (optional)
+     *
+     * @throws InvalidArgumentException
+     * @return Psr7\Request
+     */
+    public function teamInfoRequest(string $team_id = null)
+    {
+        $resourcePath = '/team/info';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        $formParams = [];
+        $multipart = false;
+
+        // query params
+        if ($team_id !== null) {
+            if ('form' === 'form' && is_array($team_id)) {
+                foreach ($team_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['team_id'] = $team_id;
+            }
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['multipart/form-data']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem,
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name' => 'body',
+                        'contents' => $body,
+                        'headers' => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                $httpBody = new Psr7\MultipartStream($multipartContents);
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Psr7\Query::build($queryParams);
+
+        return new Psr7\Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation teamMembers
+     *
+     * List Team Members
+     *
+     * @param string $team_id The id of the team that a member list is being requested from. (required)
+     * @param int $page Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return Model\TeamMembersResponse
+     */
+    public function teamMembers(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        list($response) = $this->teamMembersWithHttpInfo($team_id, $page, $page_size);
+
+        return $response;
+    }
+
+    /**
+     * Operation teamMembersWithHttpInfo
+     *
+     * List Team Members
+     *
+     * @param string $team_id The id of the team that a member list is being requested from. (required)
+     * @param int $page Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return array of Model\TeamMembersResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function teamMembersWithHttpInfo(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        $request = $this->teamMembersRequest($team_id, $page, $page_size);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\TeamMembersResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\TeamMembersResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $returnType = '\HelloSignSDK\Model\TeamMembersResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+            ];
+        } catch (ApiException $e) {
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\TeamMembersResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation teamMembersAsync
+     *
+     * List Team Members
+     *
+     * @param string $team_id The id of the team that a member list is being requested from. (required)
+     * @param int $page Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function teamMembersAsync(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        return $this->teamMembersAsyncWithHttpInfo($team_id, $page, $page_size)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation teamMembersAsyncWithHttpInfo
+     *
+     * List Team Members
+     *
+     * @param string $team_id The id of the team that a member list is being requested from. (required)
+     * @param int $page Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function teamMembersAsyncWithHttpInfo(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        $returnType = '\HelloSignSDK\Model\TeamMembersResponse';
+        $request = $this->teamMembersRequest($team_id, $page, $page_size);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders(),
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'teamMembers'
+     *
+     * @param string $team_id The id of the team that a member list is being requested from. (required)
+     * @param int $page Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws InvalidArgumentException
+     * @return Psr7\Request
+     */
+    public function teamMembersRequest(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        // verify the required parameter 'team_id' is set
+        if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $team_id when calling teamMembers'
+            );
+        }
+        if ($page_size !== null && $page_size > 100) {
+            throw new InvalidArgumentException('invalid value for "$page_size" when calling TeamApi.teamMembers, must be smaller than or equal to 100.');
+        }
+        if ($page_size !== null && $page_size < 1) {
+            throw new InvalidArgumentException('invalid value for "$page_size" when calling TeamApi.teamMembers, must be bigger than or equal to 1.');
+        }
+
+        $resourcePath = '/team/members/{team_id}';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        $formParams = [];
+        $multipart = false;
+
+        // query params
+        if ($page !== null) {
+            if ('form' === 'form' && is_array($page)) {
+                foreach ($page as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page'] = $page;
+            }
+        }
+        // query params
+        if ($page_size !== null) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page_size'] = $page_size;
+            }
+        }
+
+        // path params
+        if ($team_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'team_id' . '}',
+                ObjectSerializer::toPathValue($team_id),
+                $resourcePath
+            );
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['multipart/form-data']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem,
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name' => 'body',
+                        'contents' => $body,
+                        'headers' => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                $httpBody = new Psr7\MultipartStream($multipartContents);
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Psr7\Query::build($queryParams);
+
+        return new Psr7\Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation teamRemoveMember
      *
      * Remove User from Team
@@ -1586,6 +2244,356 @@ class TeamApi
 
         return new Psr7\Request(
             'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation teamSubTeams
+     *
+     * List Sub Teams
+     *
+     * @param string $team_id The id of the parent Team. (required)
+     * @param int $page Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return Model\TeamSubTeamsResponse
+     */
+    public function teamSubTeams(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        list($response) = $this->teamSubTeamsWithHttpInfo($team_id, $page, $page_size);
+
+        return $response;
+    }
+
+    /**
+     * Operation teamSubTeamsWithHttpInfo
+     *
+     * List Sub Teams
+     *
+     * @param string $team_id The id of the parent Team. (required)
+     * @param int $page Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return array of Model\TeamSubTeamsResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function teamSubTeamsWithHttpInfo(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        $request = $this->teamSubTeamsRequest($team_id, $page, $page_size);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\TeamSubTeamsResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\TeamSubTeamsResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $returnType = '\HelloSignSDK\Model\TeamSubTeamsResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+            ];
+        } catch (ApiException $e) {
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\TeamSubTeamsResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation teamSubTeamsAsync
+     *
+     * List Sub Teams
+     *
+     * @param string $team_id The id of the parent Team. (required)
+     * @param int $page Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function teamSubTeamsAsync(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        return $this->teamSubTeamsAsyncWithHttpInfo($team_id, $page, $page_size)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation teamSubTeamsAsyncWithHttpInfo
+     *
+     * List Sub Teams
+     *
+     * @param string $team_id The id of the parent Team. (required)
+     * @param int $page Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function teamSubTeamsAsyncWithHttpInfo(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        $returnType = '\HelloSignSDK\Model\TeamSubTeamsResponse';
+        $request = $this->teamSubTeamsRequest($team_id, $page, $page_size);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders(),
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'teamSubTeams'
+     *
+     * @param string $team_id The id of the parent Team. (required)
+     * @param int $page Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+     * @param int $page_size Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+     *
+     * @throws InvalidArgumentException
+     * @return Psr7\Request
+     */
+    public function teamSubTeamsRequest(string $team_id, int $page = 1, int $page_size = 20)
+    {
+        // verify the required parameter 'team_id' is set
+        if ($team_id === null || (is_array($team_id) && count($team_id) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $team_id when calling teamSubTeams'
+            );
+        }
+        if ($page_size !== null && $page_size > 100) {
+            throw new InvalidArgumentException('invalid value for "$page_size" when calling TeamApi.teamSubTeams, must be smaller than or equal to 100.');
+        }
+        if ($page_size !== null && $page_size < 1) {
+            throw new InvalidArgumentException('invalid value for "$page_size" when calling TeamApi.teamSubTeams, must be bigger than or equal to 1.');
+        }
+
+        $resourcePath = '/team/sub_teams/{team_id}';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        $formParams = [];
+        $multipart = false;
+
+        // query params
+        if ($page !== null) {
+            if ('form' === 'form' && is_array($page)) {
+                foreach ($page as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page'] = $page;
+            }
+        }
+        // query params
+        if ($page_size !== null) {
+            if ('form' === 'form' && is_array($page_size)) {
+                foreach ($page_size as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page_size'] = $page_size;
+            }
+        }
+
+        // path params
+        if ($team_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'team_id' . '}',
+                ObjectSerializer::toPathValue($team_id),
+                $resourcePath
+            );
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['multipart/form-data']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem,
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name' => 'body',
+                        'contents' => $body,
+                        'headers' => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                $httpBody = new Psr7\MultipartStream($multipartContents);
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Psr7\Query::build($queryParams);
+
+        return new Psr7\Request(
+            'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

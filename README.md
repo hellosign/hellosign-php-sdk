@@ -194,7 +194,10 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | *TeamApi* | [**teamCreate**](docs/Api/TeamApi.md#teamcreate) | **POST** /team/create | Create Team |
 | *TeamApi* | [**teamDelete**](docs/Api/TeamApi.md#teamdelete) | **DELETE** /team/destroy | Delete Team |
 | *TeamApi* | [**teamGet**](docs/Api/TeamApi.md#teamget) | **GET** /team | Get Team |
+| *TeamApi* | [**teamInfo**](docs/Api/TeamApi.md#teaminfo) | **GET** /team/info | Get Team Info |
+| *TeamApi* | [**teamMembers**](docs/Api/TeamApi.md#teammembers) | **GET** /team/members/{team_id} | List Team Members |
 | *TeamApi* | [**teamRemoveMember**](docs/Api/TeamApi.md#teamremovemember) | **POST** /team/remove_member | Remove User from Team |
+| *TeamApi* | [**teamSubTeams**](docs/Api/TeamApi.md#teamsubteams) | **GET** /team/sub_teams/{team_id} | List Sub Teams |
 | *TeamApi* | [**teamUpdate**](docs/Api/TeamApi.md#teamupdate) | **PUT** /team | Update Team |
 | *TemplateApi* | [**templateAddUser**](docs/Api/TemplateApi.md#templateadduser) | **POST** /template/add_user/{template_id} | Add User to Template |
 | *TemplateApi* | [**templateCreateEmbeddedDraft**](docs/Api/TemplateApi.md#templatecreateembeddeddraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
@@ -269,6 +272,16 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [SignatureRequestResponseCustomFieldText](docs/Model/SignatureRequestResponseCustomFieldText.md)
 - [SignatureRequestResponseCustomFieldTypeEnum](docs/Model/SignatureRequestResponseCustomFieldTypeEnum.md)
 - [SignatureRequestResponseData](docs/Model/SignatureRequestResponseData.md)
+- [SignatureRequestResponseDataTypeEnum](docs/Model/SignatureRequestResponseDataTypeEnum.md)
+- [SignatureRequestResponseDataValueCheckbox](docs/Model/SignatureRequestResponseDataValueCheckbox.md)
+- [SignatureRequestResponseDataValueCheckboxMerge](docs/Model/SignatureRequestResponseDataValueCheckboxMerge.md)
+- [SignatureRequestResponseDataValueDateSigned](docs/Model/SignatureRequestResponseDataValueDateSigned.md)
+- [SignatureRequestResponseDataValueDropdown](docs/Model/SignatureRequestResponseDataValueDropdown.md)
+- [SignatureRequestResponseDataValueInitials](docs/Model/SignatureRequestResponseDataValueInitials.md)
+- [SignatureRequestResponseDataValueRadio](docs/Model/SignatureRequestResponseDataValueRadio.md)
+- [SignatureRequestResponseDataValueSignature](docs/Model/SignatureRequestResponseDataValueSignature.md)
+- [SignatureRequestResponseDataValueText](docs/Model/SignatureRequestResponseDataValueText.md)
+- [SignatureRequestResponseDataValueTextMerge](docs/Model/SignatureRequestResponseDataValueTextMerge.md)
 - [SignatureRequestResponseSignatures](docs/Model/SignatureRequestResponseSignatures.md)
 - [SignatureRequestSendRequest](docs/Model/SignatureRequestSendRequest.md)
 - [SignatureRequestSendWithTemplateRequest](docs/Model/SignatureRequestSendWithTemplateRequest.md)
@@ -302,15 +315,22 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [SubSignatureRequestSigner](docs/Model/SubSignatureRequestSigner.md)
 - [SubSignatureRequestTemplateSigner](docs/Model/SubSignatureRequestTemplateSigner.md)
 - [SubSigningOptions](docs/Model/SubSigningOptions.md)
+- [SubTeamResponse](docs/Model/SubTeamResponse.md)
 - [SubTemplateRole](docs/Model/SubTemplateRole.md)
 - [SubUnclaimedDraftSigner](docs/Model/SubUnclaimedDraftSigner.md)
 - [SubUnclaimedDraftTemplateSigner](docs/Model/SubUnclaimedDraftTemplateSigner.md)
 - [SubWhiteLabelingOptions](docs/Model/SubWhiteLabelingOptions.md)
 - [TeamAddMemberRequest](docs/Model/TeamAddMemberRequest.md)
 - [TeamCreateRequest](docs/Model/TeamCreateRequest.md)
+- [TeamGetInfoResponse](docs/Model/TeamGetInfoResponse.md)
 - [TeamGetResponse](docs/Model/TeamGetResponse.md)
+- [TeamInfoResponse](docs/Model/TeamInfoResponse.md)
+- [TeamMemberResponse](docs/Model/TeamMemberResponse.md)
+- [TeamMembersResponse](docs/Model/TeamMembersResponse.md)
+- [TeamParentResponse](docs/Model/TeamParentResponse.md)
 - [TeamRemoveMemberRequest](docs/Model/TeamRemoveMemberRequest.md)
 - [TeamResponse](docs/Model/TeamResponse.md)
+- [TeamSubTeamsResponse](docs/Model/TeamSubTeamsResponse.md)
 - [TeamUpdateRequest](docs/Model/TeamUpdateRequest.md)
 - [TemplateAddUserRequest](docs/Model/TemplateAddUserRequest.md)
 - [TemplateCreateEmbeddedDraftRequest](docs/Model/TemplateCreateEmbeddedDraftRequest.md)

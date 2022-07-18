@@ -30,7 +30,6 @@ namespace HelloSignSDK\Model;
 
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
-use InvalidArgumentException;
 use JsonSerializable;
 
 /**
@@ -45,9 +44,9 @@ use JsonSerializable;
  * @template TValue mixed|null
  * @internal This class should not be instantiated directly
  */
-class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonSerializable
+abstract class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = 'type';
 
     /**
      * The original name of the model.
@@ -65,9 +64,7 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
         'api_id' => 'string',
         'signature_id' => 'string',
         'name' => 'string',
-        'value' => 'string',
         'required' => 'bool',
-        'type' => 'string',
     ];
 
     /**
@@ -81,9 +78,7 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
         'api_id' => null,
         'signature_id' => null,
         'name' => null,
-        'value' => null,
         'required' => null,
-        'type' => null,
     ];
 
     /**
@@ -116,9 +111,7 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
         'api_id' => 'api_id',
         'signature_id' => 'signature_id',
         'name' => 'name',
-        'value' => 'value',
         'required' => 'required',
-        'type' => 'type',
     ];
 
     /**
@@ -130,9 +123,7 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
         'api_id' => 'setApiId',
         'signature_id' => 'setSignatureId',
         'name' => 'setName',
-        'value' => 'setValue',
         'required' => 'setRequired',
-        'type' => 'setType',
     ];
 
     /**
@@ -144,9 +135,7 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
         'api_id' => 'getApiId',
         'signature_id' => 'getSignatureId',
         'name' => 'getName',
-        'value' => 'getValue',
         'required' => 'getRequired',
-        'type' => 'getType',
     ];
 
     /**
@@ -190,36 +179,6 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
         return self::$openAPIModelName;
     }
 
-    public const TYPE_TEXT = 'text';
-    public const TYPE_CHECKBOX = 'checkbox';
-    public const TYPE_DATE_SIGNED = 'date_signed';
-    public const TYPE_DROPDOWN = 'dropdown';
-    public const TYPE_INITIALS = 'initials';
-    public const TYPE_RADIO = 'radio';
-    public const TYPE_SIGNATURE = 'signature';
-    public const TYPE_TEXT_MERGE = 'text-merge';
-    public const TYPE_CHECKBOX_MERGE = 'checkbox-merge';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_TEXT,
-            self::TYPE_CHECKBOX,
-            self::TYPE_DATE_SIGNED,
-            self::TYPE_DROPDOWN,
-            self::TYPE_INITIALS,
-            self::TYPE_RADIO,
-            self::TYPE_SIGNATURE,
-            self::TYPE_TEXT_MERGE,
-            self::TYPE_CHECKBOX_MERGE,
-        ];
-    }
-
     /**
      * Associative array for storing property values
      *
@@ -238,20 +197,47 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
         $this->container['api_id'] = $data['api_id'] ?? null;
         $this->container['signature_id'] = $data['signature_id'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
-        $this->container['value'] = $data['value'] ?? null;
         $this->container['required'] = $data['required'] ?? null;
-        $this->container['type'] = $data['type'] ?? null;
+
+        // Initialize discriminator property with the model name.
+        $this->container['type'] = static::$openAPIModelName;
     }
 
-    public static function fromArray(array $data): SignatureRequestResponseData
+    public static function discriminatorClassName(array $data): ?string
     {
-        /** @var SignatureRequestResponseData $obj */
-        $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
-            SignatureRequestResponseData::class,
-        );
+        if (!array_key_exists('type', $data)) {
+            return null;
+        }
 
-        return $obj;
+        if ($data['type'] === 'checkbox') {
+            return SignatureRequestResponseDataValueCheckbox::class;
+        }
+        if ($data['type'] === 'checkbox-merge') {
+            return SignatureRequestResponseDataValueCheckboxMerge::class;
+        }
+        if ($data['type'] === 'date_signed') {
+            return SignatureRequestResponseDataValueDateSigned::class;
+        }
+        if ($data['type'] === 'dropdown') {
+            return SignatureRequestResponseDataValueDropdown::class;
+        }
+        if ($data['type'] === 'initials') {
+            return SignatureRequestResponseDataValueInitials::class;
+        }
+        if ($data['type'] === 'radio') {
+            return SignatureRequestResponseDataValueRadio::class;
+        }
+        if ($data['type'] === 'signature') {
+            return SignatureRequestResponseDataValueSignature::class;
+        }
+        if ($data['type'] === 'text') {
+            return SignatureRequestResponseDataValueText::class;
+        }
+        if ($data['type'] === 'text-merge') {
+            return SignatureRequestResponseDataValueTextMerge::class;
+        }
+
+        return null;
     }
 
     /**
@@ -262,15 +248,6 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
 
         return $invalidProperties;
     }
@@ -359,30 +336,6 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
     }
 
     /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value the value of the form field
-     *
-     * @return self
-     */
-    public function setValue(?string $value)
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-
-    /**
      * Gets required
      *
      * @return bool|null
@@ -402,40 +355,6 @@ class SignatureRequestResponseData implements ModelInterface, ArrayAccess, JsonS
     public function setRequired(?bool $required)
     {
         $this->container['required'] = $required;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type - `text`: A text input field - `checkbox`: A yes/no checkbox - `date_signed`: A date - `dropdown`: An input field for dropdowns - `initials`: An input field for initials - `radio`: An input field for radios - `signature`: A signature input field - `text-merge`: A text field that has default text set by the api - `checkbox-merge`: A checkbox field that has default value set by the api
-     *
-     * @return self
-     */
-    public function setType(?string $type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
 
         return $this;
     }
