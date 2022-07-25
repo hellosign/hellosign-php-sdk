@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 | `signature_id` | ```string``` |  The ID of the signature to which this response is linked.  |  |
 | `name` | ```string``` |  The name of the form field.  |  |
 | `required` | ```bool``` |  A boolean value denoting if this field is required.  |  |
+| `type` | ```string``` |    |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

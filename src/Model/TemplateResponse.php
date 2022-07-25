@@ -626,7 +626,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets named_form_fields
      *
-     * @param TemplateResponseNamedFormField[]|null $named_form_fields use \"form_fields\" under the \"documents\" array instead
+     * @param TemplateResponseNamedFormField[]|null $named_form_fields Deprecated. Use `form_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c=200&path=template/documents&t=response) array instead.
      *
      * @return self
      * @deprecated

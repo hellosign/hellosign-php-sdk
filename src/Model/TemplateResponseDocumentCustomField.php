@@ -691,7 +691,7 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     /**
      * Sets named_form_fields
      *
-     * @param array|null $named_form_fields _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS
+     * @param array|null $named_form_fields Deprecated. Use `form_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c=200&path=template/documents&t=response) array instead.
      *
      * @return self
      * @deprecated

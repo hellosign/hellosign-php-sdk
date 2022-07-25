@@ -65,6 +65,7 @@ abstract class SignatureRequestResponseData implements ModelInterface, ArrayAcce
         'signature_id' => 'string',
         'name' => 'string',
         'required' => 'bool',
+        'type' => 'string',
     ];
 
     /**
@@ -79,6 +80,7 @@ abstract class SignatureRequestResponseData implements ModelInterface, ArrayAcce
         'signature_id' => null,
         'name' => null,
         'required' => null,
+        'type' => null,
     ];
 
     /**
@@ -112,6 +114,7 @@ abstract class SignatureRequestResponseData implements ModelInterface, ArrayAcce
         'signature_id' => 'signature_id',
         'name' => 'name',
         'required' => 'required',
+        'type' => 'type',
     ];
 
     /**
@@ -124,6 +127,7 @@ abstract class SignatureRequestResponseData implements ModelInterface, ArrayAcce
         'signature_id' => 'setSignatureId',
         'name' => 'setName',
         'required' => 'setRequired',
+        'type' => 'setType',
     ];
 
     /**
@@ -136,6 +140,7 @@ abstract class SignatureRequestResponseData implements ModelInterface, ArrayAcce
         'signature_id' => 'getSignatureId',
         'name' => 'getName',
         'required' => 'getRequired',
+        'type' => 'getType',
     ];
 
     /**
@@ -198,6 +203,7 @@ abstract class SignatureRequestResponseData implements ModelInterface, ArrayAcce
         $this->container['signature_id'] = $data['signature_id'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['required'] = $data['required'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
 
         // Initialize discriminator property with the model name.
         $this->container['type'] = static::$openAPIModelName;
@@ -355,6 +361,30 @@ abstract class SignatureRequestResponseData implements ModelInterface, ArrayAcce
     public function setRequired(?bool $required)
     {
         $this->container['required'] = $required;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type type
+     *
+     * @return self
+     */
+    public function setType(?string $type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }
