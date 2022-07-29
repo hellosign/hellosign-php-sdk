@@ -47,7 +47,7 @@ recommended to use
 Run the following and everything is done for you:
 
 ```shell
-./build
+./run-build
 ```
 
 *Attention*: Any changes you have made to the SDK code that you have not made

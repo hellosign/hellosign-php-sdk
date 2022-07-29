@@ -2,10 +2,10 @@
 /.openapi-generator-ignore  export-ignore
 /.travis.yml                export-ignore
 /bin                        export-ignore
-/build                      export-ignore
 /examples                   export-ignore
 /oas                        export-ignore
 /openapi-config.yaml        export-ignore
+/run-build                  export-ignore
 /templates                  export-ignore
 /test                       export-ignore
 

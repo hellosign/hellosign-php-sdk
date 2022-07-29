@@ -31,4 +31,4 @@ jobs:
           git submodule update --init --recursive --remote
           cd oas && git fetch origin && git checkout ${{ env.branch_name }}
           cd ../
-          ./build
+          ./run-build
