@@ -2,7 +2,7 @@ generatorName: php
 typeMappings:
   "object": "array"
 additionalProperties:
-  packageName: hellosign/openapi-php-sdk
+  packageName: hellosign/hellosign-php-sdk
   packageVersion: "^6.0.0"
   artifactVersion: "v6.0.0-beta26"
   invokerPackage: "HelloSignSDK"

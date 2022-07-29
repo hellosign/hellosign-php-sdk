@@ -72,8 +72,9 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
     "require": {
-        "{{packageName}}": "{{packageVersion}}"
-    }
+        "{{packageName}}": "dev-openapi"
+    },
+    "minimum-stability": "dev"
 }
 ```
 
@@ -82,7 +83,7 @@ Then run `composer install`.
 Alternatively, install directly with
 
 ```
-composer require {{packageName}}:{{packageVersion}}
+composer require {{packageName}}:dev-openapi
 ```
 
 ## Getting Started
