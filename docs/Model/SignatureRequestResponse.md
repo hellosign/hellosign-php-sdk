@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 | `template_ids` | ```string[]``` |  Templates IDs used in this SignatureRequest (if any).  |  |
 | `custom_fields` | [```\HelloSignSDK\Model\SignatureRequestResponseCustomFieldBase[]```](SignatureRequestResponseCustomFieldBase.md) |  An array of Custom Field objects containing the name and type of each custom field.<br><br>* Text Field uses `SignatureRequestResponseCustomFieldText`<br>* Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`  |  |
 | `attachments` | [```\HelloSignSDK\Model\SignatureRequestResponseAttachment[]```](SignatureRequestResponseAttachment.md) |  Signer attachments.  |  |
-| `response_data` | [```\HelloSignSDK\Model\SignatureRequestResponseData[]```](SignatureRequestResponseData.md) |  An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.  |  |
+| `response_data` | [```\HelloSignSDK\Model\SignatureRequestResponseDataBase[]```](SignatureRequestResponseDataBase.md) |  An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.  |  |
 | `signatures` | [```\HelloSignSDK\Model\SignatureRequestResponseSignatures[]```](SignatureRequestResponseSignatures.md) |  An array of signature objects, 1 for each signer.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -1,4 +1,4 @@
-# hellosign/openapi-php-sdk
+# hellosign/hellosign-php-sdk
 
 HelloSign v3 API
 
@@ -272,7 +272,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [SignatureRequestResponseCustomFieldCheckbox](docs/Model/SignatureRequestResponseCustomFieldCheckbox.md)
 - [SignatureRequestResponseCustomFieldText](docs/Model/SignatureRequestResponseCustomFieldText.md)
 - [SignatureRequestResponseCustomFieldTypeEnum](docs/Model/SignatureRequestResponseCustomFieldTypeEnum.md)
-- [SignatureRequestResponseData](docs/Model/SignatureRequestResponseData.md)
+- [SignatureRequestResponseDataBase](docs/Model/SignatureRequestResponseDataBase.md)
 - [SignatureRequestResponseDataTypeEnum](docs/Model/SignatureRequestResponseDataTypeEnum.md)
 - [SignatureRequestResponseDataValueCheckbox](docs/Model/SignatureRequestResponseDataValueCheckbox.md)
 - [SignatureRequestResponseDataValueCheckboxMerge](docs/Model/SignatureRequestResponseDataValueCheckboxMerge.md)

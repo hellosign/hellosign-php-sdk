@@ -40,7 +40,7 @@ use HelloSignSDK\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SignatureRequestResponseDataValueSignature extends SignatureRequestResponseData
+class SignatureRequestResponseDataValueSignature extends SignatureRequestResponseDataBase
 {
     public const DISCRIMINATOR = null;
 

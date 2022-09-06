@@ -1,6 +1,6 @@
 <?php
 /**
- * SignatureRequestResponseDataValueTextMerge
+ * SignatureRequestResponseDataBase
  *
  * PHP version 7.3
  *
@@ -28,28 +28,32 @@
 
 namespace HelloSignSDK\Model;
 
+use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
+use JsonSerializable;
 
 /**
- * SignatureRequestResponseDataValueTextMerge Class Doc Comment
+ * SignatureRequestResponseDataBase Class Doc Comment
  *
  * @category Class
+ * @description An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
  * @author   OpenAPI Generator team
  * @see     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
+ * @internal This class should not be instantiated directly
  */
-class SignatureRequestResponseDataValueTextMerge extends SignatureRequestResponseDataBase
+abstract class SignatureRequestResponseDataBase implements ModelInterface, ArrayAccess, JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = 'type';
 
     /**
      * The original name of the model.
      *
      * @var string
      */
-    protected static $openAPIModelName = 'SignatureRequestResponseDataValueTextMerge';
+    protected static $openAPIModelName = 'SignatureRequestResponseDataBase';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +61,11 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      * @var string[]
      */
     protected static $openAPITypes = [
+        'api_id' => 'string',
+        'signature_id' => 'string',
+        'name' => 'string',
+        'required' => 'bool',
         'type' => 'string',
-        'value' => 'string',
     ];
 
     /**
@@ -69,8 +76,11 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'api_id' => null,
+        'signature_id' => null,
+        'name' => null,
+        'required' => null,
         'type' => null,
-        'value' => null,
     ];
 
     /**
@@ -80,7 +90,7 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes + parent::openAPITypes();
+        return self::$openAPITypes;
     }
 
     /**
@@ -90,7 +100,7 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats + parent::openAPIFormats();
+        return self::$openAPIFormats;
     }
 
     /**
@@ -100,8 +110,11 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      * @var string[]
      */
     protected static $attributeMap = [
+        'api_id' => 'api_id',
+        'signature_id' => 'signature_id',
+        'name' => 'name',
+        'required' => 'required',
         'type' => 'type',
-        'value' => 'value',
     ];
 
     /**
@@ -110,8 +123,11 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      * @var string[]
      */
     protected static $setters = [
+        'api_id' => 'setApiId',
+        'signature_id' => 'setSignatureId',
+        'name' => 'setName',
+        'required' => 'setRequired',
         'type' => 'setType',
-        'value' => 'setValue',
     ];
 
     /**
@@ -120,8 +136,11 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      * @var string[]
      */
     protected static $getters = [
+        'api_id' => 'getApiId',
+        'signature_id' => 'getSignatureId',
+        'name' => 'getName',
+        'required' => 'getRequired',
         'type' => 'getType',
-        'value' => 'getValue',
     ];
 
     /**
@@ -132,7 +151,7 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -142,7 +161,7 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -152,7 +171,7 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -166,6 +185,13 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
     }
 
     /**
+     * Associative array for storing property values
+     *
+     * @var array
+     */
+    protected $container = [];
+
+    /**
      * Constructor
      *
      * @param array|null $data Associated array of property values
@@ -173,21 +199,51 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      */
     public function __construct(array $data = null)
     {
-        parent::__construct($data);
+        $this->container['api_id'] = $data['api_id'] ?? null;
+        $this->container['signature_id'] = $data['signature_id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['required'] = $data['required'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
 
-        $this->container['type'] = $data['type'] ?? 'text-merge';
-        $this->container['value'] = $data['value'] ?? null;
+        // Initialize discriminator property with the model name.
+        $this->container['type'] = static::$openAPIModelName;
     }
 
-    public static function fromArray(array $data): SignatureRequestResponseDataValueTextMerge
+    public static function discriminatorClassName(array $data): ?string
     {
-        /** @var SignatureRequestResponseDataValueTextMerge $obj */
-        $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
-            SignatureRequestResponseDataValueTextMerge::class,
-        );
+        if (!array_key_exists('type', $data)) {
+            return null;
+        }
 
-        return $obj;
+        if ($data['type'] === 'checkbox') {
+            return SignatureRequestResponseDataValueCheckbox::class;
+        }
+        if ($data['type'] === 'checkbox-merge') {
+            return SignatureRequestResponseDataValueCheckboxMerge::class;
+        }
+        if ($data['type'] === 'date_signed') {
+            return SignatureRequestResponseDataValueDateSigned::class;
+        }
+        if ($data['type'] === 'dropdown') {
+            return SignatureRequestResponseDataValueDropdown::class;
+        }
+        if ($data['type'] === 'initials') {
+            return SignatureRequestResponseDataValueInitials::class;
+        }
+        if ($data['type'] === 'radio') {
+            return SignatureRequestResponseDataValueRadio::class;
+        }
+        if ($data['type'] === 'signature') {
+            return SignatureRequestResponseDataValueSignature::class;
+        }
+        if ($data['type'] === 'text') {
+            return SignatureRequestResponseDataValueText::class;
+        }
+        if ($data['type'] === 'text-merge') {
+            return SignatureRequestResponseDataValueTextMerge::class;
+        }
+
+        return null;
     }
 
     /**
@@ -197,7 +253,7 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
         return $invalidProperties;
     }
@@ -214,6 +270,102 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
     }
 
     /**
+     * Gets api_id
+     *
+     * @return string|null
+     */
+    public function getApiId()
+    {
+        return $this->container['api_id'];
+    }
+
+    /**
+     * Sets api_id
+     *
+     * @param string|null $api_id the unique ID for this field
+     *
+     * @return self
+     */
+    public function setApiId(?string $api_id)
+    {
+        $this->container['api_id'] = $api_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets signature_id
+     *
+     * @return string|null
+     */
+    public function getSignatureId()
+    {
+        return $this->container['signature_id'];
+    }
+
+    /**
+     * Sets signature_id
+     *
+     * @param string|null $signature_id the ID of the signature to which this response is linked
+     *
+     * @return self
+     */
+    public function setSignatureId(?string $signature_id)
+    {
+        $this->container['signature_id'] = $signature_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name the name of the form field
+     *
+     * @return self
+     */
+    public function setName(?string $name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets required
+     *
+     * @return bool|null
+     */
+    public function getRequired()
+    {
+        return $this->container['required'];
+    }
+
+    /**
+     * Sets required
+     *
+     * @param bool|null $required a boolean value denoting if this field is required
+     *
+     * @return self
+     */
+    public function setRequired(?bool $required)
+    {
+        $this->container['required'] = $required;
+
+        return $this;
+    }
+
+    /**
      * Gets type
      *
      * @return string|null
@@ -226,37 +378,13 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
     /**
      * Sets type
      *
-     * @param string|null $type A text field that has default text set by the api
+     * @param string|null $type type
      *
      * @return self
      */
     public function setType(?string $type)
     {
         $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value the value of the form field
-     *
-     * @return self
-     */
-    public function setValue(?string $value)
-    {
-        $this->container['value'] = $value;
 
         return $this;
     }
