@@ -81,7 +81,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'template_ids' => 'string[]',
         'custom_fields' => '\HelloSignSDK\Model\SignatureRequestResponseCustomFieldBase[]',
         'attachments' => '\HelloSignSDK\Model\SignatureRequestResponseAttachment[]',
-        'response_data' => '\HelloSignSDK\Model\SignatureRequestResponseData[]',
+        'response_data' => '\HelloSignSDK\Model\SignatureRequestResponseDataBase[]',
         'signatures' => '\HelloSignSDK\Model\SignatureRequestResponseSignatures[]',
     ];
 
@@ -825,7 +825,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets response_data
      *
-     * @return SignatureRequestResponseData[]|null
+     * @return SignatureRequestResponseDataBase[]|null
      */
     public function getResponseData()
     {
@@ -835,7 +835,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets response_data
      *
-     * @param SignatureRequestResponseData[]|null $response_data an array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers
+     * @param SignatureRequestResponseDataBase[]|null $response_data an array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers
      *
      * @return self
      */

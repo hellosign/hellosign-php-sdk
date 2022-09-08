@@ -80,7 +80,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
         'template_ids' => 'string[]',
         'custom_fields' => '\HelloSignSDK\Model\SignatureRequestResponseCustomFieldBase[]',
         'attachments' => '\HelloSignSDK\Model\SignatureRequestResponseAttachment[]',
-        'response_data' => '\HelloSignSDK\Model\SignatureRequestResponseData[]',
+        'response_data' => '\HelloSignSDK\Model\SignatureRequestResponseDataBase[]',
         'signatures' => '\HelloSignSDK\Model\SignatureRequestResponseSignatures[]',
         'bulk_send_job_id' => 'string',
     ];
@@ -830,7 +830,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
     /**
      * Gets response_data
      *
-     * @return SignatureRequestResponseData[]|null
+     * @return SignatureRequestResponseDataBase[]|null
      */
     public function getResponseData()
     {
@@ -840,7 +840,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
     /**
      * Sets response_data
      *
-     * @param SignatureRequestResponseData[]|null $response_data an array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers
+     * @param SignatureRequestResponseDataBase[]|null $response_data an array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers
      *
      * @return self
      */

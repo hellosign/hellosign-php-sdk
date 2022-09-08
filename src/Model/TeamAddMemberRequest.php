@@ -30,6 +30,7 @@ namespace HelloSignSDK\Model;
 
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
+use InvalidArgumentException;
 use JsonSerializable;
 
 /**
@@ -61,6 +62,7 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     protected static $openAPITypes = [
         'account_id' => 'string',
         'email_address' => 'string',
+        'role' => 'string',
     ];
 
     /**
@@ -73,6 +75,7 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     protected static $openAPIFormats = [
         'account_id' => null,
         'email_address' => 'email',
+        'role' => null,
     ];
 
     /**
@@ -104,6 +107,7 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     protected static $attributeMap = [
         'account_id' => 'account_id',
         'email_address' => 'email_address',
+        'role' => 'role',
     ];
 
     /**
@@ -114,6 +118,7 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     protected static $setters = [
         'account_id' => 'setAccountId',
         'email_address' => 'setEmailAddress',
+        'role' => 'setRole',
     ];
 
     /**
@@ -124,6 +129,7 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     protected static $getters = [
         'account_id' => 'getAccountId',
         'email_address' => 'getEmailAddress',
+        'role' => 'getRole',
     ];
 
     /**
@@ -167,6 +173,26 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
         return self::$openAPIModelName;
     }
 
+    public const ROLE_MEMBER = 'Member';
+    public const ROLE_DEVELOPER = 'Developer';
+    public const ROLE_TEAM_MANAGER = 'Team Manager';
+    public const ROLE_ADMIN = 'Admin';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRoleAllowableValues()
+    {
+        return [
+            self::ROLE_MEMBER,
+            self::ROLE_DEVELOPER,
+            self::ROLE_TEAM_MANAGER,
+            self::ROLE_ADMIN,
+        ];
+    }
+
     /**
      * Associative array for storing property values
      *
@@ -184,6 +210,7 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     {
         $this->container['account_id'] = $data['account_id'] ?? null;
         $this->container['email_address'] = $data['email_address'] ?? null;
+        $this->container['role'] = $data['role'] ?? null;
     }
 
     public static function fromArray(array $data): TeamAddMemberRequest
@@ -205,6 +232,15 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($this->container['role']) && !in_array($this->container['role'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'role', must be one of '%s'",
+                $this->container['role'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -264,6 +300,40 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     public function setEmailAddress(?string $email_address)
     {
         $this->container['email_address'] = $email_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets role
+     *
+     * @return string|null
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     *
+     * @param string|null $role A role member will take in a new Team.  **Note**: This parameter is used only if `team_id` is provided.
+     *
+     * @return self
+     */
+    public function setRole(?string $role)
+    {
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($role) && !in_array($role, $allowedValues, true)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'role', must be one of '%s'",
+                    $role,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['role'] = $role;
 
         return $this;
     }
