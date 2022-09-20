@@ -67,7 +67,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
     "require": {
-        "hellosign/hellosign-php-sdk": "v6.0.0-beta22"
+        "hellosign/hellosign-php-sdk": "6.0.0-beta22"
     }
 }
 ```
@@ -77,7 +77,7 @@ Then run `composer install`.
 Alternatively, install directly with
 
 ```
-composer require hellosign/hellosign-php-sdk:v6.0.0-beta22
+composer require hellosign/hellosign-php-sdk:6.0.0-beta22
 ```
 
 ## Getting Started
@@ -86,7 +86,32 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 
 ```php
-REPLACE_ME_WITH_EXAMPLE_FOR__accountCreate_PHP_CODE
+<?php
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$config = HelloSignSDK\Configuration::getDefaultConfiguration();
+
+// Configure HTTP basic authorization: api_key
+$config->setUsername("YOUR_API_KEY");
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+$api = new HelloSignSDK\Api\AccountApi($config);
+
+$data = new HelloSignSDK\Model\AccountCreateRequest();
+$data->setEmailAddress("newuser@hellosign.com");
+
+try {
+    $result = $api->accountCreate($data);
+    print_r($result);
+} catch (HelloSignSDK\ApiHelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
+    echo "Exception when calling HelloSign API: "
+        . print_r($error->getError());
+}
+
 ```
 
 You may also instantiate objects by calling the class' `fromArray()` method:
@@ -209,7 +234,6 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [ApiAppUpdateRequest](docs/Model/ApiAppUpdateRequest.md)
 - [BulkSendJobGetResponse](docs/Model/BulkSendJobGetResponse.md)
 - [BulkSendJobGetResponseSignatureRequests](docs/Model/BulkSendJobGetResponseSignatureRequests.md)
-- [BulkSendJobGetResponseSignatureRequestsAllOf](docs/Model/BulkSendJobGetResponseSignatureRequestsAllOf.md)
 - [BulkSendJobListResponse](docs/Model/BulkSendJobListResponse.md)
 - [BulkSendJobResponse](docs/Model/BulkSendJobResponse.md)
 - [BulkSendJobSendResponse](docs/Model/BulkSendJobSendResponse.md)
@@ -245,30 +269,19 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [SignatureRequestResponseAttachment](docs/Model/SignatureRequestResponseAttachment.md)
 - [SignatureRequestResponseCustomFieldBase](docs/Model/SignatureRequestResponseCustomFieldBase.md)
 - [SignatureRequestResponseCustomFieldCheckbox](docs/Model/SignatureRequestResponseCustomFieldCheckbox.md)
-- [SignatureRequestResponseCustomFieldCheckboxAllOf](docs/Model/SignatureRequestResponseCustomFieldCheckboxAllOf.md)
 - [SignatureRequestResponseCustomFieldText](docs/Model/SignatureRequestResponseCustomFieldText.md)
-- [SignatureRequestResponseCustomFieldTextAllOf](docs/Model/SignatureRequestResponseCustomFieldTextAllOf.md)
 - [SignatureRequestResponseCustomFieldTypeEnum](docs/Model/SignatureRequestResponseCustomFieldTypeEnum.md)
 - [SignatureRequestResponseDataBase](docs/Model/SignatureRequestResponseDataBase.md)
 - [SignatureRequestResponseDataTypeEnum](docs/Model/SignatureRequestResponseDataTypeEnum.md)
 - [SignatureRequestResponseDataValueCheckbox](docs/Model/SignatureRequestResponseDataValueCheckbox.md)
-- [SignatureRequestResponseDataValueCheckboxAllOf](docs/Model/SignatureRequestResponseDataValueCheckboxAllOf.md)
 - [SignatureRequestResponseDataValueCheckboxMerge](docs/Model/SignatureRequestResponseDataValueCheckboxMerge.md)
-- [SignatureRequestResponseDataValueCheckboxMergeAllOf](docs/Model/SignatureRequestResponseDataValueCheckboxMergeAllOf.md)
 - [SignatureRequestResponseDataValueDateSigned](docs/Model/SignatureRequestResponseDataValueDateSigned.md)
-- [SignatureRequestResponseDataValueDateSignedAllOf](docs/Model/SignatureRequestResponseDataValueDateSignedAllOf.md)
 - [SignatureRequestResponseDataValueDropdown](docs/Model/SignatureRequestResponseDataValueDropdown.md)
-- [SignatureRequestResponseDataValueDropdownAllOf](docs/Model/SignatureRequestResponseDataValueDropdownAllOf.md)
 - [SignatureRequestResponseDataValueInitials](docs/Model/SignatureRequestResponseDataValueInitials.md)
-- [SignatureRequestResponseDataValueInitialsAllOf](docs/Model/SignatureRequestResponseDataValueInitialsAllOf.md)
 - [SignatureRequestResponseDataValueRadio](docs/Model/SignatureRequestResponseDataValueRadio.md)
-- [SignatureRequestResponseDataValueRadioAllOf](docs/Model/SignatureRequestResponseDataValueRadioAllOf.md)
 - [SignatureRequestResponseDataValueSignature](docs/Model/SignatureRequestResponseDataValueSignature.md)
-- [SignatureRequestResponseDataValueSignatureAllOf](docs/Model/SignatureRequestResponseDataValueSignatureAllOf.md)
 - [SignatureRequestResponseDataValueText](docs/Model/SignatureRequestResponseDataValueText.md)
-- [SignatureRequestResponseDataValueTextAllOf](docs/Model/SignatureRequestResponseDataValueTextAllOf.md)
 - [SignatureRequestResponseDataValueTextMerge](docs/Model/SignatureRequestResponseDataValueTextMerge.md)
-- [SignatureRequestResponseDataValueTextMergeAllOf](docs/Model/SignatureRequestResponseDataValueTextMergeAllOf.md)
 - [SignatureRequestResponseSignatures](docs/Model/SignatureRequestResponseSignatures.md)
 - [SignatureRequestSendRequest](docs/Model/SignatureRequestSendRequest.md)
 - [SignatureRequestSendWithTemplateRequest](docs/Model/SignatureRequestSendWithTemplateRequest.md)
@@ -286,25 +299,15 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [SubFormFieldRuleTrigger](docs/Model/SubFormFieldRuleTrigger.md)
 - [SubFormFieldsPerDocumentBase](docs/Model/SubFormFieldsPerDocumentBase.md)
 - [SubFormFieldsPerDocumentCheckbox](docs/Model/SubFormFieldsPerDocumentCheckbox.md)
-- [SubFormFieldsPerDocumentCheckboxAllOf](docs/Model/SubFormFieldsPerDocumentCheckboxAllOf.md)
 - [SubFormFieldsPerDocumentCheckboxMerge](docs/Model/SubFormFieldsPerDocumentCheckboxMerge.md)
-- [SubFormFieldsPerDocumentCheckboxMergeAllOf](docs/Model/SubFormFieldsPerDocumentCheckboxMergeAllOf.md)
 - [SubFormFieldsPerDocumentDateSigned](docs/Model/SubFormFieldsPerDocumentDateSigned.md)
-- [SubFormFieldsPerDocumentDateSignedAllOf](docs/Model/SubFormFieldsPerDocumentDateSignedAllOf.md)
 - [SubFormFieldsPerDocumentDropdown](docs/Model/SubFormFieldsPerDocumentDropdown.md)
-- [SubFormFieldsPerDocumentDropdownAllOf](docs/Model/SubFormFieldsPerDocumentDropdownAllOf.md)
 - [SubFormFieldsPerDocumentHyperlink](docs/Model/SubFormFieldsPerDocumentHyperlink.md)
-- [SubFormFieldsPerDocumentHyperlinkAllOf](docs/Model/SubFormFieldsPerDocumentHyperlinkAllOf.md)
 - [SubFormFieldsPerDocumentInitials](docs/Model/SubFormFieldsPerDocumentInitials.md)
-- [SubFormFieldsPerDocumentInitialsAllOf](docs/Model/SubFormFieldsPerDocumentInitialsAllOf.md)
 - [SubFormFieldsPerDocumentRadio](docs/Model/SubFormFieldsPerDocumentRadio.md)
-- [SubFormFieldsPerDocumentRadioAllOf](docs/Model/SubFormFieldsPerDocumentRadioAllOf.md)
 - [SubFormFieldsPerDocumentSignature](docs/Model/SubFormFieldsPerDocumentSignature.md)
-- [SubFormFieldsPerDocumentSignatureAllOf](docs/Model/SubFormFieldsPerDocumentSignatureAllOf.md)
 - [SubFormFieldsPerDocumentText](docs/Model/SubFormFieldsPerDocumentText.md)
-- [SubFormFieldsPerDocumentTextAllOf](docs/Model/SubFormFieldsPerDocumentTextAllOf.md)
 - [SubFormFieldsPerDocumentTextMerge](docs/Model/SubFormFieldsPerDocumentTextMerge.md)
-- [SubFormFieldsPerDocumentTextMergeAllOf](docs/Model/SubFormFieldsPerDocumentTextMergeAllOf.md)
 - [SubFormFieldsPerDocumentTypeEnum](docs/Model/SubFormFieldsPerDocumentTypeEnum.md)
 - [SubMergeField](docs/Model/SubMergeField.md)
 - [SubOAuth](docs/Model/SubOAuth.md)
