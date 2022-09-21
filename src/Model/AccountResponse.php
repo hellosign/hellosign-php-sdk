@@ -68,6 +68,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'quotas' => '\HelloSignSDK\Model\AccountResponseQuotas',
         'callback_url' => 'string',
         'role_code' => 'string',
+        'team_id' => 'string',
         'locale' => 'string',
     ];
 
@@ -87,6 +88,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'quotas' => null,
         'callback_url' => null,
         'role_code' => null,
+        'team_id' => null,
         'locale' => null,
     ];
 
@@ -125,6 +127,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'quotas' => 'quotas',
         'callback_url' => 'callback_url',
         'role_code' => 'role_code',
+        'team_id' => 'team_id',
         'locale' => 'locale',
     ];
 
@@ -142,6 +145,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'quotas' => 'setQuotas',
         'callback_url' => 'setCallbackUrl',
         'role_code' => 'setRoleCode',
+        'team_id' => 'setTeamId',
         'locale' => 'setLocale',
     ];
 
@@ -159,6 +163,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         'quotas' => 'getQuotas',
         'callback_url' => 'getCallbackUrl',
         'role_code' => 'getRoleCode',
+        'team_id' => 'getTeamId',
         'locale' => 'getLocale',
     ];
 
@@ -226,6 +231,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
         $this->container['quotas'] = $data['quotas'] ?? null;
         $this->container['callback_url'] = $data['callback_url'] ?? null;
         $this->container['role_code'] = $data['role_code'] ?? null;
+        $this->container['team_id'] = $data['team_id'] ?? null;
         $this->container['locale'] = $data['locale'] ?? null;
     }
 
@@ -451,6 +457,30 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     public function setRoleCode(?string $role_code)
     {
         $this->container['role_code'] = $role_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets team_id
+     *
+     * @return string|null
+     */
+    public function getTeamId()
+    {
+        return $this->container['team_id'];
+    }
+
+    /**
+     * Sets team_id
+     *
+     * @param string|null $team_id _t__Account::TEAM_ID
+     *
+     * @return self
+     */
+    public function setTeamId(?string $team_id)
+    {
+        $this->container['team_id'] = $team_id;
 
         return $this;
     }
