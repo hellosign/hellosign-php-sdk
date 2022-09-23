@@ -68,7 +68,8 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 {
     "require": {
         "hellosign/hellosign-php-sdk": "^6.0.0"
-    }
+    },
+    "minimum-stability": "dev"
 }
 ```
 
