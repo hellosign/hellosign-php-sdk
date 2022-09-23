@@ -67,7 +67,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
     "require": {
-        "hellosign/hellosign-php-sdk": "dev-openapi"
+        "hellosign/hellosign-php-sdk": "^6.0.0"
     },
     "minimum-stability": "dev"
 }
@@ -78,7 +78,7 @@ Then run `composer install`.
 Alternatively, install directly with
 
 ```
-composer require hellosign/hellosign-php-sdk:dev-openapi
+composer require hellosign/hellosign-php-sdk:^6.0.0
 ```
 
 ## Getting Started
