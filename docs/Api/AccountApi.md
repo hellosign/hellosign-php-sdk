@@ -77,7 +77,7 @@ try {
 ## `accountGet()`
 
 ```php
-accountGet($account_id): \HelloSignSDK\Model\AccountGetResponse
+accountGet($account_id, $email_address): \HelloSignSDK\Model\AccountGetResponse
 ```
 
 Get Account
@@ -116,7 +116,8 @@ try {
 
 |Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| The ID of the Account | [optional] |
+| **account_id** | **string**| `account_id` or `email_address` is required. If both are provided, the account id prevails.   The ID of the Account. | [optional] |
+| **email_address** | **string**| `account_id` or `email_address` is required, If both are provided, the account id prevails.   The email address of the Account. | [optional] |
 
 ### Return type
 

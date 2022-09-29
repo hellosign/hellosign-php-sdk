@@ -88,11 +88,8 @@ class TemplateApiTest extends HelloTestCase
 
         $this->setExpectedResponse($responseData);
 
-        $response = $this->api->templateFiles(
+        $response = $this->api->templateFilesAsFileUrl(
             $templateId,
-            $fileType,
-            $getUrl,
-            $getDataUri
         );
         $serialized = TestUtils::toArray($response);
 

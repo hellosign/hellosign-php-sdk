@@ -9,7 +9,9 @@ All URIs are relative to https://api.hellosign.com/v3.
 | [**signatureRequestCancel()**](SignatureRequestApi.md#signatureRequestCancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request |
 | [**signatureRequestCreateEmbedded()**](SignatureRequestApi.md#signatureRequestCreateEmbedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request |
 | [**signatureRequestCreateEmbeddedWithTemplate()**](SignatureRequestApi.md#signatureRequestCreateEmbeddedWithTemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template |
-| [**signatureRequestFiles()**](SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download Files |
+| [**signatureRequestFiles()**](SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download File |
+| [**signatureRequestFilesAsEncodedString()**](SignatureRequestApi.md#signatureRequestFilesAsEncodedString) | **GET** /signature_request/files/{signature_request_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Download File as Encoded String |
+| [**signatureRequestFilesAsFileUrl()**](SignatureRequestApi.md#signatureRequestFilesAsFileUrl) | **GET** /signature_request/files/{signature_request_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Download File as File Url |
 | [**signatureRequestGet()**](SignatureRequestApi.md#signatureRequestGet) | **GET** /signature_request/{signature_request_id} | Get Signature Request |
 | [**signatureRequestList()**](SignatureRequestApi.md#signatureRequestList) | **GET** /signature_request/list | List Signature Requests |
 | [**signatureRequestReleaseHold()**](SignatureRequestApi.md#signatureRequestReleaseHold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request |
@@ -459,12 +461,12 @@ try {
 ## `signatureRequestFiles()`
 
 ```php
-signatureRequestFiles($signature_request_id, $file_type, $get_url, $get_data_uri): \HelloSignSDK\Model\FileResponse
+signatureRequestFiles($signature_request_id, $file_type): \SplFileObject
 ```
 
-Download Files
+Download File
 
-Obtain a copy of the current documents specified by the `signature_request_id` parameter.  Returns a PDF or ZIP file, or if `get_url` is set, a JSON object with a url to the file (PDFs only). If `get_data_uri` is set, a JSON object with a `data_uri` representing the base64 encoded file (PDFs only) is returned.  If the files are currently being prepared, a status code of `409` will be returned instead.
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of `409` will be returned instead.
 
 ### Example
 
@@ -502,8 +504,132 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **signature_request_id** | **string**| The id of the SignatureRequest to retrieve. | |
 | **file_type** | **string**| Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional] [default to &#39;pdf&#39;] |
-| **get_url** | **bool**| If `true`, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. | [optional] [default to false] |
-| **get_data_uri** | **bool**| If `true`, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. | [optional] [default to false] |
+
+### Return type
+
+**\SplFileObject**
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/pdf`, `application/zip`, `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `signatureRequestFilesAsEncodedString()`
+
+```php
+signatureRequestFilesAsEncodedString($signature_request_id): \HelloSignSDK\Model\FileResponseDataUri
+```
+
+Download File as Encoded String
+
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+
+### Example
+
+```php
+<?php
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$config = HelloSignSDK\Configuration::getDefaultConfiguration();
+
+// Configure HTTP basic authorization: api_key
+$config->setUsername("YOUR_API_KEY");
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
+
+$signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
+
+try {
+    $result = $api->signatureRequestFilesAsEncodedString($signatureRequestId);
+    print_r($result);
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
+    echo "Exception when calling HelloSign API: "
+        . print_r($error->getError());
+}
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **signature_request_id** | **string**| The id of the SignatureRequest to retrieve. | |
+
+### Return type
+
+[**\HelloSignSDK\Model\FileResponseDataUri**](../Model/FileResponseDataUri.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `signatureRequestFilesAsFileUrl()`
+
+```php
+signatureRequestFilesAsFileUrl($signature_request_id): \HelloSignSDK\Model\FileResponse
+```
+
+Download File as File Url
+
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+
+### Example
+
+```php
+<?php
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$config = HelloSignSDK\Configuration::getDefaultConfiguration();
+
+// Configure HTTP basic authorization: api_key
+$config->setUsername("YOUR_API_KEY");
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+$api = new HelloSignSDK\Api\SignatureRequestApi($config);
+
+$signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
+
+try {
+    $result = $api->signatureRequestFilesAsFileUrl($signatureRequestId);
+    print_r($result);
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
+    echo "Exception when calling HelloSign API: "
+        . print_r($error->getError());
+}
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **signature_request_id** | **string**| The id of the SignatureRequest to retrieve. | |
 
 ### Return type
 

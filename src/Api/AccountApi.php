@@ -437,15 +437,16 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id The ID of the Account (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      * @return Model\AccountGetResponse
      */
-    public function accountGet(string $account_id = null)
+    public function accountGet(string $account_id = null, string $email_address = null)
     {
-        list($response) = $this->accountGetWithHttpInfo($account_id);
+        list($response) = $this->accountGetWithHttpInfo($account_id, $email_address);
 
         return $response;
     }
@@ -455,15 +456,16 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id The ID of the Account (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      * @return array of Model\AccountGetResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function accountGetWithHttpInfo(string $account_id = null)
+    public function accountGetWithHttpInfo(string $account_id = null, string $email_address = null)
     {
-        $request = $this->accountGetRequest($account_id);
+        $request = $this->accountGetRequest($account_id, $email_address);
 
         try {
             $options = $this->createHttpClientOption();
@@ -576,14 +578,15 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id The ID of the Account (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function accountGetAsync(string $account_id = null)
+    public function accountGetAsync(string $account_id = null, string $email_address = null)
     {
-        return $this->accountGetAsyncWithHttpInfo($account_id)
+        return $this->accountGetAsyncWithHttpInfo($account_id, $email_address)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -596,15 +599,16 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id The ID of the Account (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function accountGetAsyncWithHttpInfo(string $account_id = null)
+    public function accountGetAsyncWithHttpInfo(string $account_id = null, string $email_address = null)
     {
         $returnType = '\HelloSignSDK\Model\AccountGetResponse';
-        $request = $this->accountGetRequest($account_id);
+        $request = $this->accountGetRequest($account_id, $email_address);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -642,12 +646,13 @@ class AccountApi
     /**
      * Create request for operation 'accountGet'
      *
-     * @param string $account_id The ID of the Account (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
      *
      * @throws InvalidArgumentException
      * @return Psr7\Request
      */
-    public function accountGetRequest(string $account_id = null)
+    public function accountGetRequest(string $account_id = null, string $email_address = null)
     {
         $resourcePath = '/account';
         $queryParams = [];
@@ -665,6 +670,16 @@ class AccountApi
                 }
             } else {
                 $queryParams['account_id'] = $account_id;
+            }
+        }
+        // query params
+        if ($email_address !== null) {
+            if ('form' === 'form' && is_array($email_address)) {
+                foreach ($email_address as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['email_address'] = $email_address;
             }
         }
 

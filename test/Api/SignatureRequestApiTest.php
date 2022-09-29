@@ -135,11 +135,8 @@ class SignatureRequestApiTest extends HelloTestCase
 
         $this->setExpectedResponse($responseData);
 
-        $response = $this->api->signatureRequestFiles(
+        $response = $this->api->signatureRequestFilesAsFileUrl(
             $signatureRequestId,
-            $fileType,
-            $getUrl,
-            $getDataUri
         );
         $serialized = TestUtils::toArray($response);
 
