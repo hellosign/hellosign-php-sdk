@@ -31,6 +31,7 @@ namespace HelloSignSDK\Model;
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
+use ReturnTypeWillChange;
 
 /**
  * SignatureRequestResponse Class Doc Comment
@@ -907,6 +908,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
      *
      * @return bool
      */
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -919,6 +921,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
      *
      * @return mixed|null
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -932,6 +935,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -948,6 +952,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -960,6 +965,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);

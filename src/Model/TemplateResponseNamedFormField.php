@@ -31,6 +31,7 @@ namespace HelloSignSDK\Model;
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
+use ReturnTypeWillChange;
 
 /**
  * TemplateResponseNamedFormField Class Doc Comment
@@ -636,6 +637,7 @@ class TemplateResponseNamedFormField implements ModelInterface, ArrayAccess, Jso
      *
      * @return bool
      */
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -648,6 +650,7 @@ class TemplateResponseNamedFormField implements ModelInterface, ArrayAccess, Jso
      *
      * @return mixed|null
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -661,6 +664,7 @@ class TemplateResponseNamedFormField implements ModelInterface, ArrayAccess, Jso
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -677,6 +681,7 @@ class TemplateResponseNamedFormField implements ModelInterface, ArrayAccess, Jso
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -689,6 +694,7 @@ class TemplateResponseNamedFormField implements ModelInterface, ArrayAccess, Jso
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
