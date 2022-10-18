@@ -30,6 +30,7 @@ namespace HelloSignSDK\Model;
 
 use HelloSignSDK\ObjectSerializer;
 use InvalidArgumentException;
+use ReturnTypeWillChange;
 
 /**
  * SubFormFieldsPerDocumentText Class Doc Comment
@@ -504,6 +505,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
      *
      * @return bool
      */
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -516,6 +518,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
      *
      * @return mixed|null
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -529,6 +532,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -545,6 +549,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -557,6 +562,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);

@@ -29,6 +29,7 @@
 namespace HelloSignSDK\Model;
 
 use HelloSignSDK\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * SignatureRequestResponseDataValueCheckbox Class Doc Comment
@@ -268,6 +269,7 @@ class SignatureRequestResponseDataValueCheckbox extends SignatureRequestResponse
      *
      * @return bool
      */
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -280,6 +282,7 @@ class SignatureRequestResponseDataValueCheckbox extends SignatureRequestResponse
      *
      * @return mixed|null
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -293,6 +296,7 @@ class SignatureRequestResponseDataValueCheckbox extends SignatureRequestResponse
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -309,6 +313,7 @@ class SignatureRequestResponseDataValueCheckbox extends SignatureRequestResponse
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -321,6 +326,7 @@ class SignatureRequestResponseDataValueCheckbox extends SignatureRequestResponse
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
