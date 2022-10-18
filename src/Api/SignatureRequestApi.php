@@ -1631,7 +1631,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFiles
      *
-     * Download Files
+     * Download File
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
@@ -1652,7 +1652,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFilesWithHttpInfo
      *
-     * Download Files
+     * Download File
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
@@ -1776,7 +1776,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFilesAsync
      *
-     * Download Files
+     * Download File
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
@@ -1799,7 +1799,7 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFilesAsyncWithHttpInfo
      *
-     * Download Files
+     * Download File
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')

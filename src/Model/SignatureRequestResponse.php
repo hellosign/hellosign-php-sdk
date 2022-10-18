@@ -70,6 +70,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'message' => 'string',
         'metadata' => 'array',
         'created_at' => 'int',
+        'expires_at' => 'int',
         'is_complete' => 'bool',
         'is_declined' => 'bool',
         'has_error' => 'bool',
@@ -102,6 +103,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'message' => null,
         'metadata' => null,
         'created_at' => null,
+        'expires_at' => null,
         'is_complete' => null,
         'is_declined' => null,
         'has_error' => null,
@@ -153,6 +155,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'message' => 'message',
         'metadata' => 'metadata',
         'created_at' => 'created_at',
+        'expires_at' => 'expires_at',
         'is_complete' => 'is_complete',
         'is_declined' => 'is_declined',
         'has_error' => 'has_error',
@@ -183,6 +186,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'message' => 'setMessage',
         'metadata' => 'setMetadata',
         'created_at' => 'setCreatedAt',
+        'expires_at' => 'setExpiresAt',
         'is_complete' => 'setIsComplete',
         'is_declined' => 'setIsDeclined',
         'has_error' => 'setHasError',
@@ -213,6 +217,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         'message' => 'getMessage',
         'metadata' => 'getMetadata',
         'created_at' => 'getCreatedAt',
+        'expires_at' => 'getExpiresAt',
         'is_complete' => 'getIsComplete',
         'is_declined' => 'getIsDeclined',
         'has_error' => 'getHasError',
@@ -293,6 +298,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
         $this->container['message'] = $data['message'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
         $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['expires_at'] = $data['expires_at'] ?? null;
         $this->container['is_complete'] = $data['is_complete'] ?? null;
         $this->container['is_declined'] = $data['is_declined'] ?? null;
         $this->container['has_error'] = $data['has_error'] ?? null;
@@ -554,6 +560,30 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setCreatedAt(?int $created_at)
     {
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return int|null
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param int|null $expires_at _t__SignatureRequestResponse::EXPIRES_AT
+     *
+     * @return self
+     */
+    public function setExpiresAt(?int $expires_at)
+    {
+        $this->container['expires_at'] = $expires_at;
 
         return $this;
     }

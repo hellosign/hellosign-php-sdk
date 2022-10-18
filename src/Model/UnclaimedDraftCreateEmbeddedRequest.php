@@ -96,6 +96,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'use_preexisting_fields' => 'bool',
         'use_text_tags' => 'bool',
         'populate_auto_fill_fields' => 'bool',
+        'expires_at' => 'int',
     ];
 
     /**
@@ -141,6 +142,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'use_preexisting_fields' => null,
         'use_text_tags' => null,
         'populate_auto_fill_fields' => null,
+        'expires_at' => null,
     ];
 
     /**
@@ -205,6 +207,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'use_preexisting_fields' => 'use_preexisting_fields',
         'use_text_tags' => 'use_text_tags',
         'populate_auto_fill_fields' => 'populate_auto_fill_fields',
+        'expires_at' => 'expires_at',
     ];
 
     /**
@@ -248,6 +251,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'use_preexisting_fields' => 'setUsePreexistingFields',
         'use_text_tags' => 'setUseTextTags',
         'populate_auto_fill_fields' => 'setPopulateAutoFillFields',
+        'expires_at' => 'setExpiresAt',
     ];
 
     /**
@@ -291,6 +295,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         'use_preexisting_fields' => 'getUsePreexistingFields',
         'use_text_tags' => 'getUseTextTags',
         'populate_auto_fill_fields' => 'getPopulateAutoFillFields',
+        'expires_at' => 'getExpiresAt',
     ];
 
     /**
@@ -400,6 +405,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
         $this->container['use_preexisting_fields'] = $data['use_preexisting_fields'] ?? false;
         $this->container['use_text_tags'] = $data['use_text_tags'] ?? false;
         $this->container['populate_auto_fill_fields'] = $data['populate_auto_fill_fields'] ?? false;
+        $this->container['expires_at'] = $data['expires_at'] ?? null;
     }
 
     public static function fromArray(array $data): UnclaimedDraftCreateEmbeddedRequest
@@ -1313,6 +1319,30 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
     public function setPopulateAutoFillFields(?bool $populate_auto_fill_fields)
     {
         $this->container['populate_auto_fill_fields'] = $populate_auto_fill_fields;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return int|null
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param int|null $expires_at _t__UnclaimedDraftCreateEmbedded::EXPIRES_AT
+     *
+     * @return self
+     */
+    public function setExpiresAt(?int $expires_at)
+    {
+        $this->container['expires_at'] = $expires_at;
 
         return $this;
     }

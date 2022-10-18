@@ -1,6 +1,6 @@
 <?php
 /**
- * SignatureRequestUpdateRequest
+ * TeamInviteResponse
  *
  * PHP version 7.3
  *
@@ -33,7 +33,7 @@ use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
 
 /**
- * SignatureRequestUpdateRequest Class Doc Comment
+ * TeamInviteResponse Class Doc Comment
  *
  * @category Class
  * @author   OpenAPI Generator team
@@ -41,8 +41,9 @@ use JsonSerializable;
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
+ * @internal This class should not be instantiated directly
  */
-class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class TeamInviteResponse implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +52,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      *
      * @var string
      */
-    protected static $openAPIModelName = 'SignatureRequestUpdateRequest';
+    protected static $openAPIModelName = 'TeamInviteResponse';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +60,11 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @var string[]
      */
     protected static $openAPITypes = [
-        'signature_id' => 'string',
         'email_address' => 'string',
-        'name' => 'string',
+        'team_id' => 'string',
+        'role' => 'string',
+        'sent_at' => 'int',
+        'redeemed_at' => 'int',
         'expires_at' => 'int',
     ];
 
@@ -73,9 +76,11 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'signature_id' => null,
-        'email_address' => 'email',
-        'name' => null,
+        'email_address' => null,
+        'team_id' => null,
+        'role' => null,
+        'sent_at' => null,
+        'redeemed_at' => null,
         'expires_at' => null,
     ];
 
@@ -106,9 +111,11 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'signature_id' => 'signature_id',
         'email_address' => 'email_address',
-        'name' => 'name',
+        'team_id' => 'team_id',
+        'role' => 'role',
+        'sent_at' => 'sent_at',
+        'redeemed_at' => 'redeemed_at',
         'expires_at' => 'expires_at',
     ];
 
@@ -118,9 +125,11 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @var string[]
      */
     protected static $setters = [
-        'signature_id' => 'setSignatureId',
         'email_address' => 'setEmailAddress',
-        'name' => 'setName',
+        'team_id' => 'setTeamId',
+        'role' => 'setRole',
+        'sent_at' => 'setSentAt',
+        'redeemed_at' => 'setRedeemedAt',
         'expires_at' => 'setExpiresAt',
     ];
 
@@ -130,9 +139,11 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @var string[]
      */
     protected static $getters = [
-        'signature_id' => 'getSignatureId',
         'email_address' => 'getEmailAddress',
-        'name' => 'getName',
+        'team_id' => 'getTeamId',
+        'role' => 'getRole',
+        'sent_at' => 'getSentAt',
+        'redeemed_at' => 'getRedeemedAt',
         'expires_at' => 'getExpiresAt',
     ];
 
@@ -192,18 +203,20 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      */
     public function __construct(array $data = null)
     {
-        $this->container['signature_id'] = $data['signature_id'] ?? null;
         $this->container['email_address'] = $data['email_address'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
+        $this->container['team_id'] = $data['team_id'] ?? null;
+        $this->container['role'] = $data['role'] ?? null;
+        $this->container['sent_at'] = $data['sent_at'] ?? null;
+        $this->container['redeemed_at'] = $data['redeemed_at'] ?? null;
         $this->container['expires_at'] = $data['expires_at'] ?? null;
     }
 
-    public static function fromArray(array $data): SignatureRequestUpdateRequest
+    public static function fromArray(array $data): TeamInviteResponse
     {
-        /** @var SignatureRequestUpdateRequest $obj */
+        /** @var TeamInviteResponse $obj */
         $obj = ObjectSerializer::deserialize(
             ObjectSerializer::instantiateFiles(static::class, $data),
-            SignatureRequestUpdateRequest::class,
+            TeamInviteResponse::class,
         );
 
         return $obj;
@@ -217,10 +230,6 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if ($this->container['signature_id'] === null) {
-            $invalidProperties[] = "'signature_id' can't be null";
-        }
 
         return $invalidProperties;
     }
@@ -237,30 +246,6 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
     }
 
     /**
-     * Gets signature_id
-     *
-     * @return string
-     */
-    public function getSignatureId()
-    {
-        return $this->container['signature_id'];
-    }
-
-    /**
-     * Sets signature_id
-     *
-     * @param string $signature_id the signature ID for the recipient
-     *
-     * @return self
-     */
-    public function setSignatureId(string $signature_id)
-    {
-        $this->container['signature_id'] = $signature_id;
-
-        return $this;
-    }
-
-    /**
      * Gets email_address
      *
      * @return string|null
@@ -273,7 +258,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
     /**
      * Sets email_address
      *
-     * @param string|null $email_address The new email address for the recipient.  **NOTE**: Optional if `name` is provided.
+     * @param string|null $email_address email address of the user invited to this team
      *
      * @return self
      */
@@ -285,25 +270,97 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
     }
 
     /**
-     * Gets name
+     * Gets team_id
      *
      * @return string|null
      */
-    public function getName()
+    public function getTeamId()
     {
-        return $this->container['name'];
+        return $this->container['team_id'];
     }
 
     /**
-     * Sets name
+     * Sets team_id
      *
-     * @param string|null $name The new name for the recipient.  **NOTE**: Optional if `email_address` is provided.
+     * @param string|null $team_id id of the team
      *
      * @return self
      */
-    public function setName(?string $name)
+    public function setTeamId(?string $team_id)
     {
-        $this->container['name'] = $name;
+        $this->container['team_id'] = $team_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets role
+     *
+     * @return string|null
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     *
+     * @param string|null $role role of the user invited to this team
+     *
+     * @return self
+     */
+    public function setRole(?string $role)
+    {
+        $this->container['role'] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Gets sent_at
+     *
+     * @return int|null
+     */
+    public function getSentAt()
+    {
+        return $this->container['sent_at'];
+    }
+
+    /**
+     * Sets sent_at
+     *
+     * @param int|null $sent_at timestamp when the invitation was sent
+     *
+     * @return self
+     */
+    public function setSentAt(?int $sent_at)
+    {
+        $this->container['sent_at'] = $sent_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets redeemed_at
+     *
+     * @return int|null
+     */
+    public function getRedeemedAt()
+    {
+        return $this->container['redeemed_at'];
+    }
+
+    /**
+     * Sets redeemed_at
+     *
+     * @param int|null $redeemed_at timestamp when the invitation was redeemed
+     *
+     * @return self
+     */
+    public function setRedeemedAt(?int $redeemed_at)
+    {
+        $this->container['redeemed_at'] = $redeemed_at;
 
         return $this;
     }
@@ -321,7 +378,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
     /**
      * Sets expires_at
      *
-     * @param int|null $expires_at _t__SignatureRequestUpdate::EXPIRES_AT
+     * @param int|null $expires_at timestamp when the invitation is expiring
      *
      * @return self
      */

@@ -197,6 +197,7 @@ class EventCallbackRequestEvent implements ModelInterface, ArrayAccess, JsonSeri
     public const EVENT_TYPE_SIGNATURE_REQUEST_REASSIGNED = 'signature_request_reassigned';
     public const EVENT_TYPE_SIGNATURE_REQUEST_INVALID = 'signature_request_invalid';
     public const EVENT_TYPE_SIGNATURE_REQUEST_PREPARED = 'signature_request_prepared';
+    public const EVENT_TYPE_SIGNATURE_REQUEST_EXPIRED = 'signature_request_expired';
     public const EVENT_TYPE_TEMPLATE_CREATED = 'template_created';
     public const EVENT_TYPE_TEMPLATE_ERROR = 'template_error';
 
@@ -226,6 +227,7 @@ class EventCallbackRequestEvent implements ModelInterface, ArrayAccess, JsonSeri
             self::EVENT_TYPE_SIGNATURE_REQUEST_REASSIGNED,
             self::EVENT_TYPE_SIGNATURE_REQUEST_INVALID,
             self::EVENT_TYPE_SIGNATURE_REQUEST_PREPARED,
+            self::EVENT_TYPE_SIGNATURE_REQUEST_EXPIRED,
             self::EVENT_TYPE_TEMPLATE_CREATED,
             self::EVENT_TYPE_TEMPLATE_ERROR,
         ];

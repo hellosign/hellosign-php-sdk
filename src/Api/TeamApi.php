@@ -1584,6 +1584,314 @@ class TeamApi
     }
 
     /**
+     * Operation teamInvites
+     *
+     * List Team Invites
+     *
+     * @param string $email_address The email address for which to display the team invites. (optional)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return Model\TeamInvitesResponse
+     */
+    public function teamInvites(string $email_address = null)
+    {
+        list($response) = $this->teamInvitesWithHttpInfo($email_address);
+
+        return $response;
+    }
+
+    /**
+     * Operation teamInvitesWithHttpInfo
+     *
+     * List Team Invites
+     *
+     * @param string $email_address The email address for which to display the team invites. (optional)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return array of Model\TeamInvitesResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function teamInvitesWithHttpInfo(string $email_address = null)
+    {
+        $request = $this->teamInvitesRequest($email_address);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\TeamInvitesResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\TeamInvitesResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $returnType = '\HelloSignSDK\Model\TeamInvitesResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+            ];
+        } catch (ApiException $e) {
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\TeamInvitesResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation teamInvitesAsync
+     *
+     * List Team Invites
+     *
+     * @param string $email_address The email address for which to display the team invites. (optional)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function teamInvitesAsync(string $email_address = null)
+    {
+        return $this->teamInvitesAsyncWithHttpInfo($email_address)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation teamInvitesAsyncWithHttpInfo
+     *
+     * List Team Invites
+     *
+     * @param string $email_address The email address for which to display the team invites. (optional)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function teamInvitesAsyncWithHttpInfo(string $email_address = null)
+    {
+        $returnType = '\HelloSignSDK\Model\TeamInvitesResponse';
+        $request = $this->teamInvitesRequest($email_address);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders(),
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'teamInvites'
+     *
+     * @param string $email_address The email address for which to display the team invites. (optional)
+     *
+     * @throws InvalidArgumentException
+     * @return Psr7\Request
+     */
+    public function teamInvitesRequest(string $email_address = null)
+    {
+        $resourcePath = '/team/invites';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        $formParams = [];
+        $multipart = false;
+
+        // query params
+        if ($email_address !== null) {
+            if ('form' === 'form' && is_array($email_address)) {
+                foreach ($email_address as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['email_address'] = $email_address;
+            }
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['multipart/form-data']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem,
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name' => 'body',
+                        'contents' => $body,
+                        'headers' => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                $httpBody = new Psr7\MultipartStream($multipartContents);
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Psr7\Query::build($queryParams);
+
+        return new Psr7\Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation teamMembers
      *
      * List Team Members

@@ -77,6 +77,7 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'sms_phone_number' => 'string',
         'reassigned_by' => 'string',
         'reassignment_reason' => 'string',
+        'reassigned_from' => 'string',
         'error' => 'string',
     ];
 
@@ -104,6 +105,7 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'sms_phone_number' => null,
         'reassigned_by' => null,
         'reassignment_reason' => null,
+        'reassigned_from' => null,
         'error' => null,
     ];
 
@@ -150,6 +152,7 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'sms_phone_number' => 'sms_phone_number',
         'reassigned_by' => 'reassigned_by',
         'reassignment_reason' => 'reassignment_reason',
+        'reassigned_from' => 'reassigned_from',
         'error' => 'error',
     ];
 
@@ -175,6 +178,7 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'sms_phone_number' => 'setSmsPhoneNumber',
         'reassigned_by' => 'setReassignedBy',
         'reassignment_reason' => 'setReassignmentReason',
+        'reassigned_from' => 'setReassignedFrom',
         'error' => 'setError',
     ];
 
@@ -200,6 +204,7 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         'sms_phone_number' => 'getSmsPhoneNumber',
         'reassigned_by' => 'getReassignedBy',
         'reassignment_reason' => 'getReassignmentReason',
+        'reassigned_from' => 'getReassignedFrom',
         'error' => 'getError',
     ];
 
@@ -275,6 +280,7 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
         $this->container['sms_phone_number'] = $data['sms_phone_number'] ?? null;
         $this->container['reassigned_by'] = $data['reassigned_by'] ?? null;
         $this->container['reassignment_reason'] = $data['reassignment_reason'] ?? null;
+        $this->container['reassigned_from'] = $data['reassigned_from'] ?? null;
         $this->container['error'] = $data['error'] ?? null;
     }
 
@@ -692,6 +698,30 @@ class SignatureRequestResponseSignatures implements ModelInterface, ArrayAccess,
     public function setReassignmentReason(?string $reassignment_reason)
     {
         $this->container['reassignment_reason'] = $reassignment_reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets reassigned_from
+     *
+     * @return string|null
+     */
+    public function getReassignedFrom()
+    {
+        return $this->container['reassigned_from'];
+    }
+
+    /**
+     * Sets reassigned_from
+     *
+     * @param string|null $reassigned_from previous signature identifier
+     *
+     * @return self
+     */
+    public function setReassignedFrom(?string $reassigned_from)
+    {
+        $this->container['reassigned_from'] = $reassigned_from;
 
         return $this;
     }
