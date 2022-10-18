@@ -84,6 +84,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'title' => 'string',
         'use_text_tags' => 'bool',
         'populate_auto_fill_fields' => 'bool',
+        'expires_at' => 'int',
     ];
 
     /**
@@ -116,6 +117,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'title' => null,
         'use_text_tags' => null,
         'populate_auto_fill_fields' => null,
+        'expires_at' => null,
     ];
 
     /**
@@ -167,6 +169,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'title' => 'title',
         'use_text_tags' => 'use_text_tags',
         'populate_auto_fill_fields' => 'populate_auto_fill_fields',
+        'expires_at' => 'expires_at',
     ];
 
     /**
@@ -197,6 +200,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'title' => 'setTitle',
         'use_text_tags' => 'setUseTextTags',
         'populate_auto_fill_fields' => 'setPopulateAutoFillFields',
+        'expires_at' => 'setExpiresAt',
     ];
 
     /**
@@ -227,6 +231,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         'title' => 'getTitle',
         'use_text_tags' => 'getUseTextTags',
         'populate_auto_fill_fields' => 'getPopulateAutoFillFields',
+        'expires_at' => 'getExpiresAt',
     ];
 
     /**
@@ -307,6 +312,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
         $this->container['title'] = $data['title'] ?? null;
         $this->container['use_text_tags'] = $data['use_text_tags'] ?? false;
         $this->container['populate_auto_fill_fields'] = $data['populate_auto_fill_fields'] ?? false;
+        $this->container['expires_at'] = $data['expires_at'] ?? null;
     }
 
     public static function fromArray(array $data): SignatureRequestCreateEmbeddedRequest
@@ -897,6 +903,30 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     public function setPopulateAutoFillFields(?bool $populate_auto_fill_fields)
     {
         $this->container['populate_auto_fill_fields'] = $populate_auto_fill_fields;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return int|null
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param int|null $expires_at _t__UnclaimedDraftCreateEmbedded::EXPIRES_AT
+     *
+     * @return self
+     */
+    public function setExpiresAt(?int $expires_at)
+    {
+        $this->container['expires_at'] = $expires_at;
 
         return $this;
     }

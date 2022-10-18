@@ -9,6 +9,7 @@ All URIs are relative to https://api.hellosign.com/v3.
 | [**teamDelete()**](TeamApi.md#teamDelete) | **DELETE** /team/destroy | Delete Team |
 | [**teamGet()**](TeamApi.md#teamGet) | **GET** /team | Get Team |
 | [**teamInfo()**](TeamApi.md#teamInfo) | **GET** /team/info | Get Team Info |
+| [**teamInvites()**](TeamApi.md#teamInvites) | **GET** /team/invites | List Team Invites |
 | [**teamMembers()**](TeamApi.md#teamMembers) | **GET** /team/members/{team_id} | List Team Members |
 | [**teamRemoveMember()**](TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Remove User from Team |
 | [**teamSubTeams()**](TeamApi.md#teamSubTeams) | **GET** /team/sub_teams/{team_id} | List Sub Teams |
@@ -308,6 +309,69 @@ try {
 ### Return type
 
 [**\HelloSignSDK\Model\TeamGetInfoResponse**](../Model/TeamGetInfoResponse.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `teamInvites()`
+
+```php
+teamInvites($email_address): \HelloSignSDK\Model\TeamInvitesResponse
+```
+
+List Team Invites
+
+Provides a list of team invites (and their roles).
+
+### Example
+
+```php
+<?php
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$config = HelloSignSDK\Configuration::getDefaultConfiguration();
+
+// Configure HTTP basic authorization: api_key
+$config->setUsername("YOUR_API_KEY");
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+$api = new HelloSignSDK\Api\TeamApi($config);
+
+$emailAddress = "user@hellosign.com";
+
+try {
+    $result = $api->teamInvites($emailAddress);
+    print_r($result);
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
+    echo "Exception when calling HelloSign API: "
+        . print_r($error->getError());
+}
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **email_address** | **string**| The email address for which to display the team invites. | [optional] |
+
+### Return type
+
+[**\HelloSignSDK\Model\TeamInvitesResponse**](../Model/TeamInvitesResponse.md)
 
 ### Authorization
 

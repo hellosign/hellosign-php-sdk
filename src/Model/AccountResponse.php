@@ -474,7 +474,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets team_id
      *
-     * @param string|null $team_id _t__Account::TEAM_ID
+     * @param string|null $team_id the id of the team account belongs to
      *
      * @return self
      */

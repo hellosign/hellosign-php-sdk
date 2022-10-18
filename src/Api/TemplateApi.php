@@ -1021,7 +1021,7 @@ class TemplateApi
     /**
      * Operation templateFiles
      *
-     * Get Template Files
+     * Get Template File
      *
      * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
@@ -1042,7 +1042,7 @@ class TemplateApi
     /**
      * Operation templateFilesWithHttpInfo
      *
-     * Get Template Files
+     * Get Template File
      *
      * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
@@ -1166,7 +1166,7 @@ class TemplateApi
     /**
      * Operation templateFilesAsync
      *
-     * Get Template Files
+     * Get Template File
      *
      * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
@@ -1189,7 +1189,7 @@ class TemplateApi
     /**
      * Operation templateFilesAsyncWithHttpInfo
      *
-     * Get Template Files
+     * Get Template File
      *
      * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)

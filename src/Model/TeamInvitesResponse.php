@@ -1,6 +1,6 @@
 <?php
 /**
- * SignatureRequestUpdateRequest
+ * TeamInvitesResponse
  *
  * PHP version 7.3
  *
@@ -33,7 +33,7 @@ use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
 
 /**
- * SignatureRequestUpdateRequest Class Doc Comment
+ * TeamInvitesResponse Class Doc Comment
  *
  * @category Class
  * @author   OpenAPI Generator team
@@ -41,8 +41,9 @@ use JsonSerializable;
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
+ * @internal This class should not be instantiated directly
  */
-class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class TeamInvitesResponse implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +52,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      *
      * @var string
      */
-    protected static $openAPIModelName = 'SignatureRequestUpdateRequest';
+    protected static $openAPIModelName = 'TeamInvitesResponse';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -59,10 +60,8 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @var string[]
      */
     protected static $openAPITypes = [
-        'signature_id' => 'string',
-        'email_address' => 'string',
-        'name' => 'string',
-        'expires_at' => 'int',
+        'team_invites' => '\HelloSignSDK\Model\TeamInviteResponse[]',
+        'warnings' => '\HelloSignSDK\Model\WarningResponse[]',
     ];
 
     /**
@@ -73,10 +72,8 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'signature_id' => null,
-        'email_address' => 'email',
-        'name' => null,
-        'expires_at' => null,
+        'team_invites' => null,
+        'warnings' => null,
     ];
 
     /**
@@ -106,10 +103,8 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'signature_id' => 'signature_id',
-        'email_address' => 'email_address',
-        'name' => 'name',
-        'expires_at' => 'expires_at',
+        'team_invites' => 'team_invites',
+        'warnings' => 'warnings',
     ];
 
     /**
@@ -118,10 +113,8 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @var string[]
      */
     protected static $setters = [
-        'signature_id' => 'setSignatureId',
-        'email_address' => 'setEmailAddress',
-        'name' => 'setName',
-        'expires_at' => 'setExpiresAt',
+        'team_invites' => 'setTeamInvites',
+        'warnings' => 'setWarnings',
     ];
 
     /**
@@ -130,10 +123,8 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @var string[]
      */
     protected static $getters = [
-        'signature_id' => 'getSignatureId',
-        'email_address' => 'getEmailAddress',
-        'name' => 'getName',
-        'expires_at' => 'getExpiresAt',
+        'team_invites' => 'getTeamInvites',
+        'warnings' => 'getWarnings',
     ];
 
     /**
@@ -192,18 +183,16 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      */
     public function __construct(array $data = null)
     {
-        $this->container['signature_id'] = $data['signature_id'] ?? null;
-        $this->container['email_address'] = $data['email_address'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['expires_at'] = $data['expires_at'] ?? null;
+        $this->container['team_invites'] = $data['team_invites'] ?? null;
+        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
-    public static function fromArray(array $data): SignatureRequestUpdateRequest
+    public static function fromArray(array $data): TeamInvitesResponse
     {
-        /** @var SignatureRequestUpdateRequest $obj */
+        /** @var TeamInvitesResponse $obj */
         $obj = ObjectSerializer::deserialize(
             ObjectSerializer::instantiateFiles(static::class, $data),
-            SignatureRequestUpdateRequest::class,
+            TeamInvitesResponse::class,
         );
 
         return $obj;
@@ -217,10 +206,6 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if ($this->container['signature_id'] === null) {
-            $invalidProperties[] = "'signature_id' can't be null";
-        }
 
         return $invalidProperties;
     }
@@ -237,97 +222,49 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
     }
 
     /**
-     * Gets signature_id
+     * Gets team_invites
      *
-     * @return string
+     * @return TeamInviteResponse[]|null
      */
-    public function getSignatureId()
+    public function getTeamInvites()
     {
-        return $this->container['signature_id'];
+        return $this->container['team_invites'];
     }
 
     /**
-     * Sets signature_id
+     * Sets team_invites
      *
-     * @param string $signature_id the signature ID for the recipient
+     * @param TeamInviteResponse[]|null $team_invites contains a list of team invites and their roles
      *
      * @return self
      */
-    public function setSignatureId(string $signature_id)
+    public function setTeamInvites(?array $team_invites)
     {
-        $this->container['signature_id'] = $signature_id;
+        $this->container['team_invites'] = $team_invites;
 
         return $this;
     }
 
     /**
-     * Gets email_address
+     * Gets warnings
      *
-     * @return string|null
+     * @return WarningResponse[]|null
      */
-    public function getEmailAddress()
+    public function getWarnings()
     {
-        return $this->container['email_address'];
+        return $this->container['warnings'];
     }
 
     /**
-     * Sets email_address
+     * Sets warnings
      *
-     * @param string|null $email_address The new email address for the recipient.  **NOTE**: Optional if `name` is provided.
+     * @param WarningResponse[]|null $warnings warnings
      *
      * @return self
      */
-    public function setEmailAddress(?string $email_address)
+    public function setWarnings(?array $warnings)
     {
-        $this->container['email_address'] = $email_address;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name The new name for the recipient.  **NOTE**: Optional if `email_address` is provided.
-     *
-     * @return self
-     */
-    public function setName(?string $name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets expires_at
-     *
-     * @return int|null
-     */
-    public function getExpiresAt()
-    {
-        return $this->container['expires_at'];
-    }
-
-    /**
-     * Sets expires_at
-     *
-     * @param int|null $expires_at _t__SignatureRequestUpdate::EXPIRES_AT
-     *
-     * @return self
-     */
-    public function setExpiresAt(?int $expires_at)
-    {
-        $this->container['expires_at'] = $expires_at;
+        $this->container['warnings'] = $warnings;
 
         return $this;
     }

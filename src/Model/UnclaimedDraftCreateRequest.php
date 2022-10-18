@@ -84,6 +84,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => 'bool',
         'use_preexisting_fields' => 'bool',
         'use_text_tags' => 'bool',
+        'expires_at' => 'int',
     ];
 
     /**
@@ -117,6 +118,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => null,
         'use_preexisting_fields' => null,
         'use_text_tags' => null,
+        'expires_at' => null,
     ];
 
     /**
@@ -169,6 +171,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => 'test_mode',
         'use_preexisting_fields' => 'use_preexisting_fields',
         'use_text_tags' => 'use_text_tags',
+        'expires_at' => 'expires_at',
     ];
 
     /**
@@ -200,6 +203,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => 'setTestMode',
         'use_preexisting_fields' => 'setUsePreexistingFields',
         'use_text_tags' => 'setUseTextTags',
+        'expires_at' => 'setExpiresAt',
     ];
 
     /**
@@ -231,6 +235,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => 'getTestMode',
         'use_preexisting_fields' => 'getUsePreexistingFields',
         'use_text_tags' => 'getUseTextTags',
+        'expires_at' => 'getExpiresAt',
     ];
 
     /**
@@ -328,6 +333,7 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
         $this->container['test_mode'] = $data['test_mode'] ?? false;
         $this->container['use_preexisting_fields'] = $data['use_preexisting_fields'] ?? false;
         $this->container['use_text_tags'] = $data['use_text_tags'] ?? false;
+        $this->container['expires_at'] = $data['expires_at'] ?? null;
     }
 
     public static function fromArray(array $data): UnclaimedDraftCreateRequest
@@ -950,6 +956,30 @@ class UnclaimedDraftCreateRequest implements ModelInterface, ArrayAccess, JsonSe
     public function setUseTextTags(?bool $use_text_tags)
     {
         $this->container['use_text_tags'] = $use_text_tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return int|null
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param int|null $expires_at _t__UnclaimedDraftCreate::EXPIRES_AT
+     *
+     * @return self
+     */
+    public function setExpiresAt(?int $expires_at)
+    {
+        $this->container['expires_at'] = $expires_at;
 
         return $this;
     }

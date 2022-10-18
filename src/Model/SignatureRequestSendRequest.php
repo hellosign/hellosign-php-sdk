@@ -84,6 +84,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => 'bool',
         'title' => 'string',
         'use_text_tags' => 'bool',
+        'expires_at' => 'int',
     ];
 
     /**
@@ -117,6 +118,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => null,
         'title' => null,
         'use_text_tags' => null,
+        'expires_at' => null,
     ];
 
     /**
@@ -169,6 +171,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => 'test_mode',
         'title' => 'title',
         'use_text_tags' => 'use_text_tags',
+        'expires_at' => 'expires_at',
     ];
 
     /**
@@ -200,6 +203,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => 'setTestMode',
         'title' => 'setTitle',
         'use_text_tags' => 'setUseTextTags',
+        'expires_at' => 'setExpiresAt',
     ];
 
     /**
@@ -231,6 +235,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         'test_mode' => 'getTestMode',
         'title' => 'getTitle',
         'use_text_tags' => 'getUseTextTags',
+        'expires_at' => 'getExpiresAt',
     ];
 
     /**
@@ -312,6 +317,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
         $this->container['test_mode'] = $data['test_mode'] ?? false;
         $this->container['title'] = $data['title'] ?? null;
         $this->container['use_text_tags'] = $data['use_text_tags'] ?? false;
+        $this->container['expires_at'] = $data['expires_at'] ?? null;
     }
 
     public static function fromArray(array $data): SignatureRequestSendRequest
@@ -923,6 +929,30 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
     public function setUseTextTags(?bool $use_text_tags)
     {
         $this->container['use_text_tags'] = $use_text_tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return int|null
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param int|null $expires_at _t__SignatureRequestSend::EXPIRES_AT
+     *
+     * @return self
+     */
+    public function setExpiresAt(?int $expires_at)
+    {
+        $this->container['expires_at'] = $expires_at;
 
         return $this;
     }
