@@ -18,7 +18,7 @@ accountCreate($account_create_request): \HelloSignSDK\Model\AccountCreateRespons
 
 Create Account
 
-Creates a new HelloSign Account that is associated with the specified `email_address`.
+Creates a new Dropbox Sign Account that is associated with the specified `email_address`.
 
 ### Example
 
@@ -208,7 +208,7 @@ accountVerify($account_verify_request): \HelloSignSDK\Model\AccountVerifyRespons
 
 Verify Account
 
-Verifies whether an HelloSign Account exists for the given email address.
+Verifies whether an Dropbox Sign Account exists for the given email address.
 
 ### Example
 

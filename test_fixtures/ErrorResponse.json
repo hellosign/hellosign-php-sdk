@@ -1,0 +1,9 @@
+{
+  "default": {
+    "error": {
+      "error_msg": "Generic error message",
+      "error_path": "path_to_error[0]",
+      "error_name": "bad_request"
+    }
+  }
+}

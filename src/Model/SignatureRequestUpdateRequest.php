@@ -10,9 +10,9 @@
  */
 
 /**
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -31,7 +31,6 @@ namespace HelloSignSDK\Model;
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
-use ReturnTypeWillChange;
 
 /**
  * SignatureRequestUpdateRequest Class Doc Comment
@@ -322,7 +321,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
     /**
      * Sets expires_at
      *
-     * @param int|null $expires_at _t__SignatureRequestUpdate::EXPIRES_AT
+     * @param int|null $expires_at The new time when the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.
      *
      * @return self
      */
@@ -340,7 +339,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      *
      * @return bool
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -353,7 +352,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -367,7 +366,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -384,7 +383,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -397,7 +396,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);

@@ -10,9 +10,9 @@
  */
 
 /**
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -29,7 +29,6 @@
 namespace HelloSignSDK\Model;
 
 use HelloSignSDK\ObjectSerializer;
-use ReturnTypeWillChange;
 
 /**
  * SignatureRequestResponseCustomFieldCheckbox Class Doc Comment
@@ -274,7 +273,7 @@ class SignatureRequestResponseCustomFieldCheckbox extends SignatureRequestRespon
      *
      * @return bool
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -287,7 +286,7 @@ class SignatureRequestResponseCustomFieldCheckbox extends SignatureRequestRespon
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -301,7 +300,7 @@ class SignatureRequestResponseCustomFieldCheckbox extends SignatureRequestRespon
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -318,7 +317,7 @@ class SignatureRequestResponseCustomFieldCheckbox extends SignatureRequestRespon
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -331,7 +330,7 @@ class SignatureRequestResponseCustomFieldCheckbox extends SignatureRequestRespon
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);

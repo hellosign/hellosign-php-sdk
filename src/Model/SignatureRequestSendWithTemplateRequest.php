@@ -10,9 +10,9 @@
  */
 
 /**
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -32,7 +32,6 @@ use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
 use InvalidArgumentException;
 use JsonSerializable;
-use ReturnTypeWillChange;
 use SplFileObject;
 
 /**
@@ -506,7 +505,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
     /**
      * Sets file_url
      *
-     * @param string[]|null $file_url Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
+     * @param string[]|null $file_url Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -728,7 +727,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
      *
      * @return bool
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -741,7 +740,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -755,7 +754,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -772,7 +771,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -785,7 +784,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);

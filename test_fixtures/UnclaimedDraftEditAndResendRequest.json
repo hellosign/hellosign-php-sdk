@@ -1,0 +1,15 @@
+{
+  "default": {
+    "client_id": "b6b8e7deaf8f0b95c029dca049356d4a2cf9710a",
+    "editor_options": {
+      "allow_edit_signers": true,
+      "allow_edit_documents": false
+    },
+    "is_for_embedded_signing": false,
+    "requester_email_address": "jack@hellosign.com",
+    "requesting_redirect_url": "https://example.com/redirect",
+    "show_progress_stepper": true,
+    "signing_redirect_url": "https://example.com/redirect",
+    "test_mode": false
+  }
+}

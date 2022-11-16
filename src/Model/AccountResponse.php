@@ -10,9 +10,9 @@
  */
 
 /**
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -31,7 +31,6 @@ namespace HelloSignSDK\Model;
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
-use ReturnTypeWillChange;
 
 /**
  * AccountResponse Class Doc Comment
@@ -355,7 +354,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets is_paid_hs
      *
-     * @param bool|null $is_paid_hs returns `true` if the user has a paid HelloSign account
+     * @param bool|null $is_paid_hs returns `true` if the user has a paid Dropbox Sign account
      *
      * @return self
      */
@@ -427,7 +426,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets callback_url
      *
-     * @param string|null $callback_url the URL that HelloSign events will `POST` to
+     * @param string|null $callback_url the URL that Dropbox Sign events will `POST` to
      *
      * @return self
      */
@@ -517,7 +516,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return bool
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -530,7 +529,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -544,7 +543,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -561,7 +560,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -574,7 +573,7 @@ class AccountResponse implements ModelInterface, ArrayAccess, JsonSerializable
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);

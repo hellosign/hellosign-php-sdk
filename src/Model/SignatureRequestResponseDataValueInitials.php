@@ -10,9 +10,9 @@
  */
 
 /**
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -29,7 +29,6 @@
 namespace HelloSignSDK\Model;
 
 use HelloSignSDK\ObjectSerializer;
-use ReturnTypeWillChange;
 
 /**
  * SignatureRequestResponseDataValueInitials Class Doc Comment
@@ -269,7 +268,7 @@ class SignatureRequestResponseDataValueInitials extends SignatureRequestResponse
      *
      * @return bool
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -282,7 +281,7 @@ class SignatureRequestResponseDataValueInitials extends SignatureRequestResponse
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -296,7 +295,7 @@ class SignatureRequestResponseDataValueInitials extends SignatureRequestResponse
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -313,7 +312,7 @@ class SignatureRequestResponseDataValueInitials extends SignatureRequestResponse
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -326,7 +325,7 @@ class SignatureRequestResponseDataValueInitials extends SignatureRequestResponse
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);

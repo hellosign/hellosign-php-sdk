@@ -1,0 +1,8 @@
+{
+  "default": {
+    "embedded": {
+      "edit_url": "https://app.hellosign.com/editor/embeddedTemplate?token=70ca8e5779c9a931125db09f3170efc1&amp;root_snapshot_guids[]=a97ce534aec6cbe09e70cdd55112e31bd320ed00&amp;edited_template_guid=61a832ff0d8423f91d503e76bfbcc750f7417c78&amp;guid=56ecaf0659aa29215d2ee489c0c88ff8c9496099&amp;force_signer_input=1",
+      "expires_at": 1634313821
+    }
+  }
+}

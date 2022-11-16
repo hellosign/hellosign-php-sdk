@@ -2,7 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
-    ->exclude(['bin', 'docs', 'examples', 'oas', 'templates', 'legacy']);
+    ->exclude(['bin', 'docs', 'examples', 'templates', 'legacy']);
 
 $config = new PhpCsFixer\Config();
 return $config->setRules([

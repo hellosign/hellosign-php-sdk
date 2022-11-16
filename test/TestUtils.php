@@ -15,7 +15,7 @@ abstract class TestUtils
         $name = explode('\\', $filename);
         $fixtureFile = array_pop($name);
         $contents = file_get_contents(
-            __DIR__ . "/../oas/test_fixtures/{$fixtureFile}.json"
+            __DIR__ . "/../test_fixtures/{$fixtureFile}.json"
         );
 
         return json_decode(

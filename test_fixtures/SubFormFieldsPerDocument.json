@@ -1,0 +1,107 @@
+{
+  "SubFormFieldsPerDocumentCheckbox": {
+    "type": "checkbox",
+    "document_index": 0,
+    "api_id": "api_id_1",
+    "required": false,
+    "signer": "1",
+    "width": 100,
+    "height": 16,
+    "x": 112,
+    "y": 328,
+    "is_checked": false
+  },
+  "SubFormFieldsPerDocumentCheckboxMerge": {
+    "type" : "checkbox-merge",
+    "document_index": 0,
+    "api_id": "api_id_2",
+    "required": true,
+    "signer" : "1",
+    "width" : 100,
+    "height" : 16,
+    "x" : 112,
+    "y" : 328
+  },
+  "SubFormFieldsPerDocumentDropdown": {
+    "type" : "dropdown",
+    "document_index": 1,
+    "api_id": "api_id_3",
+    "required": false,
+    "signer": "1",
+    "width": 100,
+    "height": 16,
+    "x": 112,
+    "y": 328,
+    "options": ["foo"]
+  },
+  "SubFormFieldsPerDocumentHyperlink": {
+    "type" : "hyperlink",
+    "document_index": 1,
+    "api_id": "api_id_4",
+    "required": true,
+    "signer": "1",
+    "width": 100,
+    "height": 16,
+    "x": 112,
+    "y": 328,
+    "content": "HelloSign",
+    "content_url": "https://hellosign.com"
+  },
+  "SubFormFieldsPerDocumentInitials": {
+    "type" : "initials",
+    "document_index": 0,
+    "api_id": "api_id_5",
+    "required": false,
+    "signer": "1",
+    "width": 100,
+    "height": 16,
+    "x": 112,
+    "y": 328
+  },
+  "SubFormFieldsPerDocumentRadio": {
+    "type" : "radio",
+    "document_index": 2,
+    "api_id": "api_id_6",
+    "required": false,
+    "signer": "1",
+    "width": 100,
+    "height": 16,
+    "x": 112,
+    "y": 328,
+    "group": "Radio Group",
+    "is_checked": false
+  },
+  "SubFormFieldsPerDocumentSignature": {
+    "type" : "signature",
+    "document_index": 3,
+    "api_id": "api_id_7",
+    "required": false,
+    "signer": "1",
+    "width": 100,
+    "height": 16,
+    "x": 112,
+    "y": 328
+  },
+  "SubFormFieldsPerDocumentText": {
+    "type" : "text",
+    "document_index": 0,
+    "api_id": "api_id_8",
+    "required": false,
+    "signer": "1",
+    "width": 100,
+    "height": 16,
+    "x": 112,
+    "y": 328
+  },
+  "SubFormFieldsPerDocumentTextMerge": {
+    "type" : "text-merge",
+    "document_index": 0,
+    "api_id": "api_id_9",
+    "required": false,
+    "signer": "1",
+    "width": 100,
+    "height": 16,
+    "x": 112,
+    "y": 328
+  }
+}

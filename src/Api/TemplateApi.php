@@ -9,9 +9,9 @@
  */
 
 /**
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -42,6 +42,7 @@ use HelloSignSDK\Model;
 use HelloSignSDK\ObjectSerializer;
 use InvalidArgumentException;
 use RuntimeException;
+use SplFileObject;
 
 /**
  * TemplateApi Class Doc Comment
@@ -1021,20 +1022,18 @@ class TemplateApi
     /**
      * Operation templateFiles
      *
-     * Get Template File
+     * Get Template Files
      *
      * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\FileResponse
+     * @return SplFileObject|\HelloSignSDK\Model\ErrorResponse
      */
-    public function templateFiles(string $template_id, string $file_type = null, bool $get_url = false, bool $get_data_uri = false)
+    public function templateFiles(string $template_id, string $file_type = null)
     {
-        list($response) = $this->templateFilesWithHttpInfo($template_id, $file_type, $get_url, $get_data_uri);
+        list($response) = $this->templateFilesWithHttpInfo($template_id, $file_type);
 
         return $response;
     }
@@ -1042,20 +1041,658 @@ class TemplateApi
     /**
      * Operation templateFilesWithHttpInfo
      *
-     * Get Template File
+     * Get Template Files
      *
      * @param string $template_id The id of the template files to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return array of \SplFileObject|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function templateFilesWithHttpInfo(string $template_id, string $file_type = null)
+    {
+        $request = $this->templateFilesRequest($template_id, $file_type);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                if ('\SplFileObject' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $returnType = '\SplFileObject';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+            ];
+        } catch (ApiException $e) {
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\SplFileObject',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation templateFilesAsync
+     *
+     * Get Template Files
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
+     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function templateFilesAsync(string $template_id, string $file_type = null)
+    {
+        return $this->templateFilesAsyncWithHttpInfo($template_id, $file_type)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation templateFilesAsyncWithHttpInfo
+     *
+     * Get Template Files
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
+     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function templateFilesAsyncWithHttpInfo(string $template_id, string $file_type = null)
+    {
+        $returnType = '\SplFileObject';
+        $request = $this->templateFilesRequest($template_id, $file_type);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders(),
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'templateFiles'
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
+     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
+     *
+     * @throws InvalidArgumentException
+     * @return Psr7\Request
+     */
+    public function templateFilesRequest(string $template_id, string $file_type = null)
+    {
+        // verify the required parameter 'template_id' is set
+        if ($template_id === null || (is_array($template_id) && count($template_id) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $template_id when calling templateFiles'
+            );
+        }
+
+        $resourcePath = '/template/files/{template_id}';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        $formParams = [];
+        $multipart = false;
+
+        // query params
+        if ($file_type !== null) {
+            if ('form' === 'form' && is_array($file_type)) {
+                foreach ($file_type as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['file_type'] = $file_type;
+            }
+        }
+
+        // path params
+        if ($template_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'template_id' . '}',
+                ObjectSerializer::toPathValue($template_id),
+                $resourcePath
+            );
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['multipart/form-data']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/pdf', 'application/zip', 'application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem,
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name' => 'body',
+                        'contents' => $body,
+                        'headers' => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                $httpBody = new Psr7\MultipartStream($multipartContents);
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Psr7\Query::build($queryParams);
+
+        return new Psr7\Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation templateFilesAsDataUri
+     *
+     * Get Template Files as Data Uri
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return Model\FileResponseDataUri
+     */
+    public function templateFilesAsDataUri(string $template_id)
+    {
+        list($response) = $this->templateFilesAsDataUriWithHttpInfo($template_id);
+
+        return $response;
+    }
+
+    /**
+     * Operation templateFilesAsDataUriWithHttpInfo
+     *
+     * Get Template Files as Data Uri
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return array of Model\FileResponseDataUri, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function templateFilesAsDataUriWithHttpInfo(string $template_id)
+    {
+        $request = $this->templateFilesAsDataUriRequest($template_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\FileResponseDataUri' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\FileResponseDataUri', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $returnType = '\HelloSignSDK\Model\FileResponseDataUri';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+            ];
+        } catch (ApiException $e) {
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\FileResponseDataUri',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation templateFilesAsDataUriAsync
+     *
+     * Get Template Files as Data Uri
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function templateFilesAsDataUriAsync(string $template_id)
+    {
+        return $this->templateFilesAsDataUriAsyncWithHttpInfo($template_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation templateFilesAsDataUriAsyncWithHttpInfo
+     *
+     * Get Template Files as Data Uri
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function templateFilesAsDataUriAsyncWithHttpInfo(string $template_id)
+    {
+        $returnType = '\HelloSignSDK\Model\FileResponseDataUri';
+        $request = $this->templateFilesAsDataUriRequest($template_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders(),
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'templateFilesAsDataUri'
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
+     *
+     * @throws InvalidArgumentException
+     * @return Psr7\Request
+     */
+    public function templateFilesAsDataUriRequest(string $template_id)
+    {
+        // verify the required parameter 'template_id' is set
+        if ($template_id === null || (is_array($template_id) && count($template_id) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $template_id when calling templateFilesAsDataUri'
+            );
+        }
+
+        $resourcePath = '/template/files_as_data_uri/{template_id}';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        $formParams = [];
+        $multipart = false;
+
+        // path params
+        if ($template_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'template_id' . '}',
+                ObjectSerializer::toPathValue($template_id),
+                $resourcePath
+            );
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['multipart/form-data']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem,
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name' => 'body',
+                        'contents' => $body,
+                        'headers' => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                $httpBody = new Psr7\MultipartStream($multipartContents);
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Psr7\Query::build($queryParams);
+
+        return new Psr7\Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation templateFilesAsFileUrl
+     *
+     * Get Template Files as File Url
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return Model\FileResponse
+     */
+    public function templateFilesAsFileUrl(string $template_id)
+    {
+        list($response) = $this->templateFilesAsFileUrlWithHttpInfo($template_id);
+
+        return $response;
+    }
+
+    /**
+     * Operation templateFilesAsFileUrlWithHttpInfo
+     *
+     * Get Template Files as File Url
+     *
+     * @param string $template_id The id of the template files to retrieve. (required)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      * @return array of Model\FileResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function templateFilesWithHttpInfo(string $template_id, string $file_type = null, bool $get_url = false, bool $get_data_uri = false)
+    public function templateFilesAsFileUrlWithHttpInfo(string $template_id)
     {
-        $request = $this->templateFilesRequest($template_id, $file_type, $get_url, $get_data_uri);
+        $request = $this->templateFilesAsFileUrlRequest($template_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1164,21 +1801,18 @@ class TemplateApi
     }
 
     /**
-     * Operation templateFilesAsync
+     * Operation templateFilesAsFileUrlAsync
      *
-     * Get Template File
+     * Get Template Files as File Url
      *
      * @param string $template_id The id of the template files to retrieve. (required)
-     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function templateFilesAsync(string $template_id, string $file_type = null, bool $get_url = false, bool $get_data_uri = false)
+    public function templateFilesAsFileUrlAsync(string $template_id)
     {
-        return $this->templateFilesAsyncWithHttpInfo($template_id, $file_type, $get_url, $get_data_uri)
+        return $this->templateFilesAsFileUrlAsyncWithHttpInfo($template_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1187,22 +1821,19 @@ class TemplateApi
     }
 
     /**
-     * Operation templateFilesAsyncWithHttpInfo
+     * Operation templateFilesAsFileUrlAsyncWithHttpInfo
      *
-     * Get Template File
+     * Get Template Files as File Url
      *
      * @param string $template_id The id of the template files to retrieve. (required)
-     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function templateFilesAsyncWithHttpInfo(string $template_id, string $file_type = null, bool $get_url = false, bool $get_data_uri = false)
+    public function templateFilesAsFileUrlAsyncWithHttpInfo(string $template_id)
     {
         $returnType = '\HelloSignSDK\Model\FileResponse';
-        $request = $this->templateFilesRequest($template_id, $file_type, $get_url, $get_data_uri);
+        $request = $this->templateFilesAsFileUrlRequest($template_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1238,63 +1869,29 @@ class TemplateApi
     }
 
     /**
-     * Create request for operation 'templateFiles'
+     * Create request for operation 'templateFilesAsFileUrl'
      *
      * @param string $template_id The id of the template files to retrieve. (required)
-     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
      *
      * @throws InvalidArgumentException
      * @return Psr7\Request
      */
-    public function templateFilesRequest(string $template_id, string $file_type = null, bool $get_url = false, bool $get_data_uri = false)
+    public function templateFilesAsFileUrlRequest(string $template_id)
     {
         // verify the required parameter 'template_id' is set
         if ($template_id === null || (is_array($template_id) && count($template_id) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $template_id when calling templateFiles'
+                'Missing the required parameter $template_id when calling templateFilesAsFileUrl'
             );
         }
 
-        $resourcePath = '/template/files/{template_id}';
+        $resourcePath = '/template/files_as_file_url/{template_id}';
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
 
         $formParams = [];
         $multipart = false;
-
-        // query params
-        if ($file_type !== null) {
-            if ('form' === 'form' && is_array($file_type)) {
-                foreach ($file_type as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['file_type'] = $file_type;
-            }
-        }
-        // query params
-        if ($get_url !== null) {
-            if ('form' === 'form' && is_array($get_url)) {
-                foreach ($get_url as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['get_url'] = $get_url;
-            }
-        }
-        // query params
-        if ($get_data_uri !== null) {
-            if ('form' === 'form' && is_array($get_data_uri)) {
-                foreach ($get_data_uri as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['get_data_uri'] = $get_data_uri;
-            }
-        }
 
         // path params
         if ($template_id !== null) {

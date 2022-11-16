@@ -1,0 +1,27 @@
+{
+  "default": {
+    "api_app": {
+      "client_id": "0dd3b823a682527788c4e40cb7b6f7e9",
+      "created_at": 1436232339,
+      "domains": ["example.com"],
+      "is_approved": false,
+      "name": "My Production App",
+      "oauth": {
+        "callback_url": "http://example.com/oauth",
+        "scopes": [
+          "basic_account_info",
+          "request_signature"
+        ],
+        "secret": "98891a1b59f312d04cd88e4e0c498d75"
+      },
+      "owner_account": {
+        "account_id": "dc5deeb9e10b044c591ef2475aafad1d1d3bd888",
+        "email_address": "john@example.com"
+      },
+      "white_labeling_options": {
+        "primary_button_color": "#00b3e6",
+        "primary_button_text_color": "#ffffff"
+      }
+    }
+  }
+}

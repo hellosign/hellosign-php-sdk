@@ -125,27 +125,7 @@ class SignatureRequestApiTest extends HelloTestCase
 
     public function testSignatureRequestFiles()
     {
-        $signatureRequestId = 'fa5c8a0b0f492d768749333ad6fcc214c111e967';
-        $fileType = 'pdf';
-        $getUrl = false;
-        $getDataUri = false;
-
-        $responseClass = Model\FileResponse::class;
-        $responseData = TestUtils::getFixtureData($responseClass)['default'];
-
-        $this->setExpectedResponse($responseData);
-
-        $response = $this->api->signatureRequestFiles(
-            $signatureRequestId,
-            $fileType,
-            $getUrl,
-            $getDataUri
-        );
-        $serialized = TestUtils::toArray($response);
-
-        $this->assertInstanceOf($responseClass, $response);
-        $this->assertEquals($responseData, $serialized);
-        $this->assertEquals($responseData, TestUtils::toArray($response));
+        $this->markTestSkipped('GET /signature_request/files/{signature_request_id}');
     }
 
     public function testSignatureRequestGet()

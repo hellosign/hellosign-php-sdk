@@ -3,7 +3,6 @@
 /.travis.yml                export-ignore
 /bin                        export-ignore
 /examples                   export-ignore
-/oas                        export-ignore
 /openapi-config.yaml        export-ignore
 /run-build                  export-ignore
 /templates                  export-ignore
