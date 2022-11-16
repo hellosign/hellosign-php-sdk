@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 | `signers`<sup>*_required_</sup> | [```\HelloSignSDK\Model\SubSignatureRequestSigner[]```](SubSignatureRequestSigner.md) |  Add Signers to your Signature Request.  |  |
 | `file` | ```\SplFileObject[]``` |  Use `file[]` to indicate the uploaded file(s) to send for signature.<br><br>This endpoint requires either **file** or **file_url[]**, but not both.  |  |
-| `file_url` | ```string[]``` |  Use `file_url[]` to have HelloSign download the file(s) to send for signature.<br><br>This endpoint requires either **file** or **file_url[]**, but not both.  |  |
+| `file_url` | ```string[]``` |  Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.<br><br>This endpoint requires either **file** or **file_url[]**, but not both.  |  |
 | `allow_decline` | ```bool``` |  Allows signers to decline to sign a document if `true`. Defaults to `false`.  |  [default to false] |
 | `allow_reassign` | ```bool``` |  Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.<br><br>**Note**: Only available for Premium plan and higher.  |  [default to false] |
 | `attachments` | [```\HelloSignSDK\Model\SubAttachment[]```](SubAttachment.md) |  A list describing the attachments  |  |
 | `cc_email_addresses` | ```string[]``` |  The email addresses that should be CCed.  |  |
 | `client_id` | ```string``` |  The client id of the API App you want to associate with this request. Used to apply the branding and callback url defined for the app.  |  |
-| `custom_fields` | [```\HelloSignSDK\Model\SubCustomField[]```](SubCustomField.md) |  When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.<br><br>Pre-filled data can be used with &quot;send-once&quot; signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.<br><br>For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.  |  |
+| `custom_fields` | [```\HelloSignSDK\Model\SubCustomField[]```](SubCustomField.md) |  When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.<br><br>Pre-filled data can be used with &quot;send-once&quot; signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.<br><br>For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.  |  |
 | `field_options` | [```\HelloSignSDK\Model\SubFieldOptions```](SubFieldOptions.md) |    |  |
 | `form_field_groups` | [```\HelloSignSDK\Model\SubFormFieldGroup[]```](SubFormFieldGroup.md) |  Group information for fields defined in `form_fields_per_document`. String-indexed JSON array with `group_label` and `requirement` keys. `form_fields_per_document` must contain fields referencing a group defined in `form_field_groups`.  |  |
 | `form_field_rules` | [```\HelloSignSDK\Model\SubFormFieldRule[]```](SubFormFieldRule.md) |  Conditional Logic rules for fields defined in `form_fields_per_document`.  |  |
@@ -29,6 +29,6 @@ Name | Type | Description | Notes
 | `test_mode` | ```bool``` |  Whether this is a test, the signature request will not be legally binding if set to `true`. Defaults to `false`.  |  [default to false] |
 | `title` | ```string``` |  The title you want to assign to the SignatureRequest.  |  |
 | `use_text_tags` | ```bool``` |  Send with a value of `true` if you wish to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document. Defaults to disabled, or `false`.  |  [default to false] |
-| `expires_at` | ```int``` |  _t__SignatureRequestSend::EXPIRES_AT  |  |
+| `expires_at` | ```int``` |  When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.  |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

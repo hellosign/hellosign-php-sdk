@@ -7,7 +7,9 @@ All URIs are relative to https://api.hellosign.com/v3.
 | [**templateAddUser()**](TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Add User to Template |
 | [**templateCreateEmbeddedDraft()**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
 | [**templateDelete()**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Delete Template |
-| [**templateFiles()**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template File |
+| [**templateFiles()**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template Files |
+| [**templateFilesAsDataUri()**](TemplateApi.md#templateFilesAsDataUri) | **GET** /template/files_as_data_uri/{template_id} | Get Template Files as Data Uri |
+| [**templateFilesAsFileUrl()**](TemplateApi.md#templateFilesAsFileUrl) | **GET** /template/files_as_file_url/{template_id} | Get Template Files as File Url |
 | [**templateGet()**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Get Template |
 | [**templateList()**](TemplateApi.md#templateList) | **GET** /template/list | List Templates |
 | [**templateRemoveUser()**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Remove User from Template |
@@ -238,10 +240,10 @@ void (empty response body)
 ## `templateFiles()`
 
 ```php
-templateFiles($template_id, $file_type, $get_url, $get_data_uri): \HelloSignSDK\Model\FileResponse
+templateFiles($template_id, $file_type): \SplFileObject
 ```
 
-Get Template File
+Get Template Files
 
 Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
@@ -281,8 +283,132 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **template_id** | **string**| The id of the template files to retrieve. | |
 | **file_type** | **string**| Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional] |
-| **get_url** | **bool**| If `true`, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. | [optional] [default to false] |
-| **get_data_uri** | **bool**| If `true`, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. | [optional] [default to false] |
+
+### Return type
+
+**\SplFileObject**
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/pdf`, `application/zip`, `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `templateFilesAsDataUri()`
+
+```php
+templateFilesAsDataUri($template_id): \HelloSignSDK\Model\FileResponseDataUri
+```
+
+Get Template Files as Data Uri
+
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+
+### Example
+
+```php
+<?php
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$config = HelloSignSDK\Configuration::getDefaultConfiguration();
+
+// Configure HTTP basic authorization: api_key
+$config->setUsername("YOUR_API_KEY");
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+$api = new HelloSignSDK\Api\TemplateApi($config);
+
+$templateId = "5de8179668f2033afac48da1868d0093bf133266";
+
+try {
+    $result = $api->templateFilesAsDataUri($templateId);
+    print_r($result);
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
+    echo "Exception when calling HelloSign API: "
+        . print_r($error->getError());
+}
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **template_id** | **string**| The id of the template files to retrieve. | |
+
+### Return type
+
+[**\HelloSignSDK\Model\FileResponseDataUri**](../Model/FileResponseDataUri.md)
+
+### Authorization
+
+[api_key](../../README.md#api_key), [oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `templateFilesAsFileUrl()`
+
+```php
+templateFilesAsFileUrl($template_id): \HelloSignSDK\Model\FileResponse
+```
+
+Get Template Files as File Url
+
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+
+### Example
+
+```php
+<?php
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$config = HelloSignSDK\Configuration::getDefaultConfiguration();
+
+// Configure HTTP basic authorization: api_key
+$config->setUsername("YOUR_API_KEY");
+
+// or, configure Bearer (JWT) authorization: oauth2
+// $config->setAccessToken("YOUR_ACCESS_TOKEN");
+
+$api = new HelloSignSDK\Api\TemplateApi($config);
+
+$templateId = "5de8179668f2033afac48da1868d0093bf133266";
+
+try {
+    $result = $api->templateFilesAsFileUrl($templateId);
+    print_r($result);
+} catch (HelloSignSDK\ApiException $e) {
+    $error = $e->getResponseObject();
+    echo "Exception when calling HelloSign API: "
+        . print_r($error->getError());
+}
+
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **template_id** | **string**| The id of the template files to retrieve. | |
 
 ### Return type
 

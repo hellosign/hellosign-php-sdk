@@ -1,0 +1,7 @@
+{
+  "default": {
+    "email_address": "john@example.com",
+    "name": "New Signer 1",
+    "signature_id": "The signature ID for the recipient."
+  }
+}

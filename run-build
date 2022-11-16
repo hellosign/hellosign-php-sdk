@@ -4,45 +4,43 @@
 
 set -e
 
+DIR=$(cd `dirname $0` && pwd)
 WORKINGDIR="/app/php"
 
 docker run --rm \
-  -v "${PWD}/:/local" \
+  -v "${DIR}/:/local" \
+  -v "${DIR}/openapi-sdk.yaml:/local/openapi-sdk.yaml" \
   openapitools/openapi-generator-cli:v5.3.0 generate \
-    -i "/local/oas/openapi-sdk.yaml" \
+    -i "/local/openapi-sdk.yaml" \
     -c "/local/openapi-config.yaml" \
     -t "/local/templates" \
     -o "/local/"
 
 printf "\nInstalling composer dependencies ...\n"
-mkdir -p "${PWD}/vendor"
-bash "${PWD}/bin/php" composer install
+mkdir -p "${DIR}/vendor"
+bash "${DIR}/bin/php" composer install
 printf "\n"
 
-printf "Adding examples to /examples ...\n"
-rm -f "${PWD}/examples/"*.php
-cp -r "${PWD}/oas/examples/"*.php "${PWD}/examples/"
-
 printf "Adding examples to Docs ...\n"
-bash "${PWD}/bin/php" ./bin/generate-examples.php
+bash "${DIR}/bin/php" ./bin/generate-examples.php
 
 printf "Running php-cs-fixer ...\n"
-bash "${PWD}/bin/php" ./vendor/bin/php-cs-fixer fix --verbose
+bash "${DIR}/bin/php" ./vendor/bin/php-cs-fixer fix --verbose
 
 printf "Replacing strings ...\n"
 docker run --rm \
-  -v "${PWD}:${WORKINGDIR}" \
+  -v "${DIR}:${WORKINGDIR}" \
   -w "${WORKINGDIR}" \
   perl bash ./bin/replace
 
 printf "Scanning for prohibited keywords ...\n"
 docker run --rm \
-  -v "${PWD}:${WORKINGDIR}" \
+  -v "${DIR}:${WORKINGDIR}" \
   -w "${WORKINGDIR}" \
   perl bash ./bin/scan_for
 
 printf "Running unit tests ...\n"
-bash "${PWD}/bin/php" ./vendor/bin/phpunit
+bash "${DIR}/bin/php" ./vendor/bin/phpunit
 printf "\n\n"
 
 printf "Success!\n"

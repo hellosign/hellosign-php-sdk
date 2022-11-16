@@ -1,0 +1,28 @@
+{
+  "default": {
+    "allow_edit_ccs": true,
+    "cc_roles": [
+      ""
+    ],
+    "editor_options": {
+      "allow_edit_signers": true,
+      "allow_edit_documents": false
+    },
+    "force_signer_roles": true,
+    "force_subject_message": true,
+    "merge_fields": [
+      {
+        "name": "field1",
+        "type": "text"
+      },
+      {
+        "name": "field1",
+        "type": "checkbox"
+      }
+    ],
+    "preview_only": true,
+    "show_preview": true,
+    "show_progress_stepper": true,
+    "test_mode": true
+  }
+}

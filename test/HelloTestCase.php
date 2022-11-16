@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class HelloTestCase extends TestCase
 {
-    public const ROOT_FILE_PATH = __DIR__ . '/../oas/test_fixtures';
+    public const ROOT_FILE_PATH = __DIR__ . '/../test_fixtures';
 
     /** @var GuzzleHttp\Client */
     protected $client;

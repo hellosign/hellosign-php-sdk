@@ -1,0 +1,13 @@
+{
+  "default": {
+    "report": {
+      "success": "Your request is being processed. You will receive an email when the report is ready.",
+      "start_date": "09/01/2020",
+      "end_date": "09/02/2020",
+      "report_type": [
+        "user_activity",
+        "document_status"
+      ]
+    }
+  }
+}

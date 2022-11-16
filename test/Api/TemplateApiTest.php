@@ -78,27 +78,7 @@ class TemplateApiTest extends HelloTestCase
 
     public function testTemplateFiles()
     {
-        $templateId = 'f57db65d3f933b5316d398057a36176831451a35';
-        $fileType = 'pdf';
-        $getUrl = false;
-        $getDataUri = false;
-
-        $responseClass = Model\FileResponse::class;
-        $responseData = TestUtils::getFixtureData($responseClass)['default'];
-
-        $this->setExpectedResponse($responseData);
-
-        $response = $this->api->templateFiles(
-            $templateId,
-            $fileType,
-            $getUrl,
-            $getDataUri
-        );
-        $serialized = TestUtils::toArray($response);
-
-        $this->assertInstanceOf($responseClass, $response);
-        $this->assertEquals($responseData, $serialized);
-        $this->assertEquals($responseData, TestUtils::toArray($response));
+        $this->markTestSkipped('GET /template/files/{signature_request_id}');
     }
 
     public function testTemplateGet()

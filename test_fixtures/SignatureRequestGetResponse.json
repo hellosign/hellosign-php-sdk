@@ -1,0 +1,146 @@
+{
+  "default": {
+    "signature_request": {
+      "signature_request_id": "a9f4825edef25f47e7b4c14ce8100d81d1693160",
+      "title": "NDA with Acme Co.",
+      "original_title": "The NDA we talked about",
+      "subject": "The NDA we talked about",
+      "message": "Please sign this NDA and then we can discuss more. Let me know if you have any questions.",
+      "metadata": {},
+      "created_at": 1570471067,
+      "is_complete": false,
+      "is_declined": false,
+      "has_error": false,
+      "custom_fields": [
+        {
+          "name": "textbox1",
+          "type": "text",
+          "value": "hi mum",
+          "editor": "Client1",
+          "required": true,
+          "api_id": "textbox___1"
+        },
+        {
+          "name": "checkbox1",
+          "type": "checkbox",
+          "value": true,
+          "editor": "Client1",
+          "required": true,
+          "api_id": "checkbox___1"
+        },
+        {
+          "name": "textbox2",
+          "type": "text",
+          "value": "hi mum",
+          "editor": "Client2",
+          "required": true
+        },
+        {
+          "name": "checkbox2",
+          "type": "checkbox",
+          "value": true,
+          "editor": "Client2",
+          "required": true
+        }
+      ],
+      "response_data": [
+        
+{
+                "name": "Dropdown1",
+                "type": "dropdown",
+                "required": true,
+                "api_id": "dropdown__1",
+                "value": "1",
+                "signature_id": "a9f4825edef25f47e7b4c14ce8100d81d1693160"
+            },
+            {
+                "name": "Checkbox1",
+                "type": "checkbox",
+                "required": false,
+                "api_id": "checkbox__1",
+                "value": true,
+                "signature_id": "a9f4825edef25f47e7b4c14ce8100d81d1693160"
+            },
+            {
+                "name": "Textbox1",
+                "type": "text",
+                "required": true,
+                "api_id": "textbox__1",
+                "value": "Signature required below",
+                "signature_id": "a9f4825edef25f47e7b4c14ce8100d81d1693160"
+            },
+            {
+                "name": "DateSigned1",
+                "type": "date_signed",
+                "required": false,
+                "api_id": "datesigned__1",
+                "value": "06 / 29 / 2022",
+                "signature_id": "a9f4825edef25f47e7b4c14ce8100d81d1693160"
+            },
+            {
+                "name": "RadioItem1",
+                "type": "radio",
+                "required": false,
+                "api_id": "radio__1",
+                "value": true,
+                "signature_id": "a9f4825edef25f47e7b4c14ce8100d81d1693160"
+            },
+            {
+                "name": "Initial1",
+                "type": "initials",
+                "required": true,
+                "api_id": "initial__1",
+                "value": "YM",
+                "signature_id": "a9f4825edef25f47e7b4c14ce8100d81d1693160"
+            },
+            {
+                "name": "RadioItem2",
+                "type": "radio",
+                "required": false,
+                "api_id": "radio__2",
+                "value": false,
+                "signature_id": "a9f4825edef25f47e7b4c14ce8100d81d1693160"
+            },
+            {
+                "name": "Signature1",
+                "type": "signature",
+                "required": true,
+                "api_id": "signature__1",
+                "value": "John Doe",
+                "signature_id": "a9f4825edef25f47e7b4c14ce8100d81d1693160"
+            }
+      ],
+      "signing_url": "https://app.hellosign.com/sign/a9f4825edef25f47e7b4c14ce8100d81d1693160",
+      "details_url": "https://app.hellosign.com/home/manage?guid=a9f4825edef25f47e7b4c14ce8100d81d1693160",
+      "requester_email_address": "me@hellosign.com",
+      "signatures": [
+        {
+          "signature_id": "78caf2a1d01cd39cea2bc1cbb340dac3",
+          "signer_email_address": "jack@example.com",
+          "signer_name": "Jack",
+          "order": 0,
+          "status_code": "awaiting_signature",
+          "has_pin": false,
+          "has_sms_auth": false,
+          "has_sms_delivery": true,
+          "sms_phone_number": "+14155550100"
+        },
+        {
+          "signature_id": "616629ed37f8588d28600be17ab5d6b7",
+          "signer_email_address": "jill@example.com",
+          "signer_name": "Jill",
+          "order": 1,
+          "status_code": "awaiting_signature",
+          "has_pin": false,
+          "has_sms_auth": false,
+          "has_sms_delivery": false
+        }
+      ],
+      "cc_email_addresses": [
+        "lawyer@hellosign.com",
+        "lawyer@example.com"
+      ],
+      "test_mode": false
+    }
+  }
+}

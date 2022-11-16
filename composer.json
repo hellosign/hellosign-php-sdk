@@ -1,6 +1,6 @@
 {
     "name": "hellosign/hellosign-php-sdk",
-    "version": "v6.0.0-beta28",
+    "version": "6.0.0-beta22.22",
     "description": "Official HelloSign APIv3 OpenAPI PHP SDK",
     "keywords": [
         "openapitools",
@@ -33,8 +33,7 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^7.3",
-        "guzzlehttp/psr7": "^1.7 || ^2.0",
-        "symfony/polyfill-php81": "^1.26"
+        "guzzlehttp/psr7": "^1.7 || ^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0 || ^9.0",

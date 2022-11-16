@@ -10,9 +10,9 @@
  */
 
 /**
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -31,7 +31,6 @@ namespace HelloSignSDK\Model;
 use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
-use ReturnTypeWillChange;
 
 /**
  * BulkSendJobGetResponseSignatureRequests Class Doc Comment
@@ -583,7 +582,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
     /**
      * Sets expires_at
      *
-     * @param int|null $expires_at _t__SignatureRequestResponse::EXPIRES_AT
+     * @param int|null $expires_at the time when the signature request will expire pending signatures
      *
      * @return self
      */
@@ -703,7 +702,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
     /**
      * Sets signing_url
      *
-     * @param string|null $signing_url The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing HelloSign accounts as they will be required to log in before signing.
+     * @param string|null $signing_url The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.
      *
      * @return self
      */
@@ -937,7 +936,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
      *
      * @return bool
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -950,7 +949,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -964,7 +963,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -981,7 +980,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -994,7 +993,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);

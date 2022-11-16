@@ -1,6 +1,6 @@
 # hellosign/hellosign-php-sdk
 
-HelloSign v3 API
+Dropbox Sign v3 API
 
 
 ## ⚠ This package is not yet ready for production use ⚠
@@ -14,21 +14,9 @@ guaranteed nor implied!
 
 ## Contributing
 
-### Submodule
-
-This repo uses the [hellosign/openapi](https://github.com/hellosign/openapi) repo
-as a submodule for its OAS source. When you first clone this repo you must also
-instantiate the submodule by running the following:
-
-```shell
-git submodule init
-git submodule update --remote
-```
-
-### Changes to the OAS
-
-You must make OAS changes in the `oas/openapi.yaml` file within the
-[hellosign/openapi](https://github.com/hellosign/openapi) submodule.
+This repo is no longer accepting new issues or Pull Requests. All issues or
+Pull Requests *must* be opened against the
+[hellosign/hellosign-openapi](https://github.com/hellosign/hellosign-openapi) repo!
 
 ### Changes to the SDK code
 
@@ -182,7 +170,9 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | *SignatureRequestApi* | [**signatureRequestCancel**](docs/Api/SignatureRequestApi.md#signaturerequestcancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request |
 | *SignatureRequestApi* | [**signatureRequestCreateEmbedded**](docs/Api/SignatureRequestApi.md#signaturerequestcreateembedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request |
 | *SignatureRequestApi* | [**signatureRequestCreateEmbeddedWithTemplate**](docs/Api/SignatureRequestApi.md#signaturerequestcreateembeddedwithtemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template |
-| *SignatureRequestApi* | [**signatureRequestFiles**](docs/Api/SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download File |
+| *SignatureRequestApi* | [**signatureRequestFiles**](docs/Api/SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download Files |
+| *SignatureRequestApi* | [**signatureRequestFilesAsDataUri**](docs/Api/SignatureRequestApi.md#signaturerequestfilesasdatauri) | **GET** /signature_request/files_as_data_uri/{signature_request_id} | Download Files as Data Uri |
+| *SignatureRequestApi* | [**signatureRequestFilesAsFileUrl**](docs/Api/SignatureRequestApi.md#signaturerequestfilesasfileurl) | **GET** /signature_request/files_as_file_url/{signature_request_id} | Download Files as File Url |
 | *SignatureRequestApi* | [**signatureRequestGet**](docs/Api/SignatureRequestApi.md#signaturerequestget) | **GET** /signature_request/{signature_request_id} | Get Signature Request |
 | *SignatureRequestApi* | [**signatureRequestList**](docs/Api/SignatureRequestApi.md#signaturerequestlist) | **GET** /signature_request/list | List Signature Requests |
 | *SignatureRequestApi* | [**signatureRequestReleaseHold**](docs/Api/SignatureRequestApi.md#signaturerequestreleasehold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request |
@@ -204,7 +194,9 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | *TemplateApi* | [**templateAddUser**](docs/Api/TemplateApi.md#templateadduser) | **POST** /template/add_user/{template_id} | Add User to Template |
 | *TemplateApi* | [**templateCreateEmbeddedDraft**](docs/Api/TemplateApi.md#templatecreateembeddeddraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
 | *TemplateApi* | [**templateDelete**](docs/Api/TemplateApi.md#templatedelete) | **POST** /template/delete/{template_id} | Delete Template |
-| *TemplateApi* | [**templateFiles**](docs/Api/TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template File |
+| *TemplateApi* | [**templateFiles**](docs/Api/TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template Files |
+| *TemplateApi* | [**templateFilesAsDataUri**](docs/Api/TemplateApi.md#templatefilesasdatauri) | **GET** /template/files_as_data_uri/{template_id} | Get Template Files as Data Uri |
+| *TemplateApi* | [**templateFilesAsFileUrl**](docs/Api/TemplateApi.md#templatefilesasfileurl) | **GET** /template/files_as_file_url/{template_id} | Get Template Files as File Url |
 | *TemplateApi* | [**templateGet**](docs/Api/TemplateApi.md#templateget) | **GET** /template/{template_id} | Get Template |
 | *TemplateApi* | [**templateList**](docs/Api/TemplateApi.md#templatelist) | **GET** /template/list | List Templates |
 | *TemplateApi* | [**templateRemoveUser**](docs/Api/TemplateApi.md#templateremoveuser) | **POST** /template/remove_user/{template_id} | Remove User from Template |
@@ -253,6 +245,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 - [EventCallbackRequestEvent](docs/Model/EventCallbackRequestEvent.md)
 - [EventCallbackRequestEventMetadata](docs/Model/EventCallbackRequestEventMetadata.md)
 - [FileResponse](docs/Model/FileResponse.md)
+- [FileResponseDataUri](docs/Model/FileResponseDataUri.md)
 - [ListInfoResponse](docs/Model/ListInfoResponse.md)
 - [OAuthTokenGenerateRequest](docs/Model/OAuthTokenGenerateRequest.md)
 - [OAuthTokenRefreshRequest](docs/Model/OAuthTokenRefreshRequest.md)
@@ -397,5 +390,5 @@ apisupport@hellosign.com
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `3.0.0`
-    - Package version: `v6.0.0-beta28`
+    - Package version: `6.0.0-beta22.22`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

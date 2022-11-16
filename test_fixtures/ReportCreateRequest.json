@@ -1,0 +1,10 @@
+{
+  "default": {
+    "start_date": "09/01/2020",
+    "end_date": "09/01/2020",
+    "report_type": [
+      "user_activity",
+      "document_status"
+    ]
+  }
+}

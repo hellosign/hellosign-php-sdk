@@ -9,9 +9,9 @@
  */
 
 /**
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -42,6 +42,7 @@ use HelloSignSDK\Model;
 use HelloSignSDK\ObjectSerializer;
 use InvalidArgumentException;
 use RuntimeException;
+use SplFileObject;
 
 /**
  * SignatureRequestApi Class Doc Comment
@@ -1631,20 +1632,18 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFiles
      *
-     * Download File
+     * Download Files
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return Model\FileResponse
+     * @return SplFileObject|\HelloSignSDK\Model\ErrorResponse
      */
-    public function signatureRequestFiles(string $signature_request_id, string $file_type = 'pdf', bool $get_url = false, bool $get_data_uri = false)
+    public function signatureRequestFiles(string $signature_request_id, string $file_type = 'pdf')
     {
-        list($response) = $this->signatureRequestFilesWithHttpInfo($signature_request_id, $file_type, $get_url, $get_data_uri);
+        list($response) = $this->signatureRequestFilesWithHttpInfo($signature_request_id, $file_type);
 
         return $response;
     }
@@ -1652,20 +1651,658 @@ class SignatureRequestApi
     /**
      * Operation signatureRequestFilesWithHttpInfo
      *
-     * Download File
+     * Download Files
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return array of \SplFileObject|\HelloSignSDK\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function signatureRequestFilesWithHttpInfo(string $signature_request_id, string $file_type = 'pdf')
+    {
+        $request = $this->signatureRequestFilesRequest($signature_request_id, $file_type);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                if ('\SplFileObject' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $returnType = '\SplFileObject';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+            ];
+        } catch (ApiException $e) {
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\SplFileObject',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation signatureRequestFilesAsync
+     *
+     * Download Files
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
+     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function signatureRequestFilesAsync(string $signature_request_id, string $file_type = 'pdf')
+    {
+        return $this->signatureRequestFilesAsyncWithHttpInfo($signature_request_id, $file_type)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation signatureRequestFilesAsyncWithHttpInfo
+     *
+     * Download Files
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
+     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function signatureRequestFilesAsyncWithHttpInfo(string $signature_request_id, string $file_type = 'pdf')
+    {
+        $returnType = '\SplFileObject';
+        $request = $this->signatureRequestFilesRequest($signature_request_id, $file_type);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders(),
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'signatureRequestFiles'
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
+     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
+     *
+     * @throws InvalidArgumentException
+     * @return Psr7\Request
+     */
+    public function signatureRequestFilesRequest(string $signature_request_id, string $file_type = 'pdf')
+    {
+        // verify the required parameter 'signature_request_id' is set
+        if ($signature_request_id === null || (is_array($signature_request_id) && count($signature_request_id) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $signature_request_id when calling signatureRequestFiles'
+            );
+        }
+
+        $resourcePath = '/signature_request/files/{signature_request_id}';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        $formParams = [];
+        $multipart = false;
+
+        // query params
+        if ($file_type !== null) {
+            if ('form' === 'form' && is_array($file_type)) {
+                foreach ($file_type as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['file_type'] = $file_type;
+            }
+        }
+
+        // path params
+        if ($signature_request_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'signature_request_id' . '}',
+                ObjectSerializer::toPathValue($signature_request_id),
+                $resourcePath
+            );
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['multipart/form-data']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/pdf', 'application/zip', 'application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem,
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name' => 'body',
+                        'contents' => $body,
+                        'headers' => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                $httpBody = new Psr7\MultipartStream($multipartContents);
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Psr7\Query::build($queryParams);
+
+        return new Psr7\Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation signatureRequestFilesAsDataUri
+     *
+     * Download Files as Data Uri
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return Model\FileResponseDataUri
+     */
+    public function signatureRequestFilesAsDataUri(string $signature_request_id)
+    {
+        list($response) = $this->signatureRequestFilesAsDataUriWithHttpInfo($signature_request_id);
+
+        return $response;
+    }
+
+    /**
+     * Operation signatureRequestFilesAsDataUriWithHttpInfo
+     *
+     * Download Files as Data Uri
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return array of Model\FileResponseDataUri, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function signatureRequestFilesAsDataUriWithHttpInfo(string $signature_request_id)
+    {
+        $request = $this->signatureRequestFilesAsDataUriRequest($signature_request_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                if ('\HelloSignSDK\Model\FileResponseDataUri' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\FileResponseDataUri', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                if ('\HelloSignSDK\Model\ErrorResponse' === '\SplFileObject') {
+                    $content = $response->getBody(); //stream goes to serializer
+                } else {
+                    $content = (string) $response->getBody();
+                }
+
+                return [
+                    ObjectSerializer::deserialize($content, '\HelloSignSDK\Model\ErrorResponse', []),
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                ];
+            }
+
+            $returnType = '\HelloSignSDK\Model\FileResponseDataUri';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders(),
+            ];
+        } catch (ApiException $e) {
+            $statusCode = $e->getCode();
+
+            if ($statusCode === 200) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\FileResponseDataUri',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            $rangeCodeLeft = (int) (substr('4XX', 0, 1) . '00');
+            $rangeCodeRight = (int) (substr('4XX', 0, 1) . '99');
+            if ($statusCode >= $rangeCodeLeft && $statusCode <= $rangeCodeRight) {
+                $data = ObjectSerializer::deserialize(
+                    $e->getResponseBody(),
+                    '\HelloSignSDK\Model\ErrorResponse',
+                    $e->getResponseHeaders()
+                );
+                $e->setResponseObject($data);
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation signatureRequestFilesAsDataUriAsync
+     *
+     * Download Files as Data Uri
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function signatureRequestFilesAsDataUriAsync(string $signature_request_id)
+    {
+        return $this->signatureRequestFilesAsDataUriAsyncWithHttpInfo($signature_request_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation signatureRequestFilesAsDataUriAsyncWithHttpInfo
+     *
+     * Download Files as Data Uri
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
+     *
+     * @throws InvalidArgumentException
+     * @return Promise\PromiseInterface
+     */
+    public function signatureRequestFilesAsDataUriAsyncWithHttpInfo(string $signature_request_id)
+    {
+        $returnType = '\HelloSignSDK\Model\FileResponseDataUri';
+        $request = $this->signatureRequestFilesAsDataUriRequest($signature_request_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders(),
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'signatureRequestFilesAsDataUri'
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
+     *
+     * @throws InvalidArgumentException
+     * @return Psr7\Request
+     */
+    public function signatureRequestFilesAsDataUriRequest(string $signature_request_id)
+    {
+        // verify the required parameter 'signature_request_id' is set
+        if ($signature_request_id === null || (is_array($signature_request_id) && count($signature_request_id) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $signature_request_id when calling signatureRequestFilesAsDataUri'
+            );
+        }
+
+        $resourcePath = '/signature_request/files_as_data_uri/{signature_request_id}';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        $formParams = [];
+        $multipart = false;
+
+        // path params
+        if ($signature_request_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'signature_request_id' . '}',
+                ObjectSerializer::toPathValue($signature_request_id),
+                $resourcePath
+            );
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['multipart/form-data']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem,
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name' => 'body',
+                        'contents' => $body,
+                        'headers' => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                $httpBody = new Psr7\MultipartStream($multipartContents);
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ':' . $this->config->getPassword());
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Psr7\Query::build($queryParams);
+
+        return new Psr7\Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation signatureRequestFilesAsFileUrl
+     *
+     * Download Files as File Url
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException
+     * @return Model\FileResponse
+     */
+    public function signatureRequestFilesAsFileUrl(string $signature_request_id)
+    {
+        list($response) = $this->signatureRequestFilesAsFileUrlWithHttpInfo($signature_request_id);
+
+        return $response;
+    }
+
+    /**
+     * Operation signatureRequestFilesAsFileUrlWithHttpInfo
+     *
+     * Download Files as File Url
+     *
+     * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
      * @return array of Model\FileResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function signatureRequestFilesWithHttpInfo(string $signature_request_id, string $file_type = 'pdf', bool $get_url = false, bool $get_data_uri = false)
+    public function signatureRequestFilesAsFileUrlWithHttpInfo(string $signature_request_id)
     {
-        $request = $this->signatureRequestFilesRequest($signature_request_id, $file_type, $get_url, $get_data_uri);
+        $request = $this->signatureRequestFilesAsFileUrlRequest($signature_request_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1774,21 +2411,18 @@ class SignatureRequestApi
     }
 
     /**
-     * Operation signatureRequestFilesAsync
+     * Operation signatureRequestFilesAsFileUrlAsync
      *
-     * Download File
+     * Download Files as File Url
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
-     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function signatureRequestFilesAsync(string $signature_request_id, string $file_type = 'pdf', bool $get_url = false, bool $get_data_uri = false)
+    public function signatureRequestFilesAsFileUrlAsync(string $signature_request_id)
     {
-        return $this->signatureRequestFilesAsyncWithHttpInfo($signature_request_id, $file_type, $get_url, $get_data_uri)
+        return $this->signatureRequestFilesAsFileUrlAsyncWithHttpInfo($signature_request_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1797,22 +2431,19 @@ class SignatureRequestApi
     }
 
     /**
-     * Operation signatureRequestFilesAsyncWithHttpInfo
+     * Operation signatureRequestFilesAsFileUrlAsyncWithHttpInfo
      *
-     * Download File
+     * Download Files as File Url
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
-     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
      */
-    public function signatureRequestFilesAsyncWithHttpInfo(string $signature_request_id, string $file_type = 'pdf', bool $get_url = false, bool $get_data_uri = false)
+    public function signatureRequestFilesAsFileUrlAsyncWithHttpInfo(string $signature_request_id)
     {
         $returnType = '\HelloSignSDK\Model\FileResponse';
-        $request = $this->signatureRequestFilesRequest($signature_request_id, $file_type, $get_url, $get_data_uri);
+        $request = $this->signatureRequestFilesAsFileUrlRequest($signature_request_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1848,63 +2479,29 @@ class SignatureRequestApi
     }
 
     /**
-     * Create request for operation 'signatureRequestFiles'
+     * Create request for operation 'signatureRequestFilesAsFileUrl'
      *
      * @param string $signature_request_id The id of the SignatureRequest to retrieve. (required)
-     * @param string $file_type Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to 'pdf')
-     * @param bool $get_url If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-     * @param bool $get_data_uri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
      *
      * @throws InvalidArgumentException
      * @return Psr7\Request
      */
-    public function signatureRequestFilesRequest(string $signature_request_id, string $file_type = 'pdf', bool $get_url = false, bool $get_data_uri = false)
+    public function signatureRequestFilesAsFileUrlRequest(string $signature_request_id)
     {
         // verify the required parameter 'signature_request_id' is set
         if ($signature_request_id === null || (is_array($signature_request_id) && count($signature_request_id) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $signature_request_id when calling signatureRequestFiles'
+                'Missing the required parameter $signature_request_id when calling signatureRequestFilesAsFileUrl'
             );
         }
 
-        $resourcePath = '/signature_request/files/{signature_request_id}';
+        $resourcePath = '/signature_request/files_as_file_url/{signature_request_id}';
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
 
         $formParams = [];
         $multipart = false;
-
-        // query params
-        if ($file_type !== null) {
-            if ('form' === 'form' && is_array($file_type)) {
-                foreach ($file_type as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['file_type'] = $file_type;
-            }
-        }
-        // query params
-        if ($get_url !== null) {
-            if ('form' === 'form' && is_array($get_url)) {
-                foreach ($get_url as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['get_url'] = $get_url;
-            }
-        }
-        // query params
-        if ($get_data_uri !== null) {
-            if ('form' === 'form' && is_array($get_data_uri)) {
-                foreach ($get_data_uri as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['get_data_uri'] = $get_data_uri;
-            }
-        }
 
         // path params
         if ($signature_request_id !== null) {

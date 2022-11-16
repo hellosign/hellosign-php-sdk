@@ -10,9 +10,9 @@
  */
 
 /**
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -32,7 +32,6 @@ use ArrayAccess;
 use HelloSignSDK\ObjectSerializer;
 use InvalidArgumentException;
 use JsonSerializable;
-use ReturnTypeWillChange;
 use SplFileObject;
 
 /**
@@ -431,7 +430,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets file_url
      *
-     * @param string[]|null $file_url Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
+     * @param string[]|null $file_url Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
      *
      * @return self
      */
@@ -575,7 +574,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets custom_fields
      *
-     * @param SubCustomField[]|null $custom_fields When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
+     * @param SubCustomField[]|null $custom_fields When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.
      *
      * @return self
      */
@@ -947,7 +946,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets expires_at
      *
-     * @param int|null $expires_at _t__SignatureRequestSend::EXPIRES_AT
+     * @param int|null $expires_at When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.
      *
      * @return self
      */
@@ -965,7 +964,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
      *
      * @return bool
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -978,7 +977,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -992,7 +991,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -1009,7 +1008,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -1022,7 +1021,7 @@ class SignatureRequestSendRequest implements ModelInterface, ArrayAccess, JsonSe
      * @return scalar|object|array|null returns data which can be serialized by json_encode(), which is a value
      *                                  of any type other than a resource
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);

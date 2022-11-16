@@ -1,0 +1,48 @@
+{
+  "default": {
+    "allow_decline": true,
+    "ccs": [
+      {
+        "role": "Accounting",
+        "email_address": "accounting@example.com"
+      }
+    ],
+    "client_id": "b6b8e7deaf8f0b95c029dca049356d4a2cf9710a",
+    "custom_fields": [
+      {
+        "name": "Cost",
+        "value": "$20,000",
+        "editor": "Client",
+        "required": true
+      }
+    ],
+    "is_qualified_signature": false,
+    "message": "Glad we could come to an agreement.",
+    "metadata": {
+      "field1": "value1"
+    },
+    "signers": [
+      {
+        "role": "Client",
+        "name": "George",
+        "email_address": "george@example.com",
+        "sms_phone_number": "+14155550100",
+        "sms_phone_number_type": "delivery"
+      }
+    ],
+    "signing_options": {
+      "draw": true,
+      "type": true,
+      "upload": true,
+      "phone": false,
+      "default_type": "draw"
+    },
+    "signing_redirect_url": "https://example.com/redirect",
+    "subject": "Purchase Order",
+    "template_ids": [
+      "c26b8a16784a872da37ea946b9ddec7c1e11dff6"
+    ],
+    "test_mode": true,
+    "title": "NDA with Acme Co."
+  }
+}

@@ -24,7 +24,7 @@ teamAddMember($team_add_member_request, $team_id): \HelloSignSDK\Model\TeamGetRe
 
 Add User to Team
 
-Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
+Invites a user (specified using the `email_address` parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a `team_invite_failed` error will be returned.
 
 ### Example
 

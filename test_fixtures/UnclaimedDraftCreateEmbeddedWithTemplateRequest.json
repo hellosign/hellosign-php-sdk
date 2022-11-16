@@ -1,0 +1,70 @@
+{
+  "default": {
+    "allow_decline": true,
+    "allow_reassign": true,
+    "ccs": [
+      {
+        "role": "Accounting",
+        "email_address": "accounting@example.com"
+      }
+    ],
+    "client_id": "b6b8e7deaf8f0b95c029dca049356d4a2cf9710a",
+    "custom_fields": [
+      {
+        "name": "Cost",
+        "value": "$20,000",
+        "editor": "Client",
+        "required": true
+      }
+    ],
+    "editor_options": {
+      "allow_edit_signers": true,
+      "allow_edit_documents": false
+    },
+    "field_options": {
+      "date_format": "DD - MM - YYYY"
+    },
+    "file": [
+      "pdf-sample.pdf"
+    ],
+    "file_url": [
+      "https://app.hellosign.com/docs/example_signature_request.pdf"
+    ],
+    "force_signer_roles": false,
+    "force_subject_message": false,
+    "hold_request": true,
+    "is_for_embedded_signing": true,
+    "message": "Please sign this NDA and then we can discuss more. Let me know if you\nhave any questions.",
+    "metadata": {
+      "custom_id": 1234,
+      "custom_text": "NDA #9"
+    },
+    "preview_only": true,
+    "requester_email_address": "jack@hellosign.com",
+    "requesting_redirect_url": "https://example.com/redirect",
+    "show_preview": true,
+    "signers": [
+      {
+        "role": "Client",
+        "name": "George",
+        "email_address": "george@example.com"
+      }
+    ],
+    "signing_options": {
+      "draw": true,
+      "type": true,
+      "upload": true,
+      "phone": false,
+      "default_type": "draw"
+    },
+    "show_progress_stepper": true,
+    "skip_me_now": true,
+    "subject": "The NDA we talked about",
+    "template_ids": [
+      "61a832ff0d8423f91d503e76bfbcc750f7417c78"
+    ],
+    "test_mode": false,
+    "title": "NDA with Acme Co.",
+    "populate_auto_fill_fields": false
+  }
+}
