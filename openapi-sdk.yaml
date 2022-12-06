@@ -8505,6 +8505,10 @@ components:
           nullable: true
           description: 'Signature requests remaining.'
           type: integer
+        total_templates:
+          nullable: true
+          description: 'Total API templates allowed.'
+          type: integer
         templates_left:
           nullable: true
           description: 'API templates remaining.'
@@ -8648,6 +8652,7 @@ components:
         text_color2:
           type: string
       type: object
+      nullable: true
       x-internal: true
     BulkSendJobResponse:
       description: 'Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.'

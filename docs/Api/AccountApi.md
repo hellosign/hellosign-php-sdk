@@ -43,7 +43,7 @@ $data->setEmailAddress("newuser@hellosign.com");
 try {
     $result = $api->accountCreate($data);
     print_r($result);
-} catch (HelloSignSDK\ApiHelloSignSDK\ApiException $e) {
+} catch (HelloSignSDK\ApiException $e) {
     $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
         . print_r($error->getError());
