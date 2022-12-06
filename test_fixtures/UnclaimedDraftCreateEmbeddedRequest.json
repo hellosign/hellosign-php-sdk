@@ -103,6 +103,7 @@
       "custom_id": 1234,
       "custom_text": "NDA #9"
     },
+    "populate_auto_fill_fields": false,
     "requester_email_address": "jack@hellosign.com",
     "show_preview": true,
     "signers": [

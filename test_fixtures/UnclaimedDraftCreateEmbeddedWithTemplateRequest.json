@@ -39,6 +39,7 @@
       "custom_id": 1234,
       "custom_text": "NDA #9"
     },
+    "populate_auto_fill_fields": false,
     "preview_only": true,
     "requester_email_address": "jack@hellosign.com",
     "requesting_redirect_url": "https://example.com/redirect",
