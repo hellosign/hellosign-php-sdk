@@ -10,6 +10,7 @@ use HelloSignSDK\Configuration;
 use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
 use HelloSignSDK\Test\TestUtils;
+use SplFileObject;
 
 class TemplateApiTest extends HelloTestCase
 {
@@ -62,6 +63,9 @@ class TemplateApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $obj = Model\TemplateCreateEmbeddedDraftRequest::fromArray($requestData);
+        $obj->setFile([
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf'),
+        ]);
 
         $response = $this->api->templateCreateEmbeddedDraft($obj);
         $serialized = TestUtils::toArray($response);
@@ -148,6 +152,9 @@ class TemplateApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $obj = Model\TemplateUpdateFilesRequest::fromArray($requestData);
+        $obj->setFile([
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf'),
+        ]);
 
         $response = $this->api->templateUpdateFiles($templateId, $obj);
         $serialized = TestUtils::toArray($response);

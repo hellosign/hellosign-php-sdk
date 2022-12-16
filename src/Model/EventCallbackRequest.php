@@ -1,6 +1,6 @@
 <?php
 /**
- * EventCallbackAccountRequest
+ * EventCallbackRequest
  *
  * PHP version 7.3
  *
@@ -33,7 +33,7 @@ use HelloSignSDK\ObjectSerializer;
 use JsonSerializable;
 
 /**
- * EventCallbackAccountRequest Class Doc Comment
+ * EventCallbackRequest Class Doc Comment
  *
  * @category Class
  * @author   OpenAPI Generator team
@@ -42,7 +42,7 @@ use JsonSerializable;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class EventCallbackRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSe
      *
      * @var string
      */
-    protected static $openAPIModelName = 'EventCallbackAccountRequest';
+    protected static $openAPIModelName = 'EventCallbackRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,10 @@ class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSe
      * @var string[]
      */
     protected static $openAPITypes = [
-        'json' => '\HelloSignSDK\Model\EventCallbackAccountRequestPayload',
+        'event' => '\HelloSignSDK\Model\EventCallbackRequestEvent',
+        'account' => '\HelloSignSDK\Model\AccountResponse',
+        'signature_request' => '\HelloSignSDK\Model\SignatureRequestResponse',
+        'template' => '\HelloSignSDK\Model\TemplateResponse',
     ];
 
     /**
@@ -70,7 +73,10 @@ class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSe
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'json' => null,
+        'event' => null,
+        'account' => null,
+        'signature_request' => null,
+        'template' => null,
     ];
 
     /**
@@ -100,7 +106,10 @@ class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
-        'json' => 'json',
+        'event' => 'event',
+        'account' => 'account',
+        'signature_request' => 'signature_request',
+        'template' => 'template',
     ];
 
     /**
@@ -109,7 +118,10 @@ class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSe
      * @var string[]
      */
     protected static $setters = [
-        'json' => 'setJson',
+        'event' => 'setEvent',
+        'account' => 'setAccount',
+        'signature_request' => 'setSignatureRequest',
+        'template' => 'setTemplate',
     ];
 
     /**
@@ -118,7 +130,10 @@ class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSe
      * @var string[]
      */
     protected static $getters = [
-        'json' => 'getJson',
+        'event' => 'getEvent',
+        'account' => 'getAccount',
+        'signature_request' => 'getSignatureRequest',
+        'template' => 'getTemplate',
     ];
 
     /**
@@ -177,15 +192,18 @@ class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->container['json'] = $data['json'] ?? null;
+        $this->container['event'] = $data['event'] ?? null;
+        $this->container['account'] = $data['account'] ?? null;
+        $this->container['signature_request'] = $data['signature_request'] ?? null;
+        $this->container['template'] = $data['template'] ?? null;
     }
 
-    public static function fromArray(array $data): EventCallbackAccountRequest
+    public static function fromArray(array $data): EventCallbackRequest
     {
-        /** @var EventCallbackAccountRequest $obj */
+        /** @var EventCallbackRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
-            EventCallbackAccountRequest::class,
+            $data,
+            EventCallbackRequest::class,
         );
 
         return $obj;
@@ -200,8 +218,8 @@ class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSe
     {
         $invalidProperties = [];
 
-        if ($this->container['json'] === null) {
-            $invalidProperties[] = "'json' can't be null";
+        if ($this->container['event'] === null) {
+            $invalidProperties[] = "'event' can't be null";
         }
 
         return $invalidProperties;
@@ -219,25 +237,97 @@ class EventCallbackAccountRequest implements ModelInterface, ArrayAccess, JsonSe
     }
 
     /**
-     * Gets json
+     * Gets event
      *
-     * @return EventCallbackAccountRequestPayload
+     * @return EventCallbackRequestEvent
      */
-    public function getJson()
+    public function getEvent()
     {
-        return $this->container['json'];
+        return $this->container['event'];
     }
 
     /**
-     * Sets json
+     * Sets event
      *
-     * @param EventCallbackAccountRequestPayload $json json
+     * @param EventCallbackRequestEvent $event event
      *
      * @return self
      */
-    public function setJson(EventCallbackAccountRequestPayload $json)
+    public function setEvent(EventCallbackRequestEvent $event)
     {
-        $this->container['json'] = $json;
+        $this->container['event'] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Gets account
+     *
+     * @return AccountResponse|null
+     */
+    public function getAccount()
+    {
+        return $this->container['account'];
+    }
+
+    /**
+     * Sets account
+     *
+     * @param AccountResponse|null $account account
+     *
+     * @return self
+     */
+    public function setAccount(?AccountResponse $account)
+    {
+        $this->container['account'] = $account;
+
+        return $this;
+    }
+
+    /**
+     * Gets signature_request
+     *
+     * @return SignatureRequestResponse|null
+     */
+    public function getSignatureRequest()
+    {
+        return $this->container['signature_request'];
+    }
+
+    /**
+     * Sets signature_request
+     *
+     * @param SignatureRequestResponse|null $signature_request signature_request
+     *
+     * @return self
+     */
+    public function setSignatureRequest(?SignatureRequestResponse $signature_request)
+    {
+        $this->container['signature_request'] = $signature_request;
+
+        return $this;
+    }
+
+    /**
+     * Gets template
+     *
+     * @return TemplateResponse|null
+     */
+    public function getTemplate()
+    {
+        return $this->container['template'];
+    }
+
+    /**
+     * Sets template
+     *
+     * @param TemplateResponse|null $template template
+     *
+     * @return self
+     */
+    public function setTemplate(?TemplateResponse $template)
+    {
+        $this->container['template'] = $template;
 
         return $this;
     }

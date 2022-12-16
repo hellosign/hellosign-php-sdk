@@ -191,7 +191,7 @@ class TemplateResponseDocumentFieldGroup implements ModelInterface, ArrayAccess,
     {
         /** @var TemplateResponseDocumentFieldGroup $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateResponseDocumentFieldGroup::class,
         );
 

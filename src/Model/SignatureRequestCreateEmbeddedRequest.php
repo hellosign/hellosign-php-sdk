@@ -319,7 +319,7 @@ class SignatureRequestCreateEmbeddedRequest implements ModelInterface, ArrayAcce
     {
         /** @var SignatureRequestCreateEmbeddedRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestCreateEmbeddedRequest::class,
         );
 

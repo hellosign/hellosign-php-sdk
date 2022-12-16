@@ -41,7 +41,7 @@ $data->setTitle("NDA with Acme Co.")
         "lawyer@hellosign.com",
         "lawyer@example.com",
     ])
-    ->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"])
+    ->setFile([new SplFileObject(__DIR__ . "/example_signature_request.pdf")])
     ->setMetadata([
         "custom_id" => 1234,
         "custom_text" => "NDA #9",

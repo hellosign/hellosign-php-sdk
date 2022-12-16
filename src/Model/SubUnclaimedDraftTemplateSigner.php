@@ -196,7 +196,7 @@ class SubUnclaimedDraftTemplateSigner implements ModelInterface, ArrayAccess, Js
     {
         /** @var SubUnclaimedDraftTemplateSigner $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubUnclaimedDraftTemplateSigner::class,
         );
 

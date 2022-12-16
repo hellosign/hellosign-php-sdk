@@ -13,7 +13,7 @@ $config->setUsername("YOUR_API_KEY");
 $api = new HelloSignSDK\Api\TemplateApi($config);
 
 $data = new HelloSignSDK\Model\TemplateUpdateFilesRequest();
-$data->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"]);
+$data->setFile([new SplFileObject(__DIR__ . "/example_signature_request.pdf")]);
 
 $templateId = "5de8179668f2033afac48da1868d0093bf133266";
 

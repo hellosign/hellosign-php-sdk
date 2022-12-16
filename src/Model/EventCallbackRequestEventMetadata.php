@@ -203,7 +203,7 @@ class EventCallbackRequestEventMetadata implements ModelInterface, ArrayAccess, 
     {
         /** @var EventCallbackRequestEventMetadata $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             EventCallbackRequestEventMetadata::class,
         );
 

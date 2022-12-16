@@ -5,7 +5,7 @@
 set -e
 
 DIR=$(cd `dirname $0` && pwd)
-WORKINGDIR="/app/php"
+WORKING_DIR="/app/php"
 
 docker run --rm \
   -v "${DIR}/:/local" \
@@ -29,14 +29,14 @@ bash "${DIR}/bin/php" ./vendor/bin/php-cs-fixer fix --verbose
 
 printf "Replacing strings ...\n"
 docker run --rm \
-  -v "${DIR}:${WORKINGDIR}" \
-  -w "${WORKINGDIR}" \
+  -v "${DIR}:${WORKING_DIR}" \
+  -w "${WORKING_DIR}" \
   perl bash ./bin/replace
 
 printf "Scanning for prohibited keywords ...\n"
 docker run --rm \
-  -v "${DIR}:${WORKINGDIR}" \
-  -w "${WORKINGDIR}" \
+  -v "${DIR}:${WORKING_DIR}" \
+  -w "${WORKING_DIR}" \
   perl bash ./bin/scan_for
 
 printf "Running unit tests ...\n"

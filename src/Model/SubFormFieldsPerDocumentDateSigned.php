@@ -178,7 +178,7 @@ class SubFormFieldsPerDocumentDateSigned extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentDateSigned $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubFormFieldsPerDocumentDateSigned::class,
         );
 

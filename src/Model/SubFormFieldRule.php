@@ -203,7 +203,7 @@ class SubFormFieldRule implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubFormFieldRule $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubFormFieldRule::class,
         );
 

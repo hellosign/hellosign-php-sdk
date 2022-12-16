@@ -225,7 +225,7 @@ class SubFormFieldRuleTrigger implements ModelInterface, ArrayAccess, JsonSerial
     {
         /** @var SubFormFieldRuleTrigger $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubFormFieldRuleTrigger::class,
         );
 

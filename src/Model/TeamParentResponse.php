@@ -192,7 +192,7 @@ class TeamParentResponse implements ModelInterface, ArrayAccess, JsonSerializabl
     {
         /** @var TeamParentResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TeamParentResponse::class,
         );
 

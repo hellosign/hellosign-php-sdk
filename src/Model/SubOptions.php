@@ -185,7 +185,7 @@ class SubOptions implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubOptions $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubOptions::class,
         );
 

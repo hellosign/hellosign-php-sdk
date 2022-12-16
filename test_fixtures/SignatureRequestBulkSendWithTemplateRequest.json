@@ -19,7 +19,6 @@
     "metadata": {
       "field1": "value1"
     },
-    "signer_file": "pdf-sample.pdf",
     "signer_list": [
       {
         "signers": [

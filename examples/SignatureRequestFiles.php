@@ -13,10 +13,11 @@ $config->setUsername("YOUR_API_KEY");
 $api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
+$fileType = "pdf";
 
 try {
-    $result = $api->signatureRequestFiles($signatureRequestId);
-    print_r($result);
+    $result = $api->signatureRequestFiles($signatureRequestId, $fileType);
+    copy($result->getRealPath(), __DIR__ . '/file_response.pdf');
 } catch (HelloSignSDK\ApiException $e) {
     $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "

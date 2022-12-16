@@ -204,7 +204,7 @@ class TemplateCreateEmbeddedDraftResponseTemplate implements ModelInterface, Arr
     {
         /** @var TemplateCreateEmbeddedDraftResponseTemplate $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateCreateEmbeddedDraftResponseTemplate::class,
         );
 

@@ -32,17 +32,19 @@ namespace {{invokerPackage}};
  */
 abstract class EventCallbackHelper
 {
+    public const EVENT_TYPE_ACCOUNT_CALLBACK = 'account_callback';
+
+    public const EVENT_TYPE_APP_CALLBACK = 'app_callback';
+
     /**
      * Verify that a callback came from HelloSign.com
-     *
-     * @param string $api_key
-     * @param Model\EventCallbackRequestEvent $event
-     * @return bool
      */
     public static function isValid(
         string $api_key,
-        Model\EventCallbackRequestEvent $event
+        Model\EventCallbackRequest $event_callback
     ): bool {
+        $event = $event_callback->getEvent();
+
         $hash = hash_hmac(
             'sha256',
             $event->getEventTime() . $event->getEventType(),
@@ -50,5 +52,21 @@ abstract class EventCallbackHelper
         );
 
         return $event->getEventHash() === $hash;
+    }
+
+    /**
+     * Identifies the callback type, one of "account_callback" or
+     * "app_callback".
+     *
+     * "app_callback" will always include a value for "reported_for_app_id"
+     */
+    public static function getCallbackType(
+        Model\EventCallbackRequest $event_callback
+    ): string {
+        $meta_data = $event_callback->getEvent()->getEventMetadata();
+
+        return !empty($meta_data->getReportedForAppId())
+            ? self::EVENT_TYPE_APP_CALLBACK
+            : self::EVENT_TYPE_ACCOUNT_CALLBACK;
     }
 }

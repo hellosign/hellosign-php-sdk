@@ -276,7 +276,7 @@ class SignatureRequestSendWithTemplateRequest implements ModelInterface, ArrayAc
     {
         /** @var SignatureRequestSendWithTemplateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestSendWithTemplateRequest::class,
         );
 

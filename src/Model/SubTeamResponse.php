@@ -191,7 +191,7 @@ class SubTeamResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubTeamResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubTeamResponse::class,
         );
 

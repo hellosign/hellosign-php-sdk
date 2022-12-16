@@ -66,7 +66,7 @@ $data->setSubject("The NDA we talked about")
         "lawyer@hellosign.com",
         "lawyer@example.com",
     ])
-    ->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"])
+    ->setFile([new SplFileObject(__DIR__ . "/example_signature_request.pdf")])
     ->setMetadata([
         "custom_id" => 1234,
         "custom_text" => "NDA #9",
@@ -138,7 +138,7 @@ $api = new HelloSignSDK\Api\UnclaimedDraftApi($config);
 
 $data = new HelloSignSDK\Model\UnclaimedDraftCreateEmbeddedRequest();
 $data->setClientId("ec64a202072370a737edf4a0eb7f4437")
-    ->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"])
+    ->setFile([new SplFileObject(__DIR__ . "/example_signature_request.pdf")])
     ->setRequesterEmailAddress("jack@hellosign.com")
     ->setTestMode(true);
 

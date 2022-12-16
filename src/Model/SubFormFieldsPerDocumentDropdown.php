@@ -191,7 +191,7 @@ class SubFormFieldsPerDocumentDropdown extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentDropdown $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubFormFieldsPerDocumentDropdown::class,
         );
 

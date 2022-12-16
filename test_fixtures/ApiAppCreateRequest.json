@@ -2,7 +2,6 @@
   "default": {
     "name": "My Production App",
     "callback_url": "https://example.com/callback",
-    "custom_logo_file": "pdf-sample.pdf",
     "domains": [
       "example.com"
     ],

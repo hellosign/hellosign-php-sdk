@@ -5,7 +5,6 @@
       "example.com"
     ],
     "callback_url": "http://example.com/hellosign",
-    "custom_logo_file": "pdf-sample.pdf",
     "oauth": {
       "callback_url": "https://example.com/oauth",
       "scopes": [

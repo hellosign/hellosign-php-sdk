@@ -1029,7 +1029,7 @@ class TemplateApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return SplFileObject|\HelloSignSDK\Model\ErrorResponse
+     * @return SplFileObject
      */
     public function templateFiles(string $template_id, string $file_type = null)
     {

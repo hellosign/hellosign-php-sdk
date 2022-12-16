@@ -13,7 +13,7 @@ $config->setUsername("YOUR_API_KEY");
 $api = new HelloSignSDK\Api\AccountApi($config);
 
 try {
-    $result = $api->accountGet();
+    $result = $api->accountGet(null, 'jack@example.com');
     print_r($result);
 } catch (HelloSignSDK\ApiException $e) {
     $error = $e->getResponseObject();

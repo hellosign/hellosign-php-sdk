@@ -191,7 +191,7 @@ class UnclaimedDraftCreateResponse implements ModelInterface, ArrayAccess, JsonS
     {
         /** @var UnclaimedDraftCreateResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             UnclaimedDraftCreateResponse::class,
         );
 

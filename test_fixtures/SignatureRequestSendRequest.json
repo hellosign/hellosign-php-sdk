@@ -26,9 +26,6 @@
     "field_options": {
       "date_format": "DD - MM - YYYY"
     },
-    "file": [
-      "pdf-sample.pdf"
-    ],
     "file_url": [
       "https://app.hellosign.com/docs/example_signature_request.pdf"
     ],
@@ -228,44 +225,6 @@
     "test_mode": true,
     "title": "NDA with Acme Co.",
     "use_text_tags": true
-  },
-  "with_file_url": {
-    "file_url": [
-      "https://app.hellosign.com/docs/example_signature_request.pdf",
-      "https://app.hellosign.com/docs/example_signature_request-2.pdf"
-    ],
-    "signers": [
-      {
-        "email_address": "s1@example.com",
-        "name": "Signer 1",
-        "order": 0
-      }
-    ],
-    "allow_decline": false,
-    "allow_reassign": false,
-    "hide_text_tags": false,
-    "is_qualified_signature": false,
-    "test_mode": false,
-    "use_text_tags": false
-  },
-  "with_file": {
-    "file": [
-      "pdf-sample.pdf",
-      "pdf-sample-2.pdf"
-    ],
-    "signers": [
-      {
-        "email_address": "s1@example.com",
-        "name": "Signer 1",
-        "order": 0
-      }
-    ],
-    "allow_decline": false,
-    "allow_reassign": false,
-    "hide_text_tags": false,
-    "is_qualified_signature": false,
-    "test_mode": false,
-    "use_text_tags": false
   }
 }
 

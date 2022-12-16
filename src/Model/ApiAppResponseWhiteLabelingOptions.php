@@ -264,7 +264,7 @@ class ApiAppResponseWhiteLabelingOptions implements ModelInterface, ArrayAccess,
     {
         /** @var ApiAppResponseWhiteLabelingOptions $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             ApiAppResponseWhiteLabelingOptions::class,
         );
 

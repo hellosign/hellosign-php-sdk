@@ -1,6 +1,6 @@
 {
     "name": "hellosign/hellosign-php-sdk",
-    "version": "6.0.0-beta22.23",
+    "version": "6.0.0-beta22.24",
     "description": "Official HelloSign APIv3 OpenAPI PHP SDK",
     "keywords": [
         "openapitools",

@@ -183,7 +183,7 @@ class SignatureRequestResponseDataValueDropdown extends SignatureRequestResponse
     {
         /** @var SignatureRequestResponseDataValueDropdown $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestResponseDataValueDropdown::class,
         );
 

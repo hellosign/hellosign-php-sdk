@@ -24,9 +24,6 @@
     "field_options": {
       "date_format": "DD - MM - YYYY"
     },
-    "file": [
-      "pdf-sample.pdf"
-    ],
     "file_url": [
       "https://app.hellosign.com/docs/example_signature_request.pdf"
     ],
@@ -65,7 +62,6 @@
       "61a832ff0d8423f91d503e76bfbcc750f7417c78"
     ],
     "test_mode": false,
-    "title": "NDA with Acme Co.",
-    "populate_auto_fill_fields": false
+    "title": "NDA with Acme Co."
   }
 }

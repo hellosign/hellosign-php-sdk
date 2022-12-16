@@ -186,7 +186,7 @@
     {
         /** @var {{classname}} $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             {{classname}}::class,
         );
 

@@ -271,7 +271,7 @@ class SignatureRequestCreateEmbeddedWithTemplateRequest implements ModelInterfac
     {
         /** @var SignatureRequestCreateEmbeddedWithTemplateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestCreateEmbeddedWithTemplateRequest::class,
         );
 

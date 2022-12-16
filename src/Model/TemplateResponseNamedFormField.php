@@ -263,7 +263,7 @@ class TemplateResponseNamedFormField implements ModelInterface, ArrayAccess, Jso
     {
         /** @var TemplateResponseNamedFormField $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateResponseNamedFormField::class,
         );
 

@@ -330,7 +330,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     {
         /** @var TemplateCreateEmbeddedDraftRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateCreateEmbeddedDraftRequest::class,
         );
 
@@ -720,7 +720,7 @@ class TemplateCreateEmbeddedDraftRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets merge_fields
      *
-     * @param SubMergeField[]|null $merge_fields Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.   If the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.
+     * @param SubMergeField[]|null $merge_fields Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter. If the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.
      *
      * @return self
      */

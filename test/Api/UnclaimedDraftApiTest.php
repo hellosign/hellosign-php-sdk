@@ -10,6 +10,7 @@ use HelloSignSDK\Configuration;
 use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
 use HelloSignSDK\Test\TestUtils;
+use SplFileObject;
 
 class UnclaimedDraftApiTest extends HelloTestCase
 {
@@ -41,6 +42,9 @@ class UnclaimedDraftApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $obj = Model\UnclaimedDraftCreateRequest::fromArray($requestData);
+        $obj->setFile([
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf'),
+        ]);
 
         $response = $this->api->unclaimedDraftCreate($obj);
         $serialized = TestUtils::toArray($response);
@@ -61,6 +65,9 @@ class UnclaimedDraftApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $obj = Model\UnclaimedDraftCreateEmbeddedRequest::fromArray($requestData);
+        $obj->setFile([
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf'),
+        ]);
 
         $response = $this->api->unclaimedDraftCreateEmbedded($obj);
         $serialized = TestUtils::toArray($response);
@@ -83,6 +90,9 @@ class UnclaimedDraftApiTest extends HelloTestCase
         $obj = Model\UnclaimedDraftCreateEmbeddedWithTemplateRequest::fromArray(
             $requestData
         );
+        $obj->setFile([
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf'),
+        ]);
 
         $response = $this->api->unclaimedDraftCreateEmbeddedWithTemplate($obj);
         $serialized = TestUtils::toArray($response);

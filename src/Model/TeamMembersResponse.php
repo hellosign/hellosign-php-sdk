@@ -197,7 +197,7 @@ class TeamMembersResponse implements ModelInterface, ArrayAccess, JsonSerializab
     {
         /** @var TeamMembersResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TeamMembersResponse::class,
         );
 

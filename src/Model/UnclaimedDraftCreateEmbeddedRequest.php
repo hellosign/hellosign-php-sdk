@@ -412,7 +412,7 @@ class UnclaimedDraftCreateEmbeddedRequest implements ModelInterface, ArrayAccess
     {
         /** @var UnclaimedDraftCreateEmbeddedRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             UnclaimedDraftCreateEmbeddedRequest::class,
         );
 

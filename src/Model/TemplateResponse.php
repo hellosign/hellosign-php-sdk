@@ -270,7 +270,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var TemplateResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateResponse::class,
         );
 
@@ -481,7 +481,7 @@ class TemplateResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets is_locked
      *
-     * @param bool|null $is_locked Indicates whether the template is locked.  If `true`, then the template was created outside your quota and can only be used in `test_mode`.  If `false`, then the template is within your quota and can be used to create signature requests.
+     * @param bool|null $is_locked Indicates whether the template is locked. If `true`, then the template was created outside your quota and can only be used in `test_mode`. If `false`, then the template is within your quota and can be used to create signature requests.
      *
      * @return self
      */

@@ -183,7 +183,7 @@ class SignatureRequestResponseDataValueCheckboxMerge extends SignatureRequestRes
     {
         /** @var SignatureRequestResponseDataValueCheckboxMerge $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestResponseDataValueCheckboxMerge::class,
         );
 

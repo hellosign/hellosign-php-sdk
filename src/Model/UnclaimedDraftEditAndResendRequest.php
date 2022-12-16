@@ -226,7 +226,7 @@ class UnclaimedDraftEditAndResendRequest implements ModelInterface, ArrayAccess,
     {
         /** @var UnclaimedDraftEditAndResendRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             UnclaimedDraftEditAndResendRequest::class,
         );
 

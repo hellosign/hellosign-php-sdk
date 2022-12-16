@@ -178,7 +178,7 @@ class SubFormFieldsPerDocumentSignature extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentSignature $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubFormFieldsPerDocumentSignature::class,
         );
 
