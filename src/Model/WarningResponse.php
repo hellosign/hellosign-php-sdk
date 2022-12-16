@@ -191,7 +191,7 @@ class WarningResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var WarningResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             WarningResponse::class,
         );
 

@@ -204,7 +204,7 @@ class ApiAppResponseOAuth implements ModelInterface, ArrayAccess, JsonSerializab
     {
         /** @var ApiAppResponseOAuth $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             ApiAppResponseOAuth::class,
         );
 

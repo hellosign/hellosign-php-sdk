@@ -10,6 +10,7 @@ use HelloSignSDK\Configuration;
 use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
 use HelloSignSDK\Test\TestUtils;
+use SplFileObject;
 
 class SignatureRequestApiTest extends HelloTestCase
 {
@@ -43,6 +44,9 @@ class SignatureRequestApiTest extends HelloTestCase
         $obj = Model\SignatureRequestBulkCreateEmbeddedWithTemplateRequest::fromArray(
             $requestData
         );
+        $obj->setSignerFile(
+            new SplFileObject(self::ROOT_FILE_PATH . '/bulk-send-sample.csv'),
+        );
 
         $response = $this->api->signatureRequestBulkCreateEmbeddedWithTemplate($obj);
         $serialized = TestUtils::toArray($response);
@@ -64,6 +68,9 @@ class SignatureRequestApiTest extends HelloTestCase
 
         $obj = Model\SignatureRequestBulkSendWithTemplateRequest::fromArray(
             $requestData
+        );
+        $obj->setSignerFile(
+            new SplFileObject(self::ROOT_FILE_PATH . '/bulk-send-sample.csv'),
         );
 
         $response = $this->api->signatureRequestBulkSendWithTemplate($obj);
@@ -92,6 +99,9 @@ class SignatureRequestApiTest extends HelloTestCase
         $obj = Model\SignatureRequestCreateEmbeddedRequest::fromArray(
             $requestData
         );
+        $obj->setFile([
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf'),
+        ]);
 
         $response = $this->api->signatureRequestCreateEmbedded($obj);
         $serialized = TestUtils::toArray($response);
@@ -114,6 +124,9 @@ class SignatureRequestApiTest extends HelloTestCase
         $obj = Model\SignatureRequestCreateEmbeddedWithTemplateRequest::fromArray(
             $requestData
         );
+        $obj->setFile([
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf'),
+        ]);
 
         $response = $this->api->signatureRequestCreateEmbeddedWithTemplate($obj);
         $serialized = TestUtils::toArray($response);
@@ -216,6 +229,9 @@ class SignatureRequestApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $obj = Model\SignatureRequestSendRequest::fromArray($requestData);
+        $obj->setFile([
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf'),
+        ]);
 
         $response = $this->api->signatureRequestSend($obj);
         $serialized = TestUtils::toArray($response);

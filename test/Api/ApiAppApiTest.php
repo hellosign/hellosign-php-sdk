@@ -10,6 +10,7 @@ use HelloSignSDK\Configuration;
 use HelloSignSDK\Model;
 use HelloSignSDK\Test\HelloTestCase;
 use HelloSignSDK\Test\TestUtils;
+use SplFileObject;
 
 class ApiAppApiTest extends HelloTestCase
 {
@@ -41,6 +42,9 @@ class ApiAppApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $obj = Model\ApiAppCreateRequest::fromArray($requestData);
+        $obj->setCustomLogoFile(
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf')
+        );
 
         $response = $this->api->apiAppCreate($obj);
         $serialized = TestUtils::toArray($response);
@@ -80,6 +84,9 @@ class ApiAppApiTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $obj = Model\ApiAppUpdateRequest::fromArray($requestData);
+        $obj->setCustomLogoFile(
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf')
+        );
 
         $response = $this->api->apiAppUpdate($clientId, $obj);
         $serialized = TestUtils::toArray($response);

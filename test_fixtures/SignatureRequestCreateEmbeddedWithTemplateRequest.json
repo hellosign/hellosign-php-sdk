@@ -16,9 +16,6 @@
         "required": true
       }
     ],
-    "file": [
-      "pdf-sample.pdf"
-    ],
     "file_url": [
       "https://app.hellosign.com/docs/example_signature_request.pdf"
     ],
@@ -58,7 +55,6 @@
       "c26b8a16784a872da37ea946b9ddec7c1e11dff6"
     ],
     "test_mode": true,
-    "title": "My amazing title",
-    "populate_auto_fill_fields": false
+    "title": "My amazing title"
   }
 }

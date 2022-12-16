@@ -196,7 +196,7 @@ class AccountUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     {
         /** @var AccountUpdateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             AccountUpdateRequest::class,
         );
 

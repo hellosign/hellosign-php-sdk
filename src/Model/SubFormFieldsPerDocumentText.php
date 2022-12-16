@@ -253,7 +253,7 @@ class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentText $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubFormFieldsPerDocumentText::class,
         );
 

@@ -185,7 +185,7 @@ class TemplateUpdateFilesResponse implements ModelInterface, ArrayAccess, JsonSe
     {
         /** @var TemplateUpdateFilesResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateUpdateFilesResponse::class,
         );
 

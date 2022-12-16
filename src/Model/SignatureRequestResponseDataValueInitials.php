@@ -183,7 +183,7 @@ class SignatureRequestResponseDataValueInitials extends SignatureRequestResponse
     {
         /** @var SignatureRequestResponseDataValueInitials $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestResponseDataValueInitials::class,
         );
 

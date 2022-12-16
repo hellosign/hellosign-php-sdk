@@ -109,6 +109,11 @@ paths:
           label: Python
           source:
             $ref: examples/AccountCreate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/AccountCreate.sh
       x-meta:
         seo:
           title: 'Create Account | API Documentation | Dropbox Sign for Developers'
@@ -125,7 +130,7 @@ paths:
           name: account_id
           in: query
           description: |-
-            `account_id` or `email_address` is required. If both are provided, the account id prevails. 
+            `account_id` or `email_address` is required. If both are provided, the account id prevails.
 
             The ID of the Account.
           required: false
@@ -135,7 +140,7 @@ paths:
           name: email_address
           in: query
           description: |-
-            `account_id` or `email_address` is required, If both are provided, the account id prevails. 
+            `account_id` or `email_address` is required, If both are provided, the account id prevails.
 
             The email address of the Account.
           required: false
@@ -218,6 +223,11 @@ paths:
           label: Python
           source:
             $ref: examples/AccountGet.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/AccountGet.sh
       x-meta:
         seo:
           title: 'Get Account | API Documentation | Dropbox Sign for Developers'
@@ -315,6 +325,11 @@ paths:
           label: Python
           source:
             $ref: examples/AccountUpdate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/AccountUpdate.sh
       x-meta:
         seo:
           title: 'Update Account | API Documentation | Dropbox Sign for Developers'
@@ -413,6 +428,11 @@ paths:
           label: Python
           source:
             $ref: examples/AccountVerify.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/AccountVerify.sh
       x-meta:
         seo:
           title: 'Verify Account | API Documentation | Dropbox Sign for Developers'
@@ -436,9 +456,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/ApiAppCreateRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/ApiAppCreateRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -517,6 +534,11 @@ paths:
           label: Python
           source:
             $ref: examples/ApiAppCreate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/ApiAppCreate.sh
       x-meta:
         seo:
           title: 'Create API App | API Documentation | Dropbox Sign for Developers'
@@ -617,6 +639,11 @@ paths:
           label: Python
           source:
             $ref: examples/ApiAppGet.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/ApiAppGet.sh
       x-meta:
         seo:
           title: 'Get API App | API Documentation | Dropbox Sign for Developers'
@@ -648,9 +675,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/ApiAppUpdateRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/ApiAppUpdateRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -731,6 +755,11 @@ paths:
           label: Python
           source:
             $ref: examples/ApiAppUpdate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/ApiAppUpdate.sh
       x-meta:
         seo:
           title: 'Update API App | API Documentation | Dropbox Sign for Developers'
@@ -821,6 +850,11 @@ paths:
           label: Python
           source:
             $ref: examples/ApiAppDelete.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/ApiAppDelete.sh
       x-meta:
         seo:
           title: 'Delete API App | API Documentation | Dropbox Sign for Developers'
@@ -923,6 +957,11 @@ paths:
           label: Python
           source:
             $ref: examples/ApiAppList.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/ApiAppList.sh
       x-meta:
         seo:
           title: 'List API Apps | API Documentation | Dropbox Sign for Developers'
@@ -1020,6 +1059,11 @@ paths:
           label: Python
           source:
             $ref: examples/BulkSendJobGet.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/BulkSendJobGet.sh
       x-meta:
         seo:
           title: 'Get Bulk Send Job | API Documentation | Dropbox Sign for Developers'
@@ -1123,6 +1167,11 @@ paths:
           label: Python
           source:
             $ref: examples/BulkSendJobList.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/BulkSendJobList.sh
       x-meta:
         seo:
           title: 'List Bulk Send Jobs | Documentation | Dropbox Sign for Developers'
@@ -1230,6 +1279,11 @@ paths:
           label: Python
           source:
             $ref: examples/EmbeddedEditUrl.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/EmbeddedEditUrl.sh
       x-meta:
         seo:
           title: 'Get Embedded Template URL | iFrame | Dropbox Sign for Developers'
@@ -1332,6 +1386,11 @@ paths:
           label: Python
           source:
             $ref: examples/EmbeddedSignUrl.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/EmbeddedSignUrl.sh
       x-meta:
         seo:
           title: 'Get Embedded Sign URL | iFrame | Dropbox Sign for Developers'
@@ -1409,6 +1468,11 @@ paths:
           label: Python
           source:
             $ref: examples/OauthTokenGenerate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/OauthTokenGenerate.sh
       x-hideTryItPanel: true
       x-meta:
         seo:
@@ -1487,6 +1551,11 @@ paths:
           label: Python
           source:
             $ref: examples/OauthTokenRefresh.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/OauthTokenRefresh.sh
       x-hideTryItPanel: true
       x-meta:
         seo:
@@ -1584,6 +1653,11 @@ paths:
           label: Python
           source:
             $ref: examples/ReportCreate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/ReportCreate.sh
       x-meta:
         seo:
           title: 'Create Report | API Documentation | Dropbox Sign for Developers'
@@ -1610,9 +1684,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignatureRequestBulkCreateEmbeddedWithTemplateRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/SignatureRequestBulkCreateEmbeddedWithTemplateRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -1692,6 +1763,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestBulkCreateEmbeddedWithTemplate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestBulkCreateEmbeddedWithTemplate.sh
       x-meta:
         seo:
           title: 'Embedded Bulk Send with Template | Dropbox Sign for Developers'
@@ -1718,9 +1794,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignatureRequestBulkSendWithTemplateRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/SignatureRequestBulkSendWithTemplateRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -1800,6 +1873,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestBulkSendWithTemplate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestBulkSendWithTemplate.sh
       x-meta:
         seo:
           title: 'Bulk Send with Template | REST API | Dropbox Sign for Developers'
@@ -1907,6 +1985,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestCancel.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestCancel.sh
       x-meta:
         seo:
           title: 'Cancel Incomplete Signature Request | Dropbox Sign for Developers'
@@ -1927,12 +2010,11 @@ paths:
             examples:
               default_example:
                 $ref: '#/components/examples/SignatureRequestCreateEmbeddedRequestDefaultExample'
+              grouped_signers_example:
+                $ref: '#/components/examples/SignatureRequestCreateEmbeddedRequestGroupedSignersExample'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignatureRequestCreateEmbeddedRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/SignatureRequestCreateEmbeddedRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -2013,6 +2095,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestCreateEmbedded.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestCreateEmbedded.sh
       x-meta:
         seo:
           title: 'Create Embedded Signature Request | Dropbox Sign for Developers'
@@ -2036,9 +2123,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignatureRequestCreateEmbeddedWithTemplateRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/SignatureRequestCreateEmbeddedWithTemplateRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -2119,6 +2203,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestCreateEmbeddedWithTemplate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestCreateEmbeddedWithTemplate.sh
       x-meta:
         seo:
           title: 'Signature Request with Template | Dropbox Sign for Developers'
@@ -2129,7 +2218,7 @@ paths:
         - 'Signature Request'
       summary: 'Download Files'
       description: |-
-        Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file. 
+        Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.
 
         If the files are currently being prepared, a status code of `409` will be returned instead.
       operationId: signatureRequestFiles
@@ -2239,6 +2328,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestFiles.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestFiles.sh
       x-meta:
         seo:
           title: 'Download Files | API Documentation | Dropbox Sign for Developers'
@@ -2249,7 +2343,7 @@ paths:
         - 'Signature Request'
       summary: 'Download Files as Data Uri'
       description: |-
-        Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only). 
+        Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).
 
         If the files are currently being prepared, a status code of `409` will be returned instead.
       operationId: signatureRequestFilesAsDataUri
@@ -2347,6 +2441,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestFilesAsDataUri.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestFilesAsDataUri.sh
       x-meta:
         seo:
           title: 'Download Files | API Documentation | Dropbox Sign for Developers'
@@ -2357,7 +2456,7 @@ paths:
         - 'Signature Request'
       summary: 'Download Files as File Url'
       description: |-
-        Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only). 
+        Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).
 
         If the files are currently being prepared, a status code of `409` will be returned instead.
       operationId: signatureRequestFilesAsFileUrl
@@ -2455,6 +2554,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestFilesAsFileUrl.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestFilesAsFileUrl.sh
       x-meta:
         seo:
           title: 'Download Files | API Documentation | Dropbox Sign for Developers'
@@ -2556,6 +2660,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestGet.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestGet.sh
       x-meta:
         seo:
           title: 'Get Signature Request | Documentation | Dropbox Sign for Developers'
@@ -2677,6 +2786,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestList.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestList.sh
       x-meta:
         seo:
           title: 'List Signature Requests | REST API | Dropbox Sign for Developers'
@@ -2775,6 +2889,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestReleaseHold.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestReleaseHold.sh
       x-meta:
         seo:
           title: 'Release On-Hold Signature Request | Dropbox Sign for Developers'
@@ -2892,6 +3011,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestRemind.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestRemind.sh
       x-meta:
         seo:
           title: 'Send Request Reminder | REST API | Dropbox Sign for Developers'
@@ -2991,6 +3115,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestRemove.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestRemove.sh
       x-meta:
         seo:
           title: 'Remove Signature Request Access | Dropbox Sign for Developers'
@@ -3011,12 +3140,11 @@ paths:
             examples:
               default_example:
                 $ref: '#/components/examples/SignatureRequestSendRequestDefaultExample'
+              grouped_signers_example:
+                $ref: '#/components/examples/SignatureRequestSendRequestGroupedSignersExample'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignatureRequestSendRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/SignatureRequestSendFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -3098,6 +3226,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestSend.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestSend.sh
       x-meta:
         seo:
           title: 'Send Signature Request | REST API | Dropbox Sign for Developers'
@@ -3121,9 +3254,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignatureRequestSendWithTemplateRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/SignatureRequestSendWithTemplateRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -3203,6 +3333,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestSendWithTemplate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestSendWithTemplate.sh
       x-meta:
         seo:
           title: 'Send with Template | API Documentation | Dropbox Sign for Developers'
@@ -3313,6 +3448,11 @@ paths:
           label: Python
           source:
             $ref: examples/SignatureRequestUpdate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/SignatureRequestUpdate.sh
       x-meta:
         seo:
           title: 'Update Signature Request | REST API | Dropbox Sign for Developers'
@@ -3423,6 +3563,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamAddMember.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamAddMember.sh
       x-meta:
         seo:
           title: 'Add User to Team | API Documentation | Dropbox Sign for Developers'
@@ -3519,6 +3664,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamCreate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamCreate.sh
       x-meta:
         seo:
           title: 'Create Team | REST API Documentation | Dropbox Sign for Developers'
@@ -3599,6 +3749,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamDelete.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamDelete.sh
       x-meta:
         seo:
           title: 'Delete Team | REST API Documentation | Dropbox Sign for Developers'
@@ -3688,6 +3843,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamGet.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamGet.sh
       x-meta:
         seo:
           title: 'Get Team | REST API Documentation | Dropbox Sign for Developers'
@@ -3783,6 +3943,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamUpdate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamUpdate.sh
       x-meta:
         seo:
           title: 'Update Team | API Documentation | Dropbox Sign for Developers'
@@ -3883,6 +4048,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamInfo.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamInfo.sh
       x-beta: closed
       x-meta:
         seo:
@@ -3980,6 +4150,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamInvites.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamInvites.sh
       x-meta:
         seo:
           title: '_t__TeamInvites::SEO::TITLE'
@@ -4096,6 +4271,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamMembers.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamMembers.sh
       x-beta: closed
       x-meta:
         seo:
@@ -4197,6 +4377,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamRemoveMember.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamRemoveMember.sh
       x-meta:
         seo:
           title: 'Remove User from Team | REST API | Dropbox Sign for Developers'
@@ -4313,6 +4498,11 @@ paths:
           label: Python
           source:
             $ref: examples/TeamSubTeams.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TeamSubTeams.sh
       x-beta: closed
       x-meta:
         seo:
@@ -4421,6 +4611,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateAddUser.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateAddUser.sh
       x-meta:
         seo:
           title: 'Add User to Template | REST API | Dropbox Sign for Developers'
@@ -4450,9 +4645,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/TemplateCreateEmbeddedDraftRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/TemplateCreateEmbeddedDraftRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -4533,6 +4725,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateCreateEmbeddedDraft.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateCreateEmbeddedDraft.sh
       x-meta:
         seo:
           title: 'Create Embedded Template Draft | Dropbox Sign for Developers'
@@ -4628,6 +4825,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateDelete.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateDelete.sh
       x-meta:
         seo:
           title: 'Delete Template | API Documentation | Dropbox Sign for Developers'
@@ -4746,6 +4948,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateFiles.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateFiles.sh
       x-meta:
         seo:
           title: 'Get Template Files | API Documentation | Dropbox Sign for Developers'
@@ -4756,7 +4963,7 @@ paths:
         - Template
       summary: 'Get Template Files as Data Uri'
       description: |-
-        Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only). 
+        Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).
 
         If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
       operationId: templateFilesAsDataUri
@@ -4853,6 +5060,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateFilesAsDataUri.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateFilesAsDataUri.sh
       x-meta:
         seo:
           title: 'Get Template Files | API Documentation | Dropbox Sign for Developers'
@@ -4863,7 +5075,7 @@ paths:
         - Template
       summary: 'Get Template Files as File Url'
       description: |-
-        Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only). 
+        Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).
 
         If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
       operationId: templateFilesAsFileUrl
@@ -4960,6 +5172,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateFilesAsFileUrl.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateFilesAsFileUrl.sh
       x-meta:
         seo:
           title: 'Get Template Files | API Documentation | Dropbox Sign for Developers'
@@ -5060,6 +5277,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateGet.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateGet.sh
       x-meta:
         seo:
           title: 'Get Template | API Documentation | Dropbox Sign for Developers'
@@ -5183,6 +5405,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateList.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateList.sh
       x-meta:
         seo:
           title: 'List Templates | API Documentation | Dropbox Sign for Developers'
@@ -5290,6 +5517,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateRemoveUser.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateRemoveUser.sh
       x-meta:
         seo:
           title: 'Remove User from Template | REST API | Dropbox Sign for Developers'
@@ -5334,9 +5566,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/TemplateUpdateFilesRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/TemplateUpdateFilesRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -5419,6 +5648,11 @@ paths:
           label: Python
           source:
             $ref: examples/TemplateUpdateFiles.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/TemplateUpdateFiles.sh
       x-meta:
         seo:
           title: 'Update Template Files | REST API | Dropbox Sign for Developers'
@@ -5448,9 +5682,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/UnclaimedDraftCreateRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/UnclaimedDraftCreateRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -5527,6 +5758,11 @@ paths:
           label: Python
           source:
             $ref: examples/UnclaimedDraftCreate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/UnclaimedDraftCreate.sh
       x-meta:
         seo:
           title: 'Create Unclaimed Draft | REST API | Dropbox Sign for Developers'
@@ -5559,9 +5795,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/UnclaimedDraftCreateEmbeddedRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/UnclaimedDraftCreateEmbeddedRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -5643,6 +5876,11 @@ paths:
           label: Python
           source:
             $ref: examples/UnclaimedDraftCreateEmbedded.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/UnclaimedDraftCreateEmbedded.sh
       x-meta:
         seo:
           title: 'Create Embedded Unclaimed Draft | Dropbox Sign for Developers'
@@ -5669,9 +5907,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/UnclaimedDraftCreateEmbeddedWithTemplateRequest'
-            examples:
-              default_example:
-                $ref: '#/components/examples/UnclaimedDraftCreateEmbeddedWithTemplateRequestFormDataExample'
       responses:
         200:
           description: 'successful operation'
@@ -5754,6 +5989,11 @@ paths:
           label: Python
           source:
             $ref: examples/UnclaimedDraftCreateEmbeddedWithTemplate.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/UnclaimedDraftCreateEmbeddedWithTemplate.sh
       x-meta:
         seo:
           title: 'Embed Unclaimed Draft with Template | Dropbox Sign for Developers'
@@ -5869,6 +6109,11 @@ paths:
           label: Python
           source:
             $ref: examples/UnclaimedDraftEditAndResend.py
+        -
+          lang: cURL
+          label: cURL
+          source:
+            $ref: examples/UnclaimedDraftEditAndResend.sh
       x-meta:
         seo:
           title: 'Edit and Resend Unclaimed Draft | Dropbox Sign for Developers'
@@ -5998,8 +6243,8 @@ components:
           default: false
         merge_fields:
           description: |-
-            Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.  
-              
+            Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.
+
             Remove all merge fields on the template by passing an empty array `[]`.
           type: array
           items:
@@ -6495,25 +6740,40 @@ components:
       description: 'Calls SignatureRequestSend in controller'
       required:
         - client_id
-        - signers
       properties:
-        file:
+        files:
           description: |-
-            Use `file[]` to indicate the uploaded file(s) to send for signature.
+            Use `files[]` to indicate the uploaded file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
             format: binary
-        file_url:
+        file_urls:
           description: |-
-            Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.
+            Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
+        signers:
+          description: |-
+            Add Signers to your Signature Request.
+
+            This endpoint requires either **signers** or **grouped_signers**, but not both.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubSignatureRequestSigner'
+        grouped_signers:
+          description: |-
+            Add Grouped Signers to your Signature Request.
+
+            This endpoint requires either **signers** or **grouped_signers**, but not both.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubSignatureRequestGroupedSigners'
         allow_decline:
           description: 'Allows signers to decline to sign a document if `true`. Defaults to `false`.'
           type: boolean
@@ -6599,11 +6859,6 @@ components:
           type: object
           maxItems: 10
           additionalProperties: {}
-        signers:
-          description: 'Add Signers to your Signature Request.'
-          type: array
-          items:
-            $ref: '#/components/schemas/SubSignatureRequestSigner'
         signing_options:
           $ref: '#/components/schemas/SubSigningOptions'
         subject:
@@ -6668,20 +6923,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SubCustomField'
-        file:
+        files:
           description: |-
-            Use `file[]` to indicate the uploaded file(s) to send for signature.
+            Use `files[]` to indicate the uploaded file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
             format: binary
-        file_url:
+        file_urls:
           description: |-
-            Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.
+            Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
@@ -6738,26 +6993,40 @@ components:
           type: string
       type: object
     SignatureRequestSendRequest:
-      required:
-        - signers
       properties:
-        file:
+        files:
           description: |-
-            Use `file[]` to indicate the uploaded file(s) to send for signature.
+            Use `files[]` to indicate the uploaded file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
             format: binary
-        file_url:
+        file_urls:
           description: |-
-            Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.
+            Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
+        signers:
+          description: |-
+            Add Signers to your Signature Request.
+
+            This endpoint requires either **signers** or **grouped_signers**, but not both.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubSignatureRequestSigner'
+        grouped_signers:
+          description: |-
+            Add Grouped Signers to your Signature Request.
+
+            This endpoint requires either **signers** or **grouped_signers**, but not both.
+          type: array
+          items:
+            $ref: '#/components/schemas/SubSignatureRequestGroupedSigners'
         allow_decline:
           description: 'Allows signers to decline to sign a document if `true`. Defaults to `false`.'
           type: boolean
@@ -6852,11 +7121,6 @@ components:
           type: object
           maxItems: 10
           additionalProperties: {}
-        signers:
-          description: 'Add Signers to your Signature Request.'
-          type: array
-          items:
-            $ref: '#/components/schemas/SubSignatureRequestSigner'
         signing_options:
           $ref: '#/components/schemas/SubSigningOptions'
         signing_redirect_url:
@@ -6912,20 +7176,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SubCustomField'
-        file:
+        files:
           description: |-
-            Use `file[]` to indicate the uploaded file(s) to send for signature.
+            Use `files[]` to indicate the uploaded file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
             format: binary
-        file_url:
+        file_urls:
           description: |-
-            Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.
+            Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
@@ -7351,6 +7615,31 @@ components:
           checkbox-merge: '#/components/schemas/SubFormFieldsPerDocumentCheckboxMerge'
       x-internal: true
       x-base-class: true
+    SubSignatureRequestGroupedSigners:
+      required:
+        - group
+        - signers
+      properties:
+        group:
+          description: 'Name your Group of Signers.'
+          type: string
+        order:
+          nullable: true
+          description: 'The order the grouped signers are required to sign in.'
+          type: integer
+        signers:
+          description: |-
+            Add Signers to your Group.
+
+            **Note**: These Signers do _not_ allow the following properties (they will be ignored):
+
+            * `order` - Use the `order` property directly on the `SignatureRequestGroupedSigners` class instead!
+            * `sms_phone_number`
+            * `sms_phone_number_type`
+          type: array
+          items:
+            $ref: '#/components/schemas/SubSignatureRequestSigner'
+      type: object
     SubMergeField:
       required:
         - name
@@ -7431,7 +7720,7 @@ components:
 
             If `authentication`, signer is sent a verification code via SMS that is required to access the document.
 
-            If `delivery`, the completed signature request is delivered via SMS (_and_ email).
+            If `delivery`, a link to complete the signature request is delivered via SMS (_and_ email).
           type: string
           enum:
             - authentication
@@ -7471,7 +7760,7 @@ components:
 
             If `authentication`, signer is sent a verification code via SMS that is required to access the document.
 
-            If `delivery`, the completed signature request is delivered via SMS (_and_ email).
+            If `delivery`, a link to complete the signature request is delivered via SMS (_and_ email).
           type: string
           enum:
             - authentication
@@ -7614,13 +7903,13 @@ components:
       properties:
         account_id:
           description: |-
-            `account_id` or `email_address` is required. If both are provided, the account id prevails. 
+            `account_id` or `email_address` is required. If both are provided, the account id prevails.
 
             Account id of the user to invite to your Team.
           type: string
         email_address:
           description: |-
-            `account_id` or `email_address` is required, If both are provided, the account id prevails. 
+            `account_id` or `email_address` is required, If both are provided, the account id prevails.
 
             Email address of the user to invite to your Team.
           type: string
@@ -7649,13 +7938,13 @@ components:
       properties:
         account_id:
           description: |-
-            **account_id** or **email_address** is required. If both are provided, the account id prevails. 
+            **account_id** or **email_address** is required. If both are provided, the account id prevails.
 
             Account id to remove from your Team.
           type: string
         email_address:
           description: |-
-            **account_id** or **email_address** is required. If both are provided, the account id prevails. 
+            **account_id** or **email_address** is required. If both are provided, the account id prevails.
 
             Email address of the Account to remove from your Team.
           type: string
@@ -7712,20 +8001,20 @@ components:
       required:
         - client_id
       properties:
-        file:
+        files:
           description: |-
-            Use `file[]` to indicate the uploaded file(s) to send for signature.
+            Use `files[]` to indicate the uploaded file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
             format: binary
-        file_url:
+        file_urls:
           description: |-
-            Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.
+            Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
@@ -7796,7 +8085,7 @@ components:
             $ref: '#/components/schemas/SubFormFieldsPerDocumentBase'
         merge_fields:
           description: |-
-            Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.  
+            Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.
             If the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.
           type: array
           items:
@@ -7865,20 +8154,20 @@ components:
         client_id:
           description: 'Client id of the app you''re using to update this template.'
           type: string
-        file:
+        files:
           description: |-
-            Use `file[]` to indicate the uploaded file(s) to use for the template.
+            Use `files[]` to indicate the uploaded file(s) to use for the template.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
             format: binary
-        file_url:
+        file_urls:
           description: |-
-            Use `file_url[]` to have Dropbox Sign download the file(s) to use for the template.
+            Use `file_urls[]` to have Dropbox Sign download the file(s) to use for the template.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
@@ -7900,20 +8189,20 @@ components:
       required:
         - type
       properties:
-        file:
+        files:
           description: |-
-            Use `file[]` to indicate the uploaded file(s) to send for signature.
+            Use `files[]` to indicate the uploaded file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
             format: binary
-        file_url:
+        file_urls:
           description: |-
-            Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.
+            Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
@@ -8043,20 +8332,20 @@ components:
         - client_id
         - requester_email_address
       properties:
-        file:
+        files:
           description: |-
-            Use `file[]` to indicate the uploaded file(s) to send for signature.
+            Use `files[]` to indicate the uploaded file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
             format: binary
-        file_url:
+        file_urls:
           description: |-
-            Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.
+            Use `file_urls[]` to have Dropbox Sign download the file(s) to send for signature.
 
-            This endpoint requires either **file** or **file_url[]**, but not both.
+            This endpoint requires either **files** or **file_urls[]**, but not both.
           type: array
           items:
             type: string
@@ -8270,20 +8559,20 @@ components:
           $ref: '#/components/schemas/SubEditorOptions'
         field_options:
           $ref: '#/components/schemas/SubFieldOptions'
-        file:
+        files:
           description: |-
-            Use `file[]` to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.
+            Use `files[]` to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.
 
-            **file** or **file_url[]** is required, but not both.
+            **files** or **file_urls[]** is required, but not both.
           type: array
           items:
             type: string
             format: binary
-        file_url:
+        file_urls:
           description: |-
-            Use file_url[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.
+            Use file_urls[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.
 
-            **file** or **file_url[]** is required, but not both.
+            **files** or **file_urls[]** is required, but not both.
           type: array
           items:
             type: string
@@ -8505,7 +8794,7 @@ components:
           nullable: true
           description: 'Signature requests remaining.'
           type: integer
-        total_templates:
+        templates_total:
           nullable: true
           description: 'Total API templates allowed.'
           type: integer
@@ -8796,34 +9085,8 @@ components:
           description: 'Name of the error.'
           type: string
       type: object
-    EventCallbackAccountRequest:
-      required:
-        - json
-      properties:
-        json:
-          $ref: '#/components/schemas/EventCallbackAccountRequestPayload'
-      type: object
-    EventCallbackAccountRequestPayload:
-      title: EventCallbackAccountRequestPayload
-      required:
-        - event
-      properties:
-        event:
-          $ref: '#/components/schemas/EventCallbackRequestEvent'
-        signature_request:
-          $ref: '#/components/schemas/SignatureRequestResponse'
-        template:
-          $ref: '#/components/schemas/TemplateResponse'
-      type: object
-    EventCallbackApiAppRequest:
-      required:
-        - json
-      properties:
-        json:
-          $ref: '#/components/schemas/EventCallbackApiAppRequestPayload'
-      type: object
-    EventCallbackApiAppRequestPayload:
-      title: EventCallbackApiAppRequestPayload
+    EventCallbackRequest:
+      title: EventCallbackRequest
       required:
         - event
       properties:
@@ -9400,6 +9663,10 @@ components:
         signature_id:
           description: 'Signature identifier.'
           type: string
+        signer_group_guid:
+          nullable: true
+          description: 'Signer Group GUID'
+          type: string
         signer_email_address:
           description: 'The email address of the signer.'
           type: string
@@ -9654,8 +9921,8 @@ components:
         is_locked:
           nullable: true
           description: |-
-            Indicates whether the template is locked. 
-            If `true`, then the template was created outside your quota and can only be used in `test_mode`. 
+            Indicates whether the template is locked.
+            If `true`, then the template was created outside your quota and can only be used in `test_mode`.
             If `false`, then the template is within your quota and can be used to create signature requests.
           type: boolean
         metadata:
@@ -10222,18 +10489,10 @@ components:
       summary: 'Default Example'
       value:
         $ref: examples/json/ApiAppCreateRequestDefaultExample.json
-    ApiAppCreateRequestFormDataExample:
-      summary: 'With Custom Logo File Example'
-      value:
-        $ref: examples/json/ApiAppCreateRequestFormDataExample.json
     ApiAppUpdateRequestDefaultExample:
       summary: 'Default Example'
       value:
         $ref: examples/json/ApiAppUpdateRequestDefaultExample.json
-    ApiAppUpdateRequestFormDataExample:
-      summary: 'With Custom Logo File Example'
-      value:
-        $ref: examples/json/ApiAppUpdateRequestFormDataExample.json
     EmbeddedEditUrlRequestDefaultExample:
       summary: 'Default Example'
       value:
@@ -10254,34 +10513,22 @@ components:
       summary: 'Default Example'
       value:
         $ref: examples/json/SignatureRequestBulkCreateEmbeddedWithTemplateRequestDefaultExample.json
-    SignatureRequestBulkCreateEmbeddedWithTemplateRequestFormDataExample:
-      summary: 'With Signer File Example'
-      value:
-        $ref: examples/json/SignatureRequestBulkCreateEmbeddedWithTemplateRequestFormDataExample.json
     SignatureRequestBulkSendWithTemplateRequestDefaultExample:
       summary: 'Default Example'
       value:
         $ref: examples/json/SignatureRequestBulkSendWithTemplateRequestDefaultExample.json
-    SignatureRequestBulkSendWithTemplateRequestFormDataExample:
-      summary: 'With Signer File Example'
-      value:
-        $ref: examples/json/SignatureRequestBulkSendWithTemplateRequestFormDataExample.json
     SignatureRequestCreateEmbeddedRequestDefaultExample:
       summary: 'Default Example'
       value:
         $ref: examples/json/SignatureRequestCreateEmbeddedRequestDefaultExample.json
-    SignatureRequestCreateEmbeddedRequestFormDataExample:
-      summary: 'With File Example'
+    SignatureRequestCreateEmbeddedRequestGroupedSignersExample:
+      summary: 'Grouped Signers Example'
       value:
-        $ref: examples/json/SignatureRequestCreateEmbeddedRequestFormDataExample.json
+        $ref: examples/json/SignatureRequestCreateEmbeddedRequestGroupedSignersExample.json
     SignatureRequestCreateEmbeddedWithTemplateRequestDefaultExample:
       summary: 'Default Example'
       value:
         $ref: examples/json/SignatureRequestCreateEmbeddedWithTemplateRequestDefaultExample.json
-    SignatureRequestCreateEmbeddedWithTemplateRequestFormDataExample:
-      summary: 'With Signer File Example'
-      value:
-        $ref: examples/json/SignatureRequestCreateEmbeddedWithTemplateRequestFormDataExample.json
     SignatureRequestRemindRequestDefaultExample:
       summary: 'Default Example'
       value:
@@ -10290,18 +10537,14 @@ components:
       summary: 'Default Example'
       value:
         $ref: examples/json/SignatureRequestSendRequestDefaultExample.json
-    SignatureRequestSendFormDataExample:
-      summary: 'With File Example'
+    SignatureRequestSendRequestGroupedSignersExample:
+      summary: 'Grouped Signers Example'
       value:
-        $ref: examples/json/SignatureRequestSendFormDataExample.json
+        $ref: examples/json/SignatureRequestSendRequestGroupedSignersExample.json
     SignatureRequestSendWithTemplateRequestDefaultExample:
       summary: 'Default Example'
       value:
         $ref: examples/json/SignatureRequestSendWithTemplateRequestDefaultExample.json
-    SignatureRequestSendWithTemplateRequestFormDataExample:
-      summary: 'With File Example'
-      value:
-        $ref: examples/json/SignatureRequestSendWithTemplateRequestFormDataExample.json
     SignatureRequestUpdateRequestDefaultExample:
       summary: 'Default Example'
       value:
@@ -10350,10 +10593,6 @@ components:
       summary: 'Form Fields Per Document and Rules Example'
       value:
         $ref: examples/json/TemplateCreateEmbeddedDraftRequestFormFieldRulesExample.json
-    TemplateCreateEmbeddedDraftRequestFormDataExample:
-      summary: 'With File Example'
-      value:
-        $ref: examples/json/TemplateCreateEmbeddedDraftRequestFormDataExample.json
     TemplateRemoveUserRequestDefaultExample:
       summary: 'Default Example'
       value:
@@ -10362,10 +10601,6 @@ components:
       summary: 'Default Example'
       value:
         $ref: examples/json/TemplateUpdateFilesRequestDefaultExample.json
-    TemplateUpdateFilesRequestFormDataExample:
-      summary: 'With File Example'
-      value:
-        $ref: examples/json/TemplateUpdateFilesRequestFormDataExample.json
     UnclaimedDraftCreateRequestDefaultExample:
       summary: 'Default Example'
       value:
@@ -10382,10 +10617,6 @@ components:
       summary: 'Form Fields Per Document and Rules Example'
       value:
         $ref: examples/json/UnclaimedDraftCreateRequestFormFieldRulesExample.json
-    UnclaimedDraftCreateRequestFormDataExample:
-      summary: 'With File Example'
-      value:
-        $ref: examples/json/UnclaimedDraftCreateRequestFormDataExample.json
     UnclaimedDraftCreateEmbeddedRequestDefaultExample:
       summary: 'Default Example'
       value:
@@ -10402,18 +10633,10 @@ components:
       summary: 'Form Fields Per Document and Rules Example'
       value:
         $ref: examples/json/UnclaimedDraftCreateEmbeddedRequestFormFieldRulesExample.json
-    UnclaimedDraftCreateEmbeddedRequestFormDataExample:
-      summary: 'With File Example'
-      value:
-        $ref: examples/json/UnclaimedDraftCreateEmbeddedRequestFormDataExample.json
     UnclaimedDraftCreateEmbeddedWithTemplateRequestDefaultExample:
       summary: 'Default Example'
       value:
         $ref: examples/json/UnclaimedDraftCreateEmbeddedWithTemplateRequestDefaultExample.json
-    UnclaimedDraftCreateEmbeddedWithTemplateRequestFormDataExample:
-      summary: 'With File Example'
-      value:
-        $ref: examples/json/UnclaimedDraftCreateEmbeddedWithTemplateRequestFormDataExample.json
     UnclaimedDraftEditAndResendRequestDefaultExample:
       summary: 'Default Example'
       value:
@@ -10522,18 +10745,18 @@ components:
       summary: 'Example: template_created'
       value:
         $ref: examples/json/EventCallbackAccountTemplateCreatedExample.json
-    EventCallbackApiAppAccountConfirmedExample:
+    EventCallbackAppAccountConfirmedExample:
       summary: 'Example: account_confirmed'
       value:
-        $ref: examples/json/EventCallbackApiAppAccountConfirmedExample.json
-    EventCallbackApiAppSignatureRequestSentExample:
+        $ref: examples/json/EventCallbackAppAccountConfirmedExample.json
+    EventCallbackAppSignatureRequestSentExample:
       summary: 'Example: signature_request_sent'
       value:
-        $ref: examples/json/EventCallbackApiAppSignatureRequestSentExample.json
-    EventCallbackApiAppTemplateCreatedExample:
+        $ref: examples/json/EventCallbackAppSignatureRequestSentExample.json
+    EventCallbackAppTemplateCreatedExample:
       summary: 'Example: template_created'
       value:
-        $ref: examples/json/EventCallbackApiAppTemplateCreatedExample.json
+        $ref: examples/json/EventCallbackAppTemplateCreatedExample.json
     OAuthTokenGenerateResponseExample:
       summary: 'Retrieving the OAuth token'
       value:
@@ -10681,56 +10904,32 @@ components:
   requestBodies:
     EventCallbackAccountRequest:
       description: |-
-        **Account Callback Payloads --**  
+        **Account Callback Payloads --**
               Events that are reported at the Account level through the the *Account callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api). The *Account callback URL* can also be updated by calling [Update Account](/api/reference/operation/accountUpdate) and passing a `callback_url`.
       content:
-        application/json:
+        multipart/form-data:
           schema:
-            $ref: '#/components/schemas/EventCallbackAccountRequest'
+            $ref: '#/components/schemas/EventCallbackRequest'
           examples:
             signature_request_sent_example:
               $ref: '#/components/examples/EventCallbackAccountSignatureRequestSentExample'
             template_created_example:
               $ref: '#/components/examples/EventCallbackAccountTemplateCreatedExample'
-        multipart/form-data:
-          schema:
-            $ref: '#/components/schemas/EventCallbackAccountRequest'
-          examples:
-            signature_request_example:
-              $ref: '#/components/examples/EventCallbackAccountSignatureRequestSentExample'
-            template_created_example:
-              $ref: '#/components/examples/EventCallbackAccountTemplateCreatedExample'
-          encoding:
-            json:
-              contentType: application/json
-    EventCallbackApiAppRequest:
+    EventCallbackAppRequest:
       description: |-
-        **API App Callback Payloads --**  
+        **API App Callback Payloads --**
         Events that are reported at the API App level through the *Event callback URL* defined in your [API settings](https://app.hellosign.com/home/myAccount#api) for a specific app. The *Event callback URL* can also be updated by calling [Update API App](/api/reference/operation/apiAppUpdate) and passing a `callback_url`.
       content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/EventCallbackApiAppRequest'
-          examples:
-            account_confirmed_example:
-              $ref: '#/components/examples/EventCallbackApiAppAccountConfirmedExample'
-            signature_request_sent_example:
-              $ref: '#/components/examples/EventCallbackApiAppSignatureRequestSentExample'
-            template_created_example:
-              $ref: '#/components/examples/EventCallbackApiAppTemplateCreatedExample'
         multipart/form-data:
           schema:
-            $ref: '#/components/schemas/EventCallbackApiAppRequest'
+            $ref: '#/components/schemas/EventCallbackRequest'
           examples:
             account_confirmed_example:
-              $ref: '#/components/examples/EventCallbackApiAppAccountConfirmedExample'
+              $ref: '#/components/examples/EventCallbackAppAccountConfirmedExample'
             signature_request_sent_example:
-              $ref: '#/components/examples/EventCallbackApiAppSignatureRequestSentExample'
+              $ref: '#/components/examples/EventCallbackAppSignatureRequestSentExample'
             template_created_example:
-              $ref: '#/components/examples/EventCallbackApiAppTemplateCreatedExample'
-          encoding:
-            json:
-              contentType: application/json
+              $ref: '#/components/examples/EventCallbackAppTemplateCreatedExample'
   headers:
     X-RateLimit-Limit:
       description: 'The maximum number of requests per hour that you can make.'
@@ -10754,14 +10953,14 @@ components:
     api_key:
       type: http
       description: |-
-        Your API key can be used to make calls to the Dropbox Sign API. See [Authentication](/api/reference/authentication) for more information.   
-        ✅ Supported by Try it console (calls sent in `test_mode` only). 
+        Your API key can be used to make calls to the Dropbox Sign API. See [Authentication](/api/reference/authentication) for more information.
+        ✅ Supported by Try it console (calls sent in `test_mode` only).
       scheme: basic
     oauth2:
       type: http
       description: |-
-        You can use an Access Token issued through an OAuth flow to send calls to the Dropbox Sign API from your app. The access scopes required by this endpoint are listed in the gray box above. See [Authentication](/api/reference/authentication) for more information.    
-        ❌ **Not supported** by Try it console.  
+        You can use an Access Token issued through an OAuth flow to send calls to the Dropbox Sign API from your app. The access scopes required by this endpoint are listed in the gray box above. See [Authentication](/api/reference/authentication) for more information.
+        ❌ **Not supported** by Try it console.
       bearerFormat: JWT
       scheme: bearer
 security:
@@ -10789,6 +10988,42 @@ x-webhooks:
         seo:
           title: 'Account Callbacks | API Documentation | Dropbox Sign for Developers'
           description: 'The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the account level, click here.'
+      x-codeSamples:
+        -
+          lang: PHP
+          label: PHP
+          source:
+            $ref: examples/EventCallback.php
+        -
+          lang: 'C#'
+          label: 'C#'
+          source:
+            $ref: examples/EventCallback.cs
+        -
+          lang: JavaScript
+          label: JavaScript
+          source:
+            $ref: examples/EventCallback.js
+        -
+          lang: TypeScript
+          label: TypeScript
+          source:
+            $ref: examples/EventCallback.ts
+        -
+          lang: Java
+          label: Java
+          source:
+            $ref: examples/EventCallback.java
+        -
+          lang: Ruby
+          label: Ruby
+          source:
+            $ref: examples/EventCallback.rb
+        -
+          lang: Python
+          label: Python
+          source:
+            $ref: examples/EventCallback.py
       tags:
         - 'Callbacks and Events'
       requestBody:
@@ -10796,7 +11031,7 @@ x-webhooks:
       responses:
         200:
           $ref: '#/components/responses/EventCallbackResponse'
-  apiAppCallback:
+  appCallback:
     post:
       summary: 'App Callbacks'
       description:
@@ -10806,10 +11041,46 @@ x-webhooks:
         seo:
           title: 'App Callbacks | API Documentation | Dropbox Sign for Developers'
           description: 'The Dropbox Sign API allows you to build with a wide range of tools. To find out how to consume Dropbox Sign Events at the App level, click here.'
+      x-codeSamples:
+        -
+          lang: PHP
+          label: PHP
+          source:
+            $ref: examples/EventCallback.php
+        -
+          lang: 'C#'
+          label: 'C#'
+          source:
+            $ref: examples/EventCallback.cs
+        -
+          lang: JavaScript
+          label: JavaScript
+          source:
+            $ref: examples/EventCallback.js
+        -
+          lang: TypeScript
+          label: TypeScript
+          source:
+            $ref: examples/EventCallback.ts
+        -
+          lang: Java
+          label: Java
+          source:
+            $ref: examples/EventCallback.java
+        -
+          lang: Ruby
+          label: Ruby
+          source:
+            $ref: examples/EventCallback.rb
+        -
+          lang: Python
+          label: Python
+          source:
+            $ref: examples/EventCallback.py
       tags:
         - 'Callbacks and Events'
       requestBody:
-        $ref: '#/components/requestBodies/EventCallbackApiAppRequest'
+        $ref: '#/components/requestBodies/EventCallbackAppRequest'
       responses:
         200:
           $ref: '#/components/responses/EventCallbackResponse'

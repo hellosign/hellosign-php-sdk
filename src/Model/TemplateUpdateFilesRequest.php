@@ -216,7 +216,7 @@ class TemplateUpdateFilesRequest implements ModelInterface, ArrayAccess, JsonSer
     {
         /** @var TemplateUpdateFilesRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateUpdateFilesRequest::class,
         );
 

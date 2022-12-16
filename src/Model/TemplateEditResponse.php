@@ -184,7 +184,7 @@ class TemplateEditResponse implements ModelInterface, ArrayAccess, JsonSerializa
     {
         /** @var TemplateEditResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateEditResponse::class,
         );
 

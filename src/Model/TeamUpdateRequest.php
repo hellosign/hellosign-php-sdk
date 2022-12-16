@@ -184,7 +184,7 @@ class TeamUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var TeamUpdateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TeamUpdateRequest::class,
         );
 

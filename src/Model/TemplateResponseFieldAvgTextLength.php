@@ -192,7 +192,7 @@ class TemplateResponseFieldAvgTextLength implements ModelInterface, ArrayAccess,
     {
         /** @var TemplateResponseFieldAvgTextLength $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateResponseFieldAvgTextLength::class,
         );
 

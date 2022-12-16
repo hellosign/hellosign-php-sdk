@@ -231,7 +231,7 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     {
         /** @var SubSignatureRequestSigner $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubSignatureRequestSigner::class,
         );
 
@@ -424,7 +424,7 @@ class SubSignatureRequestSigner implements ModelInterface, ArrayAccess, JsonSeri
     /**
      * Sets sms_phone_number_type
      *
-     * @param string|null $sms_phone_number_type Specifies the feature used with the `sms_phone_number`. Default `authentication`.  If `authentication`, signer is sent a verification code via SMS that is required to access the document.  If `delivery`, the completed signature request is delivered via SMS (_and_ email).
+     * @param string|null $sms_phone_number_type Specifies the feature used with the `sms_phone_number`. Default `authentication`.  If `authentication`, signer is sent a verification code via SMS that is required to access the document.  If `delivery`, a link to complete the signature request is delivered via SMS (_and_ email).
      *
      * @return self
      */

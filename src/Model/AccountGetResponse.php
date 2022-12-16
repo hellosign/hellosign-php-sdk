@@ -191,7 +191,7 @@ class AccountGetResponse implements ModelInterface, ArrayAccess, JsonSerializabl
     {
         /** @var AccountGetResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             AccountGetResponse::class,
         );
 

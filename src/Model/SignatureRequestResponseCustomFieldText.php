@@ -184,7 +184,7 @@ class SignatureRequestResponseCustomFieldText extends SignatureRequestResponseCu
     {
         /** @var SignatureRequestResponseCustomFieldText $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestResponseCustomFieldText::class,
         );
 

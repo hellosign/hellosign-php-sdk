@@ -202,7 +202,7 @@ class AccountCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     {
         /** @var AccountCreateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             AccountCreateRequest::class,
         );
 

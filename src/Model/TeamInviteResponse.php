@@ -215,7 +215,7 @@ class TeamInviteResponse implements ModelInterface, ArrayAccess, JsonSerializabl
     {
         /** @var TeamInviteResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TeamInviteResponse::class,
         );
 

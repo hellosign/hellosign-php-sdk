@@ -318,7 +318,7 @@ class SignatureRequestResponse implements ModelInterface, ArrayAccess, JsonSeria
     {
         /** @var SignatureRequestResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestResponse::class,
         );
 

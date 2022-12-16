@@ -185,7 +185,7 @@ class FileResponseDataUri implements ModelInterface, ArrayAccess, JsonSerializab
     {
         /** @var FileResponseDataUri $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             FileResponseDataUri::class,
         );
 

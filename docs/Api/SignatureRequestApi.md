@@ -338,7 +338,7 @@ $data->setClientId("ec64a202072370a737edf4a0eb7f4437")
         "lawyer@hellosign.com",
         "lawyer@example.com",
     ])
-    ->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"])
+    ->setFile([new SplFileObject(__DIR__ . "/example_signature_request.pdf")])
     ->setSigningOptions($signingOptions)
     ->setTestMode(true);
 
@@ -466,7 +466,7 @@ signatureRequestFiles($signature_request_id, $file_type): \SplFileObject
 
 Download Files
 
-Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of `409` will be returned instead.
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of `409` will be returned instead.
 
 ### Example
 
@@ -486,10 +486,11 @@ $config->setUsername("YOUR_API_KEY");
 $api = new HelloSignSDK\Api\SignatureRequestApi($config);
 
 $signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
+$fileType = "pdf";
 
 try {
-    $result = $api->signatureRequestFiles($signatureRequestId);
-    print_r($result);
+    $result = $api->signatureRequestFiles($signatureRequestId, $fileType);
+    copy($result->getRealPath(), __DIR__ . '/file_response.pdf');
 } catch (HelloSignSDK\ApiException $e) {
     $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
@@ -530,7 +531,7 @@ signatureRequestFilesAsDataUri($signature_request_id): \HelloSignSDK\Model\FileR
 
 Download Files as Data Uri
 
-Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead.
 
 ### Example
 
@@ -593,7 +594,7 @@ signatureRequestFilesAsFileUrl($signature_request_id): \HelloSignSDK\Model\FileR
 
 Download Files as File Url
 
-Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead.
 
 ### Example
 
@@ -1023,7 +1024,7 @@ $data->setTitle("NDA with Acme Co.")
         "lawyer@hellosign.com",
         "lawyer@example.com",
     ])
-    ->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"])
+    ->setFile([new SplFileObject(__DIR__ . "/example_signature_request.pdf")])
     ->setMetadata([
         "custom_id" => 1234,
         "custom_text" => "NDA #9",

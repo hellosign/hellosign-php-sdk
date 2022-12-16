@@ -14,7 +14,7 @@ $api = new HelloSignSDK\Api\UnclaimedDraftApi($config);
 
 $data = new HelloSignSDK\Model\UnclaimedDraftCreateEmbeddedRequest();
 $data->setClientId("ec64a202072370a737edf4a0eb7f4437")
-    ->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"])
+    ->setFile([new SplFileObject(__DIR__ . "/example_signature_request.pdf")])
     ->setRequesterEmailAddress("jack@hellosign.com")
     ->setTestMode(true);
 

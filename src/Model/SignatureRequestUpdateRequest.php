@@ -202,7 +202,7 @@ class SignatureRequestUpdateRequest implements ModelInterface, ArrayAccess, Json
     {
         /** @var SignatureRequestUpdateRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestUpdateRequest::class,
         );
 

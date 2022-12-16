@@ -131,7 +131,7 @@ $fieldOptions->setDateFormat(HelloSignSDK\Model\SubFieldOptions::DATE_FORMAT_DD_
 
 $data = new HelloSignSDK\Model\TemplateCreateEmbeddedDraftRequest();
 $data->setClientId("37dee8d8440c66d54cfa05d92c160882")
-    ->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"])
+    ->setFile([new SplFileObject(__DIR__ . "/example_signature_request.pdf")])
     ->setTitle("Test Template")
     ->setSubject("Please sign this document")
     ->setMessage("For your approval")
@@ -265,10 +265,11 @@ $config->setUsername("YOUR_API_KEY");
 $api = new HelloSignSDK\Api\TemplateApi($config);
 
 $templateId = "5de8179668f2033afac48da1868d0093bf133266";
+$fileType = "pdf";
 
 try {
-    $result = $api->templateFiles($templateId);
-    print_r($result);
+    $result = $api->templateFiles($templateId, $fileType);
+    copy($result->getRealPath(), __DIR__ . '/file_response.pdf');
 } catch (HelloSignSDK\ApiException $e) {
     $error = $e->getResponseObject();
     echo "Exception when calling HelloSign API: "
@@ -309,7 +310,7 @@ templateFilesAsDataUri($template_id): \HelloSignSDK\Model\FileResponseDataUri
 
 Get Template Files as Data Uri
 
-Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
 ### Example
 
@@ -372,7 +373,7 @@ templateFilesAsFileUrl($template_id): \HelloSignSDK\Model\FileResponse
 
 Get Template Files as File Url
 
-Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
 ### Example
 
@@ -651,7 +652,7 @@ $config->setUsername("YOUR_API_KEY");
 $api = new HelloSignSDK\Api\TemplateApi($config);
 
 $data = new HelloSignSDK\Model\TemplateUpdateFilesRequest();
-$data->setFileUrl(["https://app.hellosign.com/docs/example_signature_request.pdf"]);
+$data->setFile([new SplFileObject(__DIR__ . "/example_signature_request.pdf")]);
 
 $templateId = "5de8179668f2033afac48da1868d0093bf133266";
 

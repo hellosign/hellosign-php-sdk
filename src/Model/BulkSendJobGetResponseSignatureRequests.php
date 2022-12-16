@@ -323,7 +323,7 @@ class BulkSendJobGetResponseSignatureRequests implements ModelInterface, ArrayAc
     {
         /** @var BulkSendJobGetResponseSignatureRequests $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             BulkSendJobGetResponseSignatureRequests::class,
         );
 

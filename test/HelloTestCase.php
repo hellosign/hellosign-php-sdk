@@ -25,9 +25,7 @@ abstract class HelloTestCase extends TestCase
         parent::setUpBeforeClass();
 
         $config = new Configuration();
-        $config->setUsername('YOUR_API_KEY')
-            ->setInstantiateFiles(true)
-            ->setRootFilePath(self::ROOT_FILE_PATH);
+        $config->setUsername('YOUR_API_KEY');
 
         Configuration::setDefaultConfiguration($config);
     }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace HelloSignSDK\Test;
 
 use HelloSignSDK\EventCallbackHelper;
-use HelloSignSDK\Model\EventCallbackApiAppRequest;
+use HelloSignSDK\Model\EventCallbackRequest;
 
 class EventCallbackHelperTest extends HelloTestCase
 {
@@ -19,12 +19,9 @@ class EventCallbackHelperTest extends HelloTestCase
         array $data,
         bool $passes
     ) {
-        $obj = EventCallbackApiAppRequest::fromArray(['json' => $data]);
+        $callback_event = EventCallbackRequest::fromArray($data);
 
-        $isValid = EventCallbackHelper::isValid(
-            $apiKey,
-            $obj->getJson()->getEvent(),
-        );
+        $isValid = EventCallbackHelper::isValid($apiKey, $callback_event);
 
         if ($passes) {
             $this->assertTrue($isValid);

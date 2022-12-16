@@ -183,7 +183,7 @@ class SignatureRequestResponseDataValueCheckbox extends SignatureRequestResponse
     {
         /** @var SignatureRequestResponseDataValueCheckbox $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestResponseDataValueCheckbox::class,
         );
 

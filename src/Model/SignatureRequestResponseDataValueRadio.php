@@ -183,7 +183,7 @@ class SignatureRequestResponseDataValueRadio extends SignatureRequestResponseDat
     {
         /** @var SignatureRequestResponseDataValueRadio $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestResponseDataValueRadio::class,
         );
 

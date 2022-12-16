@@ -274,7 +274,7 @@ class TemplateResponseCustomField implements ModelInterface, ArrayAccess, JsonSe
     {
         /** @var TemplateResponseCustomField $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateResponseCustomField::class,
         );
 

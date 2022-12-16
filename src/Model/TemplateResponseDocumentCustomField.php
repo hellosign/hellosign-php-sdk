@@ -292,7 +292,7 @@ class TemplateResponseDocumentCustomField implements ModelInterface, ArrayAccess
     {
         /** @var TemplateResponseDocumentCustomField $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateResponseDocumentCustomField::class,
         );
 

@@ -4,7 +4,7 @@ typeMappings:
 additionalProperties:
   packageName: hellosign/hellosign-php-sdk
   packageVersion: "^6.0.0"
-  artifactVersion: "6.0.0-beta22.23"
+  artifactVersion: 6.0.0-beta22.24
   invokerPackage: "HelloSignSDK"
   sortModelPropertiesByRequiredFlag: true
   srcBasePath: src

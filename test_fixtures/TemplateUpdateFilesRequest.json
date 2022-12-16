@@ -1,9 +1,6 @@
 {
   "default": {
     "client_id": "37dee8d8440c66d54cfa05d92c160882",
-    "file": [
-      "pdf-sample.pdf"
-    ],
     "file_url": [
       "https://app.hellosign.com/docs/example_signature_request.pdf"
     ],

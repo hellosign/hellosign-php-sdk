@@ -184,7 +184,7 @@ class AccountVerifyRequest implements ModelInterface, ArrayAccess, JsonSerializa
     {
         /** @var AccountVerifyRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             AccountVerifyRequest::class,
         );
 

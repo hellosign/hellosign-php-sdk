@@ -209,7 +209,7 @@ class OAuthTokenResponse implements ModelInterface, ArrayAccess, JsonSerializabl
     {
         /** @var OAuthTokenResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             OAuthTokenResponse::class,
         );
 

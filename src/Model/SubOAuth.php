@@ -220,7 +220,7 @@ class SubOAuth implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var SubOAuth $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubOAuth::class,
         );
 

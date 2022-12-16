@@ -91,7 +91,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = 'OpenAPI-Generator/6.0.0-beta22.23/PHP';
+    protected $userAgent = 'OpenAPI-Generator/6.0.0-beta22.24/PHP';
 
     /**
      * Debug switch (default set to false)
@@ -120,20 +120,6 @@ class Configuration
      * @var array
      */
     protected $options = [];
-
-    /**
-     * Allows instantiating files when using ModelInterface::fromArray()
-     *
-     * @var bool
-     */
-    protected $instantiateFiles = false;
-
-    /**
-     * Define the base location to look for file uploads
-     *
-     * @var string|null
-     */
-    protected $rootFilePath = null;
 
     /** @var ?callable */
     protected $payloadHook = null;
@@ -381,46 +367,6 @@ class Configuration
     }
 
     /**
-     * Sets instantiateFiles flag
-     *
-     * @return $this
-     */
-    public function setInstantiateFiles(bool $value)
-    {
-        $this->instantiateFiles = $value;
-
-        return $this;
-    }
-
-    /**
-     * Allows instantiateFiles flag
-     */
-    public function getInstantiateFiles(): bool
-    {
-        return $this->instantiateFiles;
-    }
-
-    /**
-     * Sets the root file upload path
-     *
-     * @return $this
-     */
-    public function setRootFilePath(?string $path)
-    {
-        $this->rootFilePath = $path;
-
-        return $this;
-    }
-
-    /**
-     * Gets the root file upload path
-     */
-    public function getRootFilePath(): ?string
-    {
-        return $this->rootFilePath;
-    }
-
-    /**
      * Gets the default configuration instance
      *
      * @return Configuration
@@ -457,7 +403,7 @@ class Configuration
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    The version of the OpenAPI document: 3.0.0' . PHP_EOL;
-        $report .= '    SDK Package Version: 6.0.0-beta22.23' . PHP_EOL;
+        $report .= '    SDK Package Version: 6.0.0-beta22.24' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
 
         return $report;

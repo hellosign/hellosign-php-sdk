@@ -296,7 +296,7 @@ class TemplateResponseDocumentFormField implements ModelInterface, ArrayAccess, 
     {
         /** @var TemplateResponseDocumentFormField $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TemplateResponseDocumentFormField::class,
         );
 

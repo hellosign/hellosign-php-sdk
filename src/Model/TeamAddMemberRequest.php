@@ -217,7 +217,7 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     {
         /** @var TeamAddMemberRequest $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             TeamAddMemberRequest::class,
         );
 
@@ -269,7 +269,7 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets account_id
      *
-     * @param string|null $account_id `account_id` or `email_address` is required. If both are provided, the account id prevails.   Account id of the user to invite to your Team.
+     * @param string|null $account_id `account_id` or `email_address` is required. If both are provided, the account id prevails.  Account id of the user to invite to your Team.
      *
      * @return self
      */
@@ -293,7 +293,7 @@ class TeamAddMemberRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets email_address
      *
-     * @param string|null $email_address `account_id` or `email_address` is required, If both are provided, the account id prevails.   Email address of the user to invite to your Team.
+     * @param string|null $email_address `account_id` or `email_address` is required, If both are provided, the account id prevails.  Email address of the user to invite to your Team.
      *
      * @return self
      */

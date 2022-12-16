@@ -437,8 +437,8 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
-     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -456,8 +456,8 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
-     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
@@ -578,8 +578,8 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
-     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -599,8 +599,8 @@ class AccountApi
      *
      * Get Account
      *
-     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
-     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)
      *
      * @throws InvalidArgumentException
      * @return Promise\PromiseInterface
@@ -646,8 +646,8 @@ class AccountApi
     /**
      * Create request for operation 'accountGet'
      *
-     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
-     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
+     * @param string $account_id &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)
+     * @param string $email_address &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)
      *
      * @throws InvalidArgumentException
      * @return Psr7\Request

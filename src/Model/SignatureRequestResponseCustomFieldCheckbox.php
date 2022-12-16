@@ -184,7 +184,7 @@ class SignatureRequestResponseCustomFieldCheckbox extends SignatureRequestRespon
     {
         /** @var SignatureRequestResponseCustomFieldCheckbox $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestResponseCustomFieldCheckbox::class,
         );
 

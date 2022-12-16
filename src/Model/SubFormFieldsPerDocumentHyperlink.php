@@ -190,7 +190,7 @@ class SubFormFieldsPerDocumentHyperlink extends SubFormFieldsPerDocumentBase
     {
         /** @var SubFormFieldsPerDocumentHyperlink $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubFormFieldsPerDocumentHyperlink::class,
         );
 

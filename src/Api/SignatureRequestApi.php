@@ -1639,7 +1639,7 @@ class SignatureRequestApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException
-     * @return SplFileObject|\HelloSignSDK\Model\ErrorResponse
+     * @return SplFileObject
      */
     public function signatureRequestFiles(string $signature_request_id, string $file_type = 'pdf')
     {

@@ -190,7 +190,7 @@ class SubBulkSignerListCustomField implements ModelInterface, ArrayAccess, JsonS
     {
         /** @var SubBulkSignerListCustomField $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SubBulkSignerListCustomField::class,
         );
 

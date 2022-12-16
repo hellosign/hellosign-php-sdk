@@ -221,7 +221,7 @@ class ReportResponse implements ModelInterface, ArrayAccess, JsonSerializable
     {
         /** @var ReportResponse $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             ReportResponse::class,
         );
 

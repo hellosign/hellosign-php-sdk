@@ -19,9 +19,6 @@ class ObjectSerializerTest extends HelloTestCase
     /** @var Api\SignatureRequestApi */
     protected $api;
 
-    /** @var string */
-    protected $rootFilePath;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -34,64 +31,12 @@ class ObjectSerializerTest extends HelloTestCase
             Configuration::getDefaultConfiguration(),
             $this->client,
         );
-
-        $this->rootFilePath = Configuration::getDefaultConfiguration()
-            ->getRootFilePath();
-    }
-
-    public function testSingleFileInstantiated()
-    {
-        $obj = Model\ApiAppCreateRequest::fromArray([
-            'custom_logo_file' => 'pdf-sample.pdf',
-        ]);
-
-        $expected = new SplFileObject("{$this->rootFilePath}/pdf-sample.pdf");
-
-        $this->assertEquals($expected, $obj->getCustomLogoFile());
-    }
-
-    public function testMultipleFilesInstantiated()
-    {
-        $obj = Model\SignatureRequestSendRequest::fromArray([
-            'file' => ['pdf-sample.pdf'],
-        ]);
-
-        $expected = new SplFileObject("{$this->rootFilePath}/pdf-sample.pdf");
-
-        $this->assertEquals($expected, $obj->getFile()[0]);
-    }
-
-    public function testFilesNotInstantiatedIfFlagNotTrue()
-    {
-        Configuration::getDefaultConfiguration()->setInstantiateFiles(false);
-
-        $filename = 'pdf-sample.pdf';
-
-        /** @var Model\ApiAppCreateRequest $obj */
-        $obj = ObjectSerializer::instantiateFiles(
-            Model\ApiAppCreateRequest::class,
-            ['custom_logo_file' => $filename]
-        );
-
-        $this->assertSame($filename, $obj['custom_logo_file']);
-
-        Configuration::getDefaultConfiguration()->setInstantiateFiles(true);
-
-        /** @var Model\ApiAppCreateRequest $obj */
-        $obj = ObjectSerializer::instantiateFiles(
-            Model\ApiAppCreateRequest::class,
-            ['custom_logo_file' => $filename]
-        );
-
-        $expected = new SplFileObject("{$this->rootFilePath}/{$filename}");
-
-        $this->assertEquals($expected, $obj['custom_logo_file']);
     }
 
     public function testFileForcesMultipartFormData()
     {
         $requestClass = Model\SignatureRequestSendRequest::class;
-        $requestData = TestUtils::getFixtureData($requestClass)['with_file'];
+        $requestData = TestUtils::getFixtureData($requestClass)['default'];
 
         $responseClass = Model\SignatureRequestGetResponse::class;
         $responseData = TestUtils::getFixtureData($responseClass)['default'];
@@ -99,6 +44,9 @@ class ObjectSerializerTest extends HelloTestCase
         $this->setExpectedResponse($responseData);
 
         $obj = Model\SignatureRequestSendRequest::fromArray($requestData);
+        $obj->setFile([
+            new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf'),
+        ]);
 
         $response = $this->api->signatureRequestSend($obj);
         $request = $this->handler->getLastRequest();
@@ -115,23 +63,12 @@ class ObjectSerializerTest extends HelloTestCase
 
         $this->assertInstanceOf($responseClass, $response);
         $this->assertEquals($responseData, $serialized);
-
-        $body = TestUtils::streamToArray($request->getBody());
-
-        $expectedFile1Contents = $obj->getFile()[0]->fread(10000);
-        $expectedFile1Contents = str_replace("\r", '', trim($expectedFile1Contents));
-
-        $expectedFile2Contents = $obj->getFile()[1]->fread(10000);
-        $expectedFile2Contents = str_replace("\r", '', trim($expectedFile2Contents));
-
-        $this->assertSame($expectedFile1Contents, $body['file[0]']);
-        $this->assertSame($expectedFile2Contents, $body['file[1]']);
     }
 
     public function testNoFileForcesApplicationJson()
     {
         $requestClass = Model\SignatureRequestSendRequest::class;
-        $requestData = TestUtils::getFixtureData($requestClass)['with_file_url'];
+        $requestData = TestUtils::getFixtureData($requestClass)['default'];
 
         $responseClass = Model\SignatureRequestGetResponse::class;
         $responseData = TestUtils::getFixtureData($responseClass)['default'];
@@ -163,7 +100,7 @@ class ObjectSerializerTest extends HelloTestCase
         $oauth->setCallbackUrl('https://oauth-callback.test')
             ->setScopes([Model\SubOAuth::SCOPES_TEMPLATE_ACCESS]);
 
-        $customLogoFile = new SplFileObject("{$this->rootFilePath}/pdf-sample.pdf");
+        $customLogoFile = new SplFileObject(self::ROOT_FILE_PATH . '/pdf-sample.pdf');
 
         $obj = new Model\ApiAppCreateRequest();
         $obj->setName('My name is')

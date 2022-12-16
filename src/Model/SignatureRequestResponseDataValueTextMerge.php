@@ -183,7 +183,7 @@ class SignatureRequestResponseDataValueTextMerge extends SignatureRequestRespons
     {
         /** @var SignatureRequestResponseDataValueTextMerge $obj */
         $obj = ObjectSerializer::deserialize(
-            ObjectSerializer::instantiateFiles(static::class, $data),
+            $data,
             SignatureRequestResponseDataValueTextMerge::class,
         );
 
