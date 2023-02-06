@@ -1,3 +1,15 @@
+# ⚠ This SDK has been deprecated ⚠
+
+This SDK is now deprecated and will no longer receive feature updates or bug fixes. Security fixes will still be applied as needed.
+
+The new `dropbox/sign` SDK can be found at [hellosign/dropbox-sign-php](https://github.com/hellosign/dropbox-sign-php)!
+
+The new SDK and this legacy SDK are _not_ backwards-compatible!
+
+Please [see here for a comprehensive migration guide](https://developers.hellosign.com/docs/sdks/php/migration-guide/).
+
+----
+
 ## HelloSign PHP SDK
 [![Build Status](https://travis-ci.org/hellosign/hellosign-php-sdk.svg?branch=v3)](https://travis-ci.org/hellosign/hellosign-php-sdk)
 
