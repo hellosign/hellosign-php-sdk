@@ -1,9 +1,0 @@
-{
-  "default": {
-    "unclaimed_draft": {
-      "claim_url": "https://app.hellosign.com/send/resendDocs?root_snapshot_guids[]=7f967b7d06e154394eab693febedf61e8ebe49eb&amp;snapshot_access_guids[]=fb848631&amp;root_snapshot_guids[]=7aedaf31e12edf9f2672a0b2ddf028aca670e101&amp;snapshot_access_guids[]=f398ef87",
-      "expires_at": 1414093891,
-      "test_mode": true
-    }
-  }
-}
